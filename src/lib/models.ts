@@ -1,6 +1,6 @@
 // Point calculation models for the Highly Skilled Professional visa
 
-export type VisaType = 'technical' | 'research' | 'business';
+export type VisaType = 'technical';
 
 export interface PointsData {
   // Visa Type
