@@ -8,8 +8,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { CheckCircle, Warning, Trophy, Download } from "@phosphor-icons/react";
 import { calculateTotalPoints, getCategoryPoints, getQualificationStatus } from "@/lib/calculator";
 import { PointsData, VisaType } from "@/lib/models";
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
+import { useReactToPrint } from 'react-to-print';
 
 interface PointsResultProps {
   data: PointsData;
@@ -25,6 +24,36 @@ export function PointsResult({ data }: PointsResultProps) {
   });
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
   const resultRef = useRef<HTMLDivElement>(null);
+
+  const handlePrint = useReactToPrint({
+    contentRef: resultRef,
+    documentTitle: `일본_고도인재_비자_점수표_${new Date().toISOString().split('T')[0]}`,
+    onBeforeGetContent: () => {
+      setIsGeneratingPDF(true);
+      return Promise.resolve();
+    },
+    onAfterPrint: () => {
+      setIsGeneratingPDF(false);
+    },
+    pageStyle: `
+      @page {
+        size: A4;
+        margin: 20mm;
+      }
+      @media print {
+        body {
+          -webkit-print-color-adjust: exact;
+          color-adjust: exact;
+        }
+        .no-print {
+          display: none !important;
+        }
+        .print-only {
+          display: block !important;
+        }
+      }
+    `
+  });
 
   useEffect(() => {
     const total = calculateTotalPoints(data);
@@ -77,42 +106,11 @@ export function PointsResult({ data }: PointsResultProps) {
     return '고도 전문 기술 활동';
   };
 
-  const handleDownloadPDF = async () => {
-    if (!resultRef.current) return;
-    
+  const handleDownloadPDF = () => {
     setIsGeneratingPDF(true);
-    try {
-      const canvas = await html2canvas(resultRef.current, { 
-        background: '#ffffff',
-        useCORS: true,
-        allowTaint: true
-      });
-      
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF();
-      
-      const imgWidth = 210;
-      const pageHeight = 295;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      let heightLeft = imgHeight;
-      
-      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-      
-      while (heightLeft >= 0) {
-        pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, -heightLeft, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-      }
-      
-      const today = new Date().toISOString().split('T')[0];
-      pdf.save(`일본_고도인재_비자_점수표_${today}.pdf`);
-    } catch (error) {
-      console.error('PDF 생성 중 오류가 발생했습니다:', error);
-      alert('PDF 생성 중 오류가 발생했습니다. 다시 시도해 주세요.');
-    } finally {
-      setIsGeneratingPDF(false);
-    }
+    handlePrint();
+    // Reset state after a short delay to allow print dialog to appear
+    setTimeout(() => setIsGeneratingPDF(false), 1000);
   };
 
   return (
@@ -125,10 +123,10 @@ export function PointsResult({ data }: PointsResultProps) {
             disabled={isGeneratingPDF}
             variant="outline"
             size="sm"
-            className="gap-2"
+            className="gap-2 no-print"
           >
             <Download size={16} />
-            {isGeneratingPDF ? 'PDF 생성 중...' : '결과 PDF 다운로드'}
+            {isGeneratingPDF ? 'PDF 준비 중...' : '결과 PDF 다운로드'}
           </Button>
         </div>
       </CardHeader>
