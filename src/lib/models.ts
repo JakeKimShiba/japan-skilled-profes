@@ -32,8 +32,7 @@ export interface PointsData {
 export const educationPoints = {
   // Common for all visa types
   'doctorate': 30,
-  'masters': 25,
-  'professional': 20,
+  'masters': 20,
   'bachelors': 10,
   'none': 0
 };

@@ -93,13 +93,6 @@ export function PointsForm({ data, setData }: PointsFormProps) {
               <RadioGroupItem value="masters" id="masters" />
               <Label htmlFor="masters" className="flex justify-between w-full">
                 <span>석사 학위</span>
-                <Badge variant="outline" className="bg-primary/10 ml-2">25점</Badge>
-              </Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="professional" id="professional" />
-              <Label htmlFor="professional" className="flex justify-between w-full">
-                <span>전문학위 (법학, 의학 등)</span>
                 <Badge variant="outline" className="bg-primary/10 ml-2">20점</Badge>
               </Label>
             </div>
