@@ -466,28 +466,6 @@ export function PointsForm({ data, setData }: PointsFormProps) {
               </Label>
             </div>
           </RadioGroup>
-          
-          <h4 className="text-sm font-medium text-muted-foreground mb-2">외국어 능력 (모국어, 일본어 외)</h4>
-          <RadioGroup
-            value={data.foreignLanguage}
-            onValueChange={(value) => handleChange("foreignLanguage", value)}
-            className="grid grid-cols-1 md:grid-cols-2 gap-2"
-          >
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="business" id="foreign-business" />
-              <Label htmlFor="foreign-business" className="flex justify-between w-full">
-                <span>비즈니스 수준</span>
-                <Badge variant="outline" className="bg-primary/10 ml-2">10점</Badge>
-              </Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="none" id="foreign-none" />
-              <Label htmlFor="foreign-none" className="flex justify-between w-full">
-                <span>해당 없음</span>
-                <Badge variant="outline" className="bg-muted/30 ml-2">0점</Badge>
-              </Label>
-            </div>
-          </RadioGroup>
         </div>
 
         <Separator />

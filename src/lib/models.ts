@@ -24,7 +24,6 @@ export interface PointsData {
   
   // Special Additions
   japaneseLanguage: string;
-  foreignLanguage: string; // Non-Japanese, non-native language proficiency
   
   // Graduated from Japanese institutions
   japaneseEducation: boolean;

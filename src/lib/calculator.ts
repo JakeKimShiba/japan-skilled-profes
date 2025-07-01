@@ -39,7 +39,6 @@ export function calculateTotalPoints(data: PointsData): number {
   
   // Calculate points for language abilities
   const japaneseLanguage = languagePoints[`japanese_${data.japaneseLanguage}` as keyof typeof languagePoints] || 0;
-  const foreignLanguage = languagePoints[`foreign_${data.foreignLanguage}` as keyof typeof languagePoints] || 0;
   
   // Calculate special points
   const japaneseEducationPoints = data.japaneseEducation ? specialPoints.japanese_education : 0;
@@ -47,7 +46,7 @@ export function calculateTotalPoints(data: PointsData): number {
   
   // Calculate total points
   const total = education + career + age + salary + research + license + 
-                japaneseLanguage + foreignLanguage + 
+                japaneseLanguage + 
                 japaneseEducationPoints + innovativeProjectPoints;
   
   return total;
@@ -97,8 +96,7 @@ export function getCategoryPoints(data: PointsData) {
     license: data.licenses.reduce((total, lic) => {
       return total + (licensePoints[lic as keyof typeof licensePoints] || 0);
     }, 0),
-    language: (languagePoints[`japanese_${data.japaneseLanguage}` as keyof typeof languagePoints] || 0) + 
-              (languagePoints[`foreign_${data.foreignLanguage}` as keyof typeof languagePoints] || 0),
+    language: languagePoints[`japanese_${data.japaneseLanguage}` as keyof typeof languagePoints] || 0,
     special: (data.japaneseEducation ? specialPoints.japanese_education : 0) + 
              (data.innovativeProject ? specialPoints.innovative_project : 0)
   };

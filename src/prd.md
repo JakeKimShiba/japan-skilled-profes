@@ -26,7 +26,7 @@
    - Success: Users can easily switch between visa types and see appropriate form options
 
 2. **Interactive Point Calculator Form**
-   - What: Dynamic form with inputs for education, work experience, age, salary, language skills, etc.
+   - What: Dynamic form with inputs for education, work experience, age, salary, Japanese language skills, etc.
    - Why: Enables users to input their personal data for accurate assessment
    - Success: Users can easily fill in all fields without confusion or errors
 

@@ -20,7 +20,6 @@ function App() {
     researchAchievements: [],
     licenses: [],
     japaneseLanguage: 'none',
-    foreignLanguage: 'none',
     japaneseEducation: false,
     innovativeProject: false
   });
