@@ -83,7 +83,7 @@ export function InfoPanel() {
           <p>한국의 정보처리기사/정보처리산업기사 자격증도 일본에서 인정되어 최대 5점을 취득할 수 있습니다.</p>
           <p className="mt-2">
             <a 
-              href="https://www.moj.go.jp/isa/publications/materials/nyuukokukanri07_00127.html" 
+              href="https://www.moj.go.jp/isa/policies/bill/nyukan_hourei_h09.html" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-primary underline"

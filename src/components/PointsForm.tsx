@@ -402,29 +402,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
             
             <h4 className="text-sm font-medium text-muted-foreground mt-4">자격증</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-              <div className="flex items-center space-x-2">
-                <Checkbox 
-                  id="license-national" 
-                  checked={data.licenses.includes('national')}
-                  onCheckedChange={() => toggleArrayValue('licenses', 'national')}
-                />
-                <Label htmlFor="license-national" className="flex justify-between w-full">
-                  <span>국가 공인 자격증</span>
-                  <Badge variant="outline" className="bg-primary/10 ml-2">20점</Badge>
-                </Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox 
-                  id="license-other" 
-                  checked={data.licenses.includes('other')}
-                  onCheckedChange={() => toggleArrayValue('licenses', 'other')}
-                />
-                <Label htmlFor="license-other" className="flex justify-between w-full">
-                  <span>기타 자격증</span>
-                  <Badge variant="outline" className="bg-primary/10 ml-2">5점</Badge>
-                </Label>
-              </div>
-              <div className="md:col-span-2 mt-3">
+              <div className="md:col-span-2">
                 <div className="flex flex-col space-y-2">
                   <Label htmlFor="jp-national-licenses" className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
@@ -439,7 +417,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                             <p className="mt-2">한국의 정보처리기사/정보처리산업기사 자격증도 일본에서 인정되어 최대 5점을 취득할 수 있습니다.</p>
                             <p className="mt-2">
                               <a 
-                                href="https://www.moj.go.jp/isa/publications/materials/nyuukokukanri07_00127.html" 
+                                href="https://www.moj.go.jp/isa/policies/bill/nyukan_hourei_h09.html" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
                                 className="text-primary underline"
@@ -466,6 +444,17 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                     </SelectContent>
                   </Select>
                 </div>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox 
+                  id="license-other" 
+                  checked={data.licenses.includes('other')}
+                  onCheckedChange={() => toggleArrayValue('licenses', 'other')}
+                />
+                <Label htmlFor="license-other" className="flex justify-between w-full">
+                  <span>직무에 관련된 외국 자격증</span>
+                  <Badge variant="outline" className="bg-primary/10 ml-2">5점</Badge>
+                </Label>
               </div>
             </div>
             
