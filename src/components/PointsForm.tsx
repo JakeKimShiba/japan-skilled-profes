@@ -550,7 +550,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 onCheckedChange={(checked) => handleChange("japaneseEducation", !!checked)}
               />
               <Label htmlFor="japanese-education" className="flex justify-between w-full">
-                <span>일본 교육기관 졸업</span>
+                <span>일본의 고등교육기관(4년제 대학 이상)에서 학위를 취득</span>
                 <Badge variant="outline" className="bg-primary/10 ml-2">10점</Badge>
               </Label>
             </div>
