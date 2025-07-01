@@ -23,6 +23,10 @@ export interface PointsData {
   licenses: string[]; // Professional qualifications
   jpNationalLicenses: number; // Number of Japanese national licenses (0, 1, 2)
   
+  // Additional bonuses
+  innovationBonus: boolean; // Support measures for innovation (10 points)
+  researchCostBonus: boolean; // SMEs with R&D costs exceeding 3% (5 points)
+  
   // Special Additions
   japaneseLanguage: string;
   

@@ -327,7 +327,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
 
         <Separator />
 
-        {/* Qualifications and Achievements */}
+        {/* Research Achievements and Licenses */}
         <div>
           <div className="flex items-center gap-2 mb-3">
             <h3 className="font-medium">연구 실적 및 자격증</h3>
@@ -466,6 +466,32 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                     </SelectContent>
                   </Select>
                 </div>
+              </div>
+            </div>
+            
+            <h4 className="text-sm font-medium text-muted-foreground mt-4">보너스 항목</h4>
+            <div className="grid grid-cols-1 gap-2">
+              <div className="flex items-center space-x-2">
+                <Checkbox 
+                  id="innovation-bonus" 
+                  checked={data.innovationBonus}
+                  onCheckedChange={(checked) => handleChange("innovationBonus", !!checked)}
+                />
+                <Label htmlFor="innovation-bonus" className="flex justify-between w-full">
+                  <span>기술혁신을 촉진하기 위한 지원조치 (별도로 고시해서 정함)를 받고 있는 기관에 취업</span>
+                  <Badge variant="outline" className="bg-primary/10 ml-2">10점</Badge>
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox 
+                  id="research-cost-bonus" 
+                  checked={data.researchCostBonus}
+                  onCheckedChange={(checked) => handleChange("researchCostBonus", !!checked)}
+                />
+                <Label htmlFor="research-cost-bonus" className="flex justify-between w-full">
+                  <span>시험 연구비 등의 비율이 3%를 넘는 중소기업에 취업</span>
+                  <Badge variant="outline" className="bg-primary/10 ml-2">5점</Badge>
+                </Label>
               </div>
             </div>
           </div>

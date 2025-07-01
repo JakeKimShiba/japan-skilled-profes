@@ -46,10 +46,16 @@ export function calculateTotalPoints(data: PointsData): number {
   // Calculate special points
   const japaneseEducationPoints = data.japaneseEducation ? specialPoints.japanese_education : 0;
   
+  // Calculate bonus points
+  const innovationBonusPoints = data.innovationBonus ? 10 : 0;
+  const researchCostBonusPoints = data.researchCostBonus ? 5 : 0;
+  
   // Calculate total points
   const total = education + career + age + salary + research + license + 
                 japaneseLanguage + 
-                japaneseEducationPoints;
+                japaneseEducationPoints +
+                innovationBonusPoints +
+                researchCostBonusPoints;
   
   return total;
 }
@@ -87,6 +93,11 @@ export function getQualificationStatus(totalPoints: number) {
 export function getCategoryPoints(data: PointsData) {
   const visaType = data.visaType;
   
+  // Calculate bonus points
+  const innovationBonusPoints = data.innovationBonus ? 10 : 0;
+  const researchCostBonusPoints = data.researchCostBonus ? 5 : 0;
+  const bonusPoints = innovationBonusPoints + researchCostBonusPoints;
+  
   return {
     academic: educationPoints[data.educationLevel as keyof typeof educationPoints] || 0,
     career: workExperiencePoints[data.workExperience as keyof typeof workExperiencePoints] || 0,
@@ -99,6 +110,6 @@ export function getCategoryPoints(data: PointsData) {
       return total + (licensePoints[lic as keyof typeof licensePoints] || 0);
     }, 0) + (data.jpNationalLicenses * 5), // 5 points per Japanese national license
     language: languagePoints[`japanese_${data.japaneseLanguage}` as keyof typeof languagePoints] || 0,
-    special: (data.japaneseEducation ? specialPoints.japanese_education : 0)
+    special: (data.japaneseEducation ? specialPoints.japanese_education : 0) + bonusPoints
   };
 }

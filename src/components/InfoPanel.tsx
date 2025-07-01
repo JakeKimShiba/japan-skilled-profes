@@ -101,7 +101,13 @@ export function InfoPanel({ currentVisaType }: InfoPanelProps) {
         <Separator className="my-3" />
         
         <p className="text-muted-foreground text-xs">
-          ※ 본 계산기는 참고용으로 제공됩니다. 정확한 정보는 일본 출입국 재류관리청의 공식 정보를 확인하세요.
+          ※ 본 계산기는 참고용으로 제공됩니다. 정확한 정보는 
+          <a href="https://www.moj.go.jp/isa/index.html" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             className="text-primary hover:underline ml-1">
+            일본 출입국 재류관리청의 공식 사이트
+          </a>를 확인해 주세요.
         </p>
       </CardContent>
     </Card>
