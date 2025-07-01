@@ -8,11 +8,29 @@ interface InfoPanelProps {
 
 export function InfoPanel({ currentVisaType }: InfoPanelProps) {
   const getVisaTypeLabel = (): string => {
-    return '고도 전문 기술 활동 (高度専門職 1号 イ)';
+    switch (currentVisaType) {
+      case 'technical':
+        return '고도 전문 기술 활동 (高度専門職 1号 イ)';
+      case 'research':
+        return '고도 학술 연구 활동 (高度専門職 1号 ロ)';
+      case 'business':
+        return '고도 경영 관리 활동 (高度専門職 1号 ハ)';
+      default:
+        return '고도 전문 기술 활동 (高度専門職 1号 イ)';
+    }
   };
 
   const getVisaTypeDescription = (): string => {
-    return '엔지니어, 프로그래머, 디자이너와 같은 전문 기술직 종사자를 위한 비자입니다. IT, 공학, 디자인 등의 분야에서 고도의 전문성을 인정받은 외국인에게 발급됩니다.';
+    switch (currentVisaType) {
+      case 'technical':
+        return '엔지니어, 프로그래머, 디자이너와 같은 전문 기술직 종사자를 위한 비자입니다. IT, 공학, 디자인 등의 분야에서 고도의 전문성을 인정받은 외국인에게 발급됩니다.';
+      case 'research':
+        return '대학 교수, 연구원과 같은 학술 연구 분야 종사자를 위한 비자입니다. 자연과학, 인문사회과학 등의 연구 분야에서 탁월한 능력을 가진 외국인에게 발급됩니다.';
+      case 'business':
+        return '기업 경영자, 관리직 종사자를 위한 비자입니다. 회사 경영, 관리 분야에서 고도의 전문성과 경험을 가진 외국인에게 발급됩니다.';
+      default:
+        return '엔지니어, 프로그래머, 디자이너와 같은 전문 기술직 종사자를 위한 비자입니다. IT, 공학, 디자인 등의 분야에서 고도의 전문성을 인정받은 외국인에게 발급됩니다.';
+    }
   };
 
   return (
@@ -28,7 +46,9 @@ export function InfoPanel({ currentVisaType }: InfoPanelProps) {
         
         <p className="mt-2 text-primary-foreground bg-primary/80 p-2 rounded-md">
           본 계산기는 <strong>{getVisaTypeLabel()}</strong> 기준으로 포인트를 계산합니다.
-          이 유형은 엔지니어링, IT 등의 전문 기술 직종에 적합합니다.
+          이 유형은 {currentVisaType === 'technical' ? '엔지니어링, IT' : 
+                    currentVisaType === 'research' ? '연구, 교육' : 
+                    '경영, 관리'} 등의 분야에 적합합니다.
         </p>
         
         <p>
