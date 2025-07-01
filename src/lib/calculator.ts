@@ -35,7 +35,7 @@ export function calculateTotalPoints(data: PointsData): number {
   // Calculate points for licenses
   const license = data.licenses.reduce((total, lic) => {
     return total + (licensePoints[lic as keyof typeof licensePoints] || 0);
-  }, 0);
+  }, 0) + (data.jpNationalLicenses * 5); // 5 points per Japanese national license
   
   // Calculate points for language abilities
   const japaneseLanguage = languagePoints[`japanese_${data.japaneseLanguage}` as keyof typeof languagePoints] || 0;
@@ -94,7 +94,7 @@ export function getCategoryPoints(data: PointsData) {
     }, 0),
     license: data.licenses.reduce((total, lic) => {
       return total + (licensePoints[lic as keyof typeof licensePoints] || 0);
-    }, 0),
+    }, 0) + (data.jpNationalLicenses * 5), // 5 points per Japanese national license
     language: languagePoints[`japanese_${data.japaneseLanguage}` as keyof typeof languagePoints] || 0,
     special: (data.japaneseEducation ? specialPoints.japanese_education : 0)
   };

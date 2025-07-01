@@ -20,6 +20,7 @@ import {
 import { Info } from "@phosphor-icons/react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Badge } from "@/components/ui/badge";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface PointsFormProps {
   data: PointsData;
@@ -27,7 +28,7 @@ interface PointsFormProps {
 }
 
 export function PointsForm({ data, setData }: PointsFormProps) {
-  const handleChange = (field: keyof PointsData, value: string | boolean | string[]) => {
+  const handleChange = (field: keyof PointsData, value: string | boolean | string[] | number) => {
     setData({
       ...data,
       [field]: value,
@@ -411,6 +412,38 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <span>기타 자격증</span>
                   <Badge variant="outline" className="bg-primary/10 ml-2">5점</Badge>
                 </Label>
+              </div>
+              <div className="md:col-span-2 mt-3">
+                <div className="flex flex-col space-y-2">
+                  <Label htmlFor="jp-national-licenses" className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span>직무에 관련한 일본의 국가자격증</span>
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Info className="text-muted-foreground" size={16} />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>보유하신 일본 국가자격증의 개수를 선택하세요. (1개 - 5점, 최대 2개)</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </div>
+                  </Label>
+                  <Select
+                    value={data.jpNationalLicenses.toString()}
+                    onValueChange={(value) => handleChange("jpNationalLicenses", parseInt(value))}
+                  >
+                    <SelectTrigger id="jp-national-licenses">
+                      <SelectValue placeholder="선택하세요" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="0">없음</SelectItem>
+                      <SelectItem value="1">1개 보유 (5점)</SelectItem>
+                      <SelectItem value="2">2개 보유 (10점)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
             </div>
           </div>

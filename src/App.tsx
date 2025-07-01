@@ -19,6 +19,7 @@ function App() {
     annualSalary: 'under3m',
     researchAchievements: [],
     licenses: [],
+    jpNationalLicenses: 0,
     japaneseLanguage: 'none',
     japaneseEducation: false
   });

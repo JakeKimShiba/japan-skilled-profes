@@ -21,6 +21,7 @@ export interface PointsData {
   // Qualifications
   researchAchievements: string[]; // Research papers, patents
   licenses: string[]; // Professional qualifications
+  jpNationalLicenses: number; // Number of Japanese national licenses (0, 1, 2)
   
   // Special Additions
   japaneseLanguage: string;
