@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { CheckCircle, Warning, Trophy } from "@phosphor-icons/react";
+import { CheckCircle, Warning, Trophy, Download } from "@phosphor-icons/react";
 import { calculateTotalPoints, getCategoryPoints, getQualificationStatus } from "@/lib/calculator";
 import { PointsData, VisaType } from "@/lib/models";
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 interface PointsResultProps {
   data: PointsData;
@@ -20,6 +23,8 @@ export function PointsResult({ data }: PointsResultProps) {
     expeditedPR: false,
     benefits: [],
   });
+  const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
+  const resultRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const total = calculateTotalPoints(data);
@@ -72,10 +77,60 @@ export function PointsResult({ data }: PointsResultProps) {
     return '고도 전문 기술 활동';
   };
 
+  const handleDownloadPDF = async () => {
+    if (!resultRef.current) return;
+    
+    setIsGeneratingPDF(true);
+    try {
+      const canvas = await html2canvas(resultRef.current, { 
+        background: '#ffffff',
+        useCORS: true,
+        allowTaint: true
+      });
+      
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF();
+      
+      const imgWidth = 210;
+      const pageHeight = 295;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      let heightLeft = imgHeight;
+      
+      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+      
+      while (heightLeft >= 0) {
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, -heightLeft, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+      
+      const today = new Date().toISOString().split('T')[0];
+      pdf.save(`일본_고도인재_비자_점수표_${today}.pdf`);
+    } catch (error) {
+      console.error('PDF 생성 중 오류가 발생했습니다:', error);
+      alert('PDF 생성 중 오류가 발생했습니다. 다시 시도해 주세요.');
+    } finally {
+      setIsGeneratingPDF(false);
+    }
+  };
+
   return (
-    <Card>
+    <Card ref={resultRef}>
       <CardHeader>
-        <CardTitle className="text-xl text-primary">결과</CardTitle>
+        <div className="flex items-center justify-between">
+          <CardTitle className="text-xl text-primary">결과</CardTitle>
+          <Button
+            onClick={handleDownloadPDF}
+            disabled={isGeneratingPDF}
+            variant="outline"
+            size="sm"
+            className="gap-2"
+          >
+            <Download size={16} />
+            {isGeneratingPDF ? 'PDF 생성 중...' : '결과 PDF 다운로드'}
+          </Button>
+        </div>
       </CardHeader>
       <CardContent className="space-y-6">
         <div>
