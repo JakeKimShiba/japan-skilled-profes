@@ -75,13 +75,31 @@ export function InfoPanel({ currentVisaType }: InfoPanelProps) {
           <h3 className="font-medium">포인트 계산 항목</h3>
           <ul className="list-disc pl-5 space-y-1">
             <li>학력 (최대 30점)</li>
-            <li>경력 (최대 25점)</li>
+            <li>직무경력 (최대 20점)</li>
             <li>연봉 (최대 60점)</li>
             <li>나이 (최대 15점)</li>
             <li>연구 실적 및 자격증 (최대 25점)</li>
             <li>일본어/외국어 능력 (최대 25점)</li>
             <li>특별 가산 항목 (최대 20점)</li>
           </ul>
+        </div>
+        
+        <Separator className="my-3" />
+        
+        <div className="space-y-2">
+          <h3 className="font-medium">일본의 국가자격증</h3>
+          <p>직무에 관련된 일본의 국가자격증을 보유하면 1개당 5점(최대 10점)을 획득할 수 있습니다.</p>
+          <p>한국의 정보처리기사/정보처리산업기사 자격증도 일본에서 인정되어 최대 5점을 취득할 수 있습니다.</p>
+          <p className="mt-2">
+            <a 
+              href="https://www.moj.go.jp/isa/publications/materials/nyuukokukanri07_00127.html" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-primary underline"
+            >
+              일본 국가자격증 목록 확인하기
+            </a>
+          </p>
         </div>
         
         <Separator className="my-3" />

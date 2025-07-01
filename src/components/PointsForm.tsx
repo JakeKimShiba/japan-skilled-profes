@@ -450,8 +450,19 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                           <TooltipTrigger asChild>
                             <Info className="text-muted-foreground" size={16} />
                           </TooltipTrigger>
-                          <TooltipContent>
+                          <TooltipContent className="max-w-[300px]">
                             <p>보유하신 일본 국가자격증의 개수를 선택하세요. (1개 - 5점, 최대 2개)</p>
+                            <p className="mt-2">한국의 정보처리기사/정보처리산업기사 자격증도 일본에서 인정되어 최대 5점을 취득할 수 있습니다.</p>
+                            <p className="mt-2">
+                              <a 
+                                href="https://www.moj.go.jp/isa/publications/materials/nyuukokukanri07_00127.html" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="text-primary underline"
+                              >
+                                일본 국가자격증 목록 확인하기
+                              </a>
+                            </p>
                           </TooltipContent>
                         </Tooltip>
                       </TooltipProvider>
