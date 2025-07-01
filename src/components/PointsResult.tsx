@@ -69,16 +69,7 @@ export function PointsResult({ data }: PointsResultProps) {
   };
 
   const getVisaTypeLabel = (type: VisaType): string => {
-    switch (type) {
-      case 'technical':
-        return '고도 전문 기술 활동';
-      case 'research':
-        return '학술 연구 활동';
-      case 'business':
-        return '경영 관리 활동';
-      default:
-        return '고도 전문 기술 활동';
-    }
+    return '고도 전문 기술 활동';
   };
 
   return (

@@ -1,6 +1,6 @@
 // Point calculation models for the Highly Skilled Professional visa
 
-export type VisaType = 'technical' | 'research' | 'business';
+export type VisaType = 'technical'; // Only keeping technical visa type
 
 export interface PointsData {
   // Visa Type
@@ -66,46 +66,11 @@ export const annualSalaryPoints = {
     '10to15m': 50,
     '15to20m': 70,
     '20mplus': 80
-  },
-  research: {
-    'under3m': 0,
-    '3to4m': 10,
-    '4to5m': 20,
-    '5to7m': 30,
-    '7to8m': 40,
-    '8to10m': 40,
-    '10to15m': 50,
-    '15to20m': 70,
-    '20mplus': 80
-  },
-  business: {
-    'under3m': 0,
-    '3to4m': 10,
-    '4to5m': 20,
-    '5to7m': 30,
-    '7to10m': 40,
-    '10to15m': 50,
-    '15to25m': 70,
-    '25mplus': 80
   }
 };
 
 export const researchPoints = {
   technical: {
-    'patents': 15,
-    'papers': 15,
-    'research': 15,
-    'awards': 15,
-    'none': 0
-  },
-  research: {
-    'patents': 15,
-    'papers': 15,
-    'research': 15,
-    'awards': 15,
-    'none': 0
-  },
-  business: {
     'patents': 15,
     'papers': 15,
     'research': 15,

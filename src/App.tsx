@@ -12,7 +12,7 @@ import { Label } from "@/components/ui/label";
 
 function App() {
   const [pointsData, setPointsData] = useState<PointsData>({
-    visaType: 'technical',
+    visaType: 'technical', // Only keeping technical type
     educationLevel: 'bachelors',
     workExperience: 'less3',
     age: '30to34',
@@ -35,49 +35,19 @@ function App() {
   }, []);
 
   const handleVisaTypeChange = (type: VisaType) => {
-    setPointsData({
-      ...pointsData,
-      visaType: type
-    });
+    // This function is now a no-op since we only have one visa type
   };
 
   const getVisaTypeLabel = (type: VisaType): string => {
-    switch (type) {
-      case 'technical':
-        return '고도 전문 기술 활동';
-      case 'research':
-        return '학술 연구 활동';
-      case 'business':
-        return '경영 관리 활동';
-      default:
-        return '';
-    }
+    return '고도 전문 기술 활동';
   };
 
   const getVisaTypeEnglishName = (type: VisaType): string => {
-    switch (type) {
-      case 'technical':
-        return 'Advanced Specialized/Technical Activities';
-      case 'research':
-        return 'Academic Research Activities';
-      case 'business':
-        return 'Business Management Activities';
-      default:
-        return '';
-    }
+    return 'Advanced Specialized/Technical Activities';
   };
   
   const getVisaTypeJapaneseName = (type: VisaType): string => {
-    switch (type) {
-      case 'technical':
-        return '高度専門職 1号 イ';
-      case 'research':
-        return '高度専門職 1号 ア';
-      case 'business':
-        return '高度専門職 1号 ウ';
-      default:
-        return '';
-    }
+    return '高度専門職 1号 イ';
   };
 
   return (
@@ -95,34 +65,11 @@ function App() {
             <Card>
               <CardContent className="pt-6">
                 <div className="mb-4">
-                  <h3 className="font-medium mb-3">비자 유형 선택</h3>
-                  <RadioGroup
-                    value={pointsData.visaType}
-                    onValueChange={(value) => handleVisaTypeChange(value as VisaType)}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-4"
-                  >
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="technical" id="visa-technical" />
-                      <Label htmlFor="visa-technical" className="flex flex-col">
-                        <span className="font-medium">고도 전문 기술 활동</span>
-                        <span className="text-xs text-muted-foreground">高度専門職 1号 イ</span>
-                      </Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="research" id="visa-research" />
-                      <Label htmlFor="visa-research" className="flex flex-col">
-                        <span className="font-medium">고도 학술 연구 활동</span>
-                        <span className="text-xs text-muted-foreground">高度専門職 1号 ア</span>
-                      </Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="business" id="visa-business" />
-                      <Label htmlFor="visa-business" className="flex flex-col">
-                        <span className="font-medium">고도 경영 · 관리 활동</span>
-                        <span className="text-xs text-muted-foreground">高度専門職 1号 ウ</span>
-                      </Label>
-                    </div>
-                  </RadioGroup>
+                  <h3 className="font-medium mb-3">비자 유형</h3>
+                  <div className="flex items-center space-x-2">
+                      <span className="font-medium">고도 전문 기술 활동</span>
+                      <span className="text-xs text-muted-foreground">高度専門職 1号 イ</span>
+                  </div>
                 </div>
               </CardContent>
             </Card>
