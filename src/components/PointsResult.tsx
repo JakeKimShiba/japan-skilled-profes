@@ -50,7 +50,7 @@ export function PointsResult({ data }: PointsResultProps) {
       case 'academic':
         return '학력';
       case 'career':
-        return '경력';
+        return '직무경력(실무경험)';
       case 'age':
         return '나이';
       case 'salary':

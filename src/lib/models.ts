@@ -43,8 +43,7 @@ export const workExperiencePoints = {
   '3to5': 5,
   '5to7': 10,
   '7to10': 15,
-  '10to15': 20,
-  '15plus': 25
+  '10plus': 20
 };
 
 export const agePoints = {

@@ -118,7 +118,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
         {/* Work Experience */}
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <h3 className="font-medium">경력 (전문 분야)</h3>
+            <h3 className="font-medium">직무경력(실무경험)</h3>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -164,17 +164,10 @@ export function PointsForm({ data, setData }: PointsFormProps) {
               </Label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="10to15" id="work-10to15" />
-              <Label htmlFor="work-10to15" className="flex justify-between w-full">
-                <span>10년 이상 15년 미만</span>
+              <RadioGroupItem value="10plus" id="work-10plus" />
+              <Label htmlFor="work-10plus" className="flex justify-between w-full">
+                <span>10년 이상</span>
                 <Badge variant="outline" className="bg-primary/10 ml-2">20점</Badge>
-              </Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="15plus" id="work-15plus" />
-              <Label htmlFor="work-15plus" className="flex justify-between w-full">
-                <span>15년 이상</span>
-                <Badge variant="outline" className="bg-primary/10 ml-2">25점</Badge>
               </Label>
             </div>
           </RadioGroup>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { PointsForm } from "@/components/PointsForm";
 import { PointsResult } from "@/components/PointsResult";
@@ -22,6 +22,16 @@ function App() {
     japaneseLanguage: 'none',
     japaneseEducation: false
   });
+
+  useEffect(() => {
+    // Map old work experience values to new ones if needed
+    if (pointsData.workExperience === '10to15' || pointsData.workExperience === '15plus') {
+      setPointsData({
+        ...pointsData,
+        workExperience: '10plus'
+      });
+    }
+  }, []);
 
   const handleVisaTypeChange = (type: VisaType) => {
     setPointsData({
