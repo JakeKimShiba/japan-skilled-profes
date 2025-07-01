@@ -12,7 +12,8 @@
         "preview": "vite preview",
         "deploy:github": "npm run build && gh-pages -d dist",
         "deploy:prepare": "node ./scripts/deploy-info.js",
-        "deploy:netlify": "npm run build && netlify deploy --prod --dir=dist"
+        "deploy:netlify": "npm run build && netlify deploy --prod --dir=dist",
+        "deploy:cloudtype": "npm run build"
     },
     "dependencies": {
         "@heroicons/react": "^2.2.0",

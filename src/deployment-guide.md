@@ -10,7 +10,49 @@ Before deploying, ensure you have:
 2. Node.js and npm installed on your development machine
 3. Git installed (if using Git-based deployments)
 
-## Option 1: Static Site Hosting (Recommended)
+## Option 1: Cloudtype (Korean Cloud Platform)
+
+Cloudtype is a Korean cloud platform that makes deployment simple with Docker support.
+
+### Steps:
+
+1. **Sign up for Cloudtype:**
+   - Visit [cloudtype.io](https://cloudtype.io)
+   - Create an account
+
+2. **Connect your GitHub repository:**
+   - Push your code to GitHub
+   - Connect your GitHub account to Cloudtype
+
+3. **Create a new project:**
+   - Select "Web Application"
+   - Choose your GitHub repository
+   - Select the branch to deploy (usually `main`)
+
+4. **Configure build settings:**
+   - **Build Command:** `npm run build`
+   - **Start Command:** Not needed (uses Dockerfile)
+   - **Port:** 80 (configured in nginx.conf)
+
+5. **Environment Variables (if needed):**
+   - `VITE_BASE_URL=/`
+   - `VITE_APP_NAME=Japan Visa Calculator`
+
+6. **Deploy:**
+   - Click "Deploy" button
+   - Wait for the build and deployment process
+
+7. **Access your app:**
+   - Cloudtype will provide a URL like: `https://your-app-name.cloudtype.app`
+
+### Benefits of Cloudtype:
+- Korean service with Korean support
+- Docker-based deployment
+- Automatic HTTPS
+- Easy scaling
+- Reasonable pricing
+
+## Option 2: Static Site Hosting (Recommended)
 
 Since this is a client-side only React application, you can deploy it as a static site using one of these platforms:
 
@@ -96,7 +138,7 @@ Since this is a client-side only React application, you can deploy it as a stati
    vercel --prod
    ```
 
-## Option 2: Containerized Deployment
+## Option 3: Containerized Deployment
 
 ### Docker
 
@@ -143,7 +185,7 @@ Since this is a client-side only React application, you can deploy it as a stati
    - AWS ECS/Fargate
    - Azure Container Instances
 
-## Option 3: Traditional Web Hosting
+## Option 4: Traditional Web Hosting
 
 If you prefer traditional web hosting:
 
