@@ -353,41 +353,68 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <Info className="text-muted-foreground" size={16} />
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>해당되는 항목을 모두 선택하세요. (중복 가능)</p>
+                  <p>연구 실적은 한 가지만 선택 가능합니다.</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
           </div>
           <div className="space-y-3">
             <h4 className="text-sm font-medium text-muted-foreground">연구 실적</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Info className="text-muted-foreground text-xs ml-2" size={14} />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>하나의 항목만 선택 가능합니다.</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <RadioGroup
+              value={data.researchAchievements.length > 0 ? data.researchAchievements[0] : "none"}
+              onValueChange={(value) => handleChange("researchAchievements", value === "none" ? [] : [value])}
+              className="grid grid-cols-1 gap-2 mt-2"
+            >
               <div className="flex items-center space-x-2">
-                <Checkbox 
-                  id="research-patents" 
-                  checked={data.researchAchievements.includes('patents')}
-                  onCheckedChange={() => toggleArrayValue('researchAchievements', 'patents')}
-                />
+                <RadioGroupItem value="patents" id="research-patents" />
                 <Label htmlFor="research-patents" className="flex justify-between w-full">
-                  <span>특허 보유</span>
-                  <Badge variant="outline" className="bg-primary/10 ml-2">
-                    {data.visaType === 'research' ? '15점' : (data.visaType === 'business' ? '15점' : '20점')}
-                  </Badge>
+                  <span className="text-sm">특허 발명 1건 이상</span>
+                  <Badge variant="outline" className="bg-primary/10 ml-2">15점</Badge>
                 </Label>
               </div>
+              
               <div className="flex items-center space-x-2">
-                <Checkbox 
-                  id="research-papers" 
-                  checked={data.researchAchievements.includes('papers')}
-                  onCheckedChange={() => toggleArrayValue('researchAchievements', 'papers')}
-                />
-                <Label htmlFor="research-papers" className="flex justify-between w-full">
-                  <span>연구 논문 발표</span>
-                  <Badge variant="outline" className="bg-primary/10 ml-2">
-                    {data.visaType === 'research' ? '20점' : (data.visaType === 'business' ? '10점' : '15점')}
-                  </Badge>
+                <RadioGroupItem value="research" id="research-projects" />
+                <Label htmlFor="research-projects" className="flex justify-between w-full">
+                  <span className="text-sm">입국 전에 공식 기관에서 인정받은 연구에 종사했던 실적 3건 이상</span>
+                  <Badge variant="outline" className="bg-primary/10 ml-2">15점</Badge>
                 </Label>
               </div>
-            </div>
+              
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="papers" id="research-papers" />
+                <Label htmlFor="research-papers" className="flex justify-between w-full">
+                  <span className="text-sm">연구논문 실적에 대해선 일본의 국가 기관에서 이용되고 있는 학술 논문 데이터 베이스에 등록되어 있는 학술 잡지에 게재되어 있는 논문 (신청인이 책임 저자[제 1저자]일 경우에 한함) 3건 이상</span>
+                  <Badge variant="outline" className="bg-primary/10 ml-2">15점</Badge>
+                </Label>
+              </div>
+              
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="awards" id="research-awards" />
+                <Label htmlFor="research-awards" className="flex justify-between w-full">
+                  <span className="text-sm">상기의 항목 이외에 상기 항목에 비교해 동등한 연구 실적이 있는 신청자가 어필하는 경우 (저명한 상의 수상이력 등) 관련 행정기관장의 의견을 들은 곳에서 법무대신이 개별로 포인트 부여 여부를 판단함.</span>
+                  <Badge variant="outline" className="bg-primary/10 ml-2">15점</Badge>
+                </Label>
+              </div>
+              
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="none" id="research-none" />
+                <Label htmlFor="research-none" className="flex justify-between w-full">
+                  <span className="text-sm">해당 없음</span>
+                  <Badge variant="outline" className="bg-muted/30 ml-2">0점</Badge>
+                </Label>
+              </div>
+            </RadioGroup>
             
             <h4 className="text-sm font-medium text-muted-foreground mt-4">자격증</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">

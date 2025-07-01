@@ -92,18 +92,24 @@ export const annualSalaryPoints = {
 
 export const researchPoints = {
   technical: {
-    'patents': 20,
+    'patents': 15,
     'papers': 15,
+    'research': 15,
+    'awards': 15,
     'none': 0
   },
   research: {
     'patents': 15,
-    'papers': 20,
+    'papers': 15,
+    'research': 15,
+    'awards': 15,
     'none': 0
   },
   business: {
     'patents': 15,
-    'papers': 10,
+    'papers': 15,
+    'research': 15,
+    'awards': 15,
     'none': 0
   }
 };
