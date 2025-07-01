@@ -43,7 +43,7 @@
 5. **Information Panel**
    - What: Explanatory content about the visa program, benefits, and requirements specific to each visa type, including detailed information on permanent residency benefits
    - Why: Educates users about the visa system and its advantages, particularly the accelerated path to permanent residency
-   - Success: Users gain sufficient understanding of the visa program's purpose and benefits, especially the permanent residency qualification periods based on point totals
+   - Success: Users gain sufficient understanding of the visa program's purpose and benefits, especially the permanent residency qualification periods based on point totals and visa maintenance requirements
 
 ## Design Direction
 
