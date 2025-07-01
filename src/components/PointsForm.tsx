@@ -487,17 +487,6 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <Badge variant="outline" className="bg-primary/10 ml-2">10점</Badge>
               </Label>
             </div>
-            <div className="flex items-center space-x-2">
-              <Checkbox 
-                id="innovative-project" 
-                checked={data.innovativeProject}
-                onCheckedChange={(checked) => handleChange("innovativeProject", !!checked)}
-              />
-              <Label htmlFor="innovative-project" className="flex justify-between w-full">
-                <span>일본 정부 지정 혁신 프로젝트 참여</span>
-                <Badge variant="outline" className="bg-primary/10 ml-2">10점</Badge>
-              </Label>
-            </div>
           </div>
         </div>
       </CardContent>

@@ -27,9 +27,6 @@ export interface PointsData {
   
   // Graduated from Japanese institutions
   japaneseEducation: boolean;
-  
-  // Designated initiatives by Japanese government
-  innovativeProject: boolean;
 }
 
 export const educationPoints = {
@@ -130,8 +127,7 @@ export const languagePoints = {
 
 export const specialPoints = {
   // Common for all visa types
-  'japanese_education': 10,
-  'innovative_project': 10
+  'japanese_education': 10
 };
 
 // Status based on total points

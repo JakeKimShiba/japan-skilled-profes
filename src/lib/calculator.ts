@@ -42,12 +42,11 @@ export function calculateTotalPoints(data: PointsData): number {
   
   // Calculate special points
   const japaneseEducationPoints = data.japaneseEducation ? specialPoints.japanese_education : 0;
-  const innovativeProjectPoints = data.innovativeProject ? specialPoints.innovative_project : 0;
   
   // Calculate total points
   const total = education + career + age + salary + research + license + 
                 japaneseLanguage + 
-                japaneseEducationPoints + innovativeProjectPoints;
+                japaneseEducationPoints;
   
   return total;
 }
@@ -97,7 +96,6 @@ export function getCategoryPoints(data: PointsData) {
       return total + (licensePoints[lic as keyof typeof licensePoints] || 0);
     }, 0),
     language: languagePoints[`japanese_${data.japaneseLanguage}` as keyof typeof languagePoints] || 0,
-    special: (data.japaneseEducation ? specialPoints.japanese_education : 0) + 
-             (data.innovativeProject ? specialPoints.innovative_project : 0)
+    special: (data.japaneseEducation ? specialPoints.japanese_education : 0)
   };
 }

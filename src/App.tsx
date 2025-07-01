@@ -20,8 +20,7 @@ function App() {
     researchAchievements: [],
     licenses: [],
     japaneseLanguage: 'none',
-    japaneseEducation: false,
-    innovativeProject: false
+    japaneseEducation: false
   });
 
   const handleVisaTypeChange = (type: VisaType) => {
