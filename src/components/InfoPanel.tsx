@@ -45,7 +45,12 @@ export function InfoPanel({ currentVisaType }: InfoPanelProps) {
             <li>배우자 취업 활동 허가</li>
             <li>일정 조건 하에서 부모 동반 허가</li>
             <li>가사 도우미 고용 허가</li>
-            <li>영주권 신청 요건 완화 (80점 이상)</li>
+            <li>영주권 신청 요건 완화:
+              <ul className="list-disc pl-5 text-xs mt-1 space-y-1">
+                <li>70점 이상: 3년 체류 후 또는 3년 전부터 연속으로 자격 충족 시 신청 가능</li>
+                <li>80점 이상: 1년 체류 후 또는 1년 전부터 연속으로 자격 충족 시 신청 가능</li>
+              </ul>
+            </li>
           </ul>
         </div>
         
@@ -67,7 +72,16 @@ export function InfoPanel({ currentVisaType }: InfoPanelProps) {
         <Separator className="my-3" />
         
         <div className="space-y-2">
-          <h3 className="font-medium">일본의 국가자격증</h3>
+          <h3 className="font-medium">영주권 신청 혜택 상세</h3>
+          <p>고도인재 비자의 큰 장점 중 하나는 일반 취업비자보다 영주권 취득 기간이 단축된다는 점입니다:</p>
+          <ul className="list-disc pl-5 space-y-1 mt-2">
+            <li><strong>70점 이상 취득자</strong>: 일본에서 3년간 체류 후 또는 고도인재 자격 요건을 3년 전부터 연속으로 충족하고 있었음을 증명할 경우 영주권 신청 가능</li>
+            <li><strong>80점 이상 취득자</strong>: 일본에서 1년간 체류 후 또는 고도인재 자격 요건을 1년 전부터 연속으로 충족하고 있었음을 증명할 경우 영주권 신청 가능</li>
+          </ul>
+          <p className="text-xs text-muted-foreground mt-2">※ 일반적인 영주권 신청은 10년 이상의 체류기간이 필요한 것에 비해 크게 단축된 혜택입니다.</p>
+        </div>
+        
+        <Separator className="my-3" />
           <p>직무에 관련된 일본의 국가자격증을 보유하면 1개당 5점(최대 10점)을 획득할 수 있습니다.</p>
           <p>한국의 정보처리기사/정보처리산업기사 자격증도 일본에서 인정되어 최대 5점을 취득할 수 있습니다.</p>
           <p className="mt-2">
