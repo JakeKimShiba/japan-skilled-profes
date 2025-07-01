@@ -11,9 +11,8 @@ export default defineConfig(({ mode }) => {
   // Load env file based on `mode`
   const env = loadEnv(mode, process.cwd());
   
-  // Set base URL for GitHub Pages if deployed in a repository
-  // Use environment variable or default to '/'
-  const base = env.VITE_BASE_URL || '/';
+  // Set base URL for GitHub Pages - always use the repository name in production
+  const base = env.VITE_BASE_URL || '/japan-skilled-profes/';
   
   return {
     base,
