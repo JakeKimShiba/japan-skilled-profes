@@ -5,9 +5,20 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { PointsData } from "@/lib/models";
+import { 
+  PointsData, 
+  educationPoints, 
+  workExperiencePoints, 
+  agePoints, 
+  annualSalaryPoints,
+  researchPoints,
+  licensePoints,
+  languagePoints,
+  specialPoints
+} from "@/lib/models";
 import { Info } from "@phosphor-icons/react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Badge } from "@/components/ui/badge";
 
 interface PointsFormProps {
   data: PointsData;
@@ -63,23 +74,38 @@ export function PointsForm({ data, setData }: PointsFormProps) {
           >
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="doctorate" id="doctorate" />
-              <Label htmlFor="doctorate">박사 학위</Label>
+              <Label htmlFor="doctorate" className="flex justify-between w-full">
+                <span>박사 학위</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">30점</Badge>
+              </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="masters" id="masters" />
-              <Label htmlFor="masters">석사 학위</Label>
+              <Label htmlFor="masters" className="flex justify-between w-full">
+                <span>석사 학위</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">25점</Badge>
+              </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="professional" id="professional" />
-              <Label htmlFor="professional">전문학위 (법학, 의학 등)</Label>
+              <Label htmlFor="professional" className="flex justify-between w-full">
+                <span>전문학위 (법학, 의학 등)</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">20점</Badge>
+              </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="bachelors" id="bachelors" />
-              <Label htmlFor="bachelors">학사 학위</Label>
+              <Label htmlFor="bachelors" className="flex justify-between w-full">
+                <span>학사 학위</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">10점</Badge>
+              </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="none" id="no-degree" />
-              <Label htmlFor="no-degree">해당 없음</Label>
+              <Label htmlFor="no-degree" className="flex justify-between w-full">
+                <span>해당 없음</span>
+                <Badge variant="outline" className="bg-muted/30 ml-2">0점</Badge>
+              </Label>
             </div>
           </RadioGroup>
         </div>
@@ -108,27 +134,45 @@ export function PointsForm({ data, setData }: PointsFormProps) {
           >
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="less3" id="work-less3" />
-              <Label htmlFor="work-less3">3년 미만</Label>
+              <Label htmlFor="work-less3" className="flex justify-between w-full">
+                <span>3년 미만</span>
+                <Badge variant="outline" className="bg-muted/30 ml-2">0점</Badge>
+              </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="3to5" id="work-3to5" />
-              <Label htmlFor="work-3to5">3년 이상 5년 미만</Label>
+              <Label htmlFor="work-3to5" className="flex justify-between w-full">
+                <span>3년 이상 5년 미만</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">5점</Badge>
+              </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="5to7" id="work-5to7" />
-              <Label htmlFor="work-5to7">5년 이상 7년 미만</Label>
+              <Label htmlFor="work-5to7" className="flex justify-between w-full">
+                <span>5년 이상 7년 미만</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">10점</Badge>
+              </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="7to10" id="work-7to10" />
-              <Label htmlFor="work-7to10">7년 이상 10년 미만</Label>
+              <Label htmlFor="work-7to10" className="flex justify-between w-full">
+                <span>7년 이상 10년 미만</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">15점</Badge>
+              </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="10to15" id="work-10to15" />
-              <Label htmlFor="work-10to15">10년 이상 15년 미만</Label>
+              <Label htmlFor="work-10to15" className="flex justify-between w-full">
+                <span>10년 이상 15년 미만</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">20점</Badge>
+              </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="15plus" id="work-15plus" />
-              <Label htmlFor="work-15plus">15년 이상</Label>
+              <Label htmlFor="work-15plus" className="flex justify-between w-full">
+                <span>15년 이상</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">25점</Badge>
+              </Label>
             </div>
           </RadioGroup>
         </div>
@@ -147,19 +191,31 @@ export function PointsForm({ data, setData }: PointsFormProps) {
           >
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="29under" id="age-29under" />
-              <Label htmlFor="age-29under">29세 이하</Label>
+              <Label htmlFor="age-29under" className="flex justify-between w-full">
+                <span>29세 이하</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">15점</Badge>
+              </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="30to34" id="age-30to34" />
-              <Label htmlFor="age-30to34">30세 ~ 34세</Label>
+              <Label htmlFor="age-30to34" className="flex justify-between w-full">
+                <span>30세 ~ 34세</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">10점</Badge>
+              </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="35to39" id="age-35to39" />
-              <Label htmlFor="age-35to39">35세 ~ 39세</Label>
+              <Label htmlFor="age-35to39" className="flex justify-between w-full">
+                <span>35세 ~ 39세</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">5점</Badge>
+              </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="40plus" id="age-40plus" />
-              <Label htmlFor="age-40plus">40세 이상</Label>
+              <Label htmlFor="age-40plus" className="flex justify-between w-full">
+                <span>40세 이상</span>
+                <Badge variant="outline" className="bg-muted/30 ml-2">0점</Badge>
+              </Label>
             </div>
           </RadioGroup>
         </div>
@@ -188,35 +244,59 @@ export function PointsForm({ data, setData }: PointsFormProps) {
           >
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="3m" id="salary-3m" />
-              <Label htmlFor="salary-3m">3백만 엔 미만</Label>
+              <Label htmlFor="salary-3m" className="flex justify-between w-full">
+                <span>3백만 엔 미만</span>
+                <Badge variant="outline" className="bg-muted/30 ml-2">0점</Badge>
+              </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="3to4m" id="salary-3to4m" />
-              <Label htmlFor="salary-3to4m">3백만 엔 ~ 4백만 엔</Label>
+              <Label htmlFor="salary-3to4m" className="flex justify-between w-full">
+                <span>3백만 엔 ~ 4백만 엔</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">10점</Badge>
+              </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="4to5m" id="salary-4to5m" />
-              <Label htmlFor="salary-4to5m">4백만 엔 ~ 5백만 엔</Label>
+              <Label htmlFor="salary-4to5m" className="flex justify-between w-full">
+                <span>4백만 엔 ~ 5백만 엔</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">20점</Badge>
+              </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="5to7m" id="salary-5to7m" />
-              <Label htmlFor="salary-5to7m">5백만 엔 ~ 7백만 엔</Label>
+              <Label htmlFor="salary-5to7m" className="flex justify-between w-full">
+                <span>5백만 엔 ~ 7백만 엔</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">30점</Badge>
+              </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="7to8m" id="salary-7to8m" />
-              <Label htmlFor="salary-7to8m">7백만 엔 ~ 8백만 엔</Label>
+              <Label htmlFor="salary-7to8m" className="flex justify-between w-full">
+                <span>7백만 엔 ~ 8백만 엔</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">40점</Badge>
+              </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="8to10m" id="salary-8to10m" />
-              <Label htmlFor="salary-8to10m">8백만 엔 ~ 1천만 엔</Label>
+              <Label htmlFor="salary-8to10m" className="flex justify-between w-full">
+                <span>8백만 엔 ~ 1천만 엔</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">40점</Badge>
+              </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="10to15m" id="salary-10to15m" />
-              <Label htmlFor="salary-10to15m">1천만 엔 ~ 1천5백만 엔</Label>
+              <Label htmlFor="salary-10to15m" className="flex justify-between w-full">
+                <span>1천만 엔 ~ 1천5백만 엔</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">50점</Badge>
+              </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="15mplus" id="salary-15mplus" />
-              <Label htmlFor="salary-15mplus">1천5백만 엔 이상</Label>
+              <Label htmlFor="salary-15mplus" className="flex justify-between w-full">
+                <span>1천5백만 엔 이상</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">60점</Badge>
+              </Label>
             </div>
           </RadioGroup>
         </div>
@@ -247,7 +327,10 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   checked={data.researchAchievements.includes('patents')}
                   onCheckedChange={() => toggleArrayValue('researchAchievements', 'patents')}
                 />
-                <Label htmlFor="research-patents">특허 보유</Label>
+                <Label htmlFor="research-patents" className="flex justify-between w-full">
+                  <span>특허 보유</span>
+                  <Badge variant="outline" className="bg-primary/10 ml-2">20점</Badge>
+                </Label>
               </div>
               <div className="flex items-center space-x-2">
                 <Checkbox 
@@ -255,7 +338,10 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   checked={data.researchAchievements.includes('papers')}
                   onCheckedChange={() => toggleArrayValue('researchAchievements', 'papers')}
                 />
-                <Label htmlFor="research-papers">연구 논문 발표</Label>
+                <Label htmlFor="research-papers" className="flex justify-between w-full">
+                  <span>연구 논문 발표</span>
+                  <Badge variant="outline" className="bg-primary/10 ml-2">15점</Badge>
+                </Label>
               </div>
             </div>
             
@@ -267,7 +353,10 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   checked={data.licenses.includes('national')}
                   onCheckedChange={() => toggleArrayValue('licenses', 'national')}
                 />
-                <Label htmlFor="license-national">국가 공인 자격증</Label>
+                <Label htmlFor="license-national" className="flex justify-between w-full">
+                  <span>국가 공인 자격증</span>
+                  <Badge variant="outline" className="bg-primary/10 ml-2">20점</Badge>
+                </Label>
               </div>
               <div className="flex items-center space-x-2">
                 <Checkbox 
@@ -275,7 +364,10 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   checked={data.licenses.includes('other')}
                   onCheckedChange={() => toggleArrayValue('licenses', 'other')}
                 />
-                <Label htmlFor="license-other">기타 자격증</Label>
+                <Label htmlFor="license-other" className="flex justify-between w-full">
+                  <span>기타 자격증</span>
+                  <Badge variant="outline" className="bg-primary/10 ml-2">5점</Badge>
+                </Label>
               </div>
             </div>
           </div>
@@ -297,19 +389,31 @@ export function PointsForm({ data, setData }: PointsFormProps) {
           >
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="advanced" id="japanese-advanced" />
-              <Label htmlFor="japanese-advanced">고급 (N1 수준)</Label>
+              <Label htmlFor="japanese-advanced" className="flex justify-between w-full">
+                <span>고급 (N1 수준)</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">15점</Badge>
+              </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="business" id="japanese-business" />
-              <Label htmlFor="japanese-business">비즈니스 (N2 수준)</Label>
+              <Label htmlFor="japanese-business" className="flex justify-between w-full">
+                <span>비즈니스 (N2 수준)</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">10점</Badge>
+              </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="daily" id="japanese-daily" />
-              <Label htmlFor="japanese-daily">일상회화 (N3, N4 수준)</Label>
+              <Label htmlFor="japanese-daily" className="flex justify-between w-full">
+                <span>일상회화 (N3, N4 수준)</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">5점</Badge>
+              </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="none" id="japanese-none" />
-              <Label htmlFor="japanese-none">없음</Label>
+              <Label htmlFor="japanese-none" className="flex justify-between w-full">
+                <span>없음</span>
+                <Badge variant="outline" className="bg-muted/30 ml-2">0점</Badge>
+              </Label>
             </div>
           </RadioGroup>
           
@@ -321,11 +425,17 @@ export function PointsForm({ data, setData }: PointsFormProps) {
           >
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="business" id="foreign-business" />
-              <Label htmlFor="foreign-business">비즈니스 수준</Label>
+              <Label htmlFor="foreign-business" className="flex justify-between w-full">
+                <span>비즈니스 수준</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">10점</Badge>
+              </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="none" id="foreign-none" />
-              <Label htmlFor="foreign-none">해당 없음</Label>
+              <Label htmlFor="foreign-none" className="flex justify-between w-full">
+                <span>해당 없음</span>
+                <Badge variant="outline" className="bg-muted/30 ml-2">0점</Badge>
+              </Label>
             </div>
           </RadioGroup>
         </div>
@@ -344,7 +454,10 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 checked={data.japaneseEducation}
                 onCheckedChange={(checked) => handleChange("japaneseEducation", !!checked)}
               />
-              <Label htmlFor="japanese-education">일본 교육기관 졸업</Label>
+              <Label htmlFor="japanese-education" className="flex justify-between w-full">
+                <span>일본 교육기관 졸업</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">10점</Badge>
+              </Label>
             </div>
             <div className="flex items-center space-x-2">
               <Checkbox 
@@ -352,7 +465,10 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 checked={data.innovativeProject}
                 onCheckedChange={(checked) => handleChange("innovativeProject", !!checked)}
               />
-              <Label htmlFor="innovative-project">일본 정부 지정 혁신 프로젝트 참여</Label>
+              <Label htmlFor="innovative-project" className="flex justify-between w-full">
+                <span>일본 정부 지정 혁신 프로젝트 참여</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">10점</Badge>
+              </Label>
             </div>
           </div>
         </div>

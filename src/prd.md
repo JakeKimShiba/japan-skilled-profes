@@ -24,10 +24,10 @@
    - Why: Enables users to input their personal data for accurate assessment
    - Success: Users can easily fill in all fields without confusion or errors
 
-2. **Real-time Point Calculation**
-   - What: Dynamic calculation showing current point total as users input data
+2. **Real-time Point Calculation with Per-Item Points Display**
+   - What: Dynamic calculation showing current point total as users input data, with points shown next to each option
    - Why: Provides immediate feedback and helps users understand how each factor affects their score
-   - Success: Points update correctly and visibly when any input changes
+   - Success: Points update correctly and visibly when any input changes, and users can easily see the point value of each option
 
 3. **Results Summary & Eligibility Explanation**
    - What: Clear breakdown of points earned in each category and eligibility status
