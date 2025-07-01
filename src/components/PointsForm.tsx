@@ -445,24 +445,17 @@ export function PointsForm({ data, setData }: PointsFormProps) {
             className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-4"
           >
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="advanced" id="japanese-advanced" />
-              <Label htmlFor="japanese-advanced" className="flex justify-between w-full">
-                <span>고급 (N1 수준)</span>
+              <RadioGroupItem value="n1" id="japanese-n1" />
+              <Label htmlFor="japanese-n1" className="flex justify-between w-full">
+                <span>JLPT 1급</span>
                 <Badge variant="outline" className="bg-primary/10 ml-2">15점</Badge>
               </Label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="business" id="japanese-business" />
-              <Label htmlFor="japanese-business" className="flex justify-between w-full">
-                <span>비즈니스 (N2 수준)</span>
+              <RadioGroupItem value="n2" id="japanese-n2" />
+              <Label htmlFor="japanese-n2" className="flex justify-between w-full">
+                <span>JLPT 2급</span>
                 <Badge variant="outline" className="bg-primary/10 ml-2">10점</Badge>
-              </Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="daily" id="japanese-daily" />
-              <Label htmlFor="japanese-daily" className="flex justify-between w-full">
-                <span>일상회화 (N3, N4 수준)</span>
-                <Badge variant="outline" className="bg-primary/10 ml-2">5점</Badge>
               </Label>
             </div>
             <div className="flex items-center space-x-2">
