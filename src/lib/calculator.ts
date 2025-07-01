@@ -1,5 +1,6 @@
 import {
   PointsData,
+  VisaType,
   educationPoints,
   workExperiencePoints,
   agePoints,
@@ -12,6 +13,8 @@ import {
 } from './models';
 
 export function calculateTotalPoints(data: PointsData): number {
+  const visaType = data.visaType;
+
   // Calculate points for academic background
   const education = educationPoints[data.educationLevel as keyof typeof educationPoints] || 0;
   
@@ -21,12 +24,12 @@ export function calculateTotalPoints(data: PointsData): number {
   // Calculate points for age
   const age = agePoints[data.age as keyof typeof agePoints] || 0;
   
-  // Calculate points for salary
-  const salary = annualSalaryPoints[data.annualSalary as keyof typeof annualSalaryPoints] || 0;
+  // Calculate points for salary based on visa type
+  const salary = annualSalaryPoints[visaType]?.[data.annualSalary as keyof (typeof annualSalaryPoints)[VisaType]] || 0;
   
-  // Calculate points for research achievements
+  // Calculate points for research achievements based on visa type
   const research = data.researchAchievements.reduce((total, achievement) => {
-    return total + (researchPoints[achievement as keyof typeof researchPoints] || 0);
+    return total + (researchPoints[visaType]?.[achievement as keyof (typeof researchPoints)[VisaType]] || 0);
   }, 0);
   
   // Calculate points for licenses
@@ -81,13 +84,15 @@ export function getQualificationStatus(totalPoints: number) {
 }
 
 export function getCategoryPoints(data: PointsData) {
+  const visaType = data.visaType;
+  
   return {
     academic: educationPoints[data.educationLevel as keyof typeof educationPoints] || 0,
     career: workExperiencePoints[data.workExperience as keyof typeof workExperiencePoints] || 0,
     age: agePoints[data.age as keyof typeof agePoints] || 0,
-    salary: annualSalaryPoints[data.annualSalary as keyof typeof annualSalaryPoints] || 0,
+    salary: annualSalaryPoints[visaType]?.[data.annualSalary as keyof (typeof annualSalaryPoints)[VisaType]] || 0,
     research: data.researchAchievements.reduce((total, achievement) => {
-      return total + (researchPoints[achievement as keyof typeof researchPoints] || 0);
+      return total + (researchPoints[visaType]?.[achievement as keyof (typeof researchPoints)[VisaType]] || 0);
     }, 0),
     license: data.licenses.reduce((total, lic) => {
       return total + (licensePoints[lic as keyof typeof licensePoints] || 0);

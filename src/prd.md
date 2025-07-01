@@ -1,7 +1,7 @@
 # Japan Highly Skilled Professional Visa Points Calculator - PRD
 
 ## Core Purpose & Success
-- **Mission Statement**: A calculator that helps foreign professionals quickly assess their eligibility for Japan's highly skilled professional visa (Advanced Specialized/Technical Activities category) by calculating their points based on official criteria.
+- **Mission Statement**: A calculator that helps foreign professionals quickly assess their eligibility for Japan's highly skilled professional visa across all three categories (Technical, Research, Business) by calculating their points based on official criteria.
 - **Success Indicators**: Users accurately determine their visa eligibility status and understand which factors contribute to their score.
 - **Experience Qualities**: Accessible, Intuitive, Informative
 
@@ -12,30 +12,36 @@
 ## Thought Process for Feature Selection
 - **Core Problem Analysis**: Foreign professionals struggle to understand whether they qualify for Japan's preferential immigration status and how to maximize their points.
 - **User Context**: Users will engage with this calculator when considering a move to Japan or changing their visa status while already in Japan.
-- **Critical Path**: Enter personal information → Receive calculated point total → Review visa eligibility and benefits
+- **Critical Path**: Select visa type → Enter personal information → Receive calculated point total → Review visa eligibility and benefits
 - **Key Moments**: 
-  1. Inputting professional credentials and seeing real-time point calculation
-  2. Discovering which categories contribute most to their points total
-  3. Learning about visa benefits based on their calculated score
+  1. Selecting the appropriate visa type for their profession
+  2. Inputting professional credentials and seeing real-time point calculation
+  3. Discovering which categories contribute most to their points total
+  4. Learning about visa benefits based on their calculated score
 
 ## Essential Features
-1. **Interactive Point Calculator Form**
-   - What: Form with inputs for education, work experience, age, salary, language skills, etc.
+1. **Visa Type Selection**
+   - What: Radio buttons to select between Technical, Research, and Business visa categories
+   - Why: Different visa types have different point calculation criteria
+   - Success: Users can easily switch between visa types and see appropriate form options
+
+2. **Interactive Point Calculator Form**
+   - What: Dynamic form with inputs for education, work experience, age, salary, language skills, etc.
    - Why: Enables users to input their personal data for accurate assessment
    - Success: Users can easily fill in all fields without confusion or errors
 
-2. **Real-time Point Calculation with Per-Item Points Display**
+3. **Real-time Point Calculation with Per-Item Points Display**
    - What: Dynamic calculation showing current point total as users input data, with points shown next to each option
    - Why: Provides immediate feedback and helps users understand how each factor affects their score
    - Success: Points update correctly and visibly when any input changes, and users can easily see the point value of each option
 
-3. **Results Summary & Eligibility Explanation**
+4. **Results Summary & Eligibility Explanation**
    - What: Clear breakdown of points earned in each category and eligibility status
    - Why: Helps users understand their qualification status and which areas they could improve
    - Success: Users clearly understand if they qualify and why/why not
 
-4. **Information Panel**
-   - What: Explanatory content about the visa program, benefits, and requirements
+5. **Information Panel**
+   - What: Explanatory content about the visa program, benefits, and requirements specific to each visa type
    - Why: Educates users about the visa system and its advantages
    - Success: Users gain sufficient understanding of the visa program's purpose and benefits
 
@@ -70,7 +76,7 @@
 - **Legibility Check**: Both fonts have excellent legibility at various sizes and support all required languages
 
 ### Visual Hierarchy & Layout
-- **Attention Direction**: Form fields are prominently displayed with clear grouping
+- **Attention Direction**: Visa type selection prominently displayed at top, form fields below with clear grouping
 - **White Space Philosophy**: Liberal use of white space to create visual breathing room
 - **Grid System**: Card-based layout with clear section separation
 - **Responsive Approach**: Stack elements vertically on mobile, side-by-side on desktop
@@ -86,7 +92,7 @@
 - **Component Customization**: Light shadows on cards for depth, rounded corners for approachability
 - **Component States**: Clear hover and focus states on all interactive elements
 - **Icon Selection**: Simple, intuitive icons for category headers
-- **Component Hierarchy**: Form sections > Individual inputs > Helper text
+- **Component Hierarchy**: Visa type selection > Form sections > Individual inputs > Helper text
 - **Spacing System**: Consistent padding using Tailwind's spacing scale
 - **Mobile Adaptation**: Full-width cards on mobile, multi-column on desktop
 
@@ -102,14 +108,14 @@
 ## Edge Cases & Problem Scenarios
 - **Potential Obstacles**: Users may not understand specific visa terminology or point criteria
 - **Edge Case Handling**: Tooltips explaining technical terms, helpful validation messages
-- **Technical Constraints**: Ensuring calculations match official immigration criteria
+- **Technical Constraints**: Ensuring calculations match official immigration criteria for all three visa types
 
 ## Implementation Considerations
-- **Scalability Needs**: Potential to add multiple visa types or update point criteria if regulations change
-- **Testing Focus**: Verify calculation accuracy against official examples
+- **Scalability Needs**: Potential to add more detailed visa information or update point criteria if regulations change
+- **Testing Focus**: Verify calculation accuracy against official examples for each visa type
 - **Critical Questions**: How frequently do visa point criteria change? Should the app store user data?
 
 ## Reflection
-- This solution uniquely combines official information with an intuitive calculator, making complex visa requirements accessible
-- We've assumed users have basic information about their qualifications readily available
-- Making this exceptional would involve providing personalized recommendations for improving points in specific categories
+- This solution uniquely combines official information with an intuitive calculator, making complex visa requirements accessible across multiple visa types
+- We've assumed users know which visa category (Technical, Research, Business) is most appropriate for their profession
+- Making this exceptional would involve providing personalized recommendations for improving points in specific categories based on the selected visa type

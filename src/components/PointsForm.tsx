@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -7,6 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { 
   PointsData, 
+  VisaType,
   educationPoints, 
   workExperiencePoints, 
   agePoints, 
@@ -45,6 +46,15 @@ export function PointsForm({ data, setData }: PointsFormProps) {
     
     handleChange(field, currentValues);
   };
+
+  // Reset annual salary when visa type changes to ensure valid options
+  useEffect(() => {
+    // Check if the current annual salary value is valid for the visa type
+    const validSalaryKeys = Object.keys(annualSalaryPoints[data.visaType] || {});
+    if (!validSalaryKeys.includes(data.annualSalary)) {
+      handleChange("annualSalary", "under3m"); // Reset to a default value
+    }
+  }, [data.visaType]);
 
   return (
     <Card className="mb-6">
@@ -270,41 +280,77 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <Badge variant="outline" className="bg-primary/10 ml-2">30점</Badge>
               </Label>
             </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="7to8m" id="salary-7to8m" />
-              <Label htmlFor="salary-7to8m" className="flex justify-between w-full">
-                <span>7백만 엔 ~ 8백만 엔</span>
-                <Badge variant="outline" className="bg-primary/10 ml-2">40점</Badge>
-              </Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="8to10m" id="salary-8to10m" />
-              <Label htmlFor="salary-8to10m" className="flex justify-between w-full">
-                <span>8백만 엔 ~ 1천만 엔</span>
-                <Badge variant="outline" className="bg-primary/10 ml-2">40점</Badge>
-              </Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="10to15m" id="salary-10to15m" />
-              <Label htmlFor="salary-10to15m" className="flex justify-between w-full">
-                <span>1천만 엔 ~ 1천5백만 엔</span>
-                <Badge variant="outline" className="bg-primary/10 ml-2">50점</Badge>
-              </Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="15to20m" id="salary-15to20m" />
-              <Label htmlFor="salary-15to20m" className="flex justify-between w-full">
-                <span>1천5백만 엔 ~ 2천만 엔</span>
-                <Badge variant="outline" className="bg-primary/10 ml-2">70점</Badge>
-              </Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="20mplus" id="salary-20mplus" />
-              <Label htmlFor="salary-20mplus" className="flex justify-between w-full">
-                <span>2천만 엔 이상</span>
-                <Badge variant="outline" className="bg-primary/10 ml-2">80점</Badge>
-              </Label>
-            </div>
+            
+            {data.visaType === 'business' ? (
+              <>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="7to10m" id="salary-7to10m" />
+                  <Label htmlFor="salary-7to10m" className="flex justify-between w-full">
+                    <span>7백만 엔 ~ 1천만 엔</span>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">40점</Badge>
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="10to15m" id="salary-10to15m" />
+                  <Label htmlFor="salary-10to15m" className="flex justify-between w-full">
+                    <span>1천만 엔 ~ 1천5백만 엔</span>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">50점</Badge>
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="15to25m" id="salary-15to25m" />
+                  <Label htmlFor="salary-15to25m" className="flex justify-between w-full">
+                    <span>1천5백만 엔 ~ 2천5백만 엔</span>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">70점</Badge>
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="25mplus" id="salary-25mplus" />
+                  <Label htmlFor="salary-25mplus" className="flex justify-between w-full">
+                    <span>2천5백만 엔 이상</span>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">80점</Badge>
+                  </Label>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="7to8m" id="salary-7to8m" />
+                  <Label htmlFor="salary-7to8m" className="flex justify-between w-full">
+                    <span>7백만 엔 ~ 8백만 엔</span>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">40점</Badge>
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="8to10m" id="salary-8to10m" />
+                  <Label htmlFor="salary-8to10m" className="flex justify-between w-full">
+                    <span>8백만 엔 ~ 1천만 엔</span>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">40점</Badge>
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="10to15m" id="salary-10to15m" />
+                  <Label htmlFor="salary-10to15m" className="flex justify-between w-full">
+                    <span>1천만 엔 ~ 1천5백만 엔</span>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">50점</Badge>
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="15to20m" id="salary-15to20m" />
+                  <Label htmlFor="salary-15to20m" className="flex justify-between w-full">
+                    <span>1천5백만 엔 ~ 2천만 엔</span>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">70점</Badge>
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="20mplus" id="salary-20mplus" />
+                  <Label htmlFor="salary-20mplus" className="flex justify-between w-full">
+                    <span>2천만 엔 이상</span>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">80점</Badge>
+                  </Label>
+                </div>
+              </>
+            )}
           </RadioGroup>
         </div>
 
@@ -336,7 +382,9 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 />
                 <Label htmlFor="research-patents" className="flex justify-between w-full">
                   <span>특허 보유</span>
-                  <Badge variant="outline" className="bg-primary/10 ml-2">20점</Badge>
+                  <Badge variant="outline" className="bg-primary/10 ml-2">
+                    {data.visaType === 'research' ? '15점' : (data.visaType === 'business' ? '15점' : '20점')}
+                  </Badge>
                 </Label>
               </div>
               <div className="flex items-center space-x-2">
@@ -347,7 +395,9 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 />
                 <Label htmlFor="research-papers" className="flex justify-between w-full">
                   <span>연구 논문 발표</span>
-                  <Badge variant="outline" className="bg-primary/10 ml-2">15점</Badge>
+                  <Badge variant="outline" className="bg-primary/10 ml-2">
+                    {data.visaType === 'research' ? '20점' : (data.visaType === 'business' ? '10점' : '15점')}
+                  </Badge>
                 </Label>
               </div>
             </div>

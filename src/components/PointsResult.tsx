@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { CheckCircle, Warning, Trophy } from "@phosphor-icons/react";
 import { calculateTotalPoints, getCategoryPoints, getQualificationStatus } from "@/lib/calculator";
-import { PointsData } from "@/lib/models";
+import { PointsData, VisaType } from "@/lib/models";
 
 interface PointsResultProps {
   data: PointsData;
@@ -68,12 +68,32 @@ export function PointsResult({ data }: PointsResultProps) {
     }
   };
 
+  const getVisaTypeLabel = (type: VisaType): string => {
+    switch (type) {
+      case 'technical':
+        return '고도 전문 기술 활동';
+      case 'research':
+        return '학술 연구 활동';
+      case 'business':
+        return '경영 관리 활동';
+      default:
+        return '고도 전문 기술 활동';
+    }
+  };
+
   return (
     <Card>
       <CardHeader>
         <CardTitle className="text-xl text-primary">결과</CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
+        <div>
+          <div className="flex items-center justify-between mb-1">
+            <h3 className="font-medium">비자 유형</h3>
+            <span className="text-sm font-medium">{getVisaTypeLabel(data.visaType)}</span>
+          </div>
+        </div>
+        
         <div>
           <div className="flex items-center justify-between mb-2">
             <h3 className="font-medium">총 점수</h3>

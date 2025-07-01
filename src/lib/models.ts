@@ -1,6 +1,11 @@
-// Point calculation models for the Highly Skilled Professional visa (Advanced Specialized/Technical Activities)
+// Point calculation models for the Highly Skilled Professional visa
+
+export type VisaType = 'technical' | 'research' | 'business';
 
 export interface PointsData {
+  // Visa Type
+  visaType: VisaType;
+  
   // Academic Background
   educationLevel: string;
   
@@ -29,6 +34,7 @@ export interface PointsData {
 }
 
 export const educationPoints = {
+  // Common for all visa types
   'doctorate': 30,
   'masters': 25,
   'professional': 20,
@@ -37,6 +43,7 @@ export const educationPoints = {
 };
 
 export const workExperiencePoints = {
+  // Common for all visa types
   'less3': 0,
   '3to5': 5,
   '5to7': 10,
@@ -46,6 +53,7 @@ export const workExperiencePoints = {
 };
 
 export const agePoints = {
+  // Common for all visa types
   '29under': 15,
   '30to34': 10,
   '35to39': 5,
@@ -53,30 +61,67 @@ export const agePoints = {
 };
 
 export const annualSalaryPoints = {
-  'under3m': 0,
-  '3to4m': 10,
-  '4to5m': 20,
-  '5to7m': 30,
-  '7to8m': 40,
-  '8to10m': 40,
-  '10to15m': 50,
-  '15to20m': 70,
-  '20mplus': 80
+  technical: {
+    'under3m': 0,
+    '3to4m': 10,
+    '4to5m': 20,
+    '5to7m': 30,
+    '7to8m': 40,
+    '8to10m': 40,
+    '10to15m': 50,
+    '15to20m': 70,
+    '20mplus': 80
+  },
+  research: {
+    'under3m': 0,
+    '3to4m': 10,
+    '4to5m': 20,
+    '5to7m': 30,
+    '7to8m': 40,
+    '8to10m': 40,
+    '10to15m': 50,
+    '15to20m': 70,
+    '20mplus': 80
+  },
+  business: {
+    'under3m': 0,
+    '3to4m': 10,
+    '4to5m': 20,
+    '5to7m': 30,
+    '7to10m': 40,
+    '10to15m': 50,
+    '15to25m': 70,
+    '25mplus': 80
+  }
 };
 
 export const researchPoints = {
-  'patents': 20,
-  'papers': 15,
-  'none': 0
+  technical: {
+    'patents': 20,
+    'papers': 15,
+    'none': 0
+  },
+  research: {
+    'patents': 15,
+    'papers': 20,
+    'none': 0
+  },
+  business: {
+    'patents': 15,
+    'papers': 10,
+    'none': 0
+  }
 };
 
 export const licensePoints = {
+  // Common for all visa types
   'national': 20,
   'other': 5,
   'none': 0
 };
 
 export const languagePoints = {
+  // Common for all visa types
   'japanese_advanced': 15,
   'japanese_business': 10,
   'japanese_daily': 5,
@@ -86,6 +131,7 @@ export const languagePoints = {
 };
 
 export const specialPoints = {
+  // Common for all visa types
   'japanese_education': 10,
   'innovative_project': 10
 };

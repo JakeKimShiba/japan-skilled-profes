@@ -1,11 +1,42 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { VisaType } from "@/lib/models";
 
-export function InfoPanel() {
+interface InfoPanelProps {
+  currentVisaType: VisaType;
+}
+
+export function InfoPanel({ currentVisaType }: InfoPanelProps) {
+  const getVisaTypeLabel = (): string => {
+    switch (currentVisaType) {
+      case 'technical':
+        return '고도 전문 기술 활동 (高度専門職 1号 イ)';
+      case 'research':
+        return '학술 연구 활동 (高度専門職 1号 ア)';
+      case 'business':
+        return '경영 관리 활동 (高度専門職 1号 ウ)';
+      default:
+        return '고도 전문 기술 활동 (高度専門職 1号 イ)';
+    }
+  };
+
+  const getVisaTypeDescription = (): string => {
+    switch (currentVisaType) {
+      case 'technical':
+        return '엔지니어, 프로그래머, 디자이너와 같은 전문 기술직 종사자를 위한 비자입니다. IT, 공학, 디자인 등의 분야에서 고도의 전문성을 인정받은 외국인에게 발급됩니다.';
+      case 'research':
+        return '대학, 연구소, 기업 연구소 등에서 학술 연구를 수행하는 연구원을 위한 비자입니다. 과학, 의학, 인문학 등 다양한 분야의 연구자에게 적합합니다.';
+      case 'business':
+        return '기업의 경영, 관리 업무를 담당하는 전문가를 위한 비자입니다. 회사 경영, 재무 관리, 인사 관리 등 기업 운영에 필수적인 역할을 수행하는 외국인에게 발급됩니다.';
+      default:
+        return '엔지니어, 프로그래머, 디자이너와 같은 전문 기술직 종사자를 위한 비자입니다. IT, 공학, 디자인 등의 분야에서 고도의 전문성을 인정받은 외국인에게 발급됩니다.';
+    }
+  };
+
   return (
     <Card className="mb-6 bg-muted/50">
       <CardHeader>
-        <CardTitle className="text-xl text-primary">고도인재 비자 (고도 전문 기술 활동)</CardTitle>
+        <CardTitle className="text-xl text-primary">고도인재 비자 ({getVisaTypeLabel()})</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4 text-sm">
         <p>
@@ -14,8 +45,14 @@ export function InfoPanel() {
         </p>
         
         <p className="mt-2 text-primary-foreground bg-primary/80 p-2 rounded-md">
-          본 계산기는 <strong>고도 전문 기술 활동</strong>(高度専門職 1호 イ) 기준으로 작성되었으며, 
-          학술 연구 활동이나 경영/관리 활동 분야는 포함하지 않습니다.
+          본 계산기는 <strong>{getVisaTypeLabel()}</strong> 기준으로 포인트를 계산합니다.
+          {currentVisaType === 'technical' && ' 이 유형은 엔지니어링, IT 등의 전문 기술 직종에 적합합니다.'}
+          {currentVisaType === 'research' && ' 이 유형은 연구원, 교수 등의 학술 연구 활동에 적합합니다.'}
+          {currentVisaType === 'business' && ' 이 유형은 회사 경영, 임원 등의 경영 관리 활동에 적합합니다.'}
+        </p>
+        
+        <p>
+          {getVisaTypeDescription()}
         </p>
         
         <Separator className="my-3" />
