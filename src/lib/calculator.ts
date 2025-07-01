@@ -28,9 +28,10 @@ export function calculateTotalPoints(data: PointsData): number {
   const salary = annualSalaryPoints[visaType]?.[data.annualSalary as keyof (typeof annualSalaryPoints)[VisaType]] || 0;
   
   // Calculate points for research achievements based on visa type
-  const research = data.researchAchievements.reduce((total, achievement) => {
-    return total + (researchPoints[visaType]?.[achievement as keyof (typeof researchPoints)[VisaType]] || 0);
-  }, 0);
+  // Since we now only allow one research achievement to be selected
+  const research = data.researchAchievements.length > 0 
+    ? (researchPoints[visaType]?.[data.researchAchievements[0] as keyof (typeof researchPoints)[VisaType]] || 0)
+    : 0;
   
   // Calculate points for licenses
   const license = data.licenses.reduce((total, lic) => {
@@ -38,7 +39,9 @@ export function calculateTotalPoints(data: PointsData): number {
   }, 0) + (data.jpNationalLicenses * 5); // 5 points per Japanese national license
   
   // Calculate points for language abilities
-  const japaneseLanguage = languagePoints[`japanese_${data.japaneseLanguage}` as keyof typeof languagePoints] || 0;
+  // Map the value directly to the keys in languagePoints
+  let langKey = `japanese_${data.japaneseLanguage}`;
+  const japaneseLanguage = languagePoints[langKey as keyof typeof languagePoints] || 0;
   
   // Calculate special points
   const japaneseEducationPoints = data.japaneseEducation ? specialPoints.japanese_education : 0;
@@ -89,9 +92,9 @@ export function getCategoryPoints(data: PointsData) {
     career: workExperiencePoints[data.workExperience as keyof typeof workExperiencePoints] || 0,
     age: agePoints[data.age as keyof typeof agePoints] || 0,
     salary: annualSalaryPoints[visaType]?.[data.annualSalary as keyof (typeof annualSalaryPoints)[VisaType]] || 0,
-    research: data.researchAchievements.reduce((total, achievement) => {
-      return total + (researchPoints[visaType]?.[achievement as keyof (typeof researchPoints)[VisaType]] || 0);
-    }, 0),
+    research: data.researchAchievements.length > 0
+      ? (researchPoints[visaType]?.[data.researchAchievements[0] as keyof (typeof researchPoints)[VisaType]] || 0)
+      : 0,
     license: data.licenses.reduce((total, lic) => {
       return total + (licensePoints[lic as keyof typeof licensePoints] || 0);
     }, 0) + (data.jpNationalLicenses * 5), // 5 points per Japanese national license

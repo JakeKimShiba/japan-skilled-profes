@@ -82,6 +82,8 @@ export function InfoPanel({ currentVisaType }: InfoPanelProps) {
         </div>
         
         <Separator className="my-3" />
+        <div className="space-y-2">
+          <h3 className="font-medium">자격증 정보</h3>
           <p>직무에 관련된 일본의 국가자격증을 보유하면 1개당 5점(최대 10점)을 획득할 수 있습니다.</p>
           <p>한국의 정보처리기사/정보처리산업기사 자격증도 일본에서 인정되어 최대 5점을 취득할 수 있습니다.</p>
           <p className="mt-2">
