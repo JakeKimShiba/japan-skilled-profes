@@ -58,14 +58,13 @@ export const agePoints = {
 export const annualSalaryPoints = {
   technical: {
     'under3m': 0,
-    '3to4m': 10,
-    '4to5m': 20,
-    '5to7m': 30,
-    '7to8m': 40,
-    '8to10m': 40,
-    '10to15m': 50,
-    '15to20m': 70,
-    '20mplus': 80
+    '4m': 10,
+    '5m': 15,
+    '6m': 20,
+    '7m': 25,
+    '8m': 30,
+    '9m': 35,
+    '10m': 40
   }
 };
 

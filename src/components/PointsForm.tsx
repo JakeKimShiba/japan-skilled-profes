@@ -48,10 +48,17 @@ export function PointsForm({ data, setData }: PointsFormProps) {
     handleChange(field, currentValues);
   };
 
-  // Reset annual salary is no longer needed since we only have one visa type
+  // Reset annual salary if age changes and current salary is not valid for the new age
   useEffect(() => {
-    // No need to check for visa type anymore
-  }, []);
+    // Check if current salary is valid for current age
+    if (data.age === "40plus" && (data.annualSalary === "7m" || data.annualSalary === "6m" || data.annualSalary === "5m" || data.annualSalary === "4m")) {
+      handleChange("annualSalary", "8m"); // Default to 8m for 40+
+    } else if (data.age === "35to39" && (data.annualSalary === "5m" || data.annualSalary === "4m")) {
+      handleChange("annualSalary", "6m"); // Default to 6m for 35-39
+    } else if (data.age === "30to34" && data.annualSalary === "4m") {
+      handleChange("annualSalary", "5m"); // Default to 5m for 30-34
+    }
+  }, [data.age]);
 
   return (
     <Card className="mb-6">
@@ -215,89 +222,106 @@ export function PointsForm({ data, setData }: PointsFormProps) {
 
         <Separator />
 
-        {/* Annual Salary */}
+        {/* Annual Income */}
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <h3 className="font-medium">연간 급여 (일본 엔)</h3>
+            <h3 className="font-medium">연 수익 (일본 엔)</h3>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Info className="text-muted-foreground" size={16} />
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>일본 취업 시 예상되는 연간 급여를 선택하세요.</p>
+                  <p>일본 취업 시 예상되는 연 수익을 선택하세요.</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
           </div>
+          
+          {/* Annual Income selection based on age */}
           <RadioGroup
             value={data.annualSalary}
             onValueChange={(value) => handleChange("annualSalary", value)}
             className="grid grid-cols-1 md:grid-cols-2 gap-2"
           >
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="under3m" id="salary-under3m" />
-              <Label htmlFor="salary-under3m" className="flex justify-between w-full">
+              <RadioGroupItem value="under3m" id="income-under3m" />
+              <Label htmlFor="income-under3m" className="flex justify-between w-full">
                 <span>3백만 엔 미만</span>
-                <Badge variant="outline" className="bg-muted/30 ml-2">0점</Badge>
+                <Badge variant="outline" className="bg-destructive/10 text-destructive ml-2">비자 신청 불가</Badge>
               </Label>
             </div>
+            
+            {/* 10M yen - available for all age groups */}
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="3to4m" id="salary-3to4m" />
-              <Label htmlFor="salary-3to4m" className="flex justify-between w-full">
-                <span>3백만 엔 ~ 4백만 엔</span>
-                <Badge variant="outline" className="bg-primary/10 ml-2">10점</Badge>
+              <RadioGroupItem value="10m" id="income-10m" />
+              <Label htmlFor="income-10m" className="flex justify-between w-full">
+                <span>1천만 엔 이상</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">40점</Badge>
               </Label>
             </div>
+            
+            {/* 9M yen - available for all age groups */}
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="4to5m" id="salary-4to5m" />
-              <Label htmlFor="salary-4to5m" className="flex justify-between w-full">
-                <span>4백만 엔 ~ 5백만 엔</span>
-                <Badge variant="outline" className="bg-primary/10 ml-2">20점</Badge>
+              <RadioGroupItem value="9m" id="income-9m" />
+              <Label htmlFor="income-9m" className="flex justify-between w-full">
+                <span>9백만 엔 이상</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">35점</Badge>
               </Label>
             </div>
+            
+            {/* 8M yen - available for all age groups */}
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="5to7m" id="salary-5to7m" />
-              <Label htmlFor="salary-5to7m" className="flex justify-between w-full">
-                <span>5백만 엔 ~ 7백만 엔</span>
+              <RadioGroupItem value="8m" id="income-8m" />
+              <Label htmlFor="income-8m" className="flex justify-between w-full">
+                <span>8백만 엔 이상</span>
                 <Badge variant="outline" className="bg-primary/10 ml-2">30점</Badge>
               </Label>
             </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="7to8m" id="salary-7to8m" />
-              <Label htmlFor="salary-7to8m" className="flex justify-between w-full">
-                <span>7백만 엔 ~ 8백만 엔</span>
-                <Badge variant="outline" className="bg-primary/10 ml-2">40점</Badge>
-              </Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="8to10m" id="salary-8to10m" />
-              <Label htmlFor="salary-8to10m" className="flex justify-between w-full">
-                <span>8백만 엔 ~ 1천만 엔</span>
-                <Badge variant="outline" className="bg-primary/10 ml-2">40점</Badge>
-              </Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="10to15m" id="salary-10to15m" />
-              <Label htmlFor="salary-10to15m" className="flex justify-between w-full">
-                <span>1천만 엔 ~ 1천5백만 엔</span>
-                <Badge variant="outline" className="bg-primary/10 ml-2">50점</Badge>
-              </Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="15to20m" id="salary-15to20m" />
-              <Label htmlFor="salary-15to20m" className="flex justify-between w-full">
-                <span>1천5백만 엔 ~ 2천만 엔</span>
-                <Badge variant="outline" className="bg-primary/10 ml-2">70점</Badge>
-              </Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="20mplus" id="salary-20mplus" />
-              <Label htmlFor="salary-20mplus" className="flex justify-between w-full">
-                <span>2천만 엔 이상</span>
-                <Badge variant="outline" className="bg-primary/10 ml-2">80점</Badge>
-              </Label>
-            </div>
+            
+            {/* 7M yen - not available for 40+ */}
+            {data.age !== "40plus" && (
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="7m" id="income-7m" />
+                <Label htmlFor="income-7m" className="flex justify-between w-full">
+                  <span>7백만 엔 이상</span>
+                  <Badge variant="outline" className="bg-primary/10 ml-2">25점</Badge>
+                </Label>
+              </div>
+            )}
+            
+            {/* 6M yen - not available for 40+ */}
+            {data.age !== "40plus" && (
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="6m" id="income-6m" />
+                <Label htmlFor="income-6m" className="flex justify-between w-full">
+                  <span>6백만 엔 이상</span>
+                  <Badge variant="outline" className="bg-primary/10 ml-2">20점</Badge>
+                </Label>
+              </div>
+            )}
+            
+            {/* 5M yen - only available for age under 35 */}
+            {(data.age === "29under" || data.age === "30to34") && (
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="5m" id="income-5m" />
+                <Label htmlFor="income-5m" className="flex justify-between w-full">
+                  <span>5백만 엔 이상</span>
+                  <Badge variant="outline" className="bg-primary/10 ml-2">15점</Badge>
+                </Label>
+              </div>
+            )}
+            
+            {/* 4M yen - only available for age under 30 */}
+            {data.age === "29under" && (
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="4m" id="income-4m" />
+                <Label htmlFor="income-4m" className="flex justify-between w-full">
+                  <span>4백만 엔 이상</span>
+                  <Badge variant="outline" className="bg-primary/10 ml-2">10점</Badge>
+                </Label>
+              </div>
+            )}
           </RadioGroup>
         </div>
 

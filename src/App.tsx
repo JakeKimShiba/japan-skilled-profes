@@ -32,6 +32,15 @@ function App() {
         workExperience: '10plus'
       });
     }
+    
+    // Map old annual salary values to new ones
+    if (['3to4m', '4to5m', '5to7m', '7to8m', '8to10m', '10to15m', '15to20m', '20mplus'].includes(pointsData.annualSalary)) {
+      // Set to under3m by default (will be invalid, but safest default)
+      setPointsData({
+        ...pointsData,
+        annualSalary: 'under3m'
+      });
+    }
   }, []);
 
   const handleVisaTypeChange = (type: VisaType) => {

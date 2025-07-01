@@ -54,7 +54,7 @@ export function PointsResult({ data }: PointsResultProps) {
       case 'age':
         return '나이';
       case 'salary':
-        return '연봉';
+        return '연 수익';
       case 'research':
         return '연구 실적';
       case 'license':
