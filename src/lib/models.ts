@@ -1,4 +1,4 @@
-// Point calculation models for the Highly Skilled Professional visa
+// Point calculation models for the Highly Skilled Professional visa (Advanced Specialized/Technical Activities)
 
 export interface PointsData {
   // Academic Background
@@ -53,14 +53,15 @@ export const agePoints = {
 };
 
 export const annualSalaryPoints = {
-  '3m': 0,
+  'under3m': 0,
   '3to4m': 10,
   '4to5m': 20,
   '5to7m': 30,
   '7to8m': 40,
   '8to10m': 40,
   '10to15m': 50,
-  '15mplus': 60
+  '15to20m': 70,
+  '20mplus': 80
 };
 
 export const researchPoints = {

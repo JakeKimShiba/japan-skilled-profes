@@ -5,12 +5,17 @@ export function InfoPanel() {
   return (
     <Card className="mb-6 bg-muted/50">
       <CardHeader>
-        <CardTitle className="text-xl text-primary">고도인재 비자란?</CardTitle>
+        <CardTitle className="text-xl text-primary">고도인재 비자 (고도 전문 기술 활동)</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4 text-sm">
         <p>
           일본의 고도인재 포인트 제도(高度人材ポイント制度)는 학력, 경력, 연봉 등을 
           포인트로 환산하여 일정 점수(70점) 이상인 외국인에게 출입국 관리상의 우대 조치를 제공하는 제도입니다.
+        </p>
+        
+        <p className="mt-2 text-primary-foreground bg-primary/80 p-2 rounded-md">
+          본 계산기는 <strong>고도 전문 기술 활동</strong>(高度専門職 1호 イ) 기준으로 작성되었으며, 
+          학술 연구 활동이나 경영/관리 활동 분야는 포함하지 않습니다.
         </p>
         
         <Separator className="my-3" />

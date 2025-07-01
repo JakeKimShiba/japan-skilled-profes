@@ -243,8 +243,8 @@ export function PointsForm({ data, setData }: PointsFormProps) {
             className="grid grid-cols-1 md:grid-cols-2 gap-2"
           >
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="3m" id="salary-3m" />
-              <Label htmlFor="salary-3m" className="flex justify-between w-full">
+              <RadioGroupItem value="under3m" id="salary-under3m" />
+              <Label htmlFor="salary-under3m" className="flex justify-between w-full">
                 <span>3백만 엔 미만</span>
                 <Badge variant="outline" className="bg-muted/30 ml-2">0점</Badge>
               </Label>
@@ -292,10 +292,17 @@ export function PointsForm({ data, setData }: PointsFormProps) {
               </Label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="15mplus" id="salary-15mplus" />
-              <Label htmlFor="salary-15mplus" className="flex justify-between w-full">
-                <span>1천5백만 엔 이상</span>
-                <Badge variant="outline" className="bg-primary/10 ml-2">60점</Badge>
+              <RadioGroupItem value="15to20m" id="salary-15to20m" />
+              <Label htmlFor="salary-15to20m" className="flex justify-between w-full">
+                <span>1천5백만 엔 ~ 2천만 엔</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">70점</Badge>
+              </Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="20mplus" id="salary-20mplus" />
+              <Label htmlFor="salary-20mplus" className="flex justify-between w-full">
+                <span>2천만 엔 이상</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">80점</Badge>
               </Label>
             </div>
           </RadioGroup>

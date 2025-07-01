@@ -12,7 +12,7 @@ export function Header() {
             高度人材ポイント制度 / Points-based Preferential Immigration Treatment
           </p>
           <p>
-            일본의 고도인재 비자 자격을 확인하기 위한 포인트를 계산해보세요.
+            일본의 고도인재 비자(고도 전문 기술 활동) 자격을 확인하기 위한 포인트를 계산해보세요.
           </p>
         </CardDescription>
       </CardHeader>

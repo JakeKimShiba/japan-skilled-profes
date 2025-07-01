@@ -12,7 +12,7 @@ function App() {
     educationLevel: 'bachelors',
     workExperience: 'less3',
     age: '30to34',
-    annualSalary: '5to7m',
+    annualSalary: 'under3m',
     researchAchievements: [],
     licenses: [],
     japaneseLanguage: 'none',
@@ -51,7 +51,7 @@ function App() {
         <Separator className="my-8" />
         
         <footer className="text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} 일본 고도인재 비자 포인트 계산기</p>
+          <p>© {new Date().getFullYear()} 일본 고도인재 비자 포인트 계산기 (고도 전문 기술 활동)</p>
           <p className="mt-1">
             高度人材ポイント制度 / Points-based Preferential Immigration Treatment for Highly Skilled Foreign Professionals
           </p>

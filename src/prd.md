@@ -1,7 +1,7 @@
 # Japan Highly Skilled Professional Visa Points Calculator - PRD
 
 ## Core Purpose & Success
-- **Mission Statement**: A calculator that helps foreign professionals quickly assess their eligibility for Japan's highly skilled professional visa by calculating their points based on official criteria.
+- **Mission Statement**: A calculator that helps foreign professionals quickly assess their eligibility for Japan's highly skilled professional visa (Advanced Specialized/Technical Activities category) by calculating their points based on official criteria.
 - **Success Indicators**: Users accurately determine their visa eligibility status and understand which factors contribute to their score.
 - **Experience Qualities**: Accessible, Intuitive, Informative
 
