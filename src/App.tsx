@@ -101,14 +101,14 @@ function App() {
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="research" id="visa-research" />
                       <Label htmlFor="visa-research" className="flex flex-col">
-                        <span className="font-medium">학술 연구 활동</span>
+                        <span className="font-medium">고도 학술 연구 활동</span>
                         <span className="text-xs text-muted-foreground">高度専門職 1号 ア</span>
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="business" id="visa-business" />
                       <Label htmlFor="visa-business" className="flex flex-col">
-                        <span className="font-medium">경영 관리 활동</span>
+                        <span className="font-medium">고도 경영 · 관리 활동</span>
                         <span className="text-xs text-muted-foreground">高度専門職 1号 ウ</span>
                       </Label>
                     </div>
