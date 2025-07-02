@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://jakekimshiba.github.io/japan-skilled-profes/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1

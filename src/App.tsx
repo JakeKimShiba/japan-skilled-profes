@@ -10,6 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 
 function App() {
+
   const [pointsData, setPointsData] = useState<PointsData>({
     visaType: 'technical',
     educationLevel: 'bachelors',
