@@ -53,14 +53,16 @@ export function PointsForm({ data, setData }: PointsFormProps) {
     // Check if current salary is valid for current age
     if (data.age === "40plus" && (data.annualSalary === "7m" || data.annualSalary === "6m" || data.annualSalary === "5m" || data.annualSalary === "4m" || data.annualSalary === "3to5m" || data.annualSalary === "3to6m")) {
       handleChange("annualSalary", "8m"); // Default to 8m for 40+
-    } else if (data.age === "35to39" && (data.annualSalary === "5m" || data.annualSalary === "4m" || data.annualSalary === "3to5m")) {
+    } else if (data.age === "35to39" && (data.annualSalary === "5m" || data.annualSalary === "4m" || data.annualSalary === "3to5m" || data.annualSalary === "3to8m")) {
       handleChange("annualSalary", "6m"); // Default to 6m for 35-39
-    } else if (data.age === "30to34" && data.annualSalary === "4m") {
+    } else if (data.age === "30to34" && (data.annualSalary === "4m" || data.annualSalary === "3to8m")) {
       handleChange("annualSalary", "5m"); // Default to 5m for 30-34
     } else if (data.age !== "30to34" && data.annualSalary === "3to5m") {
       handleChange("annualSalary", "5m"); // Reset custom band when leaving 30-34
     } else if (data.age !== "35to39" && data.annualSalary === "3to6m") {
       handleChange("annualSalary", "6m"); // Reset custom band when leaving 35-39
+    } else if (data.age !== "40plus" && data.annualSalary === "3to8m") {
+      handleChange("annualSalary", "8m"); // Reset custom band when leaving 40+
     }
   }, [data.age]);
 
@@ -331,6 +333,16 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <RadioGroupItem value="3to6m" id="income-3to6m" />
                 <Label htmlFor="income-3to6m" className="flex justify-between w-full">
                   <span>3백만 엔 ~ 6백만 엔 미만</span>
+                  <Badge variant="outline" className="bg-muted/30 ml-2">0점</Badge>
+                </Label>
+              </div>
+            )}
+            {/* 3~8M band only visible for age 40+ */}
+            {data.age === "40plus" && (
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="3to8m" id="income-3to8m" />
+                <Label htmlFor="income-3to8m" className="flex justify-between w-full">
+                  <span>3백만 엔 ~ 8백만 엔 미만</span>
                   <Badge variant="outline" className="bg-muted/30 ml-2">0점</Badge>
                 </Label>
               </div>
