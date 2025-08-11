@@ -63,6 +63,7 @@ export const annualSalaryPoints = {
   technical: {
     'under3m': 0,
     '3to5m': 0, // 3백만 엔 이상 5백만 엔 미만 (30~34세 전용)
+    '3to6m': 0, // 3백만 엔 이상 6백만 엔 미만 (35~39세 전용)
     '4m': 10,
     '5m': 15,
     '6m': 20,
