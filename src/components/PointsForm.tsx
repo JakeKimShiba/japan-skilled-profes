@@ -51,12 +51,14 @@ export function PointsForm({ data, setData }: PointsFormProps) {
   // Reset annual salary if age changes and current salary is not valid for the new age
   useEffect(() => {
     // Check if current salary is valid for current age
-    if (data.age === "40plus" && (data.annualSalary === "7m" || data.annualSalary === "6m" || data.annualSalary === "5m" || data.annualSalary === "4m")) {
+    if (data.age === "40plus" && (data.annualSalary === "7m" || data.annualSalary === "6m" || data.annualSalary === "5m" || data.annualSalary === "4m" || data.annualSalary === "3to5m")) {
       handleChange("annualSalary", "8m"); // Default to 8m for 40+
-    } else if (data.age === "35to39" && (data.annualSalary === "5m" || data.annualSalary === "4m")) {
+    } else if (data.age === "35to39" && (data.annualSalary === "5m" || data.annualSalary === "4m" || data.annualSalary === "3to5m")) {
       handleChange("annualSalary", "6m"); // Default to 6m for 35-39
     } else if (data.age === "30to34" && data.annualSalary === "4m") {
       handleChange("annualSalary", "5m"); // Default to 5m for 30-34
+    } else if (data.age !== "30to34" && data.annualSalary === "3to5m") {
+      handleChange("annualSalary", "5m"); // Reset custom band when leaving 30-34
     }
   }, [data.age]);
 
@@ -308,6 +310,16 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <Label htmlFor="income-5m" className="flex justify-between w-full">
                   <span>5백만 엔 이상</span>
                   <Badge variant="outline" className="bg-primary/10 ml-2">15점</Badge>
+                </Label>
+              </div>
+            )}
+            {/* 3~5M band only visible for age 30-34 */}
+            {data.age === "30to34" && (
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="3to5m" id="income-3to5m" />
+                <Label htmlFor="income-3to5m" className="flex justify-between w-full">
+                  <span>3백만 엔 ~ 5백만 엔 미만</span>
+                  <Badge variant="outline" className="bg-muted/30 ml-2">0점</Badge>
                 </Label>
               </div>
             )}
