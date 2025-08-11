@@ -91,7 +91,7 @@ function App() {
               <div className="md:col-span-2">
                 <PointsForm data={pointsData} setData={setPointsData} />
               </div>
-              <div className="md:col-span-1">
+              <div className="md:col-span-1 md:sticky md:top-4 h-fit md:max-h-[calc(100vh-2rem)] md:overflow-auto">
                 <PointsResult data={pointsData} />
               </div>
             </div>
