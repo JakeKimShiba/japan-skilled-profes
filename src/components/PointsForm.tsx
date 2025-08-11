@@ -250,6 +250,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
             onValueChange={(value) => handleChange("annualSalary", value)}
             className="grid grid-cols-1 md:grid-cols-2 gap-2"
           >
+            {/* Lowest: under 3M */}
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="under3m" id="income-under3m" />
               <Label htmlFor="income-under3m" className="flex justify-between w-full">
@@ -257,67 +258,8 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <Badge variant="outline" className="bg-destructive/10 text-destructive ml-2">비자 신청 불가</Badge>
               </Label>
             </div>
-            
-            {/* 10M yen - available for all age groups */}
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="10m" id="income-10m" />
-              <Label htmlFor="income-10m" className="flex justify-between w-full">
-                <span>1천만 엔 이상</span>
-                <Badge variant="outline" className="bg-primary/10 ml-2">40점</Badge>
-              </Label>
-            </div>
-            
-            {/* 9M yen - available for all age groups */}
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="9m" id="income-9m" />
-              <Label htmlFor="income-9m" className="flex justify-between w-full">
-                <span>9백만 엔 이상</span>
-                <Badge variant="outline" className="bg-primary/10 ml-2">35점</Badge>
-              </Label>
-            </div>
-            
-            {/* 8M yen - available for all age groups */}
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="8m" id="income-8m" />
-              <Label htmlFor="income-8m" className="flex justify-between w-full">
-                <span>8백만 엔 이상</span>
-                <Badge variant="outline" className="bg-primary/10 ml-2">30점</Badge>
-              </Label>
-            </div>
-            
-            {/* 7M yen - not available for 40+ */}
-            {data.age !== "40plus" && (
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="7m" id="income-7m" />
-                <Label htmlFor="income-7m" className="flex justify-between w-full">
-                  <span>7백만 엔 이상</span>
-                  <Badge variant="outline" className="bg-primary/10 ml-2">25점</Badge>
-                </Label>
-              </div>
-            )}
-            
-            {/* 6M yen - not available for 40+ */}
-            {data.age !== "40plus" && (
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="6m" id="income-6m" />
-                <Label htmlFor="income-6m" className="flex justify-between w-full">
-                  <span>6백만 엔 이상</span>
-                  <Badge variant="outline" className="bg-primary/10 ml-2">20점</Badge>
-                </Label>
-              </div>
-            )}
-            
-            {/* 5M yen - only available for age under 35 */}
-            {(data.age === "29under" || data.age === "30to34") && (
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="5m" id="income-5m" />
-                <Label htmlFor="income-5m" className="flex justify-between w-full">
-                  <span>5백만 엔 이상</span>
-                  <Badge variant="outline" className="bg-primary/10 ml-2">15점</Badge>
-                </Label>
-              </div>
-            )}
-            {/* 3~5M band only visible for age 30-34 */}
+
+            {/* Age-specific zero point intermediate bands (3M ~ X) shown BEFORE threshold 'X백만 엔 이상' tiers */}
             {data.age === "30to34" && (
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="3to5m" id="income-3to5m" />
@@ -327,7 +269,6 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 </Label>
               </div>
             )}
-            {/* 3~6M band only visible for age 35-39 */}
             {data.age === "35to39" && (
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="3to6m" id="income-3to6m" />
@@ -337,7 +278,6 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 </Label>
               </div>
             )}
-            {/* 3~8M band only visible for age 40+ */}
             {data.age === "40plus" && (
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="3to8m" id="income-3to8m" />
@@ -347,8 +287,8 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 </Label>
               </div>
             )}
-            
-            {/* 4M yen - only available for age under 30 */}
+
+            {/* 4M threshold (only <30) */}
             {data.age === "29under" && (
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="4m" id="income-4m" />
@@ -358,6 +298,66 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 </Label>
               </div>
             )}
+
+            {/* 5M threshold (only <35) */}
+            {(data.age === "29under" || data.age === "30to34") && (
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="5m" id="income-5m" />
+                <Label htmlFor="income-5m" className="flex justify-between w-full">
+                  <span>5백만 엔 이상</span>
+                  <Badge variant="outline" className="bg-primary/10 ml-2">15점</Badge>
+                </Label>
+              </div>
+            )}
+
+            {/* 6M threshold (not 40+) */}
+            {data.age !== "40plus" && (
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="6m" id="income-6m" />
+                <Label htmlFor="income-6m" className="flex justify-between w-full">
+                  <span>6백만 엔 이상</span>
+                  <Badge variant="outline" className="bg-primary/10 ml-2">20점</Badge>
+                </Label>
+              </div>
+            )}
+
+            {/* 7M threshold (not 40+) */}
+            {data.age !== "40plus" && (
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="7m" id="income-7m" />
+                <Label htmlFor="income-7m" className="flex justify-between w-full">
+                  <span>7백만 엔 이상</span>
+                  <Badge variant="outline" className="bg-primary/10 ml-2">25점</Badge>
+                </Label>
+              </div>
+            )}
+
+            {/* 8M threshold (all ages) */}
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="8m" id="income-8m" />
+              <Label htmlFor="income-8m" className="flex justify-between w-full">
+                <span>8백만 엔 이상</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">30점</Badge>
+              </Label>
+            </div>
+
+            {/* 9M threshold (all ages) */}
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="9m" id="income-9m" />
+              <Label htmlFor="income-9m" className="flex justify-between w-full">
+                <span>9백만 엔 이상</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">35점</Badge>
+              </Label>
+            </div>
+
+            {/* 10M threshold (all ages, highest) */}
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="10m" id="income-10m" />
+              <Label htmlFor="income-10m" className="flex justify-between w-full">
+                <span>1천만 엔 이상</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">40점</Badge>
+              </Label>
+            </div>
           </RadioGroup>
         </div>
 
