@@ -266,7 +266,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
               </RadioGroup>
             </div>
 
-            <Separator />
+            <Separator className="mt-[1cm]" />
 
             {/* Annual Income */}
             <div>
