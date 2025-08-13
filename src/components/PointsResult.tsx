@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { CheckCircle, Warning, Trophy, Download } from "@phosphor-icons/react";
+import { CheckCircle, Warning, Trophy, Download, Lightbulb } from "@phosphor-icons/react";
 import { calculateTotalPoints, getCategoryPoints, getQualificationStatus } from "@/lib/calculator";
 import { PointsData, VisaType } from "@/lib/models";
 import { useReactToPrint } from 'react-to-print';
@@ -28,10 +28,6 @@ export function PointsResult({ data }: PointsResultProps) {
   const handlePrint = useReactToPrint({
     contentRef: resultRef,
     documentTitle: `일본_고도인재_비자_점수표_${new Date().toISOString().split('T')[0]}`,
-    onBeforeGetContent: () => {
-      setIsGeneratingPDF(true);
-      return Promise.resolve();
-    },
     onAfterPrint: () => {
       setIsGeneratingPDF(false);
     },
@@ -113,6 +109,132 @@ export function PointsResult({ data }: PointsResultProps) {
     setTimeout(() => setIsGeneratingPDF(false), 1000);
   };
 
+  // Suggestion helpers
+  const simulate = (patch: Partial<PointsData>) => {
+    return calculateTotalPoints({ ...data, ...patch });
+  };
+
+  const nextIncomeOptionsByAge = (age: string) => {
+    const base = ['under3m'];
+    if (age === '30to34') base.push('3to5m');
+    if (age === '35to39') base.push('3to6m');
+    if (age === '40plus') base.push('3to8m');
+    if (age === '29under') base.push('4m');
+    if (age === '29under' || age === '30to34') base.push('5m');
+    if (age !== '40plus') base.push('6m','7m');
+    base.push('8m','9m','10m');
+    return base;
+  };
+
+  const buildSuggestions = () => {
+    const suggestions: { label: string; delta: number; key: string }[] = [];
+    const currentTotal = totalPoints;
+
+    // Language (JLPT)
+    if (data.japaneseLanguage === 'none') {
+      const n2 = simulate({ japaneseLanguage: 'n2' });
+      suggestions.push({ key: 'jlpt-n2', label: 'JLPT N2 취득', delta: n2 - currentTotal });
+      const n1 = simulate({ japaneseLanguage: 'n1' });
+      suggestions.push({ key: 'jlpt-n1', label: 'JLPT N1 취득', delta: n1 - currentTotal });
+    } else if (data.japaneseLanguage === 'n2') {
+      const n1 = simulate({ japaneseLanguage: 'n1' });
+      suggestions.push({ key: 'jlpt-n1', label: 'JLPT N1 취득', delta: n1 - currentTotal });
+    }
+
+    // Licenses
+    if (!data.licenses.includes('other')) {
+      const lic = simulate({ licenses: [...data.licenses, 'other'] });
+      suggestions.push({ key: 'license-other', label: '외국 자격증 취득', delta: lic - currentTotal });
+    }
+    if ((data.jpNationalLicenses ?? 0) < 2) {
+      const nextCount = Math.min(2, (data.jpNationalLicenses ?? 0) + 1);
+      const lic = simulate({ jpNationalLicenses: nextCount });
+      suggestions.push({ key: 'license-jp', label: '일본 국가자격증 1개 추가', delta: lic - currentTotal });
+    }
+
+    // Research achievements
+    if ((data.researchAchievements?.length ?? 0) === 0) {
+      const r = simulate({ researchAchievements: ['patents'] });
+      suggestions.push({ key: 'research', label: '연구 실적 확보(특허/논문/공식 연구)', delta: r - currentTotal });
+    }
+
+    // Education (long-term)
+    if (data.educationLevel === 'bachelors') {
+      const m = simulate({ educationLevel: 'masters' });
+      suggestions.push({ key: 'edu-m', label: '석사 학위 취득', delta: m - currentTotal });
+    } else if (data.educationLevel === 'masters') {
+      const d = simulate({ educationLevel: 'doctorate' });
+      suggestions.push({ key: 'edu-d', label: '박사 학위 취득', delta: d - currentTotal });
+    } else if (data.educationLevel === 'none') {
+      const b = simulate({ educationLevel: 'bachelors' });
+      suggestions.push({ key: 'edu-b', label: '학사 학위 취득', delta: b - currentTotal });
+    }
+
+    // Work experience (next bracket)
+    const workOrder = ['less3','3to5','5to7','7to10','10plus'];
+    const currentWorkIdx = workOrder.indexOf(data.workExperience);
+    if (currentWorkIdx >= 0 && currentWorkIdx < workOrder.length - 1) {
+      const nextW = workOrder[currentWorkIdx + 1];
+      const w = simulate({ workExperience: nextW });
+      suggestions.push({ key: 'work-next', label: '다음 경력 구간 도달', delta: w - currentTotal });
+    }
+
+    // Salary (next higher valid bracket)
+    const incomeOrder = nextIncomeOptionsByAge(data.age);
+    const currentIdx = incomeOrder.indexOf(data.annualSalary);
+    if (currentIdx >= 0) {
+      for (let i = currentIdx + 1; i < incomeOrder.length; i++) {
+        const nextIncome = incomeOrder[i];
+        const s = simulate({ annualSalary: nextIncome });
+        const delta = s - currentTotal;
+        if (delta > 0) {
+          suggestions.push({ key: `salary-${nextIncome}`, label: `${labelForIncome(nextIncome)} 선택`, delta });
+          break;
+        }
+      }
+    }
+
+    // Employer-related bonuses
+    if (!data.innovationBonus) {
+      const inv = simulate({ innovationBonus: true });
+      suggestions.push({ key: 'bonus-innovation', label: '혁신 지원조치 기업 취업', delta: inv - currentTotal });
+    }
+    if (!data.researchCostBonus) {
+      const rdb = simulate({ researchCostBonus: true });
+      suggestions.push({ key: 'bonus-rd', label: 'R&D 비율 3% 초과 중소기업 취업', delta: rdb - currentTotal });
+    }
+
+    // Japanese education
+    if (!data.japaneseEducation) {
+      const je = simulate({ japaneseEducation: true });
+      suggestions.push({ key: 'edu-jp', label: '일본 고등교육 학위 보유', delta: je - currentTotal });
+    }
+
+    // Filter positive deltas and sort desc
+    return suggestions.filter(s => s.delta > 0).sort((a,b) => b.delta - a.delta).slice(0, 4);
+  };
+
+  const labelForIncome = (key: string) => {
+    switch(key) {
+      case 'under3m': return '3백만 엔 미만';
+      case '3to5m': return '3백만~5백만 엔 미만';
+      case '3to6m': return '3백만~6백만 엔 미만';
+      case '3to8m': return '3백만~8백만 엔 미만';
+      case '4m': return '4백만 엔 이상';
+      case '5m': return '5백만 엔 이상';
+      case '6m': return '6백만 엔 이상';
+      case '7m': return '7백만 엔 이상';
+      case '8m': return '8백만 엔 이상';
+      case '9m': return '9백만 엔 이상';
+      case '10m': return '1천만 엔 이상';
+      default: return key;
+    }
+  };
+
+  const suggestions = buildSuggestions();
+  const target = totalPoints >= 70 ? 80 : 70;
+  const gap = Math.max(0, target - totalPoints);
+
   return (
     <Card ref={resultRef}>
       <CardHeader>
@@ -172,22 +294,23 @@ export function PointsResult({ data }: PointsResultProps) {
           )}
         </Alert>
 
-        {status.qualified && (
-          <div className="mt-4">
-            <h3 className="font-medium mb-2">혜택</h3>
-            <div className="flex flex-wrap gap-2">
-              {status.expeditedPR && (
-                <Badge variant="outline" className="bg-primary/10 border-primary">
-                  <Trophy size={14} className="mr-1" />
-                  영주권 신청 요건 완화
-                </Badge>
-              )}
-              {status.benefits.map((benefit) => (
-                <Badge key={benefit} variant="outline" className="bg-secondary/10 border-secondary">
-                  {getBenefitLabel(benefit)}
-                </Badge>
+        {/* Suggestions */}
+        {suggestions.length > 0 && (
+          <div className="mt-2">
+            <div className="flex items-center gap-2 mb-2">
+              <Lightbulb size={16} className="text-primary" />
+              <h3 className="font-medium">점수 향상 제안</h3>
+              <span className="text-xs text-muted-foreground">목표 {target}점까지 {gap}점 부족</span>
+            </div>
+            <div className="grid grid-cols-1 gap-2">
+              {suggestions.map((s) => (
+                <div key={s.key} className="flex items-center justify-between rounded border p-2">
+                  <span className="text-sm">{s.label}</span>
+                  <Badge variant="outline" className="bg-primary/10">+{s.delta}점</Badge>
+                </div>
               ))}
             </div>
+            <p className="text-xs text-muted-foreground mt-2">참고: 일부 항목은 고용 형태/기관 요건 또는 장기 준비가 필요할 수 있습니다.</p>
           </div>
         )}
 
