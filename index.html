@@ -63,7 +63,8 @@
     }
     </script>
     
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Use relative paths so they honor the <base> below on GitHub Pages -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <base href="/japan-skilled-profes/" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,7 +73,8 @@
 
 <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <!-- Use relative path so dev and prod both work with base -->
+    <script type="module" src="src/main.tsx"></script>
 </body>
 
 </html>
