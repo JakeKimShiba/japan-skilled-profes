@@ -6,6 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { calculateTotalPoints, getQualificationStatus } from "@/lib/calculator";
 import { 
   PointsData, 
   VisaType,
@@ -22,13 +23,22 @@ import { Info } from "@phosphor-icons/react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useI18n } from "@/i18n";
+import UniversitySelector from "@/components/UniversitySelector";
 
 interface PointsFormProps {
   data: PointsData;
   setData: (data: PointsData) => void;
 }
 
+interface UniversityOption {
+  name: string;
+  eligible: boolean;
+  country?: string;
+}
+
 export function PointsForm({ data, setData }: PointsFormProps) {
+  const { t } = useI18n();
   const handleChange = (field: keyof PointsData, value: string | boolean | string[] | number) => {
     setData({
       ...data,
@@ -68,11 +78,11 @@ export function PointsForm({ data, setData }: PointsFormProps) {
   }, [data.age]);
 
   const steps = [
-    { id: 'education', label: '학력' },
-    { id: 'experience', label: '경력' },
-    { id: 'ageIncome', label: '나이/연 수익' },
-    { id: 'researchLicense', label: '연구·자격/보너스' },
-    { id: 'languageSpecial', label: '언어/특별 가산' }
+    { id: 'education', key: 'form.education' },
+    { id: 'experience', key: 'form.experience' },
+    { id: 'ageIncome', key: 'form.ageIncome' },
+    { id: 'researchLicense', key: 'form.researchLicense' },
+    { id: 'languageSpecial', key: 'form.languageSpecial' }
   ];
   const [currentStep, setCurrentStep] = useState(0);
   const progressValue = ((currentStep) / (steps.length - 1)) * 100;
@@ -80,45 +90,67 @@ export function PointsForm({ data, setData }: PointsFormProps) {
   const goPrev = () => setCurrentStep((s) => Math.max(s - 1, 0));
   const goTo = (index: number) => setCurrentStep(index);
 
+  // Mobile summary values
+  const totalPoints = calculateTotalPoints(data);
+  const target = totalPoints >= 70 ? 80 : 70;
+  const gap = Math.max(0, target - totalPoints);
+  const qualified = totalPoints >= 70;
+
+  const [showUniversitySearch, setShowUniversitySearch] = useState(true);
+  const [selectedUniversity, setSelectedUniversity] = useState<UniversityOption | null>(null);
+
+  const handleUniversitySelect = (opt: UniversityOption | null) => {
+    if (!opt) {
+      // cleared selection
+      setSelectedUniversity(null);
+      setData({ ...data, university: '', universityEligible: false });
+      return;
+    }
+
+    setSelectedUniversity(opt);
+    // When a user clicks a result, we auto-check confirmation and award +10
+    setData({ ...data, university: opt.name, universityEligible: true });
+  };
+
   return (
     <Card className="mb-6">
       <CardHeader>
-        <div className="flex items-center justify-between mb-2">
-          <CardTitle className="text-xl text-primary">입력 사항</CardTitle>
-          <div className="hidden md:flex gap-2">
+        <div className="flex items-center justify-between mb-2 min-w-0">
+          <CardTitle className="text-xl text-primary max-w-[60%]">{t('form.title')}</CardTitle>
+          <div className="hidden md:flex gap-2 overflow-x-auto">
             {steps.map((step, idx) => (
               <button
                 key={step.id}
                 type="button"
                 onClick={() => goTo(idx)}
-                className={`text-xs px-2 py-1 rounded border transition ${idx === currentStep ? 'bg-primary text-primary-foreground' : 'hover:bg-muted'}`}
+                className={`text-xs px-2 py-1 rounded border transition whitespace-nowrap overflow-hidden max-w-[10rem] ${idx === currentStep ? 'bg-primary text-primary-foreground' : 'hover:bg-muted'}`}
               >
-                {idx + 1}. {step.label}
+                {idx + 1}. {t(step.key)}
               </button>
             ))}
           </div>
         </div>
         <Progress value={progressValue} className="h-2" />
         <div className="mt-2 flex md:hidden justify-between text-xs text-muted-foreground">
-          <span>{steps[currentStep].label}</span>
+          <span>{t(steps[currentStep].key)}</span>
           <span>{currentStep + 1}/{steps.length}</span>
         </div>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-6 pb-24 md:pb-0">
         {/* STEP 1: Academic Background */}
         {currentStep === 0 && (
           <div>
             {/* Academic Background */}
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <h3 className="font-medium">학력</h3>
+                <h3 className="font-medium">{t('form.education')}</h3>
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Info className="text-muted-foreground" size={16} />
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p>최종 학위 또는 전문 학위를 선택하세요.</p>
+                      <p>{t('tooltip.education')}</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
@@ -157,6 +189,43 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   </Label>
                 </div>
               </RadioGroup>
+
+              <div className="mt-4 border-t pt-4">
+                {/* Search is shown by default */}
+                <div className="mt-1">
+                  <div className="mb-2 flex items-center gap-1">
+                    <div className="font-medium">{t('form.special')}</div>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{t('university.confirm.badge')}</Badge>
+                  </div>
+                  <UniversitySelector onSelect={(opt) => handleUniversitySelect(opt)} selectedName={selectedUniversity?.name} />
+                </div>
+
+                {/* Confirmation checkbox below search */}
+                <div className="mt-3 flex items-center space-x-2">
+                  <Checkbox
+                    id="uni-confirm"
+                    checked={Boolean(data.universityEligible)}
+                    onCheckedChange={(checked) => {
+                      const isTrue = checked === true;
+                      // Update both fields in a single call to avoid overwriting
+                      setData({ ...data, universityEligible: isTrue, university: isTrue ? data.university : '' });
+                      if (!isTrue) {
+                        setSelectedUniversity(null);
+                      }
+                    }}
+                  />
+                  <Label htmlFor="uni-confirm" className="flex-1">
+                    {t('university.confirm.label')}
+                  </Label>
+                </div>
+                {selectedUniversity && (
+                  <div className="mt-2 text-sm min-w-0">
+                    <span className="block">
+                      {t('university.selected')}: <strong>{selectedUniversity.name}</strong>{selectedUniversity.country ? ` (${selectedUniversity.country})` : ''}
+                    </span>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         )}
@@ -166,14 +235,14 @@ export function PointsForm({ data, setData }: PointsFormProps) {
             {/* Work Experience */}
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <h3 className="font-medium">직무경력(실무경험)</h3>
+                <h3 className="font-medium">{t('form.experience')}</h3>
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Info className="text-muted-foreground" size={16} />
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p>관련 전문 분야에서의 경력 기간을 선택하세요.</p>
+                      <p>{t('tooltip.experience')}</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
@@ -228,7 +297,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
             {/* Age */}
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <h3 className="font-medium">나이</h3>
+                <h3 className="font-medium">{t('form.age')}</h3>
               </div>
               <RadioGroup
                 value={data.age}
@@ -271,14 +340,14 @@ export function PointsForm({ data, setData }: PointsFormProps) {
             {/* Annual Income */}
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <h3 className="font-medium">연 수익 (일본 엔)</h3>
+                <h3 className="font-medium">{t('form.income')}</h3>
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Info className="text-muted-foreground" size={16} />
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p>일본 취업 시 예상되는 연 수익을 선택하세요.</p>
+                      <p>{t('tooltip.income')}</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
@@ -407,14 +476,14 @@ export function PointsForm({ data, setData }: PointsFormProps) {
             {/* Research Achievements and Licenses (with bonuses) */}
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <h3 className="font-medium">연구 실적 및 자격증</h3>
+                <h3 className="font-medium">{t('form.researchLicense')}</h3>
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Info className="text-muted-foreground" size={16} />
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p>연구 실적은 한 가지만 선택 가능합니다.</p>
+                      <p>{t('tooltip.researchLicense')}</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
@@ -455,7 +524,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="papers" id="research-papers" />
                     <Label htmlFor="research-papers" className="flex justify-between w-full">
-                      <span className="text-sm">연구논문 실적에 대해선 일본의 국가 기관에서 이용되고 있는 학술 논문 데이터 베이스에 등록되어 있는 학술 잡지에 게재되어 있는 논문 (신청인이 책임 저자[제 1저자]일 경우에 한함) 3건 이상</span>
+                      <span className="text-sm">연구논문 실적에 대해선 일본의 국가 기관에서 이용되고 있는 학술 논문 데이터 베이스에 등록되어 있는 학술 잡지 (신청인이 책임 저자[제 1저자]일 경우에 한함) 3건 이상</span>
                       <Badge variant="outline" className="bg-primary/10 ml-2">15점</Badge>
                     </Label>
                   </div>
@@ -570,7 +639,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
             {/* Language Skills */}
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <h3 className="font-medium">언어 능력</h3>
+                <h3 className="font-medium">{t('form.language')}</h3>
               </div>
               
               <h4 className="text-sm font-medium text-muted-foreground mb-2">일본어 능력</h4>
@@ -608,7 +677,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
             {/* Special Additions */}
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <h3 className="font-medium">특별 가산 항목</h3>
+                <h3 className="font-medium">{t('form.special')}</h3>
               </div>
               <div className="space-y-3">
                 <div className="flex items-center space-x-2">
@@ -628,14 +697,34 @@ export function PointsForm({ data, setData }: PointsFormProps) {
         )}
         {/* Navigation Buttons */}
         <div className="flex justify-between pt-4 border-t">
-          <Button type="button" variant="outline" disabled={currentStep === 0} onClick={goPrev}>이전</Button>
+          <Button type="button" variant="outline" disabled={currentStep === 0} onClick={goPrev}>{t('nav.prev')}</Button>
           {currentStep < steps.length - 1 ? (
-            <Button type="button" onClick={goNext}>다음</Button>
+            <Button type="button" onClick={goNext}>{t('nav.next')}</Button>
           ) : (
-            <Button type="button" variant="secondary" onClick={() => goTo(0)}>처음으로</Button>
+            <Button type="button" variant="secondary" onClick={() => goTo(0)}>{t('nav.reset')}</Button>
           )}
         </div>
       </CardContent>
+
+      {/* Mobile sticky summary bar */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+          <div className="flex flex-col leading-tight">
+            <span className="text-[11px] text-muted-foreground">{t('total.score')}</span>
+            <span className="text-base font-semibold">
+              {totalPoints}점 {qualified ? <span className="text-primary">{t('mobile.summary.qualified')}</span> : <span className="text-muted-foreground">{t('mobile.summary.insufficient', { gap })}</span>}
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Button type="button" size="sm" variant="outline" disabled={currentStep === 0} onClick={goPrev}>{t('nav.prev')}</Button>
+            {currentStep < steps.length - 1 ? (
+              <Button type="button" size="sm" onClick={goNext}>{t('nav.next')}</Button>
+            ) : (
+              <Button type="button" size="sm" variant="secondary" onClick={() => goTo(0)}>{t('nav.reset')}</Button>
+            )}
+          </div>
+        </div>
+      </div>
     </Card>
   );
 }
