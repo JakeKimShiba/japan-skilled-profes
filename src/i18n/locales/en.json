@@ -58,6 +58,7 @@
   "result.categoriesTitle": "Category scores",
   "visa.type": "Highly Skilled Professional",
   "tooltip.education": "Select your highest degree.",
+  "tooltip.moreInfo": "More info",
   "tooltip.income": "Select your expected annual income in Japan.",
   "form.steps": "Form steps",
   "income.under": "Under {amount}",

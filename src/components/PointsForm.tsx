@@ -118,7 +118,11 @@ export function PointsForm({ data, setData }: PointsFormProps) {
       <CardHeader>
         <div className="flex items-center justify-between mb-2 min-w-0">
           <CardTitle className="text-xl text-primary max-w-[60%]">{t('form.title')}</CardTitle>
-          <nav className="hidden md:flex gap-2 overflow-x-auto" aria-label={t('form.steps')}>
+          <nav className="hidden md:flex gap-2 overflow-x-auto" aria-label={t('form.steps')} tabIndex={0}
+               onKeyDown={(e) => {
+                 if (e.key === 'ArrowRight') { e.preventDefault(); goNext(); }
+                 if (e.key === 'ArrowLeft') { e.preventDefault(); goPrev(); }
+               }}>
             {steps.map((step, idx) => (
               <button
                 key={step.id}
@@ -133,11 +137,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
             ))}
           </nav>
         </div>
-        {/* Keyboard navigation for steps */}
-        <div className="sr-only" onKeyDown={(e) => {
-          if (e.key === 'ArrowRight') { e.preventDefault(); goNext(); }
-          if (e.key === 'ArrowLeft') { e.preventDefault(); goPrev(); }
-        }} aria-hidden="true" />
+        {/* Keyboard navigation supported on the step nav via tabIndex and onKeyDown */}
         <Progress value={progressValue} className="h-2" />
         <div className="mt-2 flex md:hidden justify-between text-xs text-muted-foreground">
           <span>{t(steps[currentStep].key)}</span>
@@ -155,7 +155,9 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <Info className="text-muted-foreground" size={16} />
+                      <button type="button" aria-label={t('tooltip.education')} className="inline-flex items-center">
+                        <Info className="text-muted-foreground" size={16} />
+                      </button>
                     </TooltipTrigger>
                     <TooltipContent>
                       <p>{t('tooltip.education')}</p>
@@ -247,7 +249,9 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <Info className="text-muted-foreground" size={16} />
+                      <button type="button" aria-label={t('tooltip.experience')} className="inline-flex items-center">
+                        <Info className="text-muted-foreground" size={16} />
+                      </button>
                     </TooltipTrigger>
                     <TooltipContent>
                       <p>{t('tooltip.experience')}</p>
@@ -490,7 +494,9 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <Info className="text-muted-foreground" size={16} />
+                      <button type="button" aria-label={t('tooltip.researchLicense')} className="inline-flex items-center">
+                        <Info className="text-muted-foreground" size={16} />
+                      </button>
                     </TooltipTrigger>
                     <TooltipContent>
                       <p>{t('tooltip.researchLicense')}</p>
@@ -503,7 +509,9 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <Info className="text-muted-foreground text-xs ml-2" size={14} />
+                      <button type="button" aria-label={t('tooltip.moreInfo')} className="inline-flex items-center ml-2">
+                        <Info className="text-muted-foreground text-xs" size={14} />
+                      </button>
                     </TooltipTrigger>
                     <TooltipContent>
                       <p>하나의 항목만 선택 가능합니다.</p>
@@ -566,7 +574,9 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                           <TooltipProvider>
                             <Tooltip>
                               <TooltipTrigger asChild>
-                                <Info className="text-muted-foreground" size={16} />
+                                <button type="button" aria-label={t('tooltip.moreInfo')} className="inline-flex items-center">
+                                  <Info className="text-muted-foreground" size={16} />
+                                </button>
                               </TooltipTrigger>
                               <TooltipContent className="max-w-[300px]">
                                 <p>보유하신 일본 국가자격증의 개수를 선택하세요. (1개 - 5점, 최대 2개)</p>

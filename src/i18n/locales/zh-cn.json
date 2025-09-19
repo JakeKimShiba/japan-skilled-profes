@@ -58,6 +58,7 @@
   "result.categoriesTitle": "各类得分",
   "visa.type": "高端人才",
   "tooltip.education": "请选择您的最高学位。",
+  "tooltip.moreInfo": "更多信息",
   "tooltip.income": "请选择您在日本的预期年收入。",
   "form.steps": "表单步骤",
   "income.under": "低于 {amount}",
