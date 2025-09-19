@@ -13,7 +13,8 @@ export function Header() {
           <CardTitle className="text-2xl md:text-3xl font-bold flex-1 min-w-0">
             <span className="text-primary">{t('app.title')}</span>
           </CardTitle>
-          <div className="mt-3 md:mt-0 md:ml-4 w-36 flex items-center gap-2 md:justify-end">
+          {/* Mobile: place below title and right-align; Desktop: stay on the right */}
+          <div className="mt-3 md:mt-0 ml-auto md:ml-4 w-36 flex items-center gap-2 self-end md:self-auto md:justify-end">
             <GlobeSimple size={16} className="text-muted-foreground flex-shrink-0" aria-hidden="true" />
             <Select value={locale} onValueChange={(v) => setLocale(v as any)}>
               <SelectTrigger aria-label={t('header.languageLabel')}>
