@@ -79,11 +79,11 @@ export function PointsForm({ data, setData }: PointsFormProps) {
   }, [data.age]);
 
   const steps = [
-    { id: 'education', key: 'form.education' },
-    { id: 'experience', key: 'form.experience' },
-    { id: 'ageIncome', key: 'form.ageIncome' },
-    { id: 'researchLicense', key: 'form.researchLicense' },
-    { id: 'languageSpecial', key: 'form.languageSpecial' }
+    { id: 'education', key: 'form.education', shortKey: 'form.education.short' },
+    { id: 'experience', key: 'form.experience', shortKey: 'form.experience.short' },
+    { id: 'ageIncome', key: 'form.ageIncome', shortKey: 'form.ageIncome.short' },
+    { id: 'researchLicense', key: 'form.researchLicense', shortKey: 'form.researchLicense.short' },
+    { id: 'languageSpecial', key: 'form.languageSpecial', shortKey: 'form.languageSpecial.short' }
   ];
   const [currentStep, setCurrentStep] = useState(0);
   const progressValue = ((currentStep) / (steps.length - 1)) * 100;
@@ -124,16 +124,25 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                  if (e.key === 'ArrowLeft') { e.preventDefault(); goPrev(); }
                }}>
             {steps.map((step, idx) => (
-              <button
-                key={step.id}
-                type="button"
-                onClick={() => goTo(idx)}
-                aria-current={idx === currentStep ? 'step' : undefined}
-                aria-label={`${idx + 1}. ${t(step.key)}`}
-                className={`text-xs px-2 py-1 rounded border transition whitespace-nowrap overflow-hidden max-w-[12rem] ${idx === currentStep ? 'bg-primary text-primary-foreground font-semibold underline' : 'hover:bg-muted'}`}
-              >
-                {idx + 1}. {t(step.key)}
-              </button>
+              <TooltipProvider key={step.id}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <button
+                      type="button"
+                      onClick={() => goTo(idx)}
+                      aria-current={idx === currentStep ? 'step' : undefined}
+                      aria-label={`${idx + 1}. ${t(step.key)}`}
+                      className={`flex-shrink-0 inline-flex items-center gap-1 h-8 px-2 rounded border transition whitespace-nowrap leading-none ${idx === currentStep ? 'bg-primary text-primary-foreground font-semibold underline' : 'hover:bg-muted'}`}
+                    >
+                      <span className={`inline-flex items-center justify-center w-5 h-5 text-[11px] rounded-full ${idx === currentStep ? 'bg-primary-foreground/20' : 'bg-muted text-foreground'}`}>{idx + 1}</span>
+                      <span className="text-xs font-medium">{t(step.shortKey)}</span>
+                    </button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{t(step.key)}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             ))}
           </nav>
         </div>
