@@ -79,6 +79,7 @@
   "income.range": "{min} to {max}",
   "income.atLeast": "{amount} or more",
   "income.notEligible": "Not eligible for visa",
+  "income.unit.manEn": "in 10k JPY units",
   "nav.prev": "Previous",
   "nav.next": "Next",
   "nav.reset": "Start over"

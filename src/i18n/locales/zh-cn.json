@@ -79,6 +79,7 @@
   "income.range": "{min} 至 {max}",
   "income.atLeast": "不低于 {amount}",
   "income.notEligible": "无法申请签证",
+  "income.unit.manEn": "以万日元为单位",
   "nav.prev": "上一步",
   "nav.next": "下一步",
   "nav.reset": "重新开始"

@@ -25,7 +25,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useI18n } from "@/i18n";
-import { formatJPY } from "@/lib/utils";
+import { formatJPY, formatManEn } from "@/lib/utils";
 import UniversitySelector from "@/components/UniversitySelector";
 
 interface PointsFormProps {
@@ -367,7 +367,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
             {/* Annual Income */}
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <h3 className="font-medium">{t('form.annualIncome')}</h3>
+                <h3 className="font-medium">{t('form.annualIncome')} <span className="text-xs text-muted-foreground">({t('income.unit.manEn')})</span></h3>
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
@@ -392,7 +392,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="under3m" id="income-under3m" />
                   <Label htmlFor="income-under3m" className="flex justify-between w-full">
-                    <span>{t('income.under', { amount: formatJPY(3000000, locale) })}</span>
+                    <span>{t('income.under', { amount: formatManEn(3000000, locale) })}</span>
                     <Badge variant="outline" className="bg-destructive/10 text-destructive ml-2">{t('income.notEligible')}</Badge>
                   </Label>
                 </div>
@@ -402,7 +402,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="3to5m" id="income-3to5m" />
                     <Label htmlFor="income-3to5m" className="flex justify-between w-full">
-                      <span>{t('income.range', { min: formatJPY(3000000, locale), max: formatJPY(5000000, locale) })}</span>
+                      <span>{t('income.range', { min: formatManEn(3000000, locale), max: formatManEn(5000000, locale) })}</span>
                       <Badge variant="outline" className="bg-muted/30 ml-2">{fmtPoints(0)}</Badge>
                     </Label>
                   </div>
@@ -411,7 +411,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="3to6m" id="income-3to6m" />
                     <Label htmlFor="income-3to6m" className="flex justify-between w-full">
-                      <span>{t('income.range', { min: formatJPY(3000000, locale), max: formatJPY(6000000, locale) })}</span>
+                      <span>{t('income.range', { min: formatManEn(3000000, locale), max: formatManEn(6000000, locale) })}</span>
                       <Badge variant="outline" className="bg-muted/30 ml-2">{fmtPoints(0)}</Badge>
                     </Label>
                   </div>
@@ -420,7 +420,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="3to8m" id="income-3to8m" />
                     <Label htmlFor="income-3to8m" className="flex justify-between w-full">
-                      <span>{t('income.range', { min: formatJPY(3000000, locale), max: formatJPY(8000000, locale) })}</span>
+                      <span>{t('income.range', { min: formatManEn(3000000, locale), max: formatManEn(8000000, locale) })}</span>
                       <Badge variant="outline" className="bg-muted/30 ml-2">{fmtPoints(0)}</Badge>
                     </Label>
                   </div>
@@ -431,7 +431,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="4m" id="income-4m" />
                     <Label htmlFor="income-4m" className="flex justify-between w-full">
-                      <span>{t('income.atLeast', { amount: formatJPY(4000000, locale) })}</span>
+                      <span>{t('income.atLeast', { amount: formatManEn(4000000, locale) })}</span>
                       <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(10)}</Badge>
                     </Label>
                   </div>
@@ -442,7 +442,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="5m" id="income-5m" />
                     <Label htmlFor="income-5m" className="flex justify-between w-full">
-                      <span>{t('income.atLeast', { amount: formatJPY(5000000, locale) })}</span>
+                      <span>{t('income.atLeast', { amount: formatManEn(5000000, locale) })}</span>
                       <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(15)}</Badge>
                     </Label>
                   </div>
@@ -453,7 +453,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="6m" id="income-6m" />
                     <Label htmlFor="income-6m" className="flex justify-between w-full">
-                      <span>{t('income.atLeast', { amount: formatJPY(6000000, locale) })}</span>
+                      <span>{t('income.atLeast', { amount: formatManEn(6000000, locale) })}</span>
                       <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(20)}</Badge>
                     </Label>
                   </div>
@@ -464,7 +464,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="7m" id="income-7m" />
                     <Label htmlFor="income-7m" className="flex justify-between w-full">
-                      <span>{t('income.atLeast', { amount: formatJPY(7000000, locale) })}</span>
+                      <span>{t('income.atLeast', { amount: formatManEn(7000000, locale) })}</span>
                       <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(25)}</Badge>
                     </Label>
                   </div>
@@ -474,7 +474,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="8m" id="income-8m" />
                   <Label htmlFor="income-8m" className="flex justify-between w-full">
-                    <span>{t('income.atLeast', { amount: formatJPY(8000000, locale) })}</span>
+                    <span>{t('income.atLeast', { amount: formatManEn(8000000, locale) })}</span>
                     <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(30)}</Badge>
                   </Label>
                 </div>
@@ -483,7 +483,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="9m" id="income-9m" />
                   <Label htmlFor="income-9m" className="flex justify-between w-full">
-                    <span>{t('income.atLeast', { amount: formatJPY(9000000, locale) })}</span>
+                    <span>{t('income.atLeast', { amount: formatManEn(9000000, locale) })}</span>
                     <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(35)}</Badge>
                   </Label>
                 </div>
@@ -492,7 +492,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="10m" id="income-10m" />
                   <Label htmlFor="income-10m" className="flex justify-between w-full">
-                    <span>{t('income.atLeast', { amount: formatJPY(10000000, locale) })}</span>
+                    <span>{t('income.atLeast', { amount: formatManEn(10000000, locale) })}</span>
                     <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(40)}</Badge>
                   </Label>
                 </div>

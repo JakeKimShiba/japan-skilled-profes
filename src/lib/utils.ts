@@ -25,3 +25,25 @@ export function formatJPY(amount: number, locale?: string) {
     return `¥ ${amount.toLocaleString('en-US')}`
   }
 }
+
+// Format amount as units of 10,000 JPY ("man en"), e.g., 3,000,000 -> 300 man
+export function formatManEn(amount: number, locale?: string) {
+  const units = Math.round(amount / 10000); // 10k JPY units
+  const localeMap: Record<string, string> = {
+    'ko': 'ko-KR',
+    'en': 'en-US',
+    'zh-cn': 'zh-CN',
+    'zh-tw': 'zh-TW',
+  };
+  const resolved = locale ? (localeMap[locale] ?? locale) : undefined;
+  const n = new Intl.NumberFormat(resolved, { maximumFractionDigits: 0 }).format(units);
+  const unitLabel = (() => {
+    switch ((locale || '').toLowerCase()) {
+      case 'ko': return '만 엔';
+      case 'zh-cn': return '万日元';
+      case 'zh-tw': return '萬日圓';
+      default: return '10k JPY';
+    }
+  })();
+  return `${n} ${unitLabel}`;
+}

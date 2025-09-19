@@ -72,6 +72,7 @@
   "income.range": "{min} 至 {max}",
   "income.atLeast": "不低於 {amount}",
   "income.notEligible": "無法申請簽證",
+  "income.unit.manEn": "以萬日圓為單位",
   "nav.prev": "上一步",
   "nav.next": "下一步",
   "nav.reset": "重新開始"

@@ -79,6 +79,7 @@
   "income.range": "{min} ~ {max} 미만",
   "income.atLeast": "{amount} 이상",
   "income.notEligible": "비자 신청 불가",
+  "income.unit.manEn": "만 엔 단위",
   "nav.prev": "이전",
   "nav.next": "다음",
   "nav.reset": "처음으로"
