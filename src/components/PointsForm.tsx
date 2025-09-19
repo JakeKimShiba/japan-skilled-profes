@@ -40,6 +40,7 @@ interface UniversityOption {
 
 export function PointsForm({ data, setData }: PointsFormProps) {
   const { t, locale } = useI18n();
+  const fmtPoints = (n: number) => t('points.value', { value: n });
   const handleChange = (field: keyof PointsData, value: string | boolean | string[] | number) => {
     setData({
       ...data,
@@ -154,6 +155,10 @@ export function PointsForm({ data, setData }: PointsFormProps) {
         </div>
       </CardHeader>
       <CardContent className="space-y-6 pb-24 md:pb-0">
+        {/* Live region for dynamic totals and qualification updates (screen readers) */}
+        <div className="sr-only" aria-live="polite" role="status">
+          {t('total.score')}: {totalPoints} {qualified ? t('mobile.summary.qualified') : t('mobile.summary.insufficient', { gap })}
+        </div>
         {/* STEP 1: Academic Background */}
         {currentStep === 0 && (
           <div>
@@ -182,29 +187,29 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="doctorate" id="doctorate" />
                   <Label htmlFor="doctorate" className="flex justify-between w-full">
-                    <span>박사 학위</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">30점</Badge>
+                    <span>{t('education.doctorate')}</span>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(30)}</Badge>
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="masters" id="masters" />
                   <Label htmlFor="masters" className="flex justify-between w-full">
-                    <span>석사 학위</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">20점</Badge>
+                    <span>{t('education.masters')}</span>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(20)}</Badge>
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="bachelors" id="bachelors" />
                   <Label htmlFor="bachelors" className="flex justify-between w-full">
-                    <span>학사 학위</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">10점</Badge>
+                    <span>{t('education.bachelors')}</span>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(10)}</Badge>
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="none" id="no-degree" />
                   <Label htmlFor="no-degree" className="flex justify-between w-full">
-                    <span>해당 없음</span>
-                    <Badge variant="outline" className="bg-muted/30 ml-2">0점</Badge>
+                    <span>{t('common.none')}</span>
+                    <Badge variant="outline" className="bg-muted/30 ml-2">{fmtPoints(0)}</Badge>
                   </Label>
                 </div>
               </RadioGroup>
@@ -276,36 +281,36 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="less3" id="work-less3" />
                   <Label htmlFor="work-less3" className="flex justify-between w-full">
-                    <span>3년 미만</span>
-                    <Badge variant="outline" className="bg-muted/30 ml-2">0점</Badge>
+                    <span>{t('work.less3')}</span>
+                    <Badge variant="outline" className="bg-muted/30 ml-2">{fmtPoints(0)}</Badge>
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="3to5" id="work-3to5" />
                   <Label htmlFor="work-3to5" className="flex justify-between w-full">
-                    <span>3년 이상 5년 미만</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">5점</Badge>
+                    <span>{t('work.3to5')}</span>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(5)}</Badge>
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="5to7" id="work-5to7" />
                   <Label htmlFor="work-5to7" className="flex justify-between w-full">
-                    <span>5년 이상 7년 미만</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">10점</Badge>
+                    <span>{t('work.5to7')}</span>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(10)}</Badge>
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="7to10" id="work-7to10" />
                   <Label htmlFor="work-7to10" className="flex justify-between w-full">
-                    <span>7년 이상 10년 미만</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">15점</Badge>
+                    <span>{t('work.7to10')}</span>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(15)}</Badge>
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="10plus" id="work-10plus" />
                   <Label htmlFor="work-10plus" className="flex justify-between w-full">
-                    <span>10년 이상</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">20점</Badge>
+                    <span>{t('work.10plus')}</span>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(20)}</Badge>
                   </Label>
                 </div>
               </RadioGroup>
@@ -328,29 +333,29 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="29under" id="age-29under" />
                   <Label htmlFor="age-29under" className="flex justify-between w-full">
-                    <span>29세 이하</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">15점</Badge>
+                    <span>{t('age.29under')}</span>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(15)}</Badge>
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="30to34" id="age-30to34" />
                   <Label htmlFor="age-30to34" className="flex justify-between w-full">
-                    <span>30세 ~ 34세</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">10점</Badge>
+                    <span>{t('age.30to34')}</span>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(10)}</Badge>
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="35to39" id="age-35to39" />
                   <Label htmlFor="age-35to39" className="flex justify-between w-full">
-                    <span>35세 ~ 39세</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">5점</Badge>
+                    <span>{t('age.35to39')}</span>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(5)}</Badge>
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="40plus" id="age-40plus" />
                   <Label htmlFor="age-40plus" className="flex justify-between w-full">
-                    <span>40세 이상</span>
-                    <Badge variant="outline" className="bg-muted/30 ml-2">0점</Badge>
+                    <span>{t('age.40plus')}</span>
+                    <Badge variant="outline" className="bg-muted/30 ml-2">{fmtPoints(0)}</Badge>
                   </Label>
                 </div>
               </RadioGroup>
@@ -397,7 +402,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                     <RadioGroupItem value="3to5m" id="income-3to5m" />
                     <Label htmlFor="income-3to5m" className="flex justify-between w-full">
                       <span>{t('income.range', { min: formatJPY(3000000, locale), max: formatJPY(5000000, locale) })}</span>
-                      <Badge variant="outline" className="bg-muted/30 ml-2">0점</Badge>
+                      <Badge variant="outline" className="bg-muted/30 ml-2">{fmtPoints(0)}</Badge>
                     </Label>
                   </div>
                 )}
@@ -406,7 +411,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                     <RadioGroupItem value="3to6m" id="income-3to6m" />
                     <Label htmlFor="income-3to6m" className="flex justify-between w-full">
                       <span>{t('income.range', { min: formatJPY(3000000, locale), max: formatJPY(6000000, locale) })}</span>
-                      <Badge variant="outline" className="bg-muted/30 ml-2">0점</Badge>
+                      <Badge variant="outline" className="bg-muted/30 ml-2">{fmtPoints(0)}</Badge>
                     </Label>
                   </div>
                 )}
@@ -415,7 +420,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                     <RadioGroupItem value="3to8m" id="income-3to8m" />
                     <Label htmlFor="income-3to8m" className="flex justify-between w-full">
                       <span>{t('income.range', { min: formatJPY(3000000, locale), max: formatJPY(8000000, locale) })}</span>
-                      <Badge variant="outline" className="bg-muted/30 ml-2">0점</Badge>
+                      <Badge variant="outline" className="bg-muted/30 ml-2">{fmtPoints(0)}</Badge>
                     </Label>
                   </div>
                 )}
@@ -426,7 +431,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                     <RadioGroupItem value="4m" id="income-4m" />
                     <Label htmlFor="income-4m" className="flex justify-between w-full">
                       <span>{t('income.atLeast', { amount: formatJPY(4000000, locale) })}</span>
-                      <Badge variant="outline" className="bg-primary/10 ml-2">10점</Badge>
+                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(10)}</Badge>
                     </Label>
                   </div>
                 )}
@@ -437,7 +442,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                     <RadioGroupItem value="5m" id="income-5m" />
                     <Label htmlFor="income-5m" className="flex justify-between w-full">
                       <span>{t('income.atLeast', { amount: formatJPY(5000000, locale) })}</span>
-                      <Badge variant="outline" className="bg-primary/10 ml-2">15점</Badge>
+                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(15)}</Badge>
                     </Label>
                   </div>
                 )}
@@ -448,7 +453,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                     <RadioGroupItem value="6m" id="income-6m" />
                     <Label htmlFor="income-6m" className="flex justify-between w-full">
                       <span>{t('income.atLeast', { amount: formatJPY(6000000, locale) })}</span>
-                      <Badge variant="outline" className="bg-primary/10 ml-2">20점</Badge>
+                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(20)}</Badge>
                     </Label>
                   </div>
                 )}
@@ -459,7 +464,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                     <RadioGroupItem value="7m" id="income-7m" />
                     <Label htmlFor="income-7m" className="flex justify-between w-full">
                       <span>{t('income.atLeast', { amount: formatJPY(7000000, locale) })}</span>
-                      <Badge variant="outline" className="bg-primary/10 ml-2">25점</Badge>
+                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(25)}</Badge>
                     </Label>
                   </div>
                 )}
@@ -469,7 +474,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <RadioGroupItem value="8m" id="income-8m" />
                   <Label htmlFor="income-8m" className="flex justify-between w-full">
                     <span>{t('income.atLeast', { amount: formatJPY(8000000, locale) })}</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">30점</Badge>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(30)}</Badge>
                   </Label>
                 </div>
 
@@ -478,7 +483,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <RadioGroupItem value="9m" id="income-9m" />
                   <Label htmlFor="income-9m" className="flex justify-between w-full">
                     <span>{t('income.atLeast', { amount: formatJPY(9000000, locale) })}</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">35점</Badge>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(35)}</Badge>
                   </Label>
                 </div>
 
@@ -487,7 +492,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <RadioGroupItem value="10m" id="income-10m" />
                   <Label htmlFor="income-10m" className="flex justify-between w-full">
                     <span>{t('income.atLeast', { amount: formatJPY(10000000, locale) })}</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">40점</Badge>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(40)}</Badge>
                   </Label>
                 </div>
               </RadioGroup>
@@ -514,7 +519,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 </TooltipProvider>
               </div>
               <div className="space-y-3">
-                <h4 className="text-sm font-medium text-muted-foreground">연구 실적</h4>
+                <h4 className="text-sm font-medium text-muted-foreground">{t('research.title')}</h4>
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
@@ -523,7 +528,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                       </button>
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p>하나의 항목만 선택 가능합니다.</p>
+                      <p>{t('research.onlyOne')}</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
@@ -535,51 +540,51 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="patents" id="research-patents" />
                     <Label htmlFor="research-patents" className="flex justify-between w-full">
-                      <span className="text-sm">특허 발명 1건 이상</span>
-                      <Badge variant="outline" className="bg-primary/10 ml-2">15점</Badge>
+                      <span className="text-sm">{t('research.patents')}</span>
+                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(15)}</Badge>
                     </Label>
                   </div>
                   
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="research" id="research-projects" />
                     <Label htmlFor="research-projects" className="flex justify-between w-full">
-                      <span className="text-sm">입국 전에 공식 기관에서 인정받은 연구에 종사했던 실적 3건 이상</span>
-                      <Badge variant="outline" className="bg-primary/10 ml-2">15점</Badge>
+                      <span className="text-sm">{t('research.research')}</span>
+                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(15)}</Badge>
                     </Label>
                   </div>
                   
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="papers" id="research-papers" />
                     <Label htmlFor="research-papers" className="flex justify-between w-full">
-                      <span className="text-sm">연구논문 실적에 대해선 일본의 국가 기관에서 이용되고 있는 학술 논문 데이터 베이스에 등록되어 있는 학술 잡지 (신청인이 책임 저자[제 1저자]일 경우에 한함) 3건 이상</span>
-                      <Badge variant="outline" className="bg-primary/10 ml-2">15점</Badge>
+                      <span className="text-sm">{t('research.papers')}</span>
+                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(15)}</Badge>
                     </Label>
                   </div>
                   
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="awards" id="research-awards" />
                     <Label htmlFor="research-awards" className="flex justify-between w-full">
-                      <span className="text-sm">상기의 항목 이외에 상기 항목에 비교해 동등한 연구 실적이 있는 신청자가 어필하는 경우 (저명한 상의 수상이력 등) 관련 행정기관장의 의견을 들은 곳에서 법무대신이 개별로 포인트 부여 여부를 판단함.</span>
-                      <Badge variant="outline" className="bg-primary/10 ml-2">15점</Badge>
+                      <span className="text-sm">{t('research.awards')}</span>
+                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(15)}</Badge>
                     </Label>
                   </div>
                   
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="none" id="research-none" />
                     <Label htmlFor="research-none" className="flex justify-between w-full">
-                      <span className="text-sm">해당 없음</span>
-                      <Badge variant="outline" className="bg-muted/30 ml-2">0점</Badge>
+                      <span className="text-sm">{t('common.none')}</span>
+                      <Badge variant="outline" className="bg-muted/30 ml-2">{fmtPoints(0)}</Badge>
                     </Label>
                   </div>
                 </RadioGroup>
                 
-                <h4 className="text-sm font-medium text-muted-foreground mt-4">자격증</h4>
+                <h4 className="text-sm font-medium text-muted-foreground mt-4">{t('licenses.title')}</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   <div className="md:col-span-2">
                     <div className="flex flex-col space-y-2">
                       <Label htmlFor="jp-national-licenses" className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <span>직무에 관련한 일본의 국가자격증</span>
+                          <span>{t('licenses.jpNational')}</span>
                           <TooltipProvider>
                             <Tooltip>
                               <TooltipTrigger asChild>
@@ -588,8 +593,8 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                                 </button>
                               </TooltipTrigger>
                               <TooltipContent className="max-w-[300px]">
-                                <p>보유하신 일본 국가자격증의 개수를 선택하세요. (1개 - 5점, 최대 2개)</p>
-                                <p className="mt-2">한국의 정보처리기사/정보처리산업기사 자격증도 일본에서 인정되어 최대 5점을 취득할 수 있습니다.</p>
+                                <p>{t('licenses.tooltip.count')}</p>
+                                <p className="mt-2">{t('licenses.tooltip.kr')}</p>
                                 <p className="mt-2">
                                   <a 
                                     href="https://www.moj.go.jp/isa/policies/bill/nyukan_hourei_h09.html" 
@@ -597,7 +602,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                                     rel="noopener noreferrer"
                                     className="text-primary underline"
                                   >
-                                    일본 국가자격증 목록 확인하기
+                                    {t('licenses.linkText')}
                                   </a>
                                 </p>
                               </TooltipContent>
@@ -610,12 +615,12 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                         onValueChange={(value) => handleChange("jpNationalLicenses", parseInt(value))}
                       >
                         <SelectTrigger id="jp-national-licenses">
-                          <SelectValue placeholder="선택하세요" />
+                          <SelectValue placeholder={t('common.selectPlaceholder')} />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="0">없음</SelectItem>
-                          <SelectItem value="1">1개 보유 (5점)</SelectItem>
-                          <SelectItem value="2">2개 보유 (10점)</SelectItem>
+                          <SelectItem value="0">{t('licenses.option.none')}</SelectItem>
+                          <SelectItem value="1">{t('licenses.option.one')}</SelectItem>
+                          <SelectItem value="2">{t('licenses.option.two')}</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -627,13 +632,13 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                       onCheckedChange={() => toggleArrayValue('licenses', 'other')}
                     />
                     <Label htmlFor="license-other" className="flex justify-between w-full">
-                      <span>직무에 관련된 외국 자격증</span>
-                      <Badge variant="outline" className="bg-primary/10 ml-2">5점</Badge>
+                      <span>{t('licenses.otherForeign')}</span>
+                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(5)}</Badge>
                     </Label>
                   </div>
                 </div>
                 
-                <h4 className="text-sm font-medium text-muted-foreground mt-4">보너스 항목</h4>
+                <h4 className="text-sm font-medium text-muted-foreground mt-4">{t('special.bonus.title')}</h4>
                 <div className="grid grid-cols-1 gap-2">
                   <div className="flex items-center space-x-2">
                     <Checkbox 
@@ -642,8 +647,8 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                       onCheckedChange={(checked) => handleChange("innovationBonus", !!checked)}
                     />
                     <Label htmlFor="innovation-bonus" className="flex justify-between w-full">
-                      <span>기술혁신을 촉진하기 위한 지원조치 (별도로 고시해서 정함)를 받고 있는 기관에 취업</span>
-                      <Badge variant="outline" className="bg-primary/10 ml-2">10점</Badge>
+                      <span>{t('special.bonus.innovation')}</span>
+                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(10)}</Badge>
                     </Label>
                   </div>
                   <div className="flex items-center space-x-2">
@@ -653,8 +658,8 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                       onCheckedChange={(checked) => handleChange("researchCostBonus", !!checked)}
                     />
                     <Label htmlFor="research-cost-bonus" className="flex justify-between w-full">
-                      <span>시험 연구비 등의 비율이 3%를 넘는 중소기업에 취업</span>
-                      <Badge variant="outline" className="bg-primary/10 ml-2">5점</Badge>
+                      <span>{t('special.bonus.researchCost')}</span>
+                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(5)}</Badge>
                     </Label>
                   </div>
                 </div>
@@ -671,7 +676,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <h3 className="font-medium">{t('form.language')}</h3>
               </div>
               
-              <h4 className="text-sm font-medium text-muted-foreground mb-2">일본어 능력</h4>
+              <h4 className="text-sm font-medium text-muted-foreground mb-2">{t('language.japanese')}</h4>
               <RadioGroup
                 value={data.japaneseLanguage}
                 onValueChange={(value) => handleChange("japaneseLanguage", value)}
@@ -680,22 +685,22 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="n1" id="japanese-n1" />
                   <Label htmlFor="japanese-n1" className="flex justify-between w-full">
-                    <span>JLPT 1급</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">15점</Badge>
+                    <span>{t('language.jlptN1')}</span>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(15)}</Badge>
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="n2" id="japanese-n2" />
                   <Label htmlFor="japanese-n2" className="flex justify-between w-full">
-                    <span>JLPT 2급</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">10점</Badge>
+                    <span>{t('language.jlptN2')}</span>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(10)}</Badge>
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="none" id="japanese-none" />
                   <Label htmlFor="japanese-none" className="flex justify-between w-full">
-                    <span>없음</span>
-                    <Badge variant="outline" className="bg-muted/30 ml-2">0점</Badge>
+                    <span>{t('common.none')}</span>
+                    <Badge variant="outline" className="bg-muted/30 ml-2">{fmtPoints(0)}</Badge>
                   </Label>
                 </div>
               </RadioGroup>
@@ -716,8 +721,8 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                     onCheckedChange={(checked) => handleChange("japaneseEducation", !!checked)}
                   />
                   <Label htmlFor="japanese-education" className="flex justify-between w-full">
-                    <span>일본의 고등교육기관(4년제 대학 이상)에서 학위를 취득</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">10점</Badge>
+                    <span>{t('special.japaneseEducation')}</span>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(10)}</Badge>
                   </Label>
                 </div>
               </div>
@@ -741,7 +746,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
           <div className="flex flex-col leading-tight">
             <span className="text-[11px] text-muted-foreground">{t('total.score')}</span>
             <span className="text-base font-semibold">
-              {totalPoints}점 {qualified ? <span className="text-primary">{t('mobile.summary.qualified')}</span> : <span className="text-muted-foreground">{t('mobile.summary.insufficient', { gap })}</span>}
+              {fmtPoints(totalPoints)} {qualified ? <span className="text-primary">{t('mobile.summary.qualified')}</span> : <span className="text-muted-foreground">{t('mobile.summary.insufficient', { gap })}</span>}
             </span>
           </div>
           <div className="flex items-center gap-2">

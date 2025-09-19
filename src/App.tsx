@@ -8,9 +8,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { I18nProvider } from '@/i18n';
+import { useI18n } from '@/i18n';
 
 function App() {
+  const { t } = useI18n();
 
   const [pointsData, setPointsData] = useState<PointsData>({
     visaType: 'technical',
@@ -52,39 +53,28 @@ function App() {
     // Only technical type is available now
   };
 
-  const getVisaTypeLabel = (): string => {
-    return '고도 전문 기술 활동';
-  };
-
-  const getVisaTypeEnglishName = (): string => {
-    return 'Advanced Specialized/Technical Activities';
-  };
-  
-  const getVisaTypeJapaneseName = (): string => {
-    return '高度専門職 1号 イ';
-  };
+  // Labels are localized via i18n keys
 
   return (
-    <I18nProvider>
-      <div className="min-h-screen bg-background font-sans">
+    <div className="min-h-screen bg-background font-sans">
       <div className="container mx-auto px-4 py-8 max-w-5xl">
         <Header />
         
         <Tabs defaultValue="calculator" className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-6">
-            <TabsTrigger value="calculator">포인트 계산기</TabsTrigger>
-            <TabsTrigger value="info">제도 안내</TabsTrigger>
+            <TabsTrigger value="calculator">{t('tabs.calculator')}</TabsTrigger>
+            <TabsTrigger value="info">{t('tabs.info')}</TabsTrigger>
           </TabsList>
           
           <TabsContent value="calculator" className="space-y-6">
             <Card>
               <CardContent className="pt-6">
                 <div className="mb-4">
-                  <h3 className="font-medium mb-3">비자 유형</h3>
+                  <h3 className="font-medium mb-3">{t('result.visaType')}</h3>
                   <div className="flex items-center space-x-2">
                     <Label className="flex flex-col">
-                      <span>고도 전문 기술 활동</span>
-                      <span className="text-xs text-muted-foreground">高度専門職 1号 イ</span>
+                      <span>{t('visa.type')}</span>
+                      <span className="text-xs text-muted-foreground">{t('visa.jpName')}</span>
                     </Label>
                   </div>
                 </div>
@@ -109,17 +99,16 @@ function App() {
         <Separator className="my-8" />
         
         <footer className="text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} 일본 고도인재 비자 포인트 계산기 ({getVisaTypeLabel()})</p>
+          <p>© {new Date().getFullYear()} {t('app.title')} ({t('visa.type')})</p>
           <p className="mt-1">
             高度人材ポイント制度 / Points-based Preferential Immigration Treatment for Highly Skilled Foreign Professionals
           </p>
           <p className="mt-1 text-xs">
-            {getVisaTypeJapaneseName()} / {getVisaTypeEnglishName()}
+            {t('visa.jpName')} / {t('visa.enName')}
           </p>
         </footer>
       </div>
     </div>
-    </I18nProvider>
   );
 }
 

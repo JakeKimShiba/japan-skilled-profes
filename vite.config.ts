@@ -2,14 +2,12 @@ import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react-swc";
 import { defineConfig, PluginOption, loadEnv } from "vite";
 
-import { resolve } from 'path'
-
-const projectRoot = process.env.PROJECT_ROOT || import.meta.dirname
-
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
+  // Determine env directory relative to this config file without Node types
+  const envDir = new URL('.', import.meta.url).pathname;
   // Load env file based on `mode`
-  const env = loadEnv(mode, process.cwd());
+  const env = loadEnv(mode, envDir);
   
   // Set base URL: use root '/' for development, repository subpath only for production
   const base = mode === 'development' ? '/' : (env.VITE_BASE_URL || '/japan-skilled-profes/');
@@ -22,7 +20,7 @@ export default defineConfig(({ mode }) => {
     ],
     resolve: {
       alias: {
-        '@': resolve(projectRoot, 'src')
+        '@': new URL('./src/', import.meta.url).pathname
       }
     },
     build: {

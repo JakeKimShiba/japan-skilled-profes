@@ -34,6 +34,16 @@ export function I18nProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     try { localStorage.setItem('locale', locale); } catch (e) {}
+    // Update document language for accessibility and SEO
+    try {
+      if (typeof document !== 'undefined') {
+        document.documentElement.lang = locale;
+        const meta = document.querySelector('meta[http-equiv="content-language"]');
+        if (meta) {
+          meta.setAttribute('content', locale);
+        }
+      }
+    } catch (e) {}
   }, [locale]);
 
   const setLocale = (l: Locale) => setLocaleState(l);
