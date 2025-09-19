@@ -519,19 +519,21 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 </TooltipProvider>
               </div>
               <div className="space-y-3">
-                <h4 className="text-sm font-medium text-muted-foreground">{t('research.title')}</h4>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <button type="button" aria-label={t('tooltip.moreInfo')} className="inline-flex items-center ml-2">
-                        <Info className="text-muted-foreground text-xs" size={14} />
-                      </button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{t('research.onlyOne')}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+                <div className="flex items-center gap-2">
+                  <h4 className="text-sm font-medium text-muted-foreground">{t('research.title')}</h4>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button type="button" aria-label={t('tooltip.moreInfo')} className="inline-flex items-center">
+                          <Info className="text-muted-foreground text-xs" size={14} />
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>{t('research.onlyOne')}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
                 <RadioGroup
                   value={data.researchAchievements.length > 0 ? data.researchAchievements[0] : "none"}
                   onValueChange={(value) => handleChange("researchAchievements", value === "none" ? [] : [value])}
