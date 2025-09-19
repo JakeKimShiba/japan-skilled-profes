@@ -32,6 +32,7 @@
   "university.selectAria": "选择 {name}",
   "header.languageLabel": "语言",
   "result.title": "结果",
+  "result.pdfTitle": "日本_高端人才_签证_积分表",
   "result.downloadPDF": "下载结果 PDF",
   "result.downloading": "正在准备 PDF...",
   "result.visaType": "签证类型",

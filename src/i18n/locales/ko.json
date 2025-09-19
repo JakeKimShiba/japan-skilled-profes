@@ -32,6 +32,7 @@
   "university.selectAria": "선택 {name}",
   "header.languageLabel": "언어",
   "result.title": "결과",
+  "result.pdfTitle": "일본_고도인재_비자_점수표",
   "result.downloadPDF": "결과 PDF 다운로드",
   "result.downloading": "PDF 준비 중...",
   "result.visaType": "비자 유형",

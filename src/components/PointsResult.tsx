@@ -18,6 +18,7 @@ interface PointsResultProps {
 export function PointsResult({ data }: PointsResultProps) {
   const { t } = useI18n();
   const [totalPoints, setTotalPoints] = useState(0);
+  const fmtPoints = (n: number) => t('points.value', { value: n });
   const [categoryPoints, setCategoryPoints] = useState<Record<string, number>>({});
   const [status, setStatus] = useState<{ qualified: boolean; expeditedPR: boolean; benefits: string[] }>({
     qualified: false,
@@ -29,7 +30,7 @@ export function PointsResult({ data }: PointsResultProps) {
 
   const handlePrint = useReactToPrint({
     contentRef: resultRef,
-    documentTitle: `일본_고도인재_비자_점수표_${new Date().toISOString().split('T')[0]}`,
+  documentTitle: `${t('result.pdfTitle') || 'HSP_points'}_${new Date().toISOString().split('T')[0]}`,
     // Important for mobile (iOS Safari/Android): don't update state before invoking print
     onBeforePrint: async () => {
       setIsGeneratingPDF(true);
@@ -267,7 +268,7 @@ export function PointsResult({ data }: PointsResultProps) {
         <div>
           <div className="flex items-center justify-between mb-2">
             <h3 className="font-medium">{t('result.totalPoints')}</h3>
-            <span className="text-2xl font-bold">{totalPoints}점</span>
+            <span className="text-2xl font-bold">{fmtPoints(totalPoints)}</span>
           </div>
           <Progress value={(totalPoints / 100) * 100} className="h-3" />
           <div className="flex justify-between text-xs mt-1">
@@ -310,7 +311,7 @@ export function PointsResult({ data }: PointsResultProps) {
               {suggestions.map((s) => (
                 <div key={s.key} className="flex items-center justify-between rounded border p-2">
                   <span className="text-sm">{t(`suggestion.${s.key}`, { delta: s.delta })}</span>
-                  <Badge variant="outline" className="bg-primary/10">+{s.delta}점</Badge>
+                  <Badge variant="outline" className="bg-primary/10">+{fmtPoints(s.delta)}</Badge>
                 </div>
               ))}
             </div>
@@ -327,7 +328,7 @@ export function PointsResult({ data }: PointsResultProps) {
               <div key={category}>
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-sm">{getCategoryLabel(category)}</span>
-                  <span className="font-medium">{points}점</span>
+                  <span className="font-medium">{fmtPoints(points)}</span>
                 </div>
                 <Progress value={points > 0 ? 100 : 0} className="h-1.5" />
               </div>

@@ -32,6 +32,7 @@
   "university.selectAria": "Select {name}",
   "header.languageLabel": "Language",
   "result.title": "Result",
+  "result.pdfTitle": "Japan_HSP_Visa_Scorecard",
   "result.downloadPDF": "Download result PDF",
   "result.downloading": "Preparing PDF...",
   "result.visaType": "Visa type",

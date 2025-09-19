@@ -32,6 +32,7 @@
   "university.selectAria": "選擇 {name}",
   "header.languageLabel": "語言",
   "result.title": "結果",
+  "result.pdfTitle": "日本_高端人才_簽證_積分表",
   "result.downloadPDF": "下載結果 PDF",
   "result.downloading": "正在準備 PDF...",
   "result.visaType": "簽證類型",
