@@ -100,37 +100,47 @@ export default function UniversitySelector({ onSelect, selectedName }: { onSelec
   const [filtered, setFiltered] = useState<Option[]>([]);
 
   useEffect(() => {
-    const paths = ['/resources/universities_english.csv', '/public/resources/universities_english.csv', '/universities_english.csv'];
-    let fetched = false;
+    // Build a path that respects Vite's base URL (works for GitHub Pages and dev)
+    const csvPath = `${import.meta.env.BASE_URL}resources/universities_english.csv`;
 
-    const tryFetch = async () => {
-      for (const p of paths) {
+    const load = async () => {
+      try {
+        const r = await fetch(csvPath);
+        if (!r.ok) throw new Error(`Failed to load ${csvPath}`);
+        const text = await r.text();
+        const rows = text.split(/\r?\n/).map(r => r.trim()).filter(r => r && !r.startsWith('#'));
+        const opts = rows.map(r => {
+          const parts = r.split(',');
+          const name = (parts[0] || '').trim();
+          const country = (parts[1] || '').trim();
+          const eligible = true; // All entries treated as eligible
+          return { name, country, eligible } as Option;
+        }).filter(o => o.name);
+        setOptions(opts);
+        setFiltered(opts);
+      } catch (e) {
+        // Fallback to a relative path (in case BASE_URL handling differs)
         try {
-          const r = await fetch(p);
-          if (!r.ok) continue;
-          const text = await r.text();
-          const rows = text.split(/\r?\n/).map(r => r.trim()).filter(r => r && !r.startsWith('#'));
-          const opts = rows.map(r => {
+          const r2 = await fetch('resources/universities_english.csv');
+          if (!r2.ok) throw new Error('fallback fetch failed');
+          const text2 = await r2.text();
+          const rows2 = text2.split(/\r?\n/).map(r => r.trim()).filter(r => r && !r.startsWith('#'));
+          const opts2 = rows2.map(r => {
             const parts = r.split(',');
             const name = (parts[0] || '').trim();
             const country = (parts[1] || '').trim();
-            // All universities in the provided CSV should be treated as eligible
-            const eligible = true;
-            return { name, country, eligible } as Option;
+            return { name, country, eligible: true } as Option;
           }).filter(o => o.name);
-          setOptions(opts);
-          setFiltered(opts);
-          fetched = true;
-          break;
-        } catch (e) {
-          // try next
+          setOptions(opts2);
+          setFiltered(opts2);
+        } catch {
+          setOptions([]);
+          setFiltered([]);
         }
       }
-
-      if (!fetched) setOptions([]);
     };
 
-    tryFetch();
+    load();
   }, []);
 
   useEffect(() => {
