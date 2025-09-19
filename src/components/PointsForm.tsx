@@ -24,6 +24,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useI18n } from "@/i18n";
+import { formatJPY } from "@/lib/utils";
 import UniversitySelector from "@/components/UniversitySelector";
 
 interface PointsFormProps {
@@ -38,7 +39,7 @@ interface UniversityOption {
 }
 
 export function PointsForm({ data, setData }: PointsFormProps) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const handleChange = (field: keyof PointsData, value: string | boolean | string[] | number) => {
     setData({
       ...data,
@@ -117,19 +118,26 @@ export function PointsForm({ data, setData }: PointsFormProps) {
       <CardHeader>
         <div className="flex items-center justify-between mb-2 min-w-0">
           <CardTitle className="text-xl text-primary max-w-[60%]">{t('form.title')}</CardTitle>
-          <div className="hidden md:flex gap-2 overflow-x-auto">
+          <nav className="hidden md:flex gap-2 overflow-x-auto" aria-label={t('form.steps')}>
             {steps.map((step, idx) => (
               <button
                 key={step.id}
                 type="button"
                 onClick={() => goTo(idx)}
-                className={`text-xs px-2 py-1 rounded border transition whitespace-nowrap overflow-hidden max-w-[10rem] ${idx === currentStep ? 'bg-primary text-primary-foreground' : 'hover:bg-muted'}`}
+                aria-current={idx === currentStep ? 'step' : undefined}
+                aria-label={`${idx + 1}. ${t(step.key)}`}
+                className={`text-xs px-2 py-1 rounded border transition whitespace-nowrap overflow-hidden max-w-[12rem] ${idx === currentStep ? 'bg-primary text-primary-foreground font-semibold underline' : 'hover:bg-muted'}`}
               >
                 {idx + 1}. {t(step.key)}
               </button>
             ))}
-          </div>
+          </nav>
         </div>
+        {/* Keyboard navigation for steps */}
+        <div className="sr-only" onKeyDown={(e) => {
+          if (e.key === 'ArrowRight') { e.preventDefault(); goNext(); }
+          if (e.key === 'ArrowLeft') { e.preventDefault(); goPrev(); }
+        }} aria-hidden="true" />
         <Progress value={progressValue} className="h-2" />
         <div className="mt-2 flex md:hidden justify-between text-xs text-muted-foreground">
           <span>{t(steps[currentStep].key)}</span>
@@ -340,11 +348,13 @@ export function PointsForm({ data, setData }: PointsFormProps) {
             {/* Annual Income */}
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <h3 className="font-medium">{t('form.income')}</h3>
+                <h3 className="font-medium">{t('form.annualIncome')}</h3>
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <Info className="text-muted-foreground" size={16} />
+                      <button type="button" aria-label={t('tooltip.income')} className="inline-flex items-center">
+                        <Info className="text-muted-foreground" size={16} />
+                      </button>
                     </TooltipTrigger>
                     <TooltipContent>
                       <p>{t('tooltip.income')}</p>
@@ -363,8 +373,8 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="under3m" id="income-under3m" />
                   <Label htmlFor="income-under3m" className="flex justify-between w-full">
-                    <span>3백만 엔 미만</span>
-                    <Badge variant="outline" className="bg-destructive/10 text-destructive ml-2">비자 신청 불가</Badge>
+                    <span>{t('income.under', { amount: formatJPY(3000000, locale) })}</span>
+                    <Badge variant="outline" className="bg-destructive/10 text-destructive ml-2">{t('income.notEligible')}</Badge>
                   </Label>
                 </div>
 
@@ -373,7 +383,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="3to5m" id="income-3to5m" />
                     <Label htmlFor="income-3to5m" className="flex justify-between w-full">
-                      <span>3백만 엔 ~ 5백만 엔 미만</span>
+                      <span>{t('income.range', { min: formatJPY(3000000, locale), max: formatJPY(5000000, locale) })}</span>
                       <Badge variant="outline" className="bg-muted/30 ml-2">0점</Badge>
                     </Label>
                   </div>
@@ -382,7 +392,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="3to6m" id="income-3to6m" />
                     <Label htmlFor="income-3to6m" className="flex justify-between w-full">
-                      <span>3백만 엔 ~ 6백만 엔 미만</span>
+                      <span>{t('income.range', { min: formatJPY(3000000, locale), max: formatJPY(6000000, locale) })}</span>
                       <Badge variant="outline" className="bg-muted/30 ml-2">0점</Badge>
                     </Label>
                   </div>
@@ -391,7 +401,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="3to8m" id="income-3to8m" />
                     <Label htmlFor="income-3to8m" className="flex justify-between w-full">
-                      <span>3백만 엔 ~ 8백만 엔 미만</span>
+                      <span>{t('income.range', { min: formatJPY(3000000, locale), max: formatJPY(8000000, locale) })}</span>
                       <Badge variant="outline" className="bg-muted/30 ml-2">0점</Badge>
                     </Label>
                   </div>
@@ -402,7 +412,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="4m" id="income-4m" />
                     <Label htmlFor="income-4m" className="flex justify-between w-full">
-                      <span>4백만 엔 이상</span>
+                      <span>{t('income.atLeast', { amount: formatJPY(4000000, locale) })}</span>
                       <Badge variant="outline" className="bg-primary/10 ml-2">10점</Badge>
                     </Label>
                   </div>
@@ -413,7 +423,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="5m" id="income-5m" />
                     <Label htmlFor="income-5m" className="flex justify-between w-full">
-                      <span>5백만 엔 이상</span>
+                      <span>{t('income.atLeast', { amount: formatJPY(5000000, locale) })}</span>
                       <Badge variant="outline" className="bg-primary/10 ml-2">15점</Badge>
                     </Label>
                   </div>
@@ -424,7 +434,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="6m" id="income-6m" />
                     <Label htmlFor="income-6m" className="flex justify-between w-full">
-                      <span>6백만 엔 이상</span>
+                      <span>{t('income.atLeast', { amount: formatJPY(6000000, locale) })}</span>
                       <Badge variant="outline" className="bg-primary/10 ml-2">20점</Badge>
                     </Label>
                   </div>
@@ -435,7 +445,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="7m" id="income-7m" />
                     <Label htmlFor="income-7m" className="flex justify-between w-full">
-                      <span>7백만 엔 이상</span>
+                      <span>{t('income.atLeast', { amount: formatJPY(7000000, locale) })}</span>
                       <Badge variant="outline" className="bg-primary/10 ml-2">25점</Badge>
                     </Label>
                   </div>
@@ -445,7 +455,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="8m" id="income-8m" />
                   <Label htmlFor="income-8m" className="flex justify-between w-full">
-                    <span>8백만 엔 이상</span>
+                    <span>{t('income.atLeast', { amount: formatJPY(8000000, locale) })}</span>
                     <Badge variant="outline" className="bg-primary/10 ml-2">30점</Badge>
                   </Label>
                 </div>
@@ -454,7 +464,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="9m" id="income-9m" />
                   <Label htmlFor="income-9m" className="flex justify-between w-full">
-                    <span>9백만 엔 이상</span>
+                    <span>{t('income.atLeast', { amount: formatJPY(9000000, locale) })}</span>
                     <Badge variant="outline" className="bg-primary/10 ml-2">35점</Badge>
                   </Label>
                 </div>
@@ -463,7 +473,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="10m" id="income-10m" />
                   <Label htmlFor="income-10m" className="flex justify-between w-full">
-                    <span>1천만 엔 이상</span>
+                    <span>{t('income.atLeast', { amount: formatJPY(10000000, locale) })}</span>
                     <Badge variant="outline" className="bg-primary/10 ml-2">40점</Badge>
                   </Label>
                 </div>
