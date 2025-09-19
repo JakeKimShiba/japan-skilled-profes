@@ -305,7 +305,7 @@ export function PointsResult({ data }: PointsResultProps) {
             <div className="flex items-center gap-2 mb-2">
               <Trophy size={16} className="text-primary" />
               <h3 className="font-medium">{t('suggestions.title')}</h3>
-              <span className="text-xs text-muted-foreground">{t('suggestions.congrats')}</span>
+              <span className="ml-auto text-xs text-muted-foreground whitespace-nowrap">{t('suggestions.congrats')}</span>
             </div>
           </div>
         ) : suggestions.length > 0 && (
@@ -313,7 +313,7 @@ export function PointsResult({ data }: PointsResultProps) {
             <div className="flex items-center gap-2 mb-2">
               <Lightbulb size={16} className="text-primary" />
               <h3 className="font-medium">{t('suggestions.title')}</h3>
-              <span className="text-xs text-muted-foreground">{t('suggestions.goal', { target })}</span>
+              <span className="ml-auto text-xs text-muted-foreground whitespace-nowrap">{t('suggestions.goal', { target, gap })}</span>
             </div>
             <div className="grid grid-cols-1 gap-2">
               {suggestions.map((s) => (
