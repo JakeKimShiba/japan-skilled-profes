@@ -1,6 +1,7 @@
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { useI18n } from "@/i18n";
+import { GlobeSimple } from "@phosphor-icons/react";
 
 export function Header() {
   const { locale, setLocale, t } = useI18n();
@@ -12,10 +13,10 @@ export function Header() {
           <CardTitle className="text-2xl md:text-3xl font-bold flex-1 min-w-0">
             <span className="text-primary">{t('app.title')}</span>
           </CardTitle>
-          <div className="ml-4 w-36">
-            <label className="text-xs text-muted-foreground">{t('header.languageLabel')}</label>
+          <div className="ml-4 w-36 flex items-center gap-2 justify-end">
+            <GlobeSimple size={16} className="text-muted-foreground flex-shrink-0" aria-hidden="true" />
             <Select value={locale} onValueChange={(v) => setLocale(v as any)}>
-              <SelectTrigger>
+              <SelectTrigger aria-label={t('header.languageLabel')}>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
