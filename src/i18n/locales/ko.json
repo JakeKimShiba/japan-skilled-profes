@@ -50,6 +50,7 @@
   "result.notQualified.description": "고도인재 비자 자격 요건(70점)을 충족하지 못합니다. 추가 점수를 획득할 수 있는 방법을 검토해보세요.",
   "suggestions.title": "점수 향상 제안",
   "suggestions.goal": "목표 {target}점까지 {gap}점 부족",
+  "suggestions.congrats": "80점 이상으로 우대 혜택 요건을 충족했습니다.",
   "suggestion.jlpt-n2": "JLPT N2 취득",
   "suggestion.jlpt-n1": "JLPT N1 취득",
   "suggestion.license-other": "외국 자격증 취득",

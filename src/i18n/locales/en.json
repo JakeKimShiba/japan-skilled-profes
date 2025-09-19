@@ -47,6 +47,7 @@
   "result.scale.max": "100 pts",
   "suggestions.title": "Improvement suggestions",
   "suggestions.goal": "Target {target} pts — {gap} more needed",
+  "suggestions.congrats": "You already qualify for 80+ benefits.",
   "suggestion.jlpt-n2": "Obtain JLPT N2",
   "suggestion.jlpt-n1": "Obtain JLPT N1",
   "suggestion.license-other": "Obtain foreign certification",

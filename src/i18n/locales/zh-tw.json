@@ -47,6 +47,7 @@
   "result.scale.max": "100 分",
   "suggestions.title": "提升建議",
   "suggestions.goal": "目標 {target} 分 — 尚差 {gap} 分",
+  "suggestions.congrats": "您已達 80 分以上，可享有優待措施。",
   "suggestion.jlpt-n2": "取得 JLPT N2",
   "suggestion.jlpt-n1": "取得 JLPT N1",
   "suggestion.license-other": "取得外國資格證書",

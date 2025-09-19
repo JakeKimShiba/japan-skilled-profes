@@ -299,8 +299,16 @@ export function PointsResult({ data }: PointsResultProps) {
           )}
         </Alert>
 
-        {/* Suggestions */}
-        {suggestions.length > 0 && (
+        {/* Suggestions: hide when expeditedPR (80+) */}
+        {status.expeditedPR ? (
+          <div className="mt-2">
+            <div className="flex items-center gap-2 mb-2">
+              <Trophy size={16} className="text-primary" />
+              <h3 className="font-medium">{t('suggestions.title')}</h3>
+              <span className="text-xs text-muted-foreground">{t('suggestions.congrats')}</span>
+            </div>
+          </div>
+        ) : suggestions.length > 0 && (
           <div className="mt-2">
             <div className="flex items-center gap-2 mb-2">
               <Lightbulb size={16} className="text-primary" />
@@ -317,7 +325,7 @@ export function PointsResult({ data }: PointsResultProps) {
             </div>
             <p className="text-xs text-muted-foreground mt-2">{t('suggestions.note')}</p>
           </div>
-        )}
+  )}
 
         <Separator className="my-4" />
 

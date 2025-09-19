@@ -47,3 +47,13 @@ export function formatManEn(amount: number, locale?: string) {
   })();
   return `${n} ${unitLabel}`;
 }
+
+// English-compact formatter: format amounts as millions of JPY, e.g., 8,000,000 -> "¥8M"
+export function formatEnMillionsJPY(amount: number) {
+  const millions = amount / 1_000_000;
+  // We expect our thresholds to be exact million increments, but format defensively
+  const hasFraction = Math.abs(millions - Math.round(millions)) > 1e-6;
+  const digits = hasFraction ? 1 : 0;
+  const n = new Intl.NumberFormat('en-US', { maximumFractionDigits: digits, minimumFractionDigits: digits }).format(millions);
+  return `¥${n}M`;
+}
