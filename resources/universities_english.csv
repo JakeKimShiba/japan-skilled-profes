@@ -1,0 +1,388 @@
+Aalto University,FI
+Aarhus University,DK
+Aichi Medical University,JP
+Akita University,JP
+Aoyama Gakuin University,JP
+Arizona State University,US
+Autonomous University of Barcelona,ES
+Beihang University,CN
+Beijing Institute of Technology,CN
+Beijing Normal University,CN
+Boston University,US
+Brown University,US
+California Institute of Technology,US
+Cardiff University,GB
+Carnegie Mellon University,US
+Case Western Reserve University,US
+Catholic University of Louvain,BE
+Chalmers University of Technology,SE
+Chiba Institute of Technology,JP
+Chiba University,JP
+Chubu University,JP
+Chuo University,JP
+City University of Hong Kong,HK
+Columbia University,US
+Cornell University,US
+Curtin University,AU
+Dartmouth College,US
+Deakin University,AU
+Delft University of Technology,NL
+Dokkyo Medical University,JP
+Doshisha University,JP
+Duke University,US
+Durham University,GB
+East China Normal University,CN
+Ehime University,JP
+Eindhoven University of Technology,NL
+Emory University,US
+Erasmus University Rotterdam,NL
+Free University of Berlin,DE
+Fudan University,CN
+Fujita Health University,JP
+Georgia Institute of Technology,US
+Ghent University,BE
+Gifu University,JP
+Goethe University Frankfurt,DE
+Griffith University,AU
+Gunma University,JP
+Hamamatsu University School of Medicine,JP
+Hanyang University,KR
+Harbin Institute of Technology,CN
+Harvard University,US
+Heidelberg University,DE
+Heinrich Heine Universität Düsseldorf,DE
+Hiroshima University,JP
+Hitotsubashi University,JP
+Hokkaido University,JP
+Hong Kong Baptist University,HK
+Hosei University,JP
+Huazhong University of Science and Technology,CN
+Humboldt University of Berlin,DE
+Hyogo Medical University,JP
+Ibaraki University,JP
+Imperial College London,GB
+Indian Institute of Science,IN
+Indiana University Bloomington,US
+Institut Polytechnique de Paris,France
+International Christian University,JP
+Iwate University,JP
+Jikei University School of Medicine,JP
+Johannes Gutenberg University of Mainz,DE
+Johns Hopkins University,US
+Juntendo University,JP
+Kagawa University,JP
+Kagoshima University,JP
+Kanagawa University,JP
+Kanazawa Medical University,JP
+Kanazawa University,JP
+Kansai Medical University,JP
+Kansai University,JP
+Karlsruhe Institute of Technology,DE
+Karolinska Institute,SE
+Keio University,JP
+Khalifa University,AE
+King Abdulaziz University,SA
+King Fahd University of Petroleum & Minerals,SA
+King Saud University,SA
+King's College London,GB
+Kinki University (Kindai University),JP
+Kitasato University,JP
+Kobe University,JP
+Kochi University,JP
+Kochi University of Technology,JP
+Kogakuin University,JP
+Korea Advanced Institute of Science and Technology (KAIST),KR
+Korea University,KR
+KTH Royal Institute of Technology,SE
+KU Leuven,BE
+Kumamoto University,JP
+Kurume University,JP
+Kwansei Gakuin University,JP
+Kyoto Institute of Technology,JP
+Kyoto Prefectural University of Medicine,JP
+Kyoto University,JP
+Kyushu Institute of Technology,JP
+Kyushu University,JP
+La Trobe University,AU
+Lancaster University,GB
+Leiden University,NL
+LMU München (Ludwig-Maximilians-Universität München),DE
+Lomonosov Moscow State University,RU
+London School of Economics and Political Science,GB
+Lund University,SE
+Maastricht University,NL
+Macquarie University,AU
+Massachusetts Institute of Technology (MIT),US
+McGill University,CA
+McMaster University,CA
+Medical University of Vienna,AT
+Meiji University,JP
+Meijo University,JP
+Michigan State University,US
+Mie University,JP
+Monash University,AU
+Muroran Institute of Technology,JP
+Nagaoka University of Technology,JP
+Nagasaki University,JP
+Nagoya City University,JP
+Nagoya Institute of Technology (NIT),JP
+Nagoya University,JP
+Nanjing University,CN
+Nankai University,CN
+Nanyang Technological University,SG
+Nara Women's University,JP
+National Autonomous University of Mexico,MX
+National Taiwan University,TW
+National University of Singapore,SG
+New York University,US
+Newcastle University,GB
+Niigata University,JP
+Nippon Medical School,JP
+Normal Superior School of Lyon,France
+North Carolina State University,US
+Northeastern University,US
+Northwestern Polytechnical University,CN
+Northwestern University,US
+Norwegian University of Science and Technology,NO
+Ochanomizu University,JP
+Oita University,JP
+Okayama University,JP
+Okayama University of Science,JP
+Okinawa Institute of Science and Technology Graduate University,JP
+Osaka Institute of Technology,JP
+Osaka Medical and Pharmaceutical University,JP
+Osaka Metropolitan University,JP
+Osaka University,JP
+Paris-Saclay University,France
+Peking University,CN
+Pennsylvania State University (Penn State),US
+Pohang University of Science and Technology,KR
+Polytechnic University of Milan,IT
+Pompeu Fabra University,ES
+Princeton University,US
+PSL Research University Paris,France
+Purdue University - West Lafayette,US
+Qatar University,QA
+Queen Mary University of London,GB
+Queen's University Belfast,GB
+Queen's University (at Kingston),CA
+Queensland University of Technology (QUT),AU
+Radboud University Nijmegen,NL
+Rice University,US
+Rikkyo University,JP
+Ritsumeikan Asia Pacific University,JP
+Ritsumeikan University,JP
+RMIT University,AU
+RWTH Aachen University,DE
+Ryukoku University,JP
+Saga University,JP
+Saitama Medical University,JP
+Saitama University,JP
+Sapienza University of Rome,IT
+Sapporo Medical University,JP
+Seoul National University,KR
+Shanghai Jiao Tong University,CN
+Shibaura Institute of Technology,JP
+Shiga University of Medical Science,JP
+Shimane University,JP
+Shinshu University,JP
+Shizuoka University,JP
+Showa University,JP
+Sichuan University,CN
+Sophia University,JP
+Sorbonne University,France
+South China University of Technology,CN
+Southern University of Science and Technology (SUSTech),CN
+Stanford University,US
+Stockholm University,SE
+Sun Yat-sen University,CN
+Sungkyunkwan University (SKKU),KR
+Swinburne University of Technology,AU
+Swiss Federal Institute of Technology Lausanne (EPFL),CH
+Swiss Federal Institute of Technology Zurich (ETH Zurich),CH
+Technical University of Berlin,DE
+Technical University of Darmstadt,DE
+Technical University of Denmark,DK
+Technical University of Munich,DE
+Technische Universität Dresden (TU Dresden),DE
+Teikyo University,JP
+Tel Aviv University,IL
+Texas A&M University,US
+The Australian National University,AU
+The Chinese University of Hong Kong,HK
+The Graduate University for Advanced Studies,JP
+The Hebrew University of Jerusalem,IL
+The Hong Kong Polytechnic University,HK
+The Hong Kong University of Science and Technology,HK
+The Ohio State University - Columbus,US
+The University of Adelaide,AU
+The University of Arizona,US
+The University of Auckland,New Zealand
+The University of Edinburgh,GB
+The University of Electro-Communications,JP
+The University of Glasgow,GB
+The University of Hong Kong,HK
+The University of Manchester,GB
+The University of Melbourne,AU
+The University of New South Wales (UNSW Sydney),AU
+"The University of Newcastle, Australia (UoN)",AU
+The University of Queensland,AU
+The University of Sheffield,GB
+The University of Sydney,AU
+The University of Texas at Austin,US
+The University of Tokyo,JP
+The University of Western Australia,AU
+Tianjin University,CN
+Toho University,JP
+Tohoku University,JP
+Tokai University,JP
+Tokushima University,JP
+Tokyo City University,JP
+Tokyo Denki University,JP
+Tokyo Institute of Technology,JP
+Tokyo Medical and Dental University (TMDU),JP
+Tokyo Medical University,JP
+Tokyo Metropolitan University,JP
+Tokyo University of Agriculture,JP
+Tokyo University of Agriculture and Technology,JP
+Tokyo University of Marine Science and Technology,JP
+Tokyo University of Science,JP
+Tokyo University of Technology,JP
+Tongji University,CN
+Tottori University,JP
+Toyama Prefectural University,JP
+Toyo University,JP
+Toyohashi University of Technology (TUT),JP
+Toyota Technological Institute,JP
+"Trinity College Dublin, The University of Dublin",Ireland
+Tsinghua University,CN
+Tufts University,US
+Ulsan National Institute of Science and Technology (UNIST),KR
+UMass Chan Medical School,US
+United Arab Emirates University,AE
+Université libre de Bruxelles (ULB),BE
+Universiti Teknologi PETRONAS (UTP),MY
+University College Dublin,Ireland
+University College London (UCL),GB
+University of Aberdeen,GB
+University of Aizu,JP
+University of Alberta,CA
+University of Amsterdam,NL
+University of Antwerp,BE
+University of Barcelona,ES
+University of Basel,CH
+University of Bath,GB
+University of Bergen,NO
+University of Bern,CH
+University of Birmingham,GB
+University of Bologna,IT
+University of Bonn,DE
+University of Bristol,GB
+University of British Columbia,CA
+University of Buenos Aires,AR
+University of Calgary,CA
+University of California(Berkeley),US
+University of California(Davis),US
+University of California(Irvine),US
+University of California(Los Angeles),US
+University of California(Riverside),US
+University of California(San Diego),US
+University of California(Santa Barbara),US
+University of California(Santa Cruz),US
+University of Cambridge,GB
+University of Cape Town,ZA
+University of Chicago,US
+University of Cologne,DE
+University of Colorado at Boulder,US
+University of Copenhagen,DK
+University of East Anglia (UEA),GB
+University of Erlangen-Nuremberg (Friedrich-Alexander),DE
+University of Exeter,GB
+University of Florida,US
+University of Freiburg,DE
+University of Fukui,JP
+University of Geneva,CH
+University of Goettingen,DE
+University of Gothenburg,SE
+University of Groningen,NL
+University of Hamburg,DE
+University of Helsinki,FI
+University of Hyogo,JP
+University of Illinois at Urbana-Champaign,US
+University of Lausanne,CH
+University of Leeds,GB
+University of Leicester,GB
+University of Lisbon,PT
+University of Liverpool,GB
+University of Macau,MO
+University of Malaya,MY
+"University of Maryland, College Park",US
+University of Massachusetts Amherst,US
+University of Michigan-Ann Arbor,US
+University of Milan,IT
+"University of Minnesota, Twin Cities",US
+University of Miyazaki,JP
+University of Montreal,CA
+University of Münster,DE
+University of Navarra,ES
+University of North Carolina at Chapel Hill,US
+University of Nottingham,GB
+University of Occupational and Environmental Health,JP
+University of Oslo,NO
+University of Ottawa,CA
+University of Oxford,GB
+University of Padua (Università di Padova),IT
+University of Paris Cité,France
+University of Pennsylvania,US
+"University of Pittsburgh, Pittsburgh Campus",US
+University of Porto,PT
+University of Reading,GB
+University of Rochester,US
+University of Sao Paulo,BR
+University of Science and Technology of China,CN
+University of Shizuoka,JP
+University of Southampton,GB
+University of Southern California,US
+University of St. Andrews,GB
+University of Surrey,GB
+University of Sussex,GB
+University of Tasmania,AU
+University of Technology Sydney,AU
+University of the Ryukyus,JP
+University of Toronto,CA
+University of Toyama,JP
+University of Tsukuba,JP
+University of Tuebingen (Eberhard Karls Universität Tübingen),DE
+University of Twente,NL
+University of Utah,US
+University of Vienna,AT
+University of Virginia,US
+University of Warwick,GB
+University of Washington,US
+University of Waterloo,CA
+University of Wisconsin - Madison,US
+University of Wollongong,AU
+University of Wuerzburg,DE
+University of Yamanashi,JP
+University of York,GB
+University of Zurich,CH
+Uppsala University,SE
+Utrecht University,NL
+Utsunomiya University,JP
+Vanderbilt University,US
+Virginia Polytechnic Institute and State University,US
+Vrije Universiteit Amsterdam,NL
+Vrije Universiteit Brussel (VUB),BE
+Wageningen University & Research,NL
+Wakayama Medical University,JP
+Waseda University,JP
+Washington University in St. Louis,US
+Wuhan University,CN
+Xi'an Jiaotong University,CN
+Yale University,US
+Yamagata University,JP
+Yamaguchi University,JP
+Yokohama City University,JP
+Yokohama National University,JP
+Yonsei University (Seoul Campus),KR
+Zhejiang University,CN
