@@ -17,7 +17,7 @@ function App() {
     visaType: 'technical',
     educationLevel: 'bachelors',
     workExperience: 'less3',
-    age: '30to34',
+    age: '40plus',
     annualSalary: 'under3m',
     researchAchievements: [],
     licenses: [],
