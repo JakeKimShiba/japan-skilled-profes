@@ -30,7 +30,11 @@ export function PointsResult({ data }: PointsResultProps) {
   const handlePrint = useReactToPrint({
     contentRef: resultRef,
     documentTitle: `일본_고도인재_비자_점수표_${new Date().toISOString().split('T')[0]}`,
-    onAfterPrint: () => {
+    // Important for mobile (iOS Safari/Android): don't update state before invoking print
+    onBeforePrint: async () => {
+      setIsGeneratingPDF(true);
+    },
+    onAfterPrint: async () => {
       setIsGeneratingPDF(false);
     },
     pageStyle: `
@@ -105,10 +109,8 @@ export function PointsResult({ data }: PointsResultProps) {
   };
 
   const handleDownloadPDF = () => {
-    setIsGeneratingPDF(true);
+    // Call print synchronously within the click handler without any prior state updates
     handlePrint();
-    // Reset state after a short delay to allow print dialog to appear
-    setTimeout(() => setIsGeneratingPDF(false), 1000);
   };
 
   // Suggestion helpers
