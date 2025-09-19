@@ -21,6 +21,7 @@ import {
 } from "@/lib/models";
 import { Info } from "@phosphor-icons/react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useI18n } from "@/i18n";
@@ -521,18 +522,17 @@ export function PointsForm({ data, setData }: PointsFormProps) {
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <h4 className="text-sm font-medium text-muted-foreground">{t('research.title')}</h4>
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <button type="button" aria-label={t('tooltip.moreInfo')} className="inline-flex items-center">
-                          <Info className="text-muted-foreground text-xs" size={14} />
-                        </button>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>{t('research.onlyOne')}</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
+                  {/* Use Popover for mobile-friendly, tap-to-open behavior */}
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <button type="button" aria-label={t('tooltip.moreInfo')} className="inline-flex items-center">
+                        <Info className="text-muted-foreground text-xs" size={14} />
+                      </button>
+                    </PopoverTrigger>
+                    <PopoverContent align="start" className="max-w-[280px] text-sm">
+                      <p>{t('research.onlyOne')}</p>
+                    </PopoverContent>
+                  </Popover>
                 </div>
                 <RadioGroup
                   value={data.researchAchievements.length > 0 ? data.researchAchievements[0] : "none"}
