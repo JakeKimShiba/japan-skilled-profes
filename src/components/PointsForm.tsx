@@ -631,9 +631,9 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                       checked={data.licenses.includes('other')}
                       onCheckedChange={() => toggleArrayValue('licenses', 'other')}
                     />
-                    <Label htmlFor="license-other" className="flex justify-between w-full">
+                    <Label htmlFor="license-other" className="flex items-center gap-2">
                       <span>{t('licenses.otherForeign')}</span>
-                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(5)}</Badge>
+                      <Badge variant="outline" className="bg-primary/10">{fmtPoints(5)}</Badge>
                     </Label>
                   </div>
                 </div>
