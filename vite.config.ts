@@ -11,8 +11,8 @@ export default defineConfig(({ mode }) => {
   // Load env file based on `mode`
   const env = loadEnv(mode, process.cwd());
   
-  // Set base URL for GitHub Pages - always use the repository name in production
-  const base = env.VITE_BASE_URL || '/japan-skilled-profes/';
+  // Set base URL: use root '/' for development, repository subpath only for production
+  const base = mode === 'development' ? '/' : (env.VITE_BASE_URL || '/japan-skilled-profes/');
   
   return {
     base,

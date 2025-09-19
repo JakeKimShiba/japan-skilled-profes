@@ -32,6 +32,10 @@ export interface PointsData {
   
   // Graduated from Japanese institutions
   japaneseEducation: boolean;
+
+  // University bonus fields
+  university?: string;
+  universityEligible?: boolean;
 }
 
 export const educationPoints = {

@@ -9,12 +9,14 @@ import { CheckCircle, Warning, Trophy, Download, Lightbulb } from "@phosphor-ico
 import { calculateTotalPoints, getCategoryPoints, getQualificationStatus } from "@/lib/calculator";
 import { PointsData, VisaType } from "@/lib/models";
 import { useReactToPrint } from 'react-to-print';
+import { useI18n } from "@/i18n";
 
 interface PointsResultProps {
   data: PointsData;
 }
 
 export function PointsResult({ data }: PointsResultProps) {
+  const { t } = useI18n();
   const [totalPoints, setTotalPoints] = useState(0);
   const [categoryPoints, setCategoryPoints] = useState<Record<string, number>>({});
   const [status, setStatus] = useState<{ qualified: boolean; expeditedPR: boolean; benefits: string[] }>({
@@ -65,11 +67,11 @@ export function PointsResult({ data }: PointsResultProps) {
   const getBenefitLabel = (benefit: string) => {
     switch(benefit) {
       case 'spouse_work':
-        return '배우자 취업 허가';
+        return t('benefit.spouse_work');
       case 'housekeeping':
-        return '가사 도우미 초청 가능';
+        return t('benefit.housekeeping');
       case 'parent_visit':
-        return '부모 초청 가능';
+        return t('benefit.parent_visit');
       default:
         return benefit;
     }
@@ -78,28 +80,28 @@ export function PointsResult({ data }: PointsResultProps) {
   const getCategoryLabel = (category: string) => {
     switch(category) {
       case 'academic':
-        return '학력';
+        return t('category.academic');
       case 'career':
-        return '직무경력(실무경험)';
+        return t('category.career');
       case 'age':
-        return '나이';
+        return t('category.age');
       case 'salary':
-        return '연 수익';
+        return t('category.salary');
       case 'research':
-        return '연구 실적';
+        return t('category.research');
       case 'license':
-        return '자격증';
+        return t('category.license');
       case 'language':
-        return '언어 능력';
+        return t('category.language');
       case 'special':
-        return '특별 가산';
+        return t('category.special');
       default:
         return category;
     }
   };
 
   const getVisaTypeLabel = (type: VisaType): string => {
-    return '고도 전문 기술 활동';
+    return t('visa.type');
   };
 
   const handleDownloadPDF = () => {
@@ -239,7 +241,7 @@ export function PointsResult({ data }: PointsResultProps) {
     <Card ref={resultRef}>
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle className="text-xl text-primary">결과</CardTitle>
+          <CardTitle className="text-xl text-primary">{t('result.title')}</CardTitle>
           <Button
             onClick={handleDownloadPDF}
             disabled={isGeneratingPDF}
@@ -248,28 +250,28 @@ export function PointsResult({ data }: PointsResultProps) {
             className="gap-2 no-print"
           >
             <Download size={16} />
-            {isGeneratingPDF ? 'PDF 준비 중...' : '결과 PDF 다운로드'}
+            {isGeneratingPDF ? t('result.downloading') : t('result.downloadPDF')}
           </Button>
         </div>
       </CardHeader>
       <CardContent className="space-y-6">
         <div>
           <div className="flex items-center justify-between mb-1">
-            <h3 className="font-medium">비자 유형</h3>
+            <h3 className="font-medium">{t('result.visaType')}</h3>
             <span className="text-sm font-medium">{getVisaTypeLabel(data.visaType)}</span>
           </div>
         </div>
         
         <div>
           <div className="flex items-center justify-between mb-2">
-            <h3 className="font-medium">총 점수</h3>
+            <h3 className="font-medium">{t('result.totalPoints')}</h3>
             <span className="text-2xl font-bold">{totalPoints}점</span>
           </div>
           <Progress value={(totalPoints / 100) * 100} className="h-3" />
           <div className="flex justify-between text-xs mt-1">
-            <span>0점</span>
-            <span className="text-primary font-medium">자격 기준: 70점</span>
-            <span>100점</span>
+            <span>{t('result.scale.min')}</span>
+            <span className="text-primary font-medium">{t('result.scale.threshold')}</span>
+            <span>{t('result.scale.max')}</span>
           </div>
         </div>
 
@@ -277,18 +279,18 @@ export function PointsResult({ data }: PointsResultProps) {
           {status.qualified ? (
             <>
               <CheckCircle className="h-4 w-4" />
-              <AlertTitle>자격 요건 충족</AlertTitle>
+              <AlertTitle>{t('result.qualified.title')}</AlertTitle>
               <AlertDescription>
-                고도인재 비자 자격 요건을 충족합니다.
-                {status.expeditedPR && " 80점 이상으로 '고도인재 우대제도' 혜택을 받을 수 있습니다."}
+                {t('result.qualified.description')}
+                {status.expeditedPR && ` ${t('result.qualified.expedited')}`}
               </AlertDescription>
             </>
           ) : (
             <>
               <Warning className="h-4 w-4" />
-              <AlertTitle>자격 요건 미달</AlertTitle>
+              <AlertTitle>{t('result.notQualified.title')}</AlertTitle>
               <AlertDescription>
-                고도인재 비자 자격 요건(70점)을 충족하지 못합니다. 추가 점수를 획득할 수 있는 방법을 검토해보세요.
+                {t('result.notQualified.description')}
               </AlertDescription>
             </>
           )}
@@ -299,25 +301,25 @@ export function PointsResult({ data }: PointsResultProps) {
           <div className="mt-2">
             <div className="flex items-center gap-2 mb-2">
               <Lightbulb size={16} className="text-primary" />
-              <h3 className="font-medium">점수 향상 제안</h3>
-              <span className="text-xs text-muted-foreground">목표 {target}점까지 {gap}점 부족</span>
+              <h3 className="font-medium">{t('suggestions.title')}</h3>
+              <span className="text-xs text-muted-foreground">{t('suggestions.goal', { target })}</span>
             </div>
             <div className="grid grid-cols-1 gap-2">
               {suggestions.map((s) => (
                 <div key={s.key} className="flex items-center justify-between rounded border p-2">
-                  <span className="text-sm">{s.label}</span>
+                  <span className="text-sm">{t(`suggestion.${s.key}`, { delta: s.delta })}</span>
                   <Badge variant="outline" className="bg-primary/10">+{s.delta}점</Badge>
                 </div>
               ))}
             </div>
-            <p className="text-xs text-muted-foreground mt-2">참고: 일부 항목은 고용 형태/기관 요건 또는 장기 준비가 필요할 수 있습니다.</p>
+            <p className="text-xs text-muted-foreground mt-2">{t('suggestions.note')}</p>
           </div>
         )}
 
         <Separator className="my-4" />
 
         <div>
-          <h3 className="font-medium mb-3">카테고리별 점수</h3>
+          <h3 className="font-medium mb-3">{t('result.categoriesTitle')}</h3>
           <div className="space-y-3">
             {Object.entries(categoryPoints).map(([category, points]) => (
               <div key={category}>

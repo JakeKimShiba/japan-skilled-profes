@@ -45,7 +45,9 @@ export function calculateTotalPoints(data: PointsData): number {
   
   // Calculate special points
   const japaneseEducationPoints = data.japaneseEducation ? specialPoints.japanese_education : 0;
-  
+  // University bonus
+  const universityBonus = data.universityEligible ? 10 : 0;
+
   // Calculate bonus points
   const innovationBonusPoints = data.innovationBonus ? 10 : 0;
   const researchCostBonusPoints = data.researchCostBonus ? 5 : 0;
@@ -54,9 +56,10 @@ export function calculateTotalPoints(data: PointsData): number {
   const total = education + career + age + salary + research + license + 
                 japaneseLanguage + 
                 japaneseEducationPoints +
+                universityBonus +
                 innovationBonusPoints +
                 researchCostBonusPoints;
-  
+
   return total;
 }
 
@@ -96,7 +99,7 @@ export function getCategoryPoints(data: PointsData) {
   // Calculate bonus points
   const innovationBonusPoints = data.innovationBonus ? 10 : 0;
   const researchCostBonusPoints = data.researchCostBonus ? 5 : 0;
-  const bonusPoints = innovationBonusPoints + researchCostBonusPoints;
+  const bonusPoints = innovationBonusPoints + researchCostBonusPoints + (data.universityEligible ? 10 : 0);
   
   return {
     academic: educationPoints[data.educationLevel as keyof typeof educationPoints] || 0,

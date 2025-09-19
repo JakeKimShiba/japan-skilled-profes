@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import { I18nProvider } from '@/i18n';
 
 function App() {
 
@@ -23,7 +24,9 @@ function App() {
     innovationBonus: false,
     researchCostBonus: false,
     japaneseLanguage: 'none',
-    japaneseEducation: false
+    japaneseEducation: false,
+    university: '',
+    universityEligible: false
   });
 
   useEffect(() => {
@@ -62,7 +65,8 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-background font-sans">
+    <I18nProvider>
+      <div className="min-h-screen bg-background font-sans">
       <div className="container mx-auto px-4 py-8 max-w-5xl">
         <Header />
         
@@ -115,6 +119,7 @@ function App() {
         </footer>
       </div>
     </div>
+    </I18nProvider>
   );
 }
 
