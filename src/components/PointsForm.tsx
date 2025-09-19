@@ -116,9 +116,9 @@ export function PointsForm({ data, setData }: PointsFormProps) {
   return (
     <Card className="mb-6">
       <CardHeader>
-        <div className="flex items-center justify-between mb-2 min-w-0">
+        <div className="flex items-center mb-3 min-w-0">
           <CardTitle className="text-xl text-primary max-w-[60%]">{t('form.title')}</CardTitle>
-          <nav className="hidden md:flex gap-2 overflow-x-auto" aria-label={t('form.steps')} tabIndex={0}
+          <nav className="hidden md:flex gap-2 overflow-x-auto ml-3 md:ml-4" aria-label={t('form.steps')} tabIndex={0}
                onKeyDown={(e) => {
                  if (e.key === 'ArrowRight') { e.preventDefault(); goNext(); }
                  if (e.key === 'ArrowLeft') { e.preventDefault(); goPrev(); }
