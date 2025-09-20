@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://jakekimshiba.github.io/japan-skilled-profes/sitemap.xml
+Sitemap: https://kodocalc.com/sitemap.xml
 
-# Crawl-delay
+# Crawl-delay (optional, conservative)
 Crawl-delay: 1

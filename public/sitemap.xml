@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://jakekimshiba.github.io/japan-skilled-profes/</loc>
-    <lastmod>2025-07-02</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://kodocalc.com/</loc>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://jakekimshiba.github.io/japan-skilled-profes/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://jakekimshiba.github.io/japan-skilled-profes/" />
   </url>
+  <!-- Add additional localized or deep URLs here in the future if needed -->
 </urlset>
