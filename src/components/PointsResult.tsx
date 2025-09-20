@@ -316,18 +316,26 @@ export function PointsResult({ data }: PointsResultProps) {
         {/* Suggestions: hide when expeditedPR (80+) */}
         {status.expeditedPR ? (
           <div className="mt-2">
-            <div className="flex items-center gap-2 mb-2">
-              <Trophy size={16} className="text-primary" />
-              <h3 className="font-medium">{t('suggestions.title')}</h3>
-              <span className="ml-auto text-xs text-muted-foreground whitespace-nowrap">{t('suggestions.congrats')}</span>
+            <div className="mb-2">
+              <div className="flex items-center gap-2">
+                <Trophy size={16} className="text-primary" />
+                <h3 className="font-medium">{t('suggestions.title')}</h3>
+              </div>
+              <div className="mt-1">
+                <span className="text-xs text-muted-foreground">{t('suggestions.congrats')}</span>
+              </div>
             </div>
           </div>
         ) : suggestions.length > 0 && (
           <div className="mt-2">
-            <div className="flex items-center gap-2 mb-2">
-              <Lightbulb size={16} className="text-primary" />
-              <h3 className="font-medium">{t('suggestions.title')}</h3>
-              <span className="ml-auto text-xs text-muted-foreground whitespace-nowrap">{t('suggestions.goal', { target, gap })}</span>
+            <div className="mb-2">
+              <div className="flex items-center gap-2">
+                <Lightbulb size={16} className="text-primary" />
+                <h3 className="font-medium">{t('suggestions.title')}</h3>
+              </div>
+              <div className="mt-1">
+                <span className="text-xs text-muted-foreground">{t('suggestions.goal', { target, gap })}</span>
+              </div>
             </div>
             <div className="grid grid-cols-1 gap-2">
               {suggestions.map((s) => (
