@@ -9,6 +9,7 @@ import { CheckCircle, Warning, Trophy, Download, Lightbulb } from "@phosphor-ico
 import { calculateTotalPoints, getCategoryPoints, getQualificationStatus } from "@/lib/calculator";
 import { PointsData, VisaType } from "@/lib/models";
 import { useReactToPrint } from 'react-to-print';
+import { trackEvent } from '@/lib/analytics';
 import { useI18n } from "@/i18n";
 
 interface PointsResultProps {
@@ -25,6 +26,7 @@ export function PointsResult({ data }: PointsResultProps) {
     expeditedPR: false,
     benefits: [],
   });
+  const prevTotalRef = useRef<number>(0);
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
   const resultRef = useRef<HTMLDivElement>(null);
 
@@ -67,6 +69,14 @@ export function PointsResult({ data }: PointsResultProps) {
     
     const qualificationStatus = getQualificationStatus(total);
     setStatus(qualificationStatus);
+    // Track milestone thresholds once when crossing 70/80
+    const prev = prevTotalRef.current;
+    if (prev < 80 && total >= 80) {
+      trackEvent('milestone_80_points', { total });
+    } else if (prev < 70 && total >= 70) {
+      trackEvent('milestone_70_points', { total });
+    }
+    prevTotalRef.current = total;
   }, [data]);
 
   const getBenefitLabel = (benefit: string) => {
@@ -111,6 +121,10 @@ export function PointsResult({ data }: PointsResultProps) {
 
   const handleDownloadPDF = () => {
     // Call print synchronously within the click handler without any prior state updates
+    try {
+      const locale = (document.documentElement.getAttribute('lang') || 'ko').toLowerCase();
+      trackEvent('pdf_download_click', { locale, total_points: totalPoints });
+    } catch {}
     handlePrint();
   };
 
