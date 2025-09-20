@@ -9,6 +9,8 @@ import "./main.css"
 import "./styles/theme.css"
 import "./index.css"
 
+import { initAnalytics } from '@/lib/analytics'
+
 createRoot(document.getElementById('root')!).render(
   <ErrorBoundary FallbackComponent={ErrorFallback}>
     <I18nProvider>
@@ -16,3 +18,6 @@ createRoot(document.getElementById('root')!).render(
     </I18nProvider>
   </ErrorBoundary>
 )
+
+// Initialize analytics after the app mounts
+initAnalytics()
