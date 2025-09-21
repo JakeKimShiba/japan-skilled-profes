@@ -158,6 +158,7 @@
   "language.bjt480": "BJT 480점 이상",
   "language.jlptN2": "JLPT 2급",
   "special.japaneseEducation": "일본의 고등교육기관(4년제 이상)에서 학위 취득",
+  "special.japaneseEducation.n2Restriction": "JLPT N2 가산점과 중복 적용 불가",
   "tooltip.experience": "경력 구간을 선택하세요.",
   "tooltip.researchLicense": "연구 실적과 자격증 항목을 선택하세요."
   ,

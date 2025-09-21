@@ -158,6 +158,7 @@
   "language.bjt480": "BJT 480分以上",
   "language.jlptN2": "JLPT N2",
   "special.japaneseEducation": "在日本高等教育机构（四年制大学及以上）取得学位",
+  "special.japaneseEducation.n2Restriction": "不可与 JLPT N2 加分项重复计算",
   "tooltip.experience": "请选择您的工作经验区间。",
   "tooltip.researchLicense": "请选择研究成果与资格证项目。"
   ,

@@ -125,6 +125,7 @@
     "language.bjt480": "BJT 480+ points",
     "language.jlptN2": "JLPT N2",
     "special.japaneseEducation": "Hold a degree from a Japanese higher education institution (4-year university or above)",
+    "special.japaneseEducation.n2Restriction": "Cannot be combined with JLPT N2 bonus points",
     "tooltip.experience": "Select your work experience bracket.",
     "tooltip.researchLicense": "Choose research achievements and licenses.",
   

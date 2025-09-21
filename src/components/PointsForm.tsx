@@ -747,6 +747,11 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                     </Badge>
                   </Label>
                 </div>
+                {data.japaneseLanguage === 'n2' && (
+                  <div className="ml-6 text-xs text-muted-foreground">
+                    {t('special.japaneseEducation.n2Restriction')}
+                  </div>
+                )}
               </div>
             </div>
           </div>
