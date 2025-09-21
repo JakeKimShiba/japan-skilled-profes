@@ -153,15 +153,13 @@ export function PointsResult({ data }: PointsResultProps) {
     if (data.japaneseLanguage === 'none') {
       const n2 = simulate({ japaneseLanguage: 'n2' });
       suggestions.push({ key: 'jlpt-n2', label: 'JLPT N2 취득', delta: n2 - currentTotal });
+      // Combine N1 and BJT since they both give 15 points
       const n1 = simulate({ japaneseLanguage: 'n1' });
-      suggestions.push({ key: 'jlpt-n1', label: 'JLPT N1 취득', delta: n1 - currentTotal });
-      const bjt = simulate({ japaneseLanguage: 'bjt480' });
-      suggestions.push({ key: 'bjt-480', label: 'BJT 480점 이상 취득', delta: bjt - currentTotal });
+      suggestions.push({ key: 'jlpt-n1-or-bjt', label: 'JLPT N1 혹은 BJT 480점 취득', delta: n1 - currentTotal });
     } else if (data.japaneseLanguage === 'n2') {
+      // Combine N1 and BJT since they both give 15 points
       const n1 = simulate({ japaneseLanguage: 'n1' });
-      suggestions.push({ key: 'jlpt-n1', label: 'JLPT N1 취득', delta: n1 - currentTotal });
-      const bjt = simulate({ japaneseLanguage: 'bjt480' });
-      suggestions.push({ key: 'bjt-480', label: 'BJT 480점 이상 취득', delta: bjt - currentTotal });
+      suggestions.push({ key: 'jlpt-n1-or-bjt', label: 'JLPT N1 혹은 BJT 480점 취득', delta: n1 - currentTotal });
     }
 
     // Licenses
