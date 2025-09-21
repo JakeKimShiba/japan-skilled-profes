@@ -43,10 +43,17 @@ export function PointsForm({ data, setData }: PointsFormProps) {
   const { t, locale } = useI18n();
   const fmtPoints = (n: number) => t('points.value', { value: n });
   const handleChange = (field: keyof PointsData, value: string | boolean | string[] | number) => {
-    setData({
+    const newData = {
       ...data,
       [field]: value,
-    });
+    };
+    
+    // Reset Japanese education bonus if JLPT N2 is selected (not eligible)
+    if (field === 'japaneseLanguage' && value === 'n2') {
+      newData.japaneseEducation = false;
+    }
+    
+    setData(newData);
   };
 
   const toggleArrayValue = (field: keyof PointsData, value: string) => {
@@ -727,11 +734,17 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <Checkbox 
                     id="japanese-education" 
                     checked={data.japaneseEducation}
+                    disabled={data.japaneseLanguage === 'n2'}
                     onCheckedChange={(checked) => handleChange("japaneseEducation", !!checked)}
                   />
-                  <Label htmlFor="japanese-education" className="flex justify-between w-full">
+                  <Label 
+                    htmlFor="japanese-education" 
+                    className={`flex justify-between w-full ${data.japaneseLanguage === 'n2' ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  >
                     <span>{t('special.japaneseEducation')}</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(10)}</Badge>
+                    <Badge variant="outline" className={`ml-2 ${data.japaneseLanguage === 'n2' ? 'bg-muted/30' : 'bg-primary/10'}`}>
+                      {fmtPoints(10)}
+                    </Badge>
                   </Label>
                 </div>
               </div>
