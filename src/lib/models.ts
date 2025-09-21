@@ -99,6 +99,7 @@ export const licensePoints = {
 export const languagePoints = {
   // Common for all visa types
   'japanese_n1': 15,
+  'japanese_bjt480': 15,
   'japanese_n2': 10,
   'japanese_none': 0,
   'foreign_business': 10,

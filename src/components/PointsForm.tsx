@@ -692,6 +692,13 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="bjt480" id="japanese-bjt480" />
+                  <Label htmlFor="japanese-bjt480" className="flex justify-between w-full">
+                    <span>{t('language.bjt480')}</span>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(15)}</Badge>
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
                   <RadioGroupItem value="n2" id="japanese-n2" />
                   <Label htmlFor="japanese-n2" className="flex justify-between w-full">
                     <span>{t('language.jlptN2')}</span>
