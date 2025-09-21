@@ -14,6 +14,7 @@ export interface PointsData {
   
   // Age
   age: string;
+  birthDate?: string; // Optional birth date for automatic age calculation
   
   // Annual Salary
   annualSalary: string;

@@ -25,8 +25,9 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useI18n } from "@/i18n";
-import { formatJPY, formatManEn, formatEnMillionsJPY } from "@/lib/utils";
+import { formatJPY, formatManEn, formatEnMillionsJPY, calculateKoreanAge, getAgeCategoryFromAge } from "@/lib/utils";
 import UniversitySelector from "@/components/UniversitySelector";
+import { Input } from "@/components/ui/input";
 
 interface PointsFormProps {
   data: PointsData;
@@ -42,6 +43,24 @@ interface UniversityOption {
 export function PointsForm({ data, setData }: PointsFormProps) {
   const { t, locale } = useI18n();
   const fmtPoints = (n: number) => t('points.value', { value: n });
+  
+  // Parse birth date into year, month, day
+  const parseBirthDate = (birthDate?: string) => {
+    if (!birthDate) return { year: '', month: '', day: '' };
+    const parts = birthDate.split('-');
+    return {
+      year: parts[0] || '',
+      month: parts[1] || '',
+      day: parts[2] || ''
+    };
+  };
+  
+  // Separate state for date components to ensure UI updates properly
+  const [dateComponents, setDateComponents] = useState(() => {
+    const parsed = parseBirthDate(data.birthDate);
+    return parsed;
+  });
+
   const handleChange = (field: keyof PointsData, value: string | boolean | string[] | number) => {
     const newData = {
       ...data,
@@ -86,6 +105,59 @@ export function PointsForm({ data, setData }: PointsFormProps) {
       handleChange("annualSalary", "8m"); // Reset custom band when leaving 40+
     }
   }, [data.age]);
+
+  // Handle birth date change and automatically calculate age
+  const handleBirthDateChange = (birthDate: string) => {
+    handleChange("birthDate", birthDate);
+    
+    if (birthDate) {
+      const calculatedAge = calculateKoreanAge(birthDate);
+      if (calculatedAge !== null) {
+        const ageCategory = getAgeCategoryFromAge(calculatedAge);
+        handleChange("age", ageCategory);
+      }
+    }
+  };
+
+  // Update dateComponents when data.birthDate changes from external sources
+  useEffect(() => {
+    const parsed = parseBirthDate(data.birthDate);
+    setDateComponents(parsed);
+  }, [data.birthDate]);
+
+  const { year, month, day } = dateComponents;
+
+  // Handle individual date component changes
+  const handleDateComponentChange = (component: 'year' | 'month' | 'day', value: string) => {
+    const newComponents = { ...dateComponents, [component]: value };
+    setDateComponents(newComponents);
+    
+    // If all components are selected, create complete date and trigger age calculation
+    if (newComponents.year && newComponents.month && newComponents.day) {
+      const newBirthDate = `${newComponents.year}-${newComponents.month.padStart(2, '0')}-${newComponents.day.padStart(2, '0')}`;
+      handleBirthDateChange(newBirthDate);
+    }
+  };
+
+  // Generate year options (1940 to current year)
+  const currentYear = new Date().getFullYear();
+  const yearOptions = Array.from({ length: currentYear - 1939 }, (_, i) => currentYear - i);
+  
+  // Generate month options
+  const monthOptions = Array.from({ length: 12 }, (_, i) => i + 1);
+  
+  // Generate day options (1-31, but should be validated based on month/year)
+  const getDaysInMonth = (year: number, month: number) => {
+    return new Date(year, month, 0).getDate();
+  };
+  
+  const dayOptions = (() => {
+    if (year && month) {
+      const daysInMonth = getDaysInMonth(parseInt(year), parseInt(month));
+      return Array.from({ length: daysInMonth }, (_, i) => i + 1);
+    }
+    return Array.from({ length: 31 }, (_, i) => i + 1);
+  })();
 
   const steps = [
     { id: 'education', key: 'form.education', shortKey: 'form.education.short' },
@@ -328,11 +400,116 @@ export function PointsForm({ data, setData }: PointsFormProps) {
         {currentStep === 2 && (
           <div>
             {/* Age + Annual Income (merged) */}
+            
             {/* Age */}
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <h3 className="font-medium">{t('form.age')}</h3>
               </div>
+              
+              {/* Birth Date Input with Dropdowns */}
+              <div className="mb-6">
+                <div className="mb-3">
+                  <p className="text-sm text-muted-foreground">
+                    {t('form.birthDate.instruction')}
+                  </p>
+                </div>
+                
+                <div className="inline-flex items-center gap-2 p-3 border rounded-lg bg-card">
+                  {/* Year Dropdown */}
+                  <div className="w-20">
+                    <Select value={year} onValueChange={(value) => handleDateComponentChange('year', value)}>
+                      <SelectTrigger className="border-0 bg-transparent shadow-none focus:ring-1 focus:ring-primary">
+                        <SelectValue placeholder={t('form.birthDate.year')} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {yearOptions.map((y) => (
+                          <SelectItem key={y} value={y.toString()}>
+                            {y}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div className="text-muted-foreground">-</div>
+                  
+                  {/* Month Dropdown */}
+                  <div className="w-16">
+                    <Select value={month} onValueChange={(value) => handleDateComponentChange('month', value)}>
+                      <SelectTrigger className="border-0 bg-transparent shadow-none focus:ring-1 focus:ring-primary">
+                        <SelectValue placeholder={t('form.birthDate.month')} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {monthOptions.map((m) => (
+                          <SelectItem key={m} value={m.toString()}>
+                            {m.toString().padStart(2, '0')}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div className="text-muted-foreground">-</div>
+                  
+                  {/* Day Dropdown */}
+                  <div className="w-16">
+                    <Select value={day} onValueChange={(value) => handleDateComponentChange('day', value)}>
+                      <SelectTrigger className="border-0 bg-transparent shadow-none focus:ring-1 focus:ring-primary">
+                        <SelectValue placeholder={t('form.birthDate.day')} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {dayOptions.map((d) => (
+                          <SelectItem key={d} value={d.toString()}>
+                            {d.toString().padStart(2, '0')}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                
+                {/* Calculated Age Display */}
+                {data.birthDate && (() => {
+                  const calculatedAge = calculateKoreanAge(data.birthDate);
+                  if (calculatedAge !== null) {
+                    return (
+                      <div className="flex items-center gap-2 mt-3 p-2 bg-green-50 border border-green-200 rounded-md">
+                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <span className="text-sm text-green-700 font-medium">
+                          {t('form.birthDate.calculated', { age: calculatedAge })}
+                        </span>
+                      </div>
+                    );
+                  } else if (data.birthDate) {
+                    // Check if it's a future date
+                    const birth = new Date(data.birthDate);
+                    const today = new Date();
+                    if (birth > today) {
+                      return (
+                        <div className="flex items-center gap-2 mt-3 p-2 bg-red-50 border border-red-200 rounded-md">
+                          <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                          <span className="text-sm text-red-700">
+                            {t('form.birthDate.future')}
+                          </span>
+                        </div>
+                      );
+                    } else {
+                      return (
+                        <div className="flex items-center gap-2 mt-3 p-2 bg-red-50 border border-red-200 rounded-md">
+                          <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                          <span className="text-sm text-red-700">
+                            {t('form.birthDate.invalid')}
+                          </span>
+                        </div>
+                      );
+                    }
+                  }
+                  return null;
+                })()}
+              </div>
+
+              {/* Age Category Selection */}
               <RadioGroup
                 value={data.age}
                 onValueChange={(value) => handleChange("age", value)}

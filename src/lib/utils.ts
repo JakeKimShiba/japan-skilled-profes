@@ -57,3 +57,34 @@ export function formatEnMillionsJPY(amount: number) {
   const n = new Intl.NumberFormat('en-US', { maximumFractionDigits: digits, minimumFractionDigits: digits }).format(millions);
   return `¥${n}M`;
 }
+
+// Calculate Korean age (만 나이) from birth date
+export function calculateKoreanAge(birthDate: string): number | null {
+  if (!birthDate) return null;
+  
+  const birth = new Date(birthDate);
+  const today = new Date();
+  
+  // Check if birth date is valid and not in the future
+  if (isNaN(birth.getTime()) || birth > today) {
+    return null;
+  }
+  
+  let age = today.getFullYear() - birth.getFullYear();
+  const monthDiff = today.getMonth() - birth.getMonth();
+  
+  // If birthday hasn't occurred this year yet, subtract 1
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+    age--;
+  }
+  
+  return age;
+}
+
+// Convert calculated age to age category for HSP points
+export function getAgeCategoryFromAge(age: number): string {
+  if (age < 30) return "29under";
+  if (age >= 30 && age <= 34) return "30to34";
+  if (age >= 35 && age <= 39) return "35to39";
+  return "40plus";
+}
