@@ -151,9 +151,12 @@ export function PointsResult({ data }: PointsResultProps) {
 
     // Language (JLPT/BJT)
     if (data.japaneseLanguage === 'none') {
-      const n2 = simulate({ japaneseLanguage: 'n2' });
-      suggestions.push({ key: 'jlpt-n2', label: 'JLPT N2 취득', delta: n2 - currentTotal });
-      // Combine N1 and BJT since they both give 15 points
+      // Only suggest N2 if user doesn't have Japanese education bonus (since N2 would cancel it)
+      if (!data.japaneseEducation) {
+        const n2 = simulate({ japaneseLanguage: 'n2' });
+        suggestions.push({ key: 'jlpt-n2', label: 'JLPT N2 취득', delta: n2 - currentTotal });
+      }
+      // Always suggest N1/BJT since they don't conflict with Japanese education
       const n1 = simulate({ japaneseLanguage: 'n1' });
       suggestions.push({ key: 'jlpt-n1-or-bjt', label: 'JLPT N1 혹은 BJT 480점 취득', delta: n1 - currentTotal });
     } else if (data.japaneseLanguage === 'n2') {
@@ -225,8 +228,8 @@ export function PointsResult({ data }: PointsResultProps) {
       suggestions.push({ key: 'bonus-rd', label: 'R&D 비율 3% 초과 중소기업 취업', delta: rdb - currentTotal });
     }
 
-    // Japanese education
-    if (!data.japaneseEducation) {
+    // Japanese education (not available for JLPT N2 users due to restriction)
+    if (!data.japaneseEducation && data.japaneseLanguage !== 'n2') {
       const je = simulate({ japaneseEducation: true });
       suggestions.push({ key: 'edu-jp', label: '일본 고등교육 학위 보유', delta: je - currentTotal });
     }
