@@ -1,6 +1,6 @@
 # Japan Highly Skilled Professional Visa Calculator
 
-A comprehensive web application for calculating eligibility points for Japan's "Points-based Preferential Immigration Treatment for Highly Skilled Foreign Professionals" system, focused on Advanced Specialized/Technical Activities (高度専門職 1号 イ).
+A comprehensive web application for calculating eligibility points for Japan's "Points-based Preferential Immigration Treatment for Highly Skilled Foreign Professionals" system, focused on Advanced Specialized/Technical Activities (高度専門職 1号 ロ).
 
 ![Japan Visa Calculator](https://example.com/screenshot.png) <!-- Add an actual screenshot when available -->
 
