@@ -27,6 +27,51 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useI18n } from "@/i18n";
 import { formatJPY, formatManEn, formatEnMillionsJPY, calculateKoreanAge, getAgeCategoryFromAge } from "@/lib/utils";
 import UniversitySelector from "@/components/UniversitySelector";
+
+// Mobile-friendly InfoButton component
+const InfoButton = ({ content, ariaLabel }: { content: string; ariaLabel: string }) => {
+  return (
+    <>
+      {/* Desktop: Tooltip */}
+      <div className="hidden md:block">
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button 
+                type="button" 
+                aria-label={ariaLabel} 
+                className="inline-flex items-center touch-none hover:touch-auto focus:touch-auto p-1 -m-1 rounded transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+              >
+                <Info className="text-muted-foreground" size={16} />
+              </button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>{content}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </div>
+      
+      {/* Mobile: Popover */}
+      <div className="md:hidden">
+        <Popover>
+          <PopoverTrigger asChild>
+            <button 
+              type="button" 
+              aria-label={ariaLabel}
+              className="inline-flex items-center p-1 -m-1 rounded transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              <Info className="text-muted-foreground" size={16} />
+            </button>
+          </PopoverTrigger>
+          <PopoverContent className="w-80 text-sm">
+            <p>{content}</p>
+          </PopoverContent>
+        </Popover>
+      </div>
+    </>
+  );
+};
 import { Input } from "@/components/ui/input";
 
 interface PointsFormProps {
@@ -277,22 +322,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <h3 className="font-medium">{t('form.education')}</h3>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <button 
-                        type="button" 
-                        aria-label={t('tooltip.education')} 
-                        className="inline-flex items-center touch-none hover:touch-auto focus:touch-auto p-1 -m-1 rounded transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-                      >
-                        <Info className="text-muted-foreground" size={16} />
-                      </button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{t('tooltip.education')}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+                <InfoButton content={t('tooltip.education')} ariaLabel={t('tooltip.education')} />
               </div>
               <RadioGroup
                 value={data.educationLevel}
@@ -384,22 +414,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <h3 className="font-medium">{t('form.experience')}</h3>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <button 
-                        type="button" 
-                        aria-label={t('tooltip.experience')} 
-                        className="inline-flex items-center touch-none hover:touch-auto focus:touch-auto p-1 -m-1 rounded transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-                      >
-                        <Info className="text-muted-foreground" size={16} />
-                      </button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{t('tooltip.experience')}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+                <InfoButton content={t('tooltip.experience')} ariaLabel={t('tooltip.experience')} />
               </div>
               <RadioGroup
                 value={data.workExperience}
@@ -613,22 +628,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <h3 className="font-medium">{t('form.annualIncome')} {locale === 'en' ? null : <span className="text-xs text-muted-foreground">({t('income.unit.manEn')})</span>}</h3>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <button 
-                        type="button" 
-                        aria-label={t('tooltip.income')} 
-                        className="inline-flex items-center touch-none hover:touch-auto focus:touch-auto p-1 -m-1 rounded transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-                      >
-                        <Info className="text-muted-foreground" size={16} />
-                      </button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{t('tooltip.income')}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+                <InfoButton content={t('tooltip.income')} ariaLabel={t('tooltip.income')} />
               </div>
               
               {/* Income requirement notice */}
@@ -821,27 +821,13 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <h3 className="font-medium">
                   {data.visaType === 'business' ? '경영진 지위 및 자격 (보너스 포함)' : t('form.researchLicense')}
                 </h3>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <button 
-                        type="button" 
-                        aria-label={t('tooltip.researchLicense')} 
-                        className="inline-flex items-center touch-none hover:touch-auto focus:touch-auto p-1 -m-1 rounded transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-                      >
-                        <Info className="text-muted-foreground" size={16} />
-                      </button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>
-                        {data.visaType === 'business' 
-                          ? '경영진 지위에 따른 보너스 점수를 선택하세요.' 
-                          : t('tooltip.researchLicense')
-                        }
-                      </p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+                <InfoButton 
+                  content={data.visaType === 'business' 
+                    ? '경영진 지위에 따른 보너스 점수를 선택하세요.' 
+                    : t('tooltip.researchLicense')
+                  }
+                  ariaLabel={t('tooltip.researchLicense')}
+                />
               </div>
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
@@ -1050,33 +1036,10 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                       <Label htmlFor="jp-national-licenses" className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <span>{t('licenses.jpNational')}</span>
-                          <TooltipProvider>
-                            <Tooltip>
-                              <TooltipTrigger asChild>
-                                <button 
-                                  type="button" 
-                                  aria-label={t('tooltip.moreInfo')} 
-                                  className="inline-flex items-center touch-none hover:touch-auto focus:touch-auto p-1 -m-1 rounded transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-                                >
-                                  <Info className="text-muted-foreground" size={16} />
-                                </button>
-                              </TooltipTrigger>
-                              <TooltipContent className="max-w-[300px]">
-                                <p>{t('licenses.tooltip.count')}</p>
-                                <p className="mt-2">{t('licenses.tooltip.kr')}</p>
-                                <p className="mt-2">
-                                  <a 
-                                    href="https://www.moj.go.jp/isa/policies/bill/nyukan_hourei_h09.html" 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    className="text-primary underline"
-                                  >
-                                    {t('licenses.linkText')}
-                                  </a>
-                                </p>
-                              </TooltipContent>
-                            </Tooltip>
-                          </TooltipProvider>
+                          <InfoButton 
+                            content={`${t('licenses.tooltip.count')} ${t('licenses.tooltip.kr')}`}
+                            ariaLabel={t('tooltip.moreInfo')}
+                          />
                         </div>
                       </Label>
                       <Select
