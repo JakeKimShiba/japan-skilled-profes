@@ -524,7 +524,6 @@ export function PointsResult({ data }: PointsResultProps) {
                 <div key={s.key} className="flex items-center justify-between rounded border p-3">
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-medium text-primary">#{index + 1}</span>
                       <span className="text-sm font-medium">{s.label}</span>
                     </div>
                   </div>
