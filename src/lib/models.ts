@@ -53,6 +53,7 @@ export const educationPoints = {
   academic: {
     'doctorate': 30,  // 박사학위 취득자
     'masters': 20,    // 석사학위 취득자
+    'bachelors': 10,  // 학사학위 취득자
     'none': 0         // 해당없음
   },
   technical: {
