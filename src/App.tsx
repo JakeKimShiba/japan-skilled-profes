@@ -17,9 +17,9 @@ function App() {
 
   const [showAllVisaTypes, setShowAllVisaTypes] = useState(true);
   
-  // 초기 데이터 상태 정의 (0점으로 시작)
+  // 초기 데이터 상태 정의 (비자 유형 선택 전 상태)
   const initialPointsData: PointsData = {
-    visaType: 'technical',
+    visaType: null,
     educationLevel: 'none',
     workExperience: 'less3',
     age: '40plus',
@@ -67,6 +67,7 @@ function App() {
       ...pointsData,
       visaType: type
     });
+    // 실제 비자 타입이 선택된 경우에만 축소 모드로 전환
     setShowAllVisaTypes(false);
   };
 
@@ -96,7 +97,7 @@ function App() {
                   {showAllVisaTypes ? (
                     <div className="transition-all duration-500 ease-in-out">
                       <RadioGroup
-                        value={pointsData.visaType}
+                        value={pointsData.visaType || ''}
                         onValueChange={handleVisaTypeChange}
                         className="grid grid-cols-1 md:grid-cols-3 gap-4"
                       >
@@ -265,14 +266,16 @@ function App() {
               </CardContent>
             </Card>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="md:col-span-2">
-                <PointsForm data={pointsData} setData={setPointsData} />
+            {pointsData.visaType !== null && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="md:col-span-2">
+                  <PointsForm data={pointsData} setData={setPointsData} />
+                </div>
+                <div className="md:col-span-1 md:sticky md:top-4 h-fit md:max-h-[calc(100vh-2rem)] md:overflow-auto">
+                  <PointsResult data={pointsData} />
+                </div>
               </div>
-              <div className="md:col-span-1 md:sticky md:top-4 h-fit md:max-h-[calc(100vh-2rem)] md:overflow-auto">
-                <PointsResult data={pointsData} />
-              </div>
-            </div>
+            )}
           </TabsContent>
           
           <TabsContent value="info">

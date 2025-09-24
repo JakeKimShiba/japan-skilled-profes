@@ -114,28 +114,9 @@ export function PointsForm({ data, setData }: PointsFormProps) {
 
   // Reset annual salary if age changes and current salary is not valid for the new age
   useEffect(() => {
-    // Auto-redirect from under3m (0 points) to meaningful option
+    // Skip auto-redirect - let user make conscious choice
     if (data.annualSalary === "under3m") {
-      // Set default based on visa type and age
-      if (data.visaType === 'technical') {
-        if (data.age === "29under") {
-          handleChange("annualSalary", "4m"); // 400만엔 for young technical
-        } else if (data.age === "30to34") {
-          handleChange("annualSalary", "5m"); // 500만엔 for 30-34
-        } else if (data.age === "35to39") {
-          handleChange("annualSalary", "6m"); // 600만엔 for 35-39
-        } else {
-          handleChange("annualSalary", "8m"); // 800만엔 for 40+
-        }
-      } else {
-        // Default values based on visa type
-        if (data.visaType === 'business') {
-          handleChange("annualSalary", "10m"); // Default 1000만엔 for business
-        } else {
-          handleChange("annualSalary", "5m"); // Default 500만엔 for academic
-        }
-      }
-      return;
+      return; // Don't auto-redirect, let user choose
     }
 
     // Check if current salary is valid for current age (Technical visa only)

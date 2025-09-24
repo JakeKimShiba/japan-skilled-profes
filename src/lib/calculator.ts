@@ -15,6 +15,11 @@ import {
 
 export function calculateTotalPoints(data: PointsData): number {
   const visaType = data.visaType;
+  
+  // Return 0 if no visa type is selected
+  if (!visaType) {
+    return 0;
+  }
 
   // Calculate points for academic background
   const education = educationPoints[visaType]?.[data.educationLevel as keyof (typeof educationPoints)[VisaType]] || 0;
@@ -116,6 +121,20 @@ export function getQualificationStatus(totalPoints: number) {
 
 export function getCategoryPoints(data: PointsData) {
   const visaType = data.visaType;
+  
+  // Return empty values if no visa type is selected
+  if (!visaType) {
+    return {
+      academic: 0,
+      career: 0,
+      age: 0,
+      salary: 0,
+      research: 0,
+      licenses: 0,
+      bonus: 0,
+      total: 0
+    };
+  }
   
   // Calculate bonus points
   const innovationBonusPoints = data.innovationBonus ? 10 : 0;

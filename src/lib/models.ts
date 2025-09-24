@@ -4,7 +4,7 @@ export type VisaType = 'academic' | 'technical' | 'business';
 
 export interface PointsData {
   // Visa Type
-  visaType: VisaType;
+  visaType: VisaType | null;
   
   // Academic Background
   educationLevel: string;
