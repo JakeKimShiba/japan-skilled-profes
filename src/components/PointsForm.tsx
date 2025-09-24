@@ -244,7 +244,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                       onClick={() => goTo(idx)}
                       aria-current={idx === currentStep ? 'step' : undefined}
                       aria-label={`${idx + 1}. ${t(step.key)}`}
-                      className={`flex-shrink-0 inline-flex items-center gap-1 h-8 px-2 rounded border transition whitespace-nowrap leading-none ${idx === currentStep ? 'bg-primary text-primary-foreground font-semibold underline' : 'hover:bg-muted'}`}
+                      className={`flex-shrink-0 inline-flex items-center gap-1 h-8 px-2 rounded border transition whitespace-nowrap leading-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${idx === currentStep ? 'bg-primary text-primary-foreground font-semibold underline' : 'hover:bg-muted'}`}
                     >
                       <span className={`inline-flex items-center justify-center w-5 h-5 text-[11px] rounded-full ${idx === currentStep ? 'bg-primary-foreground/20' : 'bg-muted text-foreground'}`}>{idx + 1}</span>
                       <span className="text-xs font-medium">{t(step.shortKey)}</span>
@@ -280,7 +280,11 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <button type="button" aria-label={t('tooltip.education')} className="inline-flex items-center">
+                      <button 
+                        type="button" 
+                        aria-label={t('tooltip.education')} 
+                        className="inline-flex items-center touch-none hover:touch-auto focus:touch-auto p-1 -m-1 rounded transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                      >
                         <Info className="text-muted-foreground" size={16} />
                       </button>
                     </TooltipTrigger>
@@ -383,7 +387,11 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <button type="button" aria-label={t('tooltip.experience')} className="inline-flex items-center">
+                      <button 
+                        type="button" 
+                        aria-label={t('tooltip.experience')} 
+                        className="inline-flex items-center touch-none hover:touch-auto focus:touch-auto p-1 -m-1 rounded transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                      >
                         <Info className="text-muted-foreground" size={16} />
                       </button>
                     </TooltipTrigger>
@@ -608,7 +616,11 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <button type="button" aria-label={t('tooltip.income')} className="inline-flex items-center">
+                      <button 
+                        type="button" 
+                        aria-label={t('tooltip.income')} 
+                        className="inline-flex items-center touch-none hover:touch-auto focus:touch-auto p-1 -m-1 rounded transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                      >
                         <Info className="text-muted-foreground" size={16} />
                       </button>
                     </TooltipTrigger>
@@ -812,7 +824,11 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <button type="button" aria-label={t('tooltip.researchLicense')} className="inline-flex items-center">
+                      <button 
+                        type="button" 
+                        aria-label={t('tooltip.researchLicense')} 
+                        className="inline-flex items-center touch-none hover:touch-auto focus:touch-auto p-1 -m-1 rounded transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                      >
                         <Info className="text-muted-foreground" size={16} />
                       </button>
                     </TooltipTrigger>
@@ -1037,7 +1053,11 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                           <TooltipProvider>
                             <Tooltip>
                               <TooltipTrigger asChild>
-                                <button type="button" aria-label={t('tooltip.moreInfo')} className="inline-flex items-center">
+                                <button 
+                                  type="button" 
+                                  aria-label={t('tooltip.moreInfo')} 
+                                  className="inline-flex items-center touch-none hover:touch-auto focus:touch-auto p-1 -m-1 rounded transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                                >
                                   <Info className="text-muted-foreground" size={16} />
                                 </button>
                               </TooltipTrigger>
