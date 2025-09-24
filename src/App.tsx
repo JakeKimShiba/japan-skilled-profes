@@ -9,11 +9,14 @@ import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Button } from "@/components/ui/button";
 import { useI18n } from '@/i18n';
 
 function App() {
   const { t } = useI18n();
 
+  const [showAllVisaTypes, setShowAllVisaTypes] = useState(true);
+  
   const [pointsData, setPointsData] = useState<PointsData>({
     visaType: 'technical',
     educationLevel: 'bachelors',
@@ -61,6 +64,7 @@ function App() {
       ...pointsData,
       visaType: type
     });
+    setShowAllVisaTypes(false);
   };
 
   // Labels are localized via i18n keys
@@ -86,11 +90,13 @@ function App() {
                       {t('result.visaType')}
                     </h3>
                   </div>
-                  <RadioGroup
-                    value={pointsData.visaType}
-                    onValueChange={handleVisaTypeChange}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-4"
-                  >
+                  {showAllVisaTypes ? (
+                    <div className="transition-all duration-500 ease-in-out">
+                      <RadioGroup
+                        value={pointsData.visaType}
+                        onValueChange={handleVisaTypeChange}
+                        className="grid grid-cols-1 md:grid-cols-3 gap-4"
+                      >
                     {/* Academic Visa Card */}
                     <div 
                       className={`relative p-5 border-2 rounded-xl cursor-pointer transition-all duration-300 hover:shadow-lg ${
@@ -183,7 +189,72 @@ function App() {
                         )}
                       </div>
                     </div>
-                  </RadioGroup>
+                      </RadioGroup>
+                    </div>
+                  ) : (
+                    <div className="space-y-4 transition-all duration-500 ease-in-out">
+                      {/* Selected Visa Card - Expanded */}
+                      <div className="flex justify-center">
+                        <div className={`relative p-8 border-2 rounded-xl shadow-lg transition-all duration-300 ${
+                          pointsData.visaType === 'academic' 
+                            ? 'border-blue-500 bg-blue-50/50 ring-2 ring-blue-200' 
+                            : pointsData.visaType === 'technical'
+                            ? 'border-green-500 bg-green-50/50 ring-2 ring-green-200'
+                            : 'border-purple-500 bg-purple-50/50 ring-2 ring-purple-200'
+                        }`}>
+                          <div className="flex flex-col items-center text-center space-y-4">
+                            <div className={`w-16 h-16 rounded-full flex items-center justify-center ${
+                              pointsData.visaType === 'academic' ? 'bg-blue-500' 
+                              : pointsData.visaType === 'technical' ? 'bg-green-500'
+                              : 'bg-purple-500'
+                            }`}>
+                              <span className="text-white text-2xl">
+                                {pointsData.visaType === 'academic' ? '🎓' 
+                                 : pointsData.visaType === 'technical' ? '⚙️'
+                                 : '💼'}
+                              </span>
+                            </div>
+                            <div>
+                              <div className="font-bold text-xl text-gray-900">
+                                {pointsData.visaType === 'academic' ? t('visa.academic.type')
+                                 : pointsData.visaType === 'technical' ? t('visa.technical.type')
+                                 : t('visa.business.type')}
+                              </div>
+                              <div className={`text-base font-medium ${
+                                pointsData.visaType === 'academic' ? 'text-blue-600' 
+                                : pointsData.visaType === 'technical' ? 'text-green-600'
+                                : 'text-purple-600'
+                              }`}>
+                                {pointsData.visaType === 'academic' ? t('visa.academic.jpName')
+                                 : pointsData.visaType === 'technical' ? t('visa.technical.jpName')
+                                 : t('visa.business.jpName')}
+                              </div>
+                              <div className="text-sm text-gray-500 mt-2">
+                                {pointsData.visaType === 'academic' ? '대학·연구기관의 연구자, 교수'
+                                 : pointsData.visaType === 'technical' ? '엔지니어, 개발자, 전문직'
+                                 : '경영진, 임원, 관리자'}
+                              </div>
+                            </div>
+                            <div className="absolute -top-3 -right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md border-2 border-current">
+                              <span className="text-sm">✓</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Change Visa Type Button */}
+                      <div className="flex justify-center">
+                        <Button 
+                          variant="outline" 
+                          onClick={() => setShowAllVisaTypes(true)}
+                          className="px-6 py-2 text-sm font-medium border-gray-300 hover:bg-gray-50"
+                        >
+                          <span className="mr-2">🔄</span>
+                          다른 비자 유형 선택
+                        </Button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
