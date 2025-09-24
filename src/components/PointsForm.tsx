@@ -64,7 +64,7 @@ const InfoButton = ({ content, ariaLabel }: { content: string; ariaLabel: string
               <Info className="text-muted-foreground" size={16} />
             </button>
           </PopoverTrigger>
-          <PopoverContent className="w-80 text-sm">
+          <PopoverContent className="w-80 text-xs font-medium leading-relaxed">
             <p>{content}</p>
           </PopoverContent>
         </Popover>
