@@ -63,7 +63,8 @@ export const educationPoints = {
   },
   business: {
     'mba': 25,           // MBA, MOT 학위 취득자
-    'masters_doctorate': 20,  // 박사학위 또는 석사학위 취득자
+    'doctorate': 20,     // 박사학위 취득자
+    'masters': 20,       // 석사학위 취득자
     'bachelors': 10,     // 학사학위 취득자
     'none': 0            // 해당없음
   }
@@ -188,6 +189,7 @@ export const languagePoints = {
   'japanese_n1': 15,
   'japanese_bjt480': 15,
   'japanese_major': 15,    // 일본어 전공 학위 보유자
+  'japanese_overseas_major': 15,  // 해외 대학 일본어 전공 졸업
   'japanese_n2': 10,
   'japanese_none': 0,
   'foreign_business': 10,

@@ -309,6 +309,15 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 onValueChange={(value) => handleChange("educationLevel", value)}
                 className="grid grid-cols-1 md:grid-cols-2 gap-2"
               >
+                {data.visaType === 'business' && (
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="mba" id="mba" />
+                    <Label htmlFor="mba" className="flex justify-between w-full">
+                      <span>{t('education.mba')}</span>
+                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getEducationPoints('mba'))}</Badge>
+                    </Label>
+                  </div>
+                )}
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="doctorate" id="doctorate" />
                   <Label htmlFor="doctorate" className="flex justify-between w-full">
@@ -627,7 +636,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
               {/* Income requirement notice */}
               <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg mb-3">
                 <p className="text-xs text-amber-700">
-                  <span className="font-medium">💰 최소 연수익 요건:</span> 300만엔 미만은 점수가 0점이므로 고도인재 비자 신청이 어렵습니다.
+                  <span className="font-medium">💰 최소 연수익 요건:</span> 300만엔 미만은 고도인재 비자 신청이 어렵습니다.
                 </p>
               </div>
 
@@ -1083,6 +1092,13 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <RadioGroupItem value="bjt480" id="japanese-bjt480" />
                   <Label htmlFor="japanese-bjt480" className="flex justify-between w-full">
                     <span>{t('language.bjt480')}</span>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(15)}</Badge>
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="overseas_major" id="japanese-overseas-major" />
+                  <Label htmlFor="japanese-overseas-major" className="flex justify-between w-full">
+                    <span>{t('language.overseasMajor')}</span>
                     <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(15)}</Badge>
                   </Label>
                 </div>
