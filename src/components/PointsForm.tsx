@@ -57,6 +57,10 @@ export function PointsForm({ data, setData }: PointsFormProps) {
     return annualSalaryPoints[data.visaType]?.[salary as keyof (typeof annualSalaryPoints)[VisaType]] || 0;
   };
 
+  const getResearchPoints = (research: string) => {
+    return researchPoints[data.visaType]?.[research as keyof (typeof researchPoints)[VisaType]] || 0;
+  };
+
   const getAgePoints = (ageCategory: string) => {
     return agePoints[data.visaType]?.[ageCategory as keyof (typeof agePoints)[VisaType]] || 0;
   };
@@ -743,55 +747,194 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                       </button>
                     </PopoverTrigger>
                     <PopoverContent align="start" className="max-w-[280px] text-sm">
-                      <p>{t('research.onlyOne')}</p>
+                      {data.visaType === 'academic' ? (
+                        <div className="space-y-2">
+                          <p>고도 학술 연구 활동(イ)의 경우 여러 연구 실적을 선택할 수 있습니다.</p>
+                          <p className="text-xs text-green-600 font-medium">💡 2개 이상 선택시 추가 보너스 25점!</p>
+                        </div>
+                      ) : (
+                        <p>{t('research.onlyOne')}</p>
+                      )}
                     </PopoverContent>
                   </Popover>
                 </div>
-                <RadioGroup
-                  value={data.researchAchievements.length > 0 ? data.researchAchievements[0] : "none"}
-                  onValueChange={(value) => handleChange("researchAchievements", value === "none" ? [] : [value])}
-                  className="grid grid-cols-1 gap-2 mt-2"
-                >
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="patents" id="research-patents" />
-                    <Label htmlFor="research-patents" className="flex justify-between w-full">
-                      <span className="text-sm">{t('research.patents')}</span>
-                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(15)}</Badge>
-                    </Label>
+                {data.visaType === 'academic' && (
+                  <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg mb-2">
+                    <p className="text-xs text-blue-700">
+                      <span className="font-medium">Academic 비자 특별 혜택:</span> 연구 실적 2개 이상 선택시 추가 25점 보너스 적용됩니다.
+                    </p>
                   </div>
-                  
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="research" id="research-projects" />
-                    <Label htmlFor="research-projects" className="flex justify-between w-full">
-                      <span className="text-sm">{t('research.research')}</span>
-                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(15)}</Badge>
-                    </Label>
+                )}
+
+                {/* Academic 비자: 복수 선택 가능한 체크박스 */}
+                {data.visaType === 'academic' && (
+                  <div className="space-y-2 mt-2">
+                    <div className="flex items-center space-x-2">
+                      <Checkbox
+                        id="research-patent-invention"
+                        checked={data.researchAchievements.includes('patent_invention')}
+                        onCheckedChange={(checked) => {
+                          const newAchievements = checked
+                            ? [...data.researchAchievements, 'patent_invention']
+                            : data.researchAchievements.filter(item => item !== 'patent_invention');
+                          handleChange("researchAchievements", newAchievements);
+                        }}
+                      />
+                      <Label htmlFor="research-patent-invention" className="flex justify-between w-full">
+                        <span className="text-sm">특허 발명 1건 이상</span>
+                        <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getResearchPoints('patent_invention'))}</Badge>
+                      </Label>
+                    </div>
+                    
+                    <div className="flex items-center space-x-2">
+                      <Checkbox
+                        id="research-official-journal"
+                        checked={data.researchAchievements.includes('official_journal')}
+                        onCheckedChange={(checked) => {
+                          const newAchievements = checked
+                            ? [...data.researchAchievements, 'official_journal']
+                            : data.researchAchievements.filter(item => item !== 'official_journal');
+                          handleChange("researchAchievements", newAchievements);
+                        }}
+                      />
+                      <Label htmlFor="research-official-journal" className="flex justify-between w-full">
+                        <span className="text-sm">입국 전에 공식 기관에서 인정받은 연구에 종사했던 실적 3건 이상</span>
+                        <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getResearchPoints('official_journal'))}</Badge>
+                      </Label>
+                    </div>
+                    
+                    <div className="flex items-center space-x-2">
+                      <Checkbox
+                        id="research-academic-database"
+                        checked={data.researchAchievements.includes('academic_database')}
+                        onCheckedChange={(checked) => {
+                          const newAchievements = checked
+                            ? [...data.researchAchievements, 'academic_database']
+                            : data.researchAchievements.filter(item => item !== 'academic_database');
+                          handleChange("researchAchievements", newAchievements);
+                        }}
+                      />
+                      <Label htmlFor="research-academic-database" className="flex justify-between w-full">
+                        <span className="text-sm">연구논문 실적에 대해서 일본의 국가 기관에서 이용되고 있는 학술 논문 데이터베이스에 등록되어 있는 논문 (신청인이 책임 저자제1저자일 경우에 한함) 3건 이상</span>
+                        <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getResearchPoints('academic_database'))}</Badge>
+                      </Label>
+                    </div>
+                    
+                    <div className="flex items-center space-x-2">
+                      <Checkbox
+                        id="research-award-research"
+                        checked={data.researchAchievements.includes('award_research')}
+                        onCheckedChange={(checked) => {
+                          const newAchievements = checked
+                            ? [...data.researchAchievements, 'award_research']
+                            : data.researchAchievements.filter(item => item !== 'award_research');
+                          handleChange("researchAchievements", newAchievements);
+                        }}
+                      />
+                      <Label htmlFor="research-award-research" className="flex justify-between w-full">
+                        <span className="text-sm">상기의 학문 이외에 상기 학문에 비교해 동등한 연구 실적이 있는 신청자가 이끄는 경우 (저명한 상의 수상이력 등) 관련 행정기관장의 의견을 들은 곳에서 법무대신이 개별로 포인트 부여 여부를 판단함</span>
+                        <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getResearchPoints('award_research'))}</Badge>
+                      </Label>
+                    </div>
+                    
+                    {data.researchAchievements.length >= 2 && (
+                      <div className="p-3 bg-green-50 border border-green-200 rounded-lg mt-2">
+                        <p className="text-sm text-green-700">
+                          <span className="font-medium">🎉 보너스 적용:</span> 2개 이상 연구 실적 선택으로 추가 25점 보너스 획득!
+                        </p>
+                      </div>
+                    )}
                   </div>
-                  
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="papers" id="research-papers" />
-                    <Label htmlFor="research-papers" className="flex justify-between w-full">
-                      <span className="text-sm">{t('research.papers')}</span>
-                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(15)}</Badge>
-                    </Label>
-                  </div>
-                  
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="awards" id="research-awards" />
-                    <Label htmlFor="research-awards" className="flex justify-between w-full">
-                      <span className="text-sm">{t('research.awards')}</span>
-                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(15)}</Badge>
-                    </Label>
-                  </div>
-                  
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="none" id="research-none" />
-                    <Label htmlFor="research-none" className="flex justify-between w-full">
-                      <span className="text-sm">{t('common.none')}</span>
-                      <Badge variant="outline" className="bg-muted/30 ml-2">{fmtPoints(0)}</Badge>
-                    </Label>
-                  </div>
-                </RadioGroup>
+                )}
+
+                {/* Technical/Business 비자: 라디오 버튼 단일 선택 */}
+                {(data.visaType === 'technical' || data.visaType === 'business') && (
+                  <RadioGroup
+                    value={data.researchAchievements.length > 0 ? data.researchAchievements[0] : "none"}
+                    onValueChange={(value) => handleChange("researchAchievements", value === "none" ? [] : [value])}
+                    className="grid grid-cols-1 gap-2 mt-2"
+                  >
+                    {data.visaType === 'technical' && (
+                      <>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="patent_invention" id="research-patent-invention-tech" />
+                          <Label htmlFor="research-patent-invention-tech" className="flex justify-between w-full">
+                            <span className="text-sm">특허 발명 1건 이상</span>
+                            <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getResearchPoints('patent_invention'))}</Badge>
+                          </Label>
+                        </div>
+                        
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="official_journal" id="research-official-journal-tech" />
+                          <Label htmlFor="research-official-journal-tech" className="flex justify-between w-full">
+                            <span className="text-sm">입국 전에 공식 기관에서 인정받은 연구에 종사했던 실적 3건 이상</span>
+                            <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getResearchPoints('official_journal'))}</Badge>
+                          </Label>
+                        </div>
+                        
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="academic_database" id="research-academic-database-tech" />
+                          <Label htmlFor="research-academic-database-tech" className="flex justify-between w-full">
+                            <span className="text-sm">연구논문 실적에 대해서 일본의 국가 기관에서 이용되고 있는 학술 논문 데이터베이스에 등록되어 있는 논문 3건 이상</span>
+                            <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getResearchPoints('academic_database'))}</Badge>
+                          </Label>
+                        </div>
+                        
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="award_research" id="research-award-research-tech" />
+                          <Label htmlFor="research-award-research-tech" className="flex justify-between w-full">
+                            <span className="text-sm">상기 학문에 비교해 동등한 연구 실적</span>
+                            <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getResearchPoints('award_research'))}</Badge>
+                          </Label>
+                        </div>
+                      </>
+                    )}
+                    
+                    {data.visaType === 'business' && (
+                      <>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="management_record" id="research-management" />
+                          <Label htmlFor="research-management" className="flex justify-between w-full">
+                            <span className="text-sm">경영 관리 실적</span>
+                            <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getResearchPoints('management_record'))}</Badge>
+                          </Label>
+                        </div>
+                        
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="business_achievement" id="research-business" />
+                          <Label htmlFor="research-business" className="flex justify-between w-full">
+                            <span className="text-sm">사업 성과</span>
+                            <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getResearchPoints('business_achievement'))}</Badge>
+                          </Label>
+                        </div>
+                        
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="company_growth" id="research-growth" />
+                          <Label htmlFor="research-growth" className="flex justify-between w-full">
+                            <span className="text-sm">회사 성장 기여</span>
+                            <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getResearchPoints('company_growth'))}</Badge>
+                          </Label>
+                        </div>
+                        
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="innovation" id="research-innovation" />
+                          <Label htmlFor="research-innovation" className="flex justify-between w-full">
+                            <span className="text-sm">혁신 활동</span>
+                            <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getResearchPoints('innovation'))}</Badge>
+                          </Label>
+                        </div>
+                      </>
+                    )}
+                    
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="none" id="research-none" />
+                      <Label htmlFor="research-none" className="flex justify-between w-full">
+                        <span className="text-sm">{t('common.none')}</span>
+                        <Badge variant="outline" className="bg-muted/30 ml-2">{fmtPoints(0)}</Badge>
+                      </Label>
+                    </div>
+                  </RadioGroup>
+                )}
                 
                 <h4 className="text-sm font-medium text-muted-foreground mt-4">{t('licenses.title')}</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
