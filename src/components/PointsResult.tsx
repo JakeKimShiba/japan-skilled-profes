@@ -155,7 +155,7 @@ export function PointsResult({ data }: PointsResultProps) {
   };
 
   const buildSuggestions = () => {
-    const suggestions: { label: string; delta: number; key: string }[] = [];
+    const suggestions: { label: string; delta: number; key: string; difficulty: number; timeframe: string }[] = [];
     const currentTotal = totalPoints;
 
     // Language (JLPT/BJT)
@@ -163,44 +163,98 @@ export function PointsResult({ data }: PointsResultProps) {
       // Only suggest N2 if user doesn't have Japanese education bonus (since N2 would cancel it)
       if (!data.japaneseEducation) {
         const n2 = simulate({ japaneseLanguage: 'n2' });
-        suggestions.push({ key: 'jlpt-n2', label: 'JLPT N2 취득', delta: n2 - currentTotal });
+        suggestions.push({ 
+          key: 'jlpt-n2', 
+          label: 'JLPT N2 취득', 
+          delta: n2 - currentTotal, 
+          difficulty: 2, 
+          timeframe: '3-6개월' 
+        });
       }
       // Always suggest N1/BJT since they don't conflict with Japanese education
       const n1 = simulate({ japaneseLanguage: 'n1' });
-      suggestions.push({ key: 'jlpt-n1-or-bjt', label: 'JLPT N1 혹은 BJT 480점 취득', delta: n1 - currentTotal });
+      suggestions.push({ 
+        key: 'jlpt-n1-or-bjt', 
+        label: 'JLPT N1 혹은 BJT 480점 취득', 
+        delta: n1 - currentTotal, 
+        difficulty: 3, 
+        timeframe: '6-12개월' 
+      });
     } else if (data.japaneseLanguage === 'n2') {
       // Combine N1 and BJT since they both give 15 points
       const n1 = simulate({ japaneseLanguage: 'n1' });
-      suggestions.push({ key: 'jlpt-n1-or-bjt', label: 'JLPT N1 혹은 BJT 480점 취득', delta: n1 - currentTotal });
+      suggestions.push({ 
+        key: 'jlpt-n1-or-bjt', 
+        label: 'JLPT N1 혹은 BJT 480점 취득', 
+        delta: n1 - currentTotal, 
+        difficulty: 3, 
+        timeframe: '6-12개월' 
+      });
     }
 
     // Licenses
     if (!data.licenses.includes('other')) {
       const lic = simulate({ licenses: [...data.licenses, 'other'] });
-      suggestions.push({ key: 'license-other', label: '외국 자격증 취득', delta: lic - currentTotal });
+      suggestions.push({ 
+        key: 'license-other', 
+        label: '외국 자격증 취득', 
+        delta: lic - currentTotal, 
+        difficulty: 2, 
+        timeframe: '3-6개월' 
+      });
     }
     if ((data.jpNationalLicenses ?? 0) < 2) {
       const nextCount = Math.min(2, (data.jpNationalLicenses ?? 0) + 1);
       const lic = simulate({ jpNationalLicenses: nextCount });
-      suggestions.push({ key: 'license-jp', label: '일본 국가자격증 1개 추가', delta: lic - currentTotal });
+      suggestions.push({ 
+        key: 'license-jp', 
+        label: '일본 국가자격증 1개 추가', 
+        delta: lic - currentTotal, 
+        difficulty: 2, 
+        timeframe: '6-12개월' 
+      });
     }
 
     // Research achievements
     if ((data.researchAchievements?.length ?? 0) === 0) {
       const r = simulate({ researchAchievements: ['patents'] });
-      suggestions.push({ key: 'research', label: '연구 실적 확보(특허/논문/공식 연구)', delta: r - currentTotal });
+      suggestions.push({ 
+        key: 'research', 
+        label: '연구 실적 확보(특허/논문/공식 연구)', 
+        delta: r - currentTotal, 
+        difficulty: 3, 
+        timeframe: '6-18개월' 
+      });
     }
 
     // Education (long-term)
     if (data.educationLevel === 'bachelors') {
       const m = simulate({ educationLevel: 'masters' });
-      suggestions.push({ key: 'edu-m', label: '석사 학위 취득', delta: m - currentTotal });
+      suggestions.push({ 
+        key: 'edu-m', 
+        label: '석사 학위 취득', 
+        delta: m - currentTotal, 
+        difficulty: 4, 
+        timeframe: '2-3년' 
+      });
     } else if (data.educationLevel === 'masters') {
       const d = simulate({ educationLevel: 'doctorate' });
-      suggestions.push({ key: 'edu-d', label: '박사 학위 취득', delta: d - currentTotal });
+      suggestions.push({ 
+        key: 'edu-d', 
+        label: '박사 학위 취득', 
+        delta: d - currentTotal, 
+        difficulty: 4, 
+        timeframe: '3-5년' 
+      });
     } else if (data.educationLevel === 'none') {
       const b = simulate({ educationLevel: 'bachelors' });
-      suggestions.push({ key: 'edu-b', label: '학사 학위 취득', delta: b - currentTotal });
+      suggestions.push({ 
+        key: 'edu-b', 
+        label: '학사 학위 취득', 
+        delta: b - currentTotal, 
+        difficulty: 4, 
+        timeframe: '4년' 
+      });
     }
 
     // Work experience (next bracket)
@@ -209,7 +263,13 @@ export function PointsResult({ data }: PointsResultProps) {
     if (currentWorkIdx >= 0 && currentWorkIdx < workOrder.length - 1) {
       const nextW = workOrder[currentWorkIdx + 1];
       const w = simulate({ workExperience: nextW });
-      suggestions.push({ key: 'work-next', label: '다음 경력 구간 도달', delta: w - currentTotal });
+      suggestions.push({ 
+        key: 'work-next', 
+        label: '다음 경력 구간 도달', 
+        delta: w - currentTotal, 
+        difficulty: 3, 
+        timeframe: '1-3년' 
+      });
     }
 
     // Salary (next higher valid bracket)
@@ -221,7 +281,13 @@ export function PointsResult({ data }: PointsResultProps) {
         const s = simulate({ annualSalary: nextIncome });
         const delta = s - currentTotal;
         if (delta > 0) {
-          suggestions.push({ key: `salary-${nextIncome}`, label: labelForIncomeGoal(nextIncome), delta });
+          suggestions.push({ 
+            key: `salary-${nextIncome}`, 
+            label: labelForIncomeGoal(nextIncome), 
+            delta, 
+            difficulty: 3, 
+            timeframe: '6-24개월' 
+          });
           break;
         }
       }
@@ -230,21 +296,49 @@ export function PointsResult({ data }: PointsResultProps) {
     // Employer-related bonuses
     if (!data.innovationBonus) {
       const inv = simulate({ innovationBonus: true });
-      suggestions.push({ key: 'bonus-innovation', label: '혁신 지원조치 기업 취업', delta: inv - currentTotal });
+      suggestions.push({ 
+        key: 'bonus-innovation', 
+        label: '혁신 지원조치 기업 취업', 
+        delta: inv - currentTotal, 
+        difficulty: 1, 
+        timeframe: '즉시 가능' 
+      });
     }
     if (!data.researchCostBonus) {
       const rdb = simulate({ researchCostBonus: true });
-      suggestions.push({ key: 'bonus-rd', label: 'R&D 비율 3% 초과 중소기업 취업', delta: rdb - currentTotal });
+      suggestions.push({ 
+        key: 'bonus-rd', 
+        label: 'R&D 비율 3% 초과 중소기업 취업', 
+        delta: rdb - currentTotal, 
+        difficulty: 1, 
+        timeframe: '즉시 가능' 
+      });
     }
 
     // Japanese education (not available for JLPT N2 users due to restriction)
     if (!data.japaneseEducation && data.japaneseLanguage !== 'n2') {
       const je = simulate({ japaneseEducation: true });
-      suggestions.push({ key: 'edu-jp', label: '일본 고등교육 학위 보유', delta: je - currentTotal });
+      suggestions.push({ 
+        key: 'edu-jp', 
+        label: '일본 고등교육 학위 보유', 
+        delta: je - currentTotal, 
+        difficulty: 4, 
+        timeframe: '2-4년' 
+      });
     }
 
-    // Filter positive deltas and sort desc
-    return suggestions.filter(s => s.delta > 0).sort((a,b) => b.delta - a.delta).slice(0, 4);
+    // Filter positive deltas and sort by achievability (difficulty + timeframe consideration)
+    return suggestions
+      .filter(s => s.delta > 0)
+      .sort((a, b) => {
+        // Primary: Sort by difficulty (easier first)
+        if (a.difficulty !== b.difficulty) {
+          return a.difficulty - b.difficulty;
+        }
+        // Secondary: Sort by point gain (higher first)
+        return b.delta - a.delta;
+      })
+      .slice(0, 4);
   };
 
   const labelForIncomeGoal = (key: string) => {
@@ -384,10 +478,30 @@ export function PointsResult({ data }: PointsResultProps) {
               </div>
             </div>
             <div className="grid grid-cols-1 gap-2">
-              {suggestions.map((s) => (
-                <div key={s.key} className="flex items-center justify-between rounded border p-2">
-                  <span className="text-sm">{t(`suggestion.${s.key}`, { delta: s.delta })}</span>
-                  <Badge variant="outline" className="bg-primary/10">+{fmtPoints(s.delta)}</Badge>
+              {suggestions.map((s, index) => (
+                <div key={s.key} className="flex items-center justify-between rounded border p-3">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-medium text-primary">#{index + 1}</span>
+                      <span className="text-sm font-medium">{s.label}</span>
+                    </div>
+                    <div className="flex items-center gap-2 mt-1">
+                      <span className="text-xs px-2 py-0.5 bg-blue-100 text-blue-700 rounded-full">
+                        📅 {s.timeframe}
+                      </span>
+                      <span className={`text-xs px-2 py-0.5 rounded-full ${
+                        s.difficulty === 1 ? 'bg-green-100 text-green-700' :
+                        s.difficulty === 2 ? 'bg-yellow-100 text-yellow-700' :
+                        s.difficulty === 3 ? 'bg-orange-100 text-orange-700' :
+                        'bg-red-100 text-red-700'
+                      }`}>
+                        {s.difficulty === 1 ? '🟢 쉬움' :
+                         s.difficulty === 2 ? '🟡 보통' :
+                         s.difficulty === 3 ? '🟠 어려움' : '🔴 매우 어려움'}
+                      </span>
+                    </div>
+                  </div>
+                  <Badge variant="outline" className="bg-primary/10 ml-3">+{fmtPoints(s.delta)}</Badge>
                 </div>
               ))}
             </div>

@@ -114,21 +114,42 @@ export function PointsForm({ data, setData }: PointsFormProps) {
 
   // Reset annual salary if age changes and current salary is not valid for the new age
   useEffect(() => {
-    // Check if current salary is valid for current age
-    if (data.age === "40plus" && (data.annualSalary === "7m" || data.annualSalary === "6m" || data.annualSalary === "5m" || data.annualSalary === "4m" || data.annualSalary === "3to5m" || data.annualSalary === "3to6m")) {
-      handleChange("annualSalary", "8m"); // Default to 8m for 40+
-    } else if (data.age === "35to39" && (data.annualSalary === "5m" || data.annualSalary === "4m" || data.annualSalary === "3to5m" || data.annualSalary === "3to8m")) {
-      handleChange("annualSalary", "6m"); // Default to 6m for 35-39
-    } else if (data.age === "30to34" && (data.annualSalary === "4m" || data.annualSalary === "3to8m")) {
-      handleChange("annualSalary", "5m"); // Default to 5m for 30-34
-    } else if (data.age !== "30to34" && data.annualSalary === "3to5m") {
-      handleChange("annualSalary", "5m"); // Reset custom band when leaving 30-34
-    } else if (data.age !== "35to39" && data.annualSalary === "3to6m") {
-      handleChange("annualSalary", "6m"); // Reset custom band when leaving 35-39
-    } else if (data.age !== "40plus" && data.annualSalary === "3to8m") {
-      handleChange("annualSalary", "8m"); // Reset custom band when leaving 40+
+    // Auto-redirect from under3m (0 points) to meaningful option
+    if (data.annualSalary === "under3m") {
+      // Set default based on visa type and age
+      if (data.visaType === 'technical') {
+        if (data.age === "29under") {
+          handleChange("annualSalary", "4m"); // 400만엔 for young technical
+        } else if (data.age === "30to34") {
+          handleChange("annualSalary", "5m"); // 500만엔 for 30-34
+        } else if (data.age === "35to39") {
+          handleChange("annualSalary", "6m"); // 600만엔 for 35-39
+        } else {
+          handleChange("annualSalary", "8m"); // 800만엔 for 40+
+        }
+      } else {
+        handleChange("annualSalary", "5m"); // Default 500만엔 for academic/business
+      }
+      return;
     }
-  }, [data.age]);
+
+    // Check if current salary is valid for current age (Technical visa only)
+    if (data.visaType === 'technical') {
+      if (data.age === "40plus" && (data.annualSalary === "7m" || data.annualSalary === "6m" || data.annualSalary === "5m" || data.annualSalary === "4m" || data.annualSalary === "3to5m" || data.annualSalary === "3to6m")) {
+        handleChange("annualSalary", "8m"); // Default to 8m for 40+
+      } else if (data.age === "35to39" && (data.annualSalary === "5m" || data.annualSalary === "4m" || data.annualSalary === "3to5m" || data.annualSalary === "3to8m")) {
+        handleChange("annualSalary", "6m"); // Default to 6m for 35-39
+      } else if (data.age === "30to34" && (data.annualSalary === "4m" || data.annualSalary === "3to8m")) {
+        handleChange("annualSalary", "5m"); // Default to 5m for 30-34
+      } else if (data.age !== "30to34" && data.annualSalary === "3to5m") {
+        handleChange("annualSalary", "5m"); // Reset custom band when leaving 30-34
+      } else if (data.age !== "35to39" && data.annualSalary === "3to6m") {
+        handleChange("annualSalary", "6m"); // Reset custom band when leaving 35-39
+      } else if (data.age !== "40plus" && data.annualSalary === "3to8m") {
+        handleChange("annualSalary", "8m"); // Reset custom band when leaving 40+
+      }
+    }
+  }, [data.age, data.annualSalary, data.visaType]);
 
   // Handle birth date change and automatically calculate age
   const handleBirthDateChange = (birthDate: string) => {
@@ -603,17 +624,24 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 </TooltipProvider>
               </div>
               
+              {/* Income requirement notice */}
+              <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg mb-3">
+                <p className="text-xs text-amber-700">
+                  <span className="font-medium">💰 최소 연수익 요건:</span> 300만엔 미만은 점수가 0점이므로 고도인재 비자 신청이 어렵습니다.
+                </p>
+              </div>
+
               {/* Annual Income selection based on age */}
               <RadioGroup
                 value={data.annualSalary}
                 onValueChange={(value) => handleChange("annualSalary", value)}
                 className="grid grid-cols-1 md:grid-cols-2 gap-2"
               >
-                {/* Lowest: under 3M */}
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="under3m" id="income-under3m" />
-                  <Label htmlFor="income-under3m" className="flex justify-between w-full">
-                    <span>{t('income.under', { amount: locale === 'en' ? formatEnMillionsJPY(3000000) : formatManEn(3000000, locale) })}</span>
+                {/* Lowest: under 3M - Disabled (0 points) */}
+                <div className="flex items-center space-x-2 opacity-50">
+                  <RadioGroupItem value="under3m" id="income-under3m" disabled />
+                  <Label htmlFor="income-under3m" className="flex justify-between w-full cursor-not-allowed">
+                    <span className="text-muted-foreground">{t('income.under', { amount: locale === 'en' ? formatEnMillionsJPY(3000000) : formatManEn(3000000, locale) })}</span>
                     <Badge variant="outline" className="bg-destructive/10 text-destructive ml-2">{t('income.notEligible')}</Badge>
                   </Label>
                 </div>
