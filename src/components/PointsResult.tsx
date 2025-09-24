@@ -155,8 +155,32 @@ export function PointsResult({ data }: PointsResultProps) {
   };
 
   const buildSuggestions = () => {
-    const suggestions: { label: string; delta: number; key: string; difficulty: number; timeframe: string }[] = [];
+    const suggestions: { label: string; delta: number; key: string; difficulty: number; timeframe: string; priority: number }[] = [];
     const currentTotal = totalPoints;
+    
+    // 비자 타입별 우선순위 가중치 계산
+    const getVisaPriority = (key: string) => {
+      if (data.visaType === 'academic') {
+        // Academic: 연구 실적 > 학위 > 일본어 > 기타
+        if (key === 'research') return 1;
+        if (key.startsWith('edu-')) return 2;
+        if (key.startsWith('jlpt-') || key.startsWith('japanese-')) return 3;
+        return 4;
+      } else if (data.visaType === 'technical') {
+        // Technical: 일본어 > 자격증 > 급여 > 기타
+        if (key.startsWith('jlpt-') || key.startsWith('japanese-')) return 1;
+        if (key.startsWith('license-')) return 2;
+        if (key.startsWith('salary-')) return 3;
+        return 4;
+      } else if (data.visaType === 'business') {
+        // Business: 급여 > 경영경험 > 학위 > 기타
+        if (key.startsWith('salary-')) return 1;
+        if (key === 'work-next') return 2;
+        if (key.startsWith('edu-')) return 3;
+        return 4;
+      }
+      return 4; // 기본값
+    };
 
     // Language (JLPT/BJT)
     if (data.japaneseLanguage === 'none') {
@@ -168,7 +192,8 @@ export function PointsResult({ data }: PointsResultProps) {
           label: 'JLPT N2 취득', 
           delta: n2 - currentTotal, 
           difficulty: 2, 
-          timeframe: '3-6개월' 
+          timeframe: '3-6개월',
+          priority: getVisaPriority('jlpt-n2')
         });
       }
       // Always suggest N1/BJT since they don't conflict with Japanese education
@@ -178,7 +203,8 @@ export function PointsResult({ data }: PointsResultProps) {
         label: 'JLPT N1 혹은 BJT 480점 취득', 
         delta: n1 - currentTotal, 
         difficulty: 3, 
-        timeframe: '6-12개월' 
+        timeframe: '6-12개월',
+        priority: getVisaPriority('jlpt-n1-or-bjt')
       });
     } else if (data.japaneseLanguage === 'n2') {
       // Combine N1 and BJT since they both give 15 points
@@ -188,7 +214,8 @@ export function PointsResult({ data }: PointsResultProps) {
         label: 'JLPT N1 혹은 BJT 480점 취득', 
         delta: n1 - currentTotal, 
         difficulty: 3, 
-        timeframe: '6-12개월' 
+        timeframe: '6-12개월',
+        priority: getVisaPriority('jlpt-n1-or-bjt')
       });
     }
 
@@ -200,7 +227,8 @@ export function PointsResult({ data }: PointsResultProps) {
         label: '외국 자격증 취득', 
         delta: lic - currentTotal, 
         difficulty: 2, 
-        timeframe: '3-6개월' 
+        timeframe: '3-6개월',
+        priority: getVisaPriority('license-other')
       });
     }
     if ((data.jpNationalLicenses ?? 0) < 2) {
@@ -211,7 +239,8 @@ export function PointsResult({ data }: PointsResultProps) {
         label: '일본 국가자격증 1개 추가', 
         delta: lic - currentTotal, 
         difficulty: 2, 
-        timeframe: '6-12개월' 
+        timeframe: '6-12개월',
+        priority: getVisaPriority('license-jp')
       });
     }
 
@@ -222,8 +251,9 @@ export function PointsResult({ data }: PointsResultProps) {
         key: 'research', 
         label: '연구 실적 확보(특허/논문/공식 연구)', 
         delta: r - currentTotal, 
-        difficulty: 3, 
-        timeframe: '6-18개월' 
+        difficulty: 4, 
+        timeframe: '1-3년',
+        priority: getVisaPriority('research')
       });
     }
 
@@ -235,7 +265,8 @@ export function PointsResult({ data }: PointsResultProps) {
         label: '석사 학위 취득', 
         delta: m - currentTotal, 
         difficulty: 4, 
-        timeframe: '2-3년' 
+        timeframe: '2-3년',
+        priority: getVisaPriority('edu-m')
       });
     } else if (data.educationLevel === 'masters') {
       const d = simulate({ educationLevel: 'doctorate' });
@@ -244,7 +275,8 @@ export function PointsResult({ data }: PointsResultProps) {
         label: '박사 학위 취득', 
         delta: d - currentTotal, 
         difficulty: 4, 
-        timeframe: '3-5년' 
+        timeframe: '3-5년',
+        priority: getVisaPriority('edu-d')
       });
     } else if (data.educationLevel === 'none') {
       const b = simulate({ educationLevel: 'bachelors' });
@@ -253,7 +285,8 @@ export function PointsResult({ data }: PointsResultProps) {
         label: '학사 학위 취득', 
         delta: b - currentTotal, 
         difficulty: 4, 
-        timeframe: '4년' 
+        timeframe: '4년',
+        priority: getVisaPriority('edu-b')
       });
     }
 
@@ -268,7 +301,8 @@ export function PointsResult({ data }: PointsResultProps) {
         label: '다음 경력 구간 도달', 
         delta: w - currentTotal, 
         difficulty: 3, 
-        timeframe: '1-3년' 
+        timeframe: '1-3년',
+        priority: getVisaPriority('work-next')
       });
     }
 
@@ -286,7 +320,8 @@ export function PointsResult({ data }: PointsResultProps) {
             label: labelForIncomeGoal(nextIncome), 
             delta, 
             difficulty: 3, 
-            timeframe: '6-24개월' 
+            timeframe: '6-24개월',
+            priority: getVisaPriority(`salary-${nextIncome}`)
           });
           break;
         }
@@ -300,8 +335,9 @@ export function PointsResult({ data }: PointsResultProps) {
         key: 'bonus-innovation', 
         label: '혁신 지원조치 기업 취업', 
         delta: inv - currentTotal, 
-        difficulty: 1, 
-        timeframe: '즉시 가능' 
+        difficulty: 4, 
+        timeframe: '6개월-2년',
+        priority: getVisaPriority('bonus-innovation')
       });
     }
     if (!data.researchCostBonus) {
@@ -310,8 +346,9 @@ export function PointsResult({ data }: PointsResultProps) {
         key: 'bonus-rd', 
         label: 'R&D 비율 3% 초과 중소기업 취업', 
         delta: rdb - currentTotal, 
-        difficulty: 1, 
-        timeframe: '즉시 가능' 
+        difficulty: 4, 
+        timeframe: '6개월-2년',
+        priority: getVisaPriority('bonus-rd')
       });
     }
 
@@ -323,19 +360,24 @@ export function PointsResult({ data }: PointsResultProps) {
         label: '일본 고등교육 학위 보유', 
         delta: je - currentTotal, 
         difficulty: 4, 
-        timeframe: '2-4년' 
+        timeframe: '2-4년',
+        priority: getVisaPriority('edu-jp')
       });
     }
 
-    // Filter positive deltas and sort by achievability (difficulty + timeframe consideration)
+    // Filter positive deltas and sort by visa-type priority, then difficulty, then point delta
     return suggestions
       .filter(s => s.delta > 0)
       .sort((a, b) => {
-        // Primary: Sort by difficulty (easier first)
+        // Primary: Sort by visa-type priority (lower number = higher priority)
+        if (a.priority !== b.priority) {
+          return a.priority - b.priority;
+        }
+        // Secondary: Sort by difficulty (easier first)
         if (a.difficulty !== b.difficulty) {
           return a.difficulty - b.difficulty;
         }
-        // Secondary: Sort by point gain (higher first)
+        // Tertiary: Sort by point gain (higher first)
         return b.delta - a.delta;
       })
       .slice(0, 4);

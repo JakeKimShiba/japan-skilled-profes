@@ -30,7 +30,11 @@ function App() {
     japaneseLanguage: 'none',
     japaneseEducation: false,
     university: '',
-    universityEligible: false
+    universityEligible: false,
+    academicUniversityBonus: 'none',
+    businessInvestmentBonus: 'none',
+    contractResearchBonus: false,
+    innovativeFieldBonus: false
   });
 
   useEffect(() => {
