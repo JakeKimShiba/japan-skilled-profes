@@ -116,7 +116,16 @@ export function PointsResult({ data }: PointsResultProps) {
   };
 
   const getVisaTypeLabel = (type: VisaType): string => {
-    return t('visa.type');
+    switch (type) {
+      case 'academic':
+        return t('visa.academic.type');
+      case 'technical':
+        return t('visa.technical.type');
+      case 'business':
+        return t('visa.business.type');
+      default:
+        return t('visa.technical.type');
+    }
   };
 
   const handleDownloadPDF = () => {

@@ -1,6 +1,6 @@
 // Point calculation models for the Highly Skilled Professional visa
 
-export type VisaType = 'technical';
+export type VisaType = 'academic' | 'technical' | 'business';
 
 export interface PointsData {
   // Visa Type
@@ -40,11 +40,24 @@ export interface PointsData {
 }
 
 export const educationPoints = {
-  // Common for all visa types
-  'doctorate': 30,
-  'masters': 20,
-  'bachelors': 10,
-  'none': 0
+  academic: {
+    'doctorate': 30,
+    'masters': 20,
+    'bachelors': 10,
+    'none': 0
+  },
+  technical: {
+    'doctorate': 30,
+    'masters': 20,
+    'bachelors': 10,
+    'none': 0
+  },
+  business: {
+    'doctorate': 20,
+    'masters': 20,
+    'bachelors': 10,
+    'none': 0
+  }
 };
 
 export const workExperiencePoints = {
@@ -57,14 +70,40 @@ export const workExperiencePoints = {
 };
 
 export const agePoints = {
-  // Common for all visa types
-  '29under': 15,
-  '30to34': 10,
-  '35to39': 5,
-  '40plus': 0
+  academic: {
+    '29under': 15,
+    '30to34': 10,
+    '35to39': 5,
+    '40plus': 0
+  },
+  technical: {
+    '29under': 15,
+    '30to34': 10,
+    '35to39': 5,
+    '40plus': 0
+  },
+  business: {
+    '29under': 0,
+    '30to34': 0,
+    '35to39': 0,
+    '40plus': 0
+  }
 };
 
 export const annualSalaryPoints = {
+  academic: {
+    'under3m': 0,
+    '3to5m': 0, // 3백만 엔 이상 5백만 엔 미만 (30~34세 전용)
+    '3to6m': 0, // 3백만 엔 이상 6백만 엔 미만 (35~39세 전용)
+    '3to8m': 0, // 3백만 엔 이상 8백만 엔 미만 (40세 이상 전용)
+    '4m': 10,
+    '5m': 15,
+    '6m': 20,
+    '7m': 25,
+    '8m': 30,
+    '9m': 35,
+    '10m': 40
+  },
   technical: {
     'under3m': 0,
     '3to5m': 0, // 3백만 엔 이상 5백만 엔 미만 (30~34세 전용)
@@ -77,15 +116,42 @@ export const annualSalaryPoints = {
     '8m': 30,
     '9m': 35,
     '10m': 40
+  },
+  business: {
+    'under3m': 0,
+    '3to5m': 0,
+    '3to6m': 0, 
+    '3to8m': 0,
+    '5m': 10,
+    '7m': 20,
+    '10m': 25,
+    '15m': 30,
+    '20m': 35,
+    '30m': 40
   }
 };
 
 export const researchPoints = {
+  academic: {
+    'papers_3plus': 20,
+    'papers_1to2': 15,
+    'conference_intl': 15,
+    'conference_domestic': 10,
+    'grants': 15,
+    'none': 0
+  },
   technical: {
     'patents': 15,
     'papers': 15,
     'research': 15,
     'awards': 15,
+    'none': 0
+  },
+  business: {
+    'management_record': 25,
+    'business_achievement': 20,
+    'company_growth': 15,
+    'innovation': 10,
     'none': 0
   }
 };

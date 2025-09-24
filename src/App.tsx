@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useI18n } from '@/i18n';
 
 function App() {
@@ -50,7 +51,10 @@ function App() {
   }, []);
 
   const handleVisaTypeChange = (type: VisaType) => {
-    // Only technical type is available now
+    setPointsData({
+      ...pointsData,
+      visaType: type
+    });
   };
 
   // Labels are localized via i18n keys
@@ -70,13 +74,43 @@ function App() {
             <Card>
               <CardContent className="pt-6">
                 <div className="mb-4">
-                  <h3 className="font-medium mb-3">{t('result.visaType')}</h3>
-                  <div className="flex items-center space-x-2">
-                    <Label className="flex flex-col">
-                      <span>{t('visa.type')}</span>
-                      <span className="text-xs text-muted-foreground">{t('visa.jpName')}</span>
-                    </Label>
-                  </div>
+                  <h3 className="font-medium mb-4">{t('result.visaType')}</h3>
+                  <RadioGroup
+                    value={pointsData.visaType}
+                    onValueChange={handleVisaTypeChange}
+                    className="grid grid-cols-1 gap-4"
+                  >
+                    <div className="flex items-start space-x-3 p-4 border rounded-lg hover:bg-muted/50 transition-colors">
+                      <RadioGroupItem value="academic" id="visa-academic" className="mt-1" />
+                      <div className="flex-1">
+                        <Label htmlFor="visa-academic" className="block cursor-pointer">
+                          <div className="font-medium">{t('visa.academic.type')}</div>
+                          <div className="text-sm text-muted-foreground">{t('visa.academic.jpName')}</div>
+                          <div className="text-xs text-muted-foreground mt-1">대학·연구기관의 연구자, 교수</div>
+                        </Label>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3 p-4 border rounded-lg hover:bg-muted/50 transition-colors">
+                      <RadioGroupItem value="technical" id="visa-technical" className="mt-1" />
+                      <div className="flex-1">
+                        <Label htmlFor="visa-technical" className="block cursor-pointer">
+                          <div className="font-medium">{t('visa.technical.type')}</div>
+                          <div className="text-sm text-muted-foreground">{t('visa.technical.jpName')}</div>
+                          <div className="text-xs text-muted-foreground mt-1">엔지니어, 개발자, 전문직</div>
+                        </Label>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3 p-4 border rounded-lg hover:bg-muted/50 transition-colors">
+                      <RadioGroupItem value="business" id="visa-business" className="mt-1" />
+                      <div className="flex-1">
+                        <Label htmlFor="visa-business" className="block cursor-pointer">
+                          <div className="font-medium">{t('visa.business.type')}</div>
+                          <div className="text-sm text-muted-foreground">{t('visa.business.jpName')}</div>
+                          <div className="text-xs text-muted-foreground mt-1">경영진, 임원, 관리자</div>
+                        </Label>
+                      </div>
+                    </div>
+                  </RadioGroup>
                 </div>
               </CardContent>
             </Card>
@@ -99,12 +133,14 @@ function App() {
         <Separator className="my-8" />
         
         <footer className="text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} {t('app.title')} ({t('visa.type')})</p>
+          <p>© {new Date().getFullYear()} {t('app.title')}</p>
           <p className="mt-1">
             高度人材ポイント制度 / Points-based Preferential Immigration Treatment for Highly Skilled Foreign Professionals
           </p>
           <p className="mt-1 text-xs">
-            {t('visa.jpName')} / {t('visa.enName')}
+            {pointsData.visaType === 'academic' && `${t('visa.academic.jpName')} / ${t('visa.academic.enName')}`}
+            {pointsData.visaType === 'technical' && `${t('visa.technical.jpName')} / ${t('visa.technical.enName')}`}
+            {pointsData.visaType === 'business' && `${t('visa.business.jpName')} / ${t('visa.business.enName')}`}
           </p>
         </footer>
       </div>

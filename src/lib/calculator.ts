@@ -16,13 +16,13 @@ export function calculateTotalPoints(data: PointsData): number {
   const visaType = data.visaType;
 
   // Calculate points for academic background
-  const education = educationPoints[data.educationLevel as keyof typeof educationPoints] || 0;
+  const education = educationPoints[visaType]?.[data.educationLevel as keyof (typeof educationPoints)[VisaType]] || 0;
   
   // Calculate points for professional career
   const career = workExperiencePoints[data.workExperience as keyof typeof workExperiencePoints] || 0;
   
   // Calculate points for age
-  const age = agePoints[data.age as keyof typeof agePoints] || 0;
+  const age = agePoints[visaType]?.[data.age as keyof (typeof agePoints)[VisaType]] || 0;
   
   // Calculate points for salary based on visa type
   const salary = annualSalaryPoints[visaType]?.[data.annualSalary as keyof (typeof annualSalaryPoints)[VisaType]] || 0;
@@ -102,9 +102,9 @@ export function getCategoryPoints(data: PointsData) {
   const bonusPoints = innovationBonusPoints + researchCostBonusPoints + (data.universityEligible ? 10 : 0);
   
   return {
-    academic: educationPoints[data.educationLevel as keyof typeof educationPoints] || 0,
+    academic: educationPoints[visaType]?.[data.educationLevel as keyof (typeof educationPoints)[VisaType]] || 0,
     career: workExperiencePoints[data.workExperience as keyof typeof workExperiencePoints] || 0,
-    age: agePoints[data.age as keyof typeof agePoints] || 0,
+    age: agePoints[visaType]?.[data.age as keyof (typeof agePoints)[VisaType]] || 0,
     salary: annualSalaryPoints[visaType]?.[data.annualSalary as keyof (typeof annualSalaryPoints)[VisaType]] || 0,
     research: data.researchAchievements.length > 0
       ? (researchPoints[visaType]?.[data.researchAchievements[0] as keyof (typeof researchPoints)[VisaType]] || 0)

@@ -45,9 +45,17 @@ export function PointsForm({ data, setData }: PointsFormProps) {
   const fmtPoints = (n: number) => t('points.value', { value: n });
   
   // Parse birth date into year, month, day
-  const parseBirthDate = (birthDate?: string) => {
-    if (!birthDate) return { year: '', month: '', day: '' };
-    const parts = birthDate.split('-');
+    const getEducationPoints = (level: string) => {
+    return educationPoints[data.visaType]?.[level as keyof (typeof educationPoints)[VisaType]] || 0;
+  };
+
+  const getAgePoints = (ageCategory: string) => {
+    return agePoints[data.visaType]?.[ageCategory as keyof (typeof agePoints)[VisaType]] || 0;
+  };
+
+  const parseBirthDate = (birthDateString: string | undefined) => {
+    if (!birthDateString) return { year: '', month: '', day: '' };
+    const parts = birthDateString.split('-');
     return {
       year: parts[0] || '',
       month: parts[1] || '',
@@ -268,28 +276,28 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <RadioGroupItem value="doctorate" id="doctorate" />
                   <Label htmlFor="doctorate" className="flex justify-between w-full">
                     <span>{t('education.doctorate')}</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(30)}</Badge>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getEducationPoints('doctorate'))}</Badge>
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="masters" id="masters" />
                   <Label htmlFor="masters" className="flex justify-between w-full">
                     <span>{t('education.masters')}</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(20)}</Badge>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getEducationPoints('masters'))}</Badge>
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="bachelors" id="bachelors" />
                   <Label htmlFor="bachelors" className="flex justify-between w-full">
                     <span>{t('education.bachelors')}</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(10)}</Badge>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getEducationPoints('bachelors'))}</Badge>
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="none" id="no-degree" />
                   <Label htmlFor="no-degree" className="flex justify-between w-full">
                     <span>{t('common.none')}</span>
-                    <Badge variant="outline" className="bg-muted/30 ml-2">{fmtPoints(0)}</Badge>
+                    <Badge variant="outline" className="bg-muted/30 ml-2">{fmtPoints(getEducationPoints('none'))}</Badge>
                   </Label>
                 </div>
               </RadioGroup>
@@ -519,28 +527,28 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <RadioGroupItem value="29under" id="age-29under" />
                   <Label htmlFor="age-29under" className="flex justify-between w-full">
                     <span>{t('age.29under')}</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(15)}</Badge>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getAgePoints('29under'))}</Badge>
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="30to34" id="age-30to34" />
                   <Label htmlFor="age-30to34" className="flex justify-between w-full">
                     <span>{t('age.30to34')}</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(10)}</Badge>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getAgePoints('30to34'))}</Badge>
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="35to39" id="age-35to39" />
                   <Label htmlFor="age-35to39" className="flex justify-between w-full">
                     <span>{t('age.35to39')}</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(5)}</Badge>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getAgePoints('35to39'))}</Badge>
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="40plus" id="age-40plus" />
                   <Label htmlFor="age-40plus" className="flex justify-between w-full">
                     <span>{t('age.40plus')}</span>
-                    <Badge variant="outline" className="bg-muted/30 ml-2">{fmtPoints(0)}</Badge>
+                    <Badge variant="outline" className="bg-muted/30 ml-2">{fmtPoints(getAgePoints('40plus'))}</Badge>
                   </Label>
                 </div>
               </RadioGroup>
