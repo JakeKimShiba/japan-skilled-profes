@@ -17,10 +17,10 @@ function App() {
 
   const [showAllVisaTypes, setShowAllVisaTypes] = useState(true);
   
-  // 초기 데이터 상태 정의
+  // 초기 데이터 상태 정의 (0점으로 시작)
   const initialPointsData: PointsData = {
     visaType: 'technical',
-    educationLevel: 'bachelors',
+    educationLevel: 'none',
     workExperience: 'less3',
     age: '40plus',
     annualSalary: 'under3m',
