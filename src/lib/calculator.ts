@@ -9,6 +9,7 @@ import {
   licensePoints,
   languagePoints,
   specialPoints,
+  visaSpecificBonusPoints,
   statusThresholds
 } from './models';
 
@@ -19,7 +20,7 @@ export function calculateTotalPoints(data: PointsData): number {
   const education = educationPoints[visaType]?.[data.educationLevel as keyof (typeof educationPoints)[VisaType]] || 0;
   
   // Calculate points for professional career
-  const career = workExperiencePoints[data.workExperience as keyof typeof workExperiencePoints] || 0;
+  const career = workExperiencePoints[visaType]?.[data.workExperience as keyof (typeof workExperiencePoints)[VisaType]] || 0;
   
   // Calculate points for age
   const age = agePoints[visaType]?.[data.age as keyof (typeof agePoints)[VisaType]] || 0;
@@ -28,10 +29,18 @@ export function calculateTotalPoints(data: PointsData): number {
   const salary = annualSalaryPoints[visaType]?.[data.annualSalary as keyof (typeof annualSalaryPoints)[VisaType]] || 0;
   
   // Calculate points for research achievements based on visa type
-  // Since we now only allow one research achievement to be selected
-  const research = data.researchAchievements.length > 0 
-    ? (researchPoints[visaType]?.[data.researchAchievements[0] as keyof (typeof researchPoints)[VisaType]] || 0)
-    : 0;
+  let research = 0;
+  if (data.visaType === 'academic') {
+    // Academic 비자: 각 연구 실적의 개별 점수 합계
+    research = data.researchAchievements.reduce((total, achievement) => {
+      return total + (researchPoints[visaType]?.[achievement as keyof (typeof researchPoints)[VisaType]] || 0);
+    }, 0);
+  } else {
+    // Technical/Business 비자: 기존처럼 하나만 선택
+    research = data.researchAchievements.length > 0 
+      ? (researchPoints[visaType]?.[data.researchAchievements[0] as keyof (typeof researchPoints)[VisaType]] || 0)
+      : 0;
+  }
   
   // Calculate points for licenses
   const license = data.licenses.reduce((total, lic) => {
@@ -52,13 +61,27 @@ export function calculateTotalPoints(data: PointsData): number {
   const innovationBonusPoints = data.innovationBonus ? 10 : 0;
   const researchCostBonusPoints = data.researchCostBonus ? 5 : 0;
   
+  // Calculate visa-specific bonus points
+  let visaSpecificBonus = 0;
+  
+  // Academic 비자: 연구 실적이 2개 이상일 경우 25점 보너스
+  if (data.visaType === 'academic' && data.researchAchievements.length >= 2) {
+    visaSpecificBonus += visaSpecificBonusPoints.academic.research_achievements;
+  }
+  
+  if (data.visaType === 'business' && data.businessExecutiveBonus) {
+    const bonusPoints = visaSpecificBonusPoints.business[data.businessExecutiveBonus as keyof typeof visaSpecificBonusPoints.business];
+    visaSpecificBonus += bonusPoints || 0;
+  }
+  
   // Calculate total points
   const total = education + career + age + salary + research + license + 
                 japaneseLanguage + 
                 japaneseEducationPoints +
                 universityBonus +
                 innovationBonusPoints +
-                researchCostBonusPoints;
+                researchCostBonusPoints +
+                visaSpecificBonus;
 
   return total;
 }
@@ -103,12 +126,16 @@ export function getCategoryPoints(data: PointsData) {
   
   return {
     academic: educationPoints[visaType]?.[data.educationLevel as keyof (typeof educationPoints)[VisaType]] || 0,
-    career: workExperiencePoints[data.workExperience as keyof typeof workExperiencePoints] || 0,
+    career: workExperiencePoints[visaType]?.[data.workExperience as keyof (typeof workExperiencePoints)[VisaType]] || 0,
     age: agePoints[visaType]?.[data.age as keyof (typeof agePoints)[VisaType]] || 0,
     salary: annualSalaryPoints[visaType]?.[data.annualSalary as keyof (typeof annualSalaryPoints)[VisaType]] || 0,
-    research: data.researchAchievements.length > 0
-      ? (researchPoints[visaType]?.[data.researchAchievements[0] as keyof (typeof researchPoints)[VisaType]] || 0)
-      : 0,
+    research: data.visaType === 'academic' 
+      ? data.researchAchievements.reduce((total, achievement) => {
+          return total + (researchPoints[visaType]?.[achievement as keyof (typeof researchPoints)[VisaType]] || 0);
+        }, 0)
+      : (data.researchAchievements.length > 0
+          ? (researchPoints[visaType]?.[data.researchAchievements[0] as keyof (typeof researchPoints)[VisaType]] || 0)
+          : 0),
     license: data.licenses.reduce((total, lic) => {
       return total + (licensePoints[lic as keyof typeof licensePoints] || 0);
     }, 0) + (data.jpNationalLicenses * 5), // 5 points per Japanese national license

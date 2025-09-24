@@ -25,6 +25,8 @@ function App() {
     jpNationalLicenses: 0,
     innovationBonus: false,
     researchCostBonus: false,
+    academicResearchBonus: false,
+    businessExecutiveBonus: 'none',
     japaneseLanguage: 'none',
     japaneseEducation: false,
     university: '',
@@ -71,43 +73,110 @@ function App() {
           </TabsList>
           
           <TabsContent value="calculator" className="space-y-6">
-            <Card>
+            <Card className="overflow-hidden">
               <CardContent className="pt-6">
-                <div className="mb-4">
-                  <h3 className="font-medium mb-4">{t('result.visaType')}</h3>
+                <div className="mb-6">
+                  <div className="flex items-center gap-2 mb-6">
+                    <div className="w-2 h-8 bg-gradient-to-b from-blue-500 to-purple-600 rounded-full"></div>
+                    <h3 className="text-xl font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                      {t('result.visaType')}
+                    </h3>
+                  </div>
                   <RadioGroup
                     value={pointsData.visaType}
                     onValueChange={handleVisaTypeChange}
-                    className="grid grid-cols-1 gap-4"
+                    className="grid grid-cols-1 md:grid-cols-3 gap-4"
                   >
-                    <div className="flex items-start space-x-3 p-4 border rounded-lg hover:bg-muted/50 transition-colors">
-                      <RadioGroupItem value="academic" id="visa-academic" className="mt-1" />
-                      <div className="flex-1">
-                        <Label htmlFor="visa-academic" className="block cursor-pointer">
-                          <div className="font-medium">{t('visa.academic.type')}</div>
-                          <div className="text-sm text-muted-foreground">{t('visa.academic.jpName')}</div>
-                          <div className="text-xs text-muted-foreground mt-1">대학·연구기관의 연구자, 교수</div>
-                        </Label>
+                    {/* Academic Visa Card */}
+                    <div 
+                      className={`relative p-5 border-2 rounded-xl cursor-pointer transition-all duration-300 hover:shadow-lg ${
+                        pointsData.visaType === 'academic' 
+                          ? 'border-blue-500 bg-blue-50/50 shadow-md ring-2 ring-blue-200' 
+                          : 'border-gray-200 hover:border-blue-300 hover:bg-blue-50/30'
+                      }`}
+                      onClick={() => handleVisaTypeChange('academic')}
+                    >
+                      <RadioGroupItem value="academic" id="visa-academic" className="sr-only" />
+                      <div className="flex flex-col items-center text-center space-y-3">
+                        <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                          pointsData.visaType === 'academic' ? 'bg-blue-500' : 'bg-blue-100'
+                        }`}>
+                          <span className={`text-xl ${
+                            pointsData.visaType === 'academic' ? 'text-white' : 'text-blue-600'
+                          }`}>🎓</span>
+                        </div>
+                        <div>
+                          <div className="font-semibold text-gray-900">{t('visa.academic.type')}</div>
+                          <div className="text-sm text-blue-600 font-medium">{t('visa.academic.jpName')}</div>
+                          <div className="text-xs text-gray-500 mt-1">대학·연구기관의 연구자, 교수</div>
+                        </div>
+                        {pointsData.visaType === 'academic' && (
+                          <div className="absolute -top-2 -right-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                            <span className="text-white text-xs">✓</span>
+                          </div>
+                        )}
                       </div>
                     </div>
-                    <div className="flex items-start space-x-3 p-4 border rounded-lg hover:bg-muted/50 transition-colors">
-                      <RadioGroupItem value="technical" id="visa-technical" className="mt-1" />
-                      <div className="flex-1">
-                        <Label htmlFor="visa-technical" className="block cursor-pointer">
-                          <div className="font-medium">{t('visa.technical.type')}</div>
-                          <div className="text-sm text-muted-foreground">{t('visa.technical.jpName')}</div>
-                          <div className="text-xs text-muted-foreground mt-1">엔지니어, 개발자, 전문직</div>
-                        </Label>
+
+                    {/* Technical Visa Card */}
+                    <div 
+                      className={`relative p-5 border-2 rounded-xl cursor-pointer transition-all duration-300 hover:shadow-lg ${
+                        pointsData.visaType === 'technical' 
+                          ? 'border-green-500 bg-green-50/50 shadow-md ring-2 ring-green-200' 
+                          : 'border-gray-200 hover:border-green-300 hover:bg-green-50/30'
+                      }`}
+                      onClick={() => handleVisaTypeChange('technical')}
+                    >
+                      <RadioGroupItem value="technical" id="visa-technical" className="sr-only" />
+                      <div className="flex flex-col items-center text-center space-y-3">
+                        <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                          pointsData.visaType === 'technical' ? 'bg-green-500' : 'bg-green-100'
+                        }`}>
+                          <span className={`text-xl ${
+                            pointsData.visaType === 'technical' ? 'text-white' : 'text-green-600'
+                          }`}>⚙️</span>
+                        </div>
+                        <div>
+                          <div className="font-semibold text-gray-900">{t('visa.technical.type')}</div>
+                          <div className="text-sm text-green-600 font-medium">{t('visa.technical.jpName')}</div>
+                          <div className="text-xs text-gray-500 mt-1">엔지니어, 개발자, 전문직</div>
+                        </div>
+                        {pointsData.visaType === 'technical' && (
+                          <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                            <span className="text-white text-xs">✓</span>
+                          </div>
+                        )}
                       </div>
                     </div>
-                    <div className="flex items-start space-x-3 p-4 border rounded-lg hover:bg-muted/50 transition-colors">
-                      <RadioGroupItem value="business" id="visa-business" className="mt-1" />
-                      <div className="flex-1">
-                        <Label htmlFor="visa-business" className="block cursor-pointer">
-                          <div className="font-medium">{t('visa.business.type')}</div>
-                          <div className="text-sm text-muted-foreground">{t('visa.business.jpName')}</div>
-                          <div className="text-xs text-muted-foreground mt-1">경영진, 임원, 관리자</div>
-                        </Label>
+
+                    {/* Business Visa Card */}
+                    <div 
+                      className={`relative p-5 border-2 rounded-xl cursor-pointer transition-all duration-300 hover:shadow-lg ${
+                        pointsData.visaType === 'business' 
+                          ? 'border-purple-500 bg-purple-50/50 shadow-md ring-2 ring-purple-200' 
+                          : 'border-gray-200 hover:border-purple-300 hover:bg-purple-50/30'
+                      }`}
+                      onClick={() => handleVisaTypeChange('business')}
+                    >
+                      <RadioGroupItem value="business" id="visa-business" className="sr-only" />
+                      <div className="flex flex-col items-center text-center space-y-3">
+                        <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                          pointsData.visaType === 'business' ? 'bg-purple-500' : 'bg-purple-100'
+                        }`}>
+                          <span className={`text-xl ${
+                            pointsData.visaType === 'business' ? 'text-white' : 'text-purple-600'
+                          }`}>💼</span>
+                        </div>
+                        <div>
+                          <div className="font-semibold text-gray-900">{t('visa.business.type')}</div>
+                          <div className="text-sm text-purple-600 font-medium">{t('visa.business.jpName')}</div>
+                          <div className="text-xs text-gray-500 mt-1">경영진, 임원, 관리자</div>
+                        </div>
+                        {pointsData.visaType === 'business' && (
+                          <div className="absolute -top-2 -right-2 w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
+                            <span className="text-white text-xs">✓</span>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </RadioGroup>
@@ -142,6 +211,23 @@ function App() {
             {pointsData.visaType === 'technical' && `${t('visa.technical.jpName')} / ${t('visa.technical.enName')}`}
             {pointsData.visaType === 'business' && `${t('visa.business.jpName')} / ${t('visa.business.enName')}`}
           </p>
+          
+          {/* Business Partnership & Feedback Contact */}
+          <div className="mt-4 pt-4 border-t border-muted">
+            <p className="text-xs text-muted-foreground/80">
+              사업제휴, 피드백 및 문의 | Business Partnership & Feedback
+            </p>
+            <a 
+              href="mailto:kodocalc@gmail.com" 
+              className="inline-flex items-center gap-1 mt-1 text-xs text-primary hover:text-primary/80 transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                <path d="m22 7-10 5L2 7"/>
+              </svg>
+              kodocalc@gmail.com
+            </a>
+          </div>
         </footer>
       </div>
     </div>

@@ -221,7 +221,7 @@ export function PointsResult({ data }: PointsResultProps) {
         const s = simulate({ annualSalary: nextIncome });
         const delta = s - currentTotal;
         if (delta > 0) {
-          suggestions.push({ key: `salary-${nextIncome}`, label: `${labelForIncome(nextIncome)} 선택`, delta });
+          suggestions.push({ key: `salary-${nextIncome}`, label: labelForIncomeGoal(nextIncome), delta });
           break;
         }
       }
@@ -245,6 +245,24 @@ export function PointsResult({ data }: PointsResultProps) {
 
     // Filter positive deltas and sort desc
     return suggestions.filter(s => s.delta > 0).sort((a,b) => b.delta - a.delta).slice(0, 4);
+  };
+
+  const labelForIncomeGoal = (key: string) => {
+    switch(key) {
+      case 'under3m': return '연 소득 300만엔 미만 달성';
+      case '3to4m': return '연 소득 300만엔~400만엔 달성';
+      case '4to5m': return '연 소득 400만엔~500만엔 달성';
+      case '5to6m': return '연 소득 500만엔~600만엔 달성';
+      case '6to8m': return '연 소득 600만엔~800만엔 달성';
+      case '8to10m': return '연 소득 800만엔~1000만엔 달성';
+      case '10m': return '연 소득 1000만엔 이상 달성';
+      case '10to15m': return '연 소득 1000만엔~1500만엔 달성';
+      case '15to20m': return '연 소득 1500만엔~2000만엔 달성';
+      case '20to25m': return '연 소득 2000만엔~2500만엔 달성';
+      case '25to30m': return '연 소득 2500만엔~3000만엔 달성';
+      case '30m': return '연 소득 3000만엔 이상 달성';
+      default: return `연 소득 ${key} 달성`;
+    }
   };
 
   const labelForIncome = (key: string) => {
@@ -305,6 +323,20 @@ export function PointsResult({ data }: PointsResultProps) {
             <span>{t('result.scale.max')}</span>
           </div>
         </div>
+
+        {/* 300만엔 미만 연봉 경고 (Technical/Business 비자) */}
+        {(data.visaType === 'technical' && data.annualSalary === 'under3m') || 
+         (data.visaType === 'business' && data.annualSalary === 'under10m') ? (
+          <Alert variant="destructive" className="mt-4">
+            <Warning className="h-4 w-4" />
+            <AlertTitle>비자 신청 불가</AlertTitle>
+            <AlertDescription>
+              {data.visaType === 'technical' 
+                ? '고도 전문 기술 분야는 최소 연 소득 300만엔 이상이 필요합니다.' 
+                : '고도 경영 관리 분야는 최소 연 소득 300만엔 이상이 필요합니다.'}
+            </AlertDescription>
+          </Alert>
+        ) : null}
 
         <Alert variant={status.qualified ? "default" : "destructive"} className="mt-4">
           {status.qualified ? (

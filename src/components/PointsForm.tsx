@@ -49,6 +49,14 @@ export function PointsForm({ data, setData }: PointsFormProps) {
     return educationPoints[data.visaType]?.[level as keyof (typeof educationPoints)[VisaType]] || 0;
   };
 
+  const getWorkExperiencePoints = (experience: string) => {
+    return workExperiencePoints[data.visaType]?.[experience as keyof (typeof workExperiencePoints)[VisaType]] || 0;
+  };
+
+  const getAnnualSalaryPoints = (salary: string) => {
+    return annualSalaryPoints[data.visaType]?.[salary as keyof (typeof annualSalaryPoints)[VisaType]] || 0;
+  };
+
   const getAgePoints = (ageCategory: string) => {
     return agePoints[data.visaType]?.[ageCategory as keyof (typeof agePoints)[VisaType]] || 0;
   };
@@ -624,7 +632,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                     <RadioGroupItem value="4m" id="income-4m" />
                     <Label htmlFor="income-4m" className="flex justify-between w-full">
                       <span>{t('income.atLeast', { amount: locale === 'en' ? formatEnMillionsJPY(4000000) : formatManEn(4000000, locale) })}</span>
-                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(10)}</Badge>
+                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getAnnualSalaryPoints('4m'))}</Badge>
                     </Label>
                   </div>
                 )}
@@ -635,7 +643,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                     <RadioGroupItem value="5m" id="income-5m" />
                     <Label htmlFor="income-5m" className="flex justify-between w-full">
                       <span>{t('income.atLeast', { amount: locale === 'en' ? formatEnMillionsJPY(5000000) : formatManEn(5000000, locale) })}</span>
-                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(15)}</Badge>
+                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getAnnualSalaryPoints('5m'))}</Badge>
                     </Label>
                   </div>
                 )}
@@ -646,7 +654,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                     <RadioGroupItem value="6m" id="income-6m" />
                     <Label htmlFor="income-6m" className="flex justify-between w-full">
                       <span>{t('income.atLeast', { amount: locale === 'en' ? formatEnMillionsJPY(6000000) : formatManEn(6000000, locale) })}</span>
-                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(20)}</Badge>
+                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getAnnualSalaryPoints('6m'))}</Badge>
                     </Label>
                   </div>
                 )}
@@ -657,7 +665,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                     <RadioGroupItem value="7m" id="income-7m" />
                     <Label htmlFor="income-7m" className="flex justify-between w-full">
                       <span>{t('income.atLeast', { amount: locale === 'en' ? formatEnMillionsJPY(7000000) : formatManEn(7000000, locale) })}</span>
-                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(25)}</Badge>
+                      <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getAnnualSalaryPoints('7m'))}</Badge>
                     </Label>
                   </div>
                 )}
@@ -667,7 +675,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <RadioGroupItem value="8m" id="income-8m" />
                   <Label htmlFor="income-8m" className="flex justify-between w-full">
                     <span>{t('income.atLeast', { amount: locale === 'en' ? formatEnMillionsJPY(8000000) : formatManEn(8000000, locale) })}</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(30)}</Badge>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getAnnualSalaryPoints('8m'))}</Badge>
                   </Label>
                 </div>
 
@@ -676,7 +684,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <RadioGroupItem value="9m" id="income-9m" />
                   <Label htmlFor="income-9m" className="flex justify-between w-full">
                     <span>{t('income.atLeast', { amount: locale === 'en' ? formatEnMillionsJPY(9000000) : formatManEn(9000000, locale) })}</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(35)}</Badge>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getAnnualSalaryPoints('9m'))}</Badge>
                   </Label>
                 </div>
 
@@ -685,7 +693,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                   <RadioGroupItem value="10m" id="income-10m" />
                   <Label htmlFor="income-10m" className="flex justify-between w-full">
                     <span>{t('income.atLeast', { amount: locale === 'en' ? formatEnMillionsJPY(10000000) : formatManEn(10000000, locale) })}</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(40)}</Badge>
+                    <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getAnnualSalaryPoints('10m'))}</Badge>
                   </Label>
                 </div>
               </RadioGroup>

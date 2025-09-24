@@ -28,6 +28,16 @@ export interface PointsData {
   innovationBonus: boolean; // Support measures for innovation (10 points)
   researchCostBonus: boolean; // SMEs with R&D costs exceeding 3% (5 points)
   
+  // Visa-specific bonuses
+  academicResearchBonus: boolean; // Academic visa: Research achievements (25 points)
+  academicUniversityBonus: string; // Academic visa: Special university bonus (10-15 points)
+  businessExecutiveBonus: string; // Business visa: Executive position bonus (5-10 points)
+  businessInvestmentBonus: string; // Business visa: Investment/export performance (5-15 points)
+  
+  // Contract organization bonuses (Academic)
+  contractResearchBonus: boolean; // Contract organization research performance (5 points)
+  innovativeFieldBonus: boolean;  // Innovative business field (10 points)
+  
   // Special Additions
   japaneseLanguage: string;
   
@@ -41,32 +51,45 @@ export interface PointsData {
 
 export const educationPoints = {
   academic: {
-    'doctorate': 30,
-    'masters': 20,
-    'bachelors': 10,
-    'none': 0
+    'doctorate': 30,  // 박사학위 취득자
+    'masters': 20,    // 석사학위 취득자
+    'none': 0         // 해당없음
   },
   technical: {
-    'doctorate': 30,
-    'masters': 20,
-    'bachelors': 10,
-    'none': 0
+    'doctorate': 30,  // 박사학위 취득자
+    'masters': 20,    // 석사학위 취득자
+    'bachelors': 10,  // 학사학위 취득자
+    'none': 0         // 해당없음
   },
   business: {
-    'doctorate': 20,
-    'masters': 20,
-    'bachelors': 10,
-    'none': 0
+    'mba': 25,           // MBA, MOT 학위 취득자
+    'masters_doctorate': 20,  // 박사학위 또는 석사학위 취득자
+    'bachelors': 10,     // 학사학위 취득자
+    'none': 0            // 해당없음
   }
 };
 
 export const workExperiencePoints = {
-  // Common for all visa types
-  'less3': 0,
-  '3to5': 5,
-  '5to7': 10,
-  '7to10': 15,
-  '10plus': 20
+  academic: {
+    'less3': 0,
+    '3to5': 5,
+    '5to7': 10,
+    '7plus': 15
+  },
+  technical: {
+    'less3': 0,
+    '3to5': 5,
+    '5to7': 10,
+    '7to10': 15,
+    '10plus': 20
+  },
+  business: {
+    'less3': 0,
+    '3to5': 5,     // 수정: 10→5 (표준 체계에 맞춤)
+    '5to7': 10,    // 수정: 15→10
+    '7to10': 15,   // 수정: 20→15  
+    '10plus': 20   // 수정: 25→20 (Technical과 동일한 최고점)
+  }
 };
 
 export const agePoints = {
@@ -93,51 +116,38 @@ export const agePoints = {
 export const annualSalaryPoints = {
   academic: {
     'under3m': 0,
-    '3to5m': 0, // 3백만 엔 이상 5백만 엔 미만 (30~34세 전용)
-    '3to6m': 0, // 3백만 엔 이상 6백만 엔 미만 (35~39세 전용)
-    '3to8m': 0, // 3백만 엔 이상 8백만 엔 미만 (40세 이상 전용)
-    '4m': 10,
-    '5m': 15,
-    '6m': 20,
-    '7m': 25,
-    '8m': 30,
-    '9m': 35,
-    '10m': 40
+    '3to4m': 10,   // 300만엔~400만엔 미만
+    '4to5m': 20,   // 400만엔~500만엔 미만 
+    '5to6m': 30,   // 500만엔~600만엔 미만
+    '6to10m': 35,  // 600만엔~1000만엔 미만
+    '10m': 40      // 1000만엔 이상
   },
   technical: {
-    'under3m': 0,
-    '3to5m': 0, // 3백만 엔 이상 5백만 엔 미만 (30~34세 전용)
-    '3to6m': 0, // 3백만 엔 이상 6백만 엔 미만 (35~39세 전용)
-    '3to8m': 0, // 3백만 엔 이상 8백만 엔 미만 (40세 이상 전용)
-    '4m': 10,
-    '5m': 15,
-    '6m': 20,
-    '7m': 25,
-    '8m': 30,
-    '9m': 35,
-    '10m': 40
+    'under3m': 0,     // 300만엔 미만 (점수 없음)
+    '4m': 10,         // 400만엔 이상 (29세 이하만 가능)
+    '5m': 15,         // 500만엔 이상 (29세 이하, 30-34세 가능)
+    '6m': 20,         // 600만엔 이상 (39세 이하까지 가능)
+    '7m': 25,         // 700만엔 이상 (39세 이하까지 가능)
+    '8m': 30,         // 800만엔 이상 (모든 나이)
+    '9m': 35,         // 900만엔 이상 (모든 나이)
+    '10m': 40         // 1000만엔 이상 (모든 나이)
   },
   business: {
-    'under3m': 0,
-    '3to5m': 0,
-    '3to6m': 0, 
-    '3to8m': 0,
-    '5m': 10,
-    '7m': 20,
-    '10m': 25,
-    '15m': 30,
-    '20m': 35,
-    '30m': 40
+    'under10m': 0,
+    '10to15m': 10,  // 1000만엔~1500만엔 미만
+    '15to20m': 20,  // 1500만엔~2000만엔 미만
+    '20to25m': 30,  // 2000만엔~2500만엔 미만
+    '25to30m': 40,  // 2500만엔~3000만엔 미만
+    '30m': 50       // 3000만엔 이상
   }
 };
 
 export const researchPoints = {
   academic: {
-    'papers_3plus': 20,
-    'papers_1to2': 15,
-    'conference_intl': 15,
-    'conference_domestic': 10,
-    'grants': 15,
+    'patent_invention': 20,        // 특허 발명 1건 이상
+    'official_journal': 20,        // 입국 전에 공식 기관에서 인정받은 연구에 종사했던 실적 3건 이상
+    'academic_database': 20,       // 연구논문 실적에 대해서 일본의 국가 기관에서 이용되고 있는 학술 논문 데이터베이스에 등록되어 있는 논문 (신청인이 책임 저자제1저자일 경우에 한함) 3건 이상
+    'award_research': 20,          // 상기의 학문 이외에 상기 학문에 비교해 동등한 연구 실적이 있는 신청자가 이끄는 경우 (저명한 상의 수상이력 등) 관련 행정기관장의 의견을 들은 곳에서 법무대신이 개별로 포인트 부여 여부를 판단함
     'none': 0
   },
   technical: {
@@ -167,6 +177,7 @@ export const languagePoints = {
   // Common for all visa types
   'japanese_n1': 15,
   'japanese_bjt480': 15,
+  'japanese_major': 15,    // 일본어 전공 학위 보유자
   'japanese_n2': 10,
   'japanese_none': 0,
   'foreign_business': 10,
@@ -176,6 +187,27 @@ export const languagePoints = {
 export const specialPoints = {
   // Common for all visa types
   'japanese_education': 10
+};
+
+// Visa-specific bonus points
+export const visaSpecificBonusPoints = {
+  academic: {
+    'research_achievements': 25,     // Research achievements bonus
+    'university_top': 15,            // Top-tier university contract
+    'university_recognized': 10,     // Recognized university contract  
+    'contract_research': 5,          // Contract organization research
+    'innovative_field': 10,          // Innovative business field
+    'none': 0
+  },
+  business: {
+    'executive_senior': 10,          // Senior executive position
+    'executive_manager': 5,          // Management position
+    'investment_large': 15,          // Large investment performance
+    'investment_medium': 10,         // Medium investment performance
+    'export_performance': 10,        // Export performance
+    'employment_creation': 5,        // Employment creation
+    'none': 0
+  }
 };
 
 // Status based on total points
