@@ -58,6 +58,10 @@ export function PointsForm({ data, setData }: PointsFormProps) {
   };
 
   const getResearchPoints = (research: string) => {
+    if (data.visaType === 'academic') {
+      // 고도 학술 연구 활동: 개별 항목 표시용으로는 20점, 실제 계산은 calculator.ts에서 처리
+      return 20;
+    }
     return researchPoints[data.visaType]?.[research as keyof (typeof researchPoints)[VisaType]] || 0;
   };
 
@@ -750,7 +754,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                       {data.visaType === 'academic' ? (
                         <div className="space-y-2">
                           <p>고도 학술 연구 활동(イ)의 경우 여러 연구 실적을 선택할 수 있습니다.</p>
-                          <p className="text-xs text-green-600 font-medium">💡 2개 이상 선택시 추가 보너스 25점!</p>
+                          <p className="text-xs text-blue-600 font-medium">💡 1개 선택시 20점, 2개 이상 선택시 총 25점</p>
                         </div>
                       ) : (
                         <p>{t('research.onlyOne')}</p>
@@ -761,7 +765,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 {data.visaType === 'academic' && (
                   <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg mb-2">
                     <p className="text-xs text-blue-700">
-                      <span className="font-medium">Academic 비자 특별 혜택:</span> 연구 실적 2개 이상 선택시 추가 25점 보너스 적용됩니다.
+                      <span className="font-medium">고도 학술 연구 활동 점수 체계:</span> 연구 실적 1개 선택시 20점, 2개 이상 선택시 총 25점이 적용됩니다.
                     </p>
                   </div>
                 )}
@@ -840,7 +844,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                     {data.researchAchievements.length >= 2 && (
                       <div className="p-3 bg-green-50 border border-green-200 rounded-lg mt-2">
                         <p className="text-sm text-green-700">
-                          <span className="font-medium">🎉 보너스 적용:</span> 2개 이상 연구 실적 선택으로 추가 25점 보너스 획득!
+                          <span className="font-medium">📊 점수 적용:</span> 2개 이상 연구 실적 선택으로 총 25점 획득!
                         </p>
                       </div>
                     )}

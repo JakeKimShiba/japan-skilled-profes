@@ -31,12 +31,14 @@ export function calculateTotalPoints(data: PointsData): number {
   // Calculate points for research achievements based on visa type
   let research = 0;
   if (data.visaType === 'academic') {
-    // Academic 비자: 각 연구 실적의 개별 점수 합계
-    research = data.researchAchievements.reduce((total, achievement) => {
-      return total + (researchPoints[visaType]?.[achievement as keyof (typeof researchPoints)[VisaType]] || 0);
-    }, 0);
+    // 고도 학술 연구 활동(イ): 1개 선택시 20점, 2개 이상 선택시 총 25점
+    if (data.researchAchievements.length === 1) {
+      research = 20;
+    } else if (data.researchAchievements.length >= 2) {
+      research = 25;
+    }
   } else {
-    // Technical/Business 비자: 기존처럼 하나만 선택
+    // 고도 전문·기술 활동(ロ) / 고도 경영·관리 활동(ハ): 기존처럼 하나만 선택
     research = data.researchAchievements.length > 0 
       ? (researchPoints[visaType]?.[data.researchAchievements[0] as keyof (typeof researchPoints)[VisaType]] || 0)
       : 0;
@@ -64,11 +66,7 @@ export function calculateTotalPoints(data: PointsData): number {
   // Calculate visa-specific bonus points
   let visaSpecificBonus = 0;
   
-  // Academic 비자: 연구 실적이 2개 이상일 경우 25점 보너스
-  if (data.visaType === 'academic' && data.researchAchievements.length >= 2) {
-    visaSpecificBonus += visaSpecificBonusPoints.academic.research_achievements;
-  }
-  
+  // 고도 경영·관리 활동(ハ)의 경영진 보너스만 적용
   if (data.visaType === 'business' && data.businessExecutiveBonus) {
     const bonusPoints = visaSpecificBonusPoints.business[data.businessExecutiveBonus as keyof typeof visaSpecificBonusPoints.business];
     visaSpecificBonus += bonusPoints || 0;

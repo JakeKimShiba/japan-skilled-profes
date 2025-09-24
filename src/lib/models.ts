@@ -115,12 +115,17 @@ export const agePoints = {
 
 export const annualSalaryPoints = {
   academic: {
-    'under3m': 0,
-    '3to4m': 10,   // 300만엔~400만엔 미만
-    '4to5m': 20,   // 400만엔~500만엔 미만 
-    '5to6m': 30,   // 500만엔~600만엔 미만
-    '6to10m': 35,  // 600만엔~1000만엔 미만
-    '10m': 40      // 1000만엔 이상
+    'under3m': 0,     // 300만엔 미만
+    '3to5m': 10,      // 300만엔~500만엔 미만 
+    '3to6m': 15,      // 300만엔~600만엔 미만  
+    '3to8m': 20,      // 300만엔~800만엔 미만 
+    '4m': 10,         // 400만엔 이상 (Academic 관대한 점수)
+    '5m': 15,         // 500만엔 이상 
+    '6m': 20,         // 600만엔 이상 
+    '7m': 25,         // 700만엔 이상 
+    '8m': 30,         // 800만엔 이상 
+    '9m': 35,         // 900만엔 이상 
+    '10m': 40         // 1000만엔 이상
   },
   technical: {
     'under3m': 0,     // 300만엔 미만 (점수 없음)
@@ -133,12 +138,17 @@ export const annualSalaryPoints = {
     '10m': 40         // 1000만엔 이상 (모든 나이)
   },
   business: {
-    'under10m': 0,
-    '10to15m': 10,  // 1000만엔~1500만엔 미만
-    '15to20m': 20,  // 1500만엔~2000만엔 미만
-    '20to25m': 30,  // 2000만엔~2500만엔 미만
-    '25to30m': 40,  // 2500만엔~3000만엔 미만
-    '30m': 50       // 3000만엔 이상
+    'under3m': 0,     // 300만엔 미만 (점수 없음)
+    '3to5m': 0,       // 300만엔~500만엔 미만 (Business에서는 낮은 점수)
+    '3to6m': 5,       // 300만엔~600만엔 미만 
+    '3to8m': 10,      // 300만엔~800만엔 미만 
+    '4m': 0,          // 400만엔 이상 (Business에서는 낮음)
+    '5m': 5,          // 500만엔 이상 
+    '6m': 10,         // 600만엔 이상 
+    '7m': 15,         // 700만엔 이상 
+    '8m': 20,         // 800만엔 이상 
+    '9m': 30,         // 900만엔 이상 
+    '10m': 40         // 1000만엔 이상 (Business 최고점수)
   }
 };
 
@@ -189,10 +199,11 @@ export const specialPoints = {
   'japanese_education': 10
 };
 
-// Visa-specific bonus points
+// Visa-specific bonus points  
 export const visaSpecificBonusPoints = {
   academic: {
-    'research_achievements': 25,     // Research achievements bonus
+    // 고도 학술 연구 활동(イ)의 연구 실적 점수는 calculator.ts에서 직접 처리
+    // 1개: 20점, 2개 이상: 25점 (별도 보너스 없음)
     'university_top': 15,            // Top-tier university contract
     'university_recognized': 10,     // Recognized university contract  
     'contract_research': 5,          // Contract organization research
