@@ -17,7 +17,8 @@ function App() {
 
   const [showAllVisaTypes, setShowAllVisaTypes] = useState(true);
   
-  const [pointsData, setPointsData] = useState<PointsData>({
+  // 초기 데이터 상태 정의
+  const initialPointsData: PointsData = {
     visaType: 'technical',
     educationLevel: 'bachelors',
     workExperience: 'less3',
@@ -38,7 +39,9 @@ function App() {
     businessInvestmentBonus: 'none',
     contractResearchBonus: false,
     innovativeFieldBonus: false
-  });
+  };
+  
+  const [pointsData, setPointsData] = useState<PointsData>(initialPointsData);
 
   useEffect(() => {
     // Map old work experience values to new ones if needed
@@ -149,7 +152,7 @@ function App() {
                         <div>
                           <div className="font-semibold text-gray-900">{t('visa.technical.type')}</div>
                           <div className="text-sm text-green-600 font-medium">{t('visa.technical.jpName')}</div>
-                          <div className="text-xs text-gray-500 mt-1">엔지니어, 개발자, 전문직</div>
+                          <div className="text-xs text-gray-500 mt-1">기술·전문직 (IT, 금융, 법무 등)</div>
                         </div>
                         {pointsData.visaType === 'technical' && (
                           <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
@@ -231,7 +234,7 @@ function App() {
                               </div>
                               <div className="text-sm text-gray-500 mt-2">
                                 {pointsData.visaType === 'academic' ? '대학·연구기관의 연구자, 교수'
-                                 : pointsData.visaType === 'technical' ? '엔지니어, 개발자, 전문직'
+                                 : pointsData.visaType === 'technical' ? '기술·전문직 (IT, 금융, 법무 등)'
                                  : '경영진, 임원, 관리자'}
                               </div>
                             </div>
@@ -246,7 +249,10 @@ function App() {
                       <div className="flex justify-center">
                         <Button 
                           variant="outline" 
-                          onClick={() => setShowAllVisaTypes(true)}
+                          onClick={() => {
+                            setShowAllVisaTypes(true);
+                            setPointsData(initialPointsData);
+                          }}
                           className="px-6 py-2 text-sm font-medium border-gray-300 hover:bg-gray-50"
                         >
                           <span className="mr-2">🔄</span>
