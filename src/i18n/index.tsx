@@ -17,6 +17,34 @@ const translationsMap: Record<Locale, Translations> = {
   'ja': ja as any
 };
 
+// Valid locale checker
+const isValidLocale = (locale: string | null): locale is Locale => {
+  return locale !== null && ['ko','en','zh-cn','zh-tw','ja'].includes(locale);
+};
+
+// URL parameter utilities
+const getLanguageFromURL = (): Locale | null => {
+  if (typeof window === 'undefined') return null;
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const lang = params.get('lang');
+    return isValidLocale(lang) ? lang : null;
+  } catch (e) {
+    return null;
+  }
+};
+
+const updateURLWithLanguage = (locale: Locale) => {
+  if (typeof window === 'undefined') return;
+  try {
+    const url = new URL(window.location.href);
+    url.searchParams.set('lang', locale);
+    window.history.replaceState({}, '', url.toString());
+  } catch (e) {
+    // Fallback for environments where URL constructor is not available
+  }
+};
+
 interface I18nContextValue {
   locale: Locale;
   setLocale: (l: Locale) => void;
@@ -27,15 +55,29 @@ const I18nContext = createContext<I18nContextValue | undefined>(undefined);
 
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(() => {
+    // Priority: URL parameter > localStorage > default
+    
+    // 1. Check URL parameter first
+    const urlLang = getLanguageFromURL();
+    if (urlLang) return urlLang;
+    
+    // 2. Check localStorage
     try {
       const saved = localStorage.getItem('locale');
-      if (saved && ['ko','en','zh-cn','zh-tw','ja'].includes(saved)) return saved as Locale;
+      if (isValidLocale(saved)) return saved;
     } catch (e) {}
+    
+    // 3. Default fallback
     return 'ko';
   });
 
   useEffect(() => {
+    // Save to localStorage
     try { localStorage.setItem('locale', locale); } catch (e) {}
+    
+    // Update URL parameter
+    updateURLWithLanguage(locale);
+    
     // Update document language for accessibility and SEO
     try {
       if (typeof document !== 'undefined') {
@@ -48,7 +90,24 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     } catch (e) {}
   }, [locale]);
 
-  const setLocale = (l: Locale) => setLocaleState(l);
+  // Listen for URL changes (browser back/forward)
+  useEffect(() => {
+    const handlePopState = () => {
+      const urlLang = getLanguageFromURL();
+      if (urlLang && urlLang !== locale) {
+        setLocaleState(urlLang);
+      }
+    };
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('popstate', handlePopState);
+      return () => window.removeEventListener('popstate', handlePopState);
+    }
+  }, [locale]);
+
+  const setLocale = (l: Locale) => {
+    setLocaleState(l);
+  };
 
   const t = (key: string, params?: Record<string, any> | string) => {
     const dict = translationsMap[locale] || translationsMap['ko'];

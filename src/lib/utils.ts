@@ -9,6 +9,7 @@ export function cn(...inputs: ClassValue[]) {
 export function formatJPY(amount: number, locale?: string) {
   const localeMap: Record<string, string> = {
     'ko': 'ko-KR',
+    'ja': 'ja-JP',
     'en': 'en-US',
     'zh-cn': 'zh-CN',
     'zh-tw': 'zh-TW',
@@ -31,6 +32,7 @@ export function formatManEn(amount: number, locale?: string) {
   const units = Math.round(amount / 10000); // 10k JPY units
   const localeMap: Record<string, string> = {
     'ko': 'ko-KR',
+    'ja': 'ja-JP',
     'en': 'en-US',
     'zh-cn': 'zh-CN',
     'zh-tw': 'zh-TW',
@@ -40,6 +42,7 @@ export function formatManEn(amount: number, locale?: string) {
   const unitLabel = (() => {
     switch ((locale || '').toLowerCase()) {
       case 'ko': return '만 엔';
+      case 'ja': return '万円';
       case 'zh-cn': return '万日元';
       case 'zh-tw': return '萬日圓';
       default: return '10k JPY';
