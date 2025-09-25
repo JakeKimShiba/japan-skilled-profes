@@ -3,8 +3,9 @@ import ko from './locales/ko.json';
 import en from './locales/en.json';
 import zhcn from './locales/zh-cn.json';
 import zhtw from './locales/zh-tw.json';
+import ja from './locales/ja.json';
 
-export type Locale = 'ko' | 'en' | 'zh-cn' | 'zh-tw';
+export type Locale = 'ko' | 'en' | 'zh-cn' | 'zh-tw' | 'ja';
 
 export type Translations = Record<string, string>;
 
@@ -12,7 +13,8 @@ const translationsMap: Record<Locale, Translations> = {
   'ko': ko as any,
   'en': en as any,
   'zh-cn': zhcn as any,
-  'zh-tw': zhtw as any
+  'zh-tw': zhtw as any,
+  'ja': ja as any
 };
 
 interface I18nContextValue {
@@ -27,7 +29,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(() => {
     try {
       const saved = localStorage.getItem('locale');
-      if (saved && ['ko','en','zh-cn','zh-tw'].includes(saved)) return saved as Locale;
+      if (saved && ['ko','en','zh-cn','zh-tw','ja'].includes(saved)) return saved as Locale;
     } catch (e) {}
     return 'ko';
   });
