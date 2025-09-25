@@ -1,8 +1,18 @@
 User-agent: *
 Allow: /
+Allow: /?lang=*
 
 # Sitemap
 Sitemap: https://kodocalc.com/sitemap.xml
 
-# Crawl-delay (optional, conservative)
-Crawl-delay: 1
+# Crawl-delay (더 빈번한 크롤링 허용)
+Crawl-delay: 0.5
+
+# 검색엔진 최적화를 위한 추가 지시사항
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.2
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0.5
