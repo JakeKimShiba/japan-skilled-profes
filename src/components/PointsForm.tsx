@@ -634,7 +634,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
               {/* Income requirement notice */}
               <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg mb-3">
                 <p className="text-xs text-amber-700">
-                  <span className="font-medium">💰 최소 연수익 요건:</span> 300만엔 미만은 고도인재 비자 신청이 어렵습니다.
+                  <span className="font-medium">{t('income.minimum.title')}</span> {t('income.minimum.description')}
                 </p>
               </div>
 
@@ -819,11 +819,11 @@ export function PointsForm({ data, setData }: PointsFormProps) {
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <h3 className="font-medium">
-                  {data.visaType === 'business' ? '경영진 지위 및 자격 (보너스 포함)' : t('form.researchLicense')}
+                  {data.visaType === 'business' ? t('business.executive.title') : t('form.researchLicense')}
                 </h3>
                 <InfoButton 
                   content={data.visaType === 'business' 
-                    ? '경영진 지위에 따른 보너스 점수를 선택하세요.' 
+                    ? t('business.executive.tooltip')
                     : t('tooltip.researchLicense')
                   }
                   ariaLabel={t('tooltip.researchLicense')}
@@ -832,7 +832,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <h4 className="text-sm font-medium text-muted-foreground">
-                    {data.visaType === 'business' ? '경영진 지위' : t('research.title')}
+                    {data.visaType === 'business' ? t('business.position.title') : t('research.title')}
                   </h4>
                   {/* Use Popover for mobile-friendly, tap-to-open behavior */}
                   <Popover>
@@ -844,13 +844,13 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                     <PopoverContent align="start" className="max-w-[280px] text-sm">
                       {data.visaType === 'academic' ? (
                         <div className="space-y-2">
-                          <p>고도 학술 연구 활동(イ)의 경우 여러 연구 실적을 선택할 수 있습니다.</p>
-                          <p className="text-xs text-blue-600 font-medium">💡 1개 선택시 20점, 2개 이상 선택시 총 25점</p>
+                          <p>{t('research.academic.multiple')}</p>
+                          <p className="text-xs text-blue-600 font-medium">{t('research.academic.points')}</p>
                         </div>
                       ) : data.visaType === 'business' ? (
                         <div className="space-y-2">
-                          <p>고도 경영 관리 활동의 경영진 지위에 따른 보너스 점수입니다.</p>
-                          <p className="text-xs text-green-600 font-medium">💼 대표이사/대표경영자: 10점, 이사/경영자: 5점</p>
+                          <p>{t('business.position.description')}</p>
+                          <p className="text-xs text-green-600 font-medium">{t('business.position.details')}</p>
                         </div>
                       ) : (
                         <p>{t('research.onlyOne')}</p>
@@ -861,7 +861,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                 {data.visaType === 'academic' && (
                   <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg mb-2">
                     <p className="text-xs text-blue-700">
-                      <span className="font-medium">고도 학술 연구 활동 점수 체계:</span> 연구 실적 1개 선택시 20점, 2개 이상 선택시 총 25점이 적용됩니다.
+                      <span className="font-medium">{t('research.academic.scoring')}</span> {t('research.academic.explanation')}
                     </p>
                   </div>
                 )}
@@ -881,7 +881,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                         }}
                       />
                       <Label htmlFor="research-patent-invention" className="flex justify-between w-full">
-                        <span className="text-sm">특허 발명 1건 이상</span>
+                        <span className="text-sm">{t('research.patents.detailed')}</span>
                         <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getResearchPoints('patent_invention'))}</Badge>
                       </Label>
                     </div>
@@ -898,7 +898,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                         }}
                       />
                       <Label htmlFor="research-official-journal" className="flex justify-between w-full">
-                        <span className="text-sm">입국 전에 공식 기관에서 인정받은 연구에 종사했던 실적 3건 이상</span>
+                        <span className="text-sm">{t('research.official.detailed')}</span>
                         <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getResearchPoints('official_journal'))}</Badge>
                       </Label>
                     </div>
@@ -915,7 +915,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                         }}
                       />
                       <Label htmlFor="research-academic-database" className="flex justify-between w-full">
-                        <span className="text-sm">연구논문 실적에 대해서 일본의 국가 기관에서 이용되고 있는 학술 논문 데이터베이스에 등록되어 있는 논문 (신청인이 책임 저자제1저자일 경우에 한함) 3건 이상</span>
+                        <span className="text-sm">{t('research.papers.detailed')}</span>
                         <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getResearchPoints('academic_database'))}</Badge>
                       </Label>
                     </div>
@@ -932,7 +932,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                         }}
                       />
                       <Label htmlFor="research-award-research" className="flex justify-between w-full">
-                        <span className="text-sm">상기의 학문 이외에 상기 학문에 비교해 동등한 연구 실적이 있는 신청자가 이끄는 경우 (저명한 상의 수상이력 등) 관련 행정기관장의 의견을 들은 곳에서 법무대신이 개별로 포인트 부여 여부를 판단함</span>
+                        <span className="text-sm">{t('research.awards.detailed')}</span>
                         <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getResearchPoints('award_research'))}</Badge>
                       </Label>
                     </div>
@@ -940,7 +940,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                     {data.researchAchievements.length >= 2 && (
                       <div className="p-3 bg-green-50 border border-green-200 rounded-lg mt-2">
                         <p className="text-sm text-green-700">
-                          <span className="font-medium">📊 점수 적용:</span> 2개 이상 연구 실적 선택으로 총 25점 획득!
+                          <span className="font-medium">{t('research.multiple.bonus')}</span> {t('research.multiple.message')}
                         </p>
                       </div>
                     )}
@@ -957,7 +957,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="executive_senior" id="executive-senior" />
                       <Label htmlFor="executive-senior" className="flex justify-between w-full">
-                        <span className="text-sm">대표 이사, 대표 경영자 직을 수락</span>
+                        <span className="text-sm">{t('business.ceo.label')}</span>
                         <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(10)}</Badge>
                       </Label>
                     </div>
@@ -965,7 +965,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="executive_manager" id="executive-manager" />
                       <Label htmlFor="executive-manager" className="flex justify-between w-full">
-                        <span className="text-sm">이사, 경영자 직을 수락</span>
+                        <span className="text-sm">{t('business.director.label')}</span>
                         <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(5)}</Badge>
                       </Label>
                     </div>
@@ -990,7 +990,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="patent_invention" id="research-patent-invention-tech" />
                       <Label htmlFor="research-patent-invention-tech" className="flex justify-between w-full">
-                        <span className="text-sm">특허 발명 1건 이상</span>
+                        <span className="text-sm">{t('research.patents.detailed')}</span>
                         <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getResearchPoints('patent_invention'))}</Badge>
                       </Label>
                     </div>
@@ -998,7 +998,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="official_journal" id="research-official-journal-tech" />
                       <Label htmlFor="research-official-journal-tech" className="flex justify-between w-full">
-                        <span className="text-sm">입국 전에 공식 기관에서 인정받은 연구에 종사했던 실적 3건 이상</span>
+                        <span className="text-sm">{t('research.official.detailed')}</span>
                         <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getResearchPoints('official_journal'))}</Badge>
                       </Label>
                     </div>
@@ -1006,7 +1006,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="academic_database" id="research-academic-database-tech" />
                       <Label htmlFor="research-academic-database-tech" className="flex justify-between w-full">
-                        <span className="text-sm">연구논문 실적에 대해서 일본의 국가 기관에서 이용되고 있는 학술 논문 데이터베이스에 등록되어 있는 논문 3건 이상</span>
+                        <span className="text-sm">{t('research.papers.detailed')}</span>
                         <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getResearchPoints('academic_database'))}</Badge>
                       </Label>
                     </div>
@@ -1014,7 +1014,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="award_research" id="research-award-research-tech" />
                       <Label htmlFor="research-award-research-tech" className="flex justify-between w-full">
-                        <span className="text-sm">상기 학문에 비교해 동등한 연구 실적</span>
+                        <span className="text-sm">{t('research.technical.equivalent')}</span>
                         <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getResearchPoints('award_research'))}</Badge>
                       </Label>
                     </div>

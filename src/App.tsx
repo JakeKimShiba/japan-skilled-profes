@@ -122,7 +122,7 @@ function App() {
                         <div>
                           <div className="font-semibold text-gray-900">{t('visa.academic.type')}</div>
                           <div className="text-sm text-blue-600 font-medium">{t('visa.academic.jpName')}</div>
-                          <div className="text-xs text-gray-500 mt-1">대학·연구기관의 연구자, 교수</div>
+                          <div className="text-xs text-gray-500 mt-1">{t('visa.academic.description')}</div>
                         </div>
                         {pointsData.visaType === 'academic' && (
                           <div className="absolute -top-2 -right-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
@@ -153,7 +153,7 @@ function App() {
                         <div>
                           <div className="font-semibold text-gray-900">{t('visa.technical.type')}</div>
                           <div className="text-sm text-green-600 font-medium">{t('visa.technical.jpName')}</div>
-                          <div className="text-xs text-gray-500 mt-1">기술·전문직 (IT, 금융, 법무 등)</div>
+                          <div className="text-xs text-gray-500 mt-1">{t('visa.technical.description')}</div>
                         </div>
                         {pointsData.visaType === 'technical' && (
                           <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
@@ -184,7 +184,7 @@ function App() {
                         <div>
                           <div className="font-semibold text-gray-900">{t('visa.business.type')}</div>
                           <div className="text-sm text-purple-600 font-medium">{t('visa.business.jpName')}</div>
-                          <div className="text-xs text-gray-500 mt-1">경영진, 임원, 관리자</div>
+                          <div className="text-xs text-gray-500 mt-1">{t('visa.business.description')}</div>
                         </div>
                         {pointsData.visaType === 'business' && (
                           <div className="absolute -top-2 -right-2 w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
@@ -234,9 +234,9 @@ function App() {
                                  : t('visa.business.jpName')}
                               </div>
                               <div className="text-sm text-gray-500 mt-2">
-                                {pointsData.visaType === 'academic' ? '대학·연구기관의 연구자, 교수'
-                                 : pointsData.visaType === 'technical' ? '기술·전문직 (IT, 금융, 법무 등)'
-                                 : '경영진, 임원, 관리자'}
+                                {pointsData.visaType === 'academic' ? t('visa.academic.description')
+                                 : pointsData.visaType === 'technical' ? t('visa.technical.description')
+                                 : t('visa.business.description')}
                               </div>
                             </div>
                             <div className="absolute -top-3 -right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md border-2 border-current">
@@ -257,7 +257,7 @@ function App() {
                           className="px-6 py-2 text-sm font-medium border-gray-300 hover:bg-gray-50"
                         >
                           <span className="mr-2">🔄</span>
-                          다른 비자 유형 선택
+                          {t('visa.select.other')}
                         </Button>
                       </div>
                     </div>
@@ -299,7 +299,7 @@ function App() {
           {/* Business Partnership & Feedback Contact */}
           <div className="mt-4 pt-4 border-t border-muted">
             <p className="text-xs text-muted-foreground/80">
-              사업제휴, 피드백 및 문의 | Business Partnership & Feedback
+              {t('footer.contact')}
             </p>
             <a 
               href="mailto:kodocalc@gmail.com" 

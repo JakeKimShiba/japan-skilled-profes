@@ -189,10 +189,10 @@ export function PointsResult({ data }: PointsResultProps) {
         const n2 = simulate({ japaneseLanguage: 'n2' });
         suggestions.push({ 
           key: 'jlpt-n2', 
-          label: 'JLPT N2 취득', 
+          label: t('suggestions.jlpt.n2.achieve'), 
           delta: n2 - currentTotal, 
           difficulty: 2, 
-          timeframe: '3-6개월',
+          timeframe: t('timeframe.3to6months'),
           priority: getVisaPriority('jlpt-n2')
         });
       }
@@ -200,10 +200,10 @@ export function PointsResult({ data }: PointsResultProps) {
       const n1 = simulate({ japaneseLanguage: 'n1' });
       suggestions.push({ 
         key: 'jlpt-n1-or-bjt', 
-        label: 'JLPT N1 혹은 BJT 480점 취득', 
+        label: t('suggestions.jlpt.n1.orBjt'), 
         delta: n1 - currentTotal, 
         difficulty: 3, 
-        timeframe: '6-12개월',
+        timeframe: t('timeframe.6to12months'),
         priority: getVisaPriority('jlpt-n1-or-bjt')
       });
     } else if (data.japaneseLanguage === 'n2') {
@@ -211,10 +211,10 @@ export function PointsResult({ data }: PointsResultProps) {
       const n1 = simulate({ japaneseLanguage: 'n1' });
       suggestions.push({ 
         key: 'jlpt-n1-or-bjt', 
-        label: 'JLPT N1 혹은 BJT 480점 취득', 
+        label: t('suggestions.jlpt.n1.orBjt'), 
         delta: n1 - currentTotal, 
         difficulty: 3, 
-        timeframe: '6-12개월',
+        timeframe: t('timeframe.6to12months'),
         priority: getVisaPriority('jlpt-n1-or-bjt')
       });
     }
@@ -224,10 +224,10 @@ export function PointsResult({ data }: PointsResultProps) {
       const lic = simulate({ licenses: [...data.licenses, 'other'] });
       suggestions.push({ 
         key: 'license-other', 
-        label: '외국 자격증 취득', 
+        label: t('suggestions.license.foreign'), 
         delta: lic - currentTotal, 
         difficulty: 2, 
-        timeframe: '3-6개월',
+        timeframe: t('timeframe.3to6months'),
         priority: getVisaPriority('license-other')
       });
     }
@@ -236,10 +236,10 @@ export function PointsResult({ data }: PointsResultProps) {
       const lic = simulate({ jpNationalLicenses: nextCount });
       suggestions.push({ 
         key: 'license-jp', 
-        label: '일본 국가자격증 1개 추가', 
+        label: t('suggestions.license.japan'), 
         delta: lic - currentTotal, 
         difficulty: 2, 
-        timeframe: '6-12개월',
+        timeframe: t('timeframe.6to12months'),
         priority: getVisaPriority('license-jp')
       });
     }
@@ -249,10 +249,10 @@ export function PointsResult({ data }: PointsResultProps) {
       const r = simulate({ researchAchievements: ['patents'] });
       suggestions.push({ 
         key: 'research', 
-        label: '연구 실적 확보(특허/논문/공식 연구)', 
+        label: t('suggestions.research.achieve'), 
         delta: r - currentTotal, 
         difficulty: 4, 
-        timeframe: '1-3년',
+        timeframe: t('timeframe.1to3years'),
         priority: getVisaPriority('research')
       });
     }
@@ -262,30 +262,30 @@ export function PointsResult({ data }: PointsResultProps) {
       const m = simulate({ educationLevel: 'masters' });
       suggestions.push({ 
         key: 'edu-m', 
-        label: '석사 학위 취득', 
+        label: t('suggestions.education.masters'), 
         delta: m - currentTotal, 
         difficulty: 4, 
-        timeframe: '2-3년',
+        timeframe: t('timeframe.2to3years'),
         priority: getVisaPriority('edu-m')
       });
     } else if (data.educationLevel === 'masters') {
       const d = simulate({ educationLevel: 'doctorate' });
       suggestions.push({ 
         key: 'edu-d', 
-        label: '박사 학위 취득', 
+        label: t('suggestions.education.doctorate'), 
         delta: d - currentTotal, 
         difficulty: 4, 
-        timeframe: '3-5년',
+        timeframe: t('timeframe.3to5years'),
         priority: getVisaPriority('edu-d')
       });
     } else if (data.educationLevel === 'none') {
       const b = simulate({ educationLevel: 'bachelors' });
       suggestions.push({ 
         key: 'edu-b', 
-        label: '학사 학위 취득', 
+        label: t('suggestions.education.bachelors'), 
         delta: b - currentTotal, 
         difficulty: 4, 
-        timeframe: '4년',
+        timeframe: t('timeframe.4years'),
         priority: getVisaPriority('edu-b')
       });
     }
@@ -298,10 +298,10 @@ export function PointsResult({ data }: PointsResultProps) {
       const w = simulate({ workExperience: nextW });
       suggestions.push({ 
         key: 'work-next', 
-        label: '다음 경력 구간 도달', 
+        label: t('suggestions.career.next'), 
         delta: w - currentTotal, 
         difficulty: 3, 
-        timeframe: '1-3년',
+        timeframe: t('timeframe.1to3years'),
         priority: getVisaPriority('work-next')
       });
     }
@@ -320,7 +320,7 @@ export function PointsResult({ data }: PointsResultProps) {
             label: labelForIncomeGoal(nextIncome), 
             delta, 
             difficulty: 3, 
-            timeframe: '6-24개월',
+            timeframe: t('timeframe.6to24months'),
             priority: getVisaPriority(`salary-${nextIncome}`)
           });
           break;
@@ -333,10 +333,10 @@ export function PointsResult({ data }: PointsResultProps) {
       const inv = simulate({ innovationBonus: true });
       suggestions.push({ 
         key: 'bonus-innovation', 
-        label: '혁신 지원조치 기업 취업', 
+        label: t('suggestions.employer.innovation'), 
         delta: inv - currentTotal, 
         difficulty: 4, 
-        timeframe: '6개월-2년',
+        timeframe: t('timeframe.6monthsTo2years'),
         priority: getVisaPriority('bonus-innovation')
       });
     }
@@ -344,10 +344,10 @@ export function PointsResult({ data }: PointsResultProps) {
       const rdb = simulate({ researchCostBonus: true });
       suggestions.push({ 
         key: 'bonus-rd', 
-        label: 'R&D 비율 3% 초과 중소기업 취업', 
+        label: t('suggestions.employer.rd'), 
         delta: rdb - currentTotal, 
         difficulty: 4, 
-        timeframe: '6개월-2년',
+        timeframe: t('timeframe.6monthsTo2years'),
         priority: getVisaPriority('bonus-rd')
       });
     }
@@ -357,10 +357,10 @@ export function PointsResult({ data }: PointsResultProps) {
       const je = simulate({ japaneseEducation: true });
       suggestions.push({ 
         key: 'edu-jp', 
-        label: '일본 고등교육 학위 보유', 
+        label: t('suggestions.education.japanese'), 
         delta: je - currentTotal, 
         difficulty: 4, 
-        timeframe: '2-4년',
+        timeframe: t('timeframe.2to3years'),
         priority: getVisaPriority('edu-jp')
       });
     }
@@ -385,35 +385,35 @@ export function PointsResult({ data }: PointsResultProps) {
 
   const labelForIncomeGoal = (key: string) => {
     switch(key) {
-      case 'under3m': return '연 소득 300만엔 미만 달성';
-      case '3to4m': return '연 소득 300만엔~400만엔 달성';
-      case '4to5m': return '연 소득 400만엔~500만엔 달성';
-      case '5to6m': return '연 소득 500만엔~600만엔 달성';
-      case '6to8m': return '연 소득 600만엔~800만엔 달성';
-      case '8to10m': return '연 소득 800만엔~1000만엔 달성';
-      case '10m': return '연 소득 1000만엔 이상 달성';
-      case '10to15m': return '연 소득 1000만엔~1500만엔 달성';
-      case '15to20m': return '연 소득 1500만엔~2000만엔 달성';
-      case '20to25m': return '연 소득 2000만엔~2500만엔 달성';
-      case '25to30m': return '연 소득 2500만엔~3000만엔 달성';
-      case '30m': return '연 소득 3000만엔 이상 달성';
-      default: return `연 소득 ${key} 달성`;
+      case 'under3m': return t('salary.goal.under3m');
+      case '3to4m': return t('salary.goal.3to4m');
+      case '4to5m': return t('salary.goal.4to5m');
+      case '5to6m': return t('salary.goal.5to6m');
+      case '6to8m': return t('salary.goal.6to8m');
+      case '8to10m': return t('salary.goal.8to10m');
+      case '10m': return t('salary.goal.10m');
+      case '10to15m': return t('salary.goal.10to15m');
+      case '15to20m': return t('salary.goal.15to20m');
+      case '20to25m': return t('salary.goal.20to25m');
+      case '25to30m': return t('salary.goal.25to30m');
+      case '30m': return t('salary.goal.30m');
+      default: return `${t('salary.goal.default', { key })}`;
     }
   };
 
   const labelForIncome = (key: string) => {
     switch(key) {
-      case 'under3m': return '3백만 엔 미만';
-      case '3to5m': return '3백만~5백만 엔 미만';
-      case '3to6m': return '3백만~6백만 엔 미만';
-      case '3to8m': return '3백만~8백만 엔 미만';
-      case '4m': return '4백만 엔 이상';
-      case '5m': return '5백만 엔 이상';
-      case '6m': return '6백만 엔 이상';
-      case '7m': return '7백만 엔 이상';
-      case '8m': return '8백만 엔 이상';
-      case '9m': return '9백만 엔 이상';
-      case '10m': return '1천만 엔 이상';
+      case 'under3m': return t('salary.level.under3m');
+      case '3to5m': return t('salary.level.3to5m');
+      case '3to6m': return t('salary.level.3to6m');
+      case '3to8m': return t('salary.level.3to8m');
+      case '4m': return t('salary.level.4m');
+      case '5m': return t('salary.level.5m');
+      case '6m': return t('salary.level.6m');
+      case '7m': return t('salary.level.7m');
+      case '8m': return t('salary.level.8m');
+      case '9m': return t('salary.level.9m');
+      case '10m': return t('salary.level.10m');
       default: return key;
     }
   };
@@ -465,11 +465,11 @@ export function PointsResult({ data }: PointsResultProps) {
          (data.visaType === 'business' && data.annualSalary === 'under10m') ? (
           <Alert variant="destructive" className="mt-4">
             <Warning className="h-4 w-4" />
-            <AlertTitle>비자 신청 불가</AlertTitle>
+            <AlertTitle>{t('warning.visa.ineligible')}</AlertTitle>
             <AlertDescription>
               {data.visaType === 'technical' 
-                ? '고도 전문 기술 분야는 최소 연 소득 300만엔 이상이 필요합니다.' 
-                : '고도 경영 관리 분야는 최소 연 소득 300만엔 이상이 필요합니다.'}
+                ? t('warning.technical.minimum') 
+                : t('warning.business.minimum')}
             </AlertDescription>
           </Alert>
         ) : null}
