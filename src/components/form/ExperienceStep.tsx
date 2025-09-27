@@ -28,7 +28,7 @@ export function ExperienceStep({ data, onDataChange }: ExperienceStepProps) {
       <RadioGroup
         value={data.workExperience}
         onValueChange={(value) => onDataChange("workExperience", value)}
-        className="space-y-2"
+        className="grid grid-cols-1 md:grid-cols-2 gap-2"
       >
         <div className="flex items-center space-x-2">
           <RadioGroupItem value="10plus" id="work-10plus" />

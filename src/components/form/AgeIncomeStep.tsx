@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Badge } from "@/components/ui/badge";
@@ -38,26 +38,37 @@ export function AgeIncomeStep({ data, onDataChange }: AgeIncomeStepProps) {
     return parseBirthDate(data.birthDate);
   });
 
-  // Update birth date when components change
-  useEffect(() => {
-    const { year, month, day } = dateComponents;
+  // Handle date component changes
+  const handleDateComponentChange = (field: keyof DateComponents, value: string) => {
+    const newDateComponents = { ...dateComponents, [field]: value };
+    setDateComponents(newDateComponents);
+    
+    // If all components are filled, update birth date and age
+    const { year, month, day } = newDateComponents;
     if (year && month && day) {
       const birthDate = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
-      onDataChange("birthDate", birthDate);
       
-      // Auto-calculate age category
-      const age = calculateKoreanAge(birthDate);
-      if (age !== null) {
-        let ageCategory = '';
-        if (age <= 29) ageCategory = '29under';
-        else if (age <= 34) ageCategory = '30to34';
-        else if (age <= 39) ageCategory = '35to39';
-        else ageCategory = '40plus';
+      // Only update if the birth date has actually changed
+      if (data.birthDate !== birthDate) {
+        onDataChange("birthDate", birthDate);
         
-        onDataChange("age", ageCategory);
+        // Auto-calculate age category
+        const age = calculateKoreanAge(birthDate);
+        if (age !== null) {
+          let ageCategory = '';
+          if (age <= 29) ageCategory = '29under';
+          else if (age <= 34) ageCategory = '30to34';
+          else if (age <= 39) ageCategory = '35to39';
+          else ageCategory = '40plus';
+          
+          // Only update age if it's different from current age
+          if (data.age !== ageCategory) {
+            onDataChange("age", ageCategory);
+          }
+        }
       }
     }
-  }, [dateComponents, onDataChange]);
+  };
 
   // Calculate Korean age
   const calculateKoreanAge = (birthDateString: string): number | null => {
@@ -111,100 +122,87 @@ export function AgeIncomeStep({ data, onDataChange }: AgeIncomeStepProps) {
 
   return (
     <div className="space-y-6">
-      {/* Birth Date Section */}
-      <div>
-        <div className="flex items-center gap-2 mb-3">
-          <h3 className="font-medium">{t('form.birthDate')}</h3>
-        </div>
-        
-        <div className="grid grid-cols-3 gap-3">
-          <div>
-            <Label htmlFor="birth-year">{t('form.birthDate.year')}</Label>
-            <Select
-              value={dateComponents.year}
-              onValueChange={(value) => setDateComponents(prev => ({...prev, year: value}))}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder={t('form.birthDate.yearPlaceholder')} />
-              </SelectTrigger>
-              <SelectContent>
-                {yearOptions.map(year => (
-                  <SelectItem key={year} value={year.toString()}>
-                    {year}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          
-          <div>
-            <Label htmlFor="birth-month">{t('form.birthDate.month')}</Label>
-            <Select
-              value={dateComponents.month}
-              onValueChange={(value) => setDateComponents(prev => ({...prev, month: value}))}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder={t('form.birthDate.monthPlaceholder')} />
-              </SelectTrigger>
-              <SelectContent>
-                {monthOptions.map(month => (
-                  <SelectItem key={month} value={month.toString()}>
-                    {month}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          
-          <div>
-            <Label htmlFor="birth-day">{t('form.birthDate.day')}</Label>
-            <Select
-              value={dateComponents.day}
-              onValueChange={(value) => setDateComponents(prev => ({...prev, day: value}))}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder={t('form.birthDate.dayPlaceholder')} />
-              </SelectTrigger>
-              <SelectContent>
-                {dayOptions.map(day => (
-                  <SelectItem key={day} value={day.toString()}>
-                    {day}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-
-        {/* Age Display */}
-        {data.birthDate && (() => {
-          const calculatedAge = calculateKoreanAge(data.birthDate);
-          if (calculatedAge !== null) {
-            return (
-              <div className="flex items-center gap-2 mt-3 p-2 bg-green-50 border border-green-200 rounded-md">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                <span className="text-sm text-green-700 font-medium">
-                  {t('form.birthDate.calculated', { age: calculatedAge })}
-                </span>
-              </div>
-            );
-          }
-          return null;
-        })()}
-      </div>
-
-      <Separator />
-
-      {/* Age Categories */}
+      {/* Age Section */}
       <div>
         <div className="flex items-center gap-2 mb-3">
           <h3 className="font-medium">{t('form.age')}</h3>
         </div>
         
+        {/* Birth Date Input */}
+        <div className="mb-4">
+          <p className="text-sm text-muted-foreground mb-2">
+            {t('form.birthDate.instruction')}
+          </p>
+          
+          <div className="inline-flex items-center gap-2 p-3 border rounded-lg bg-card">
+            {/* Year Dropdown */}
+            <div className="w-20">
+              <Select 
+                value={dateComponents.year} 
+                onValueChange={(value) => handleDateComponentChange('year', value)}
+              >
+                <SelectTrigger className="border-0 bg-transparent shadow-none focus:ring-1 focus:ring-primary">
+                  <SelectValue placeholder={t('form.birthDate.year')} />
+                </SelectTrigger>
+                <SelectContent>
+                  {yearOptions.map((y) => (
+                    <SelectItem key={y} value={y.toString()}>
+                      {y}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            
+            <div className="text-muted-foreground">-</div>
+            
+            {/* Month Dropdown */}
+            <div className="w-16">
+              <Select 
+                value={dateComponents.month} 
+                onValueChange={(value) => handleDateComponentChange('month', value)}
+              >
+                <SelectTrigger className="border-0 bg-transparent shadow-none focus:ring-1 focus:ring-primary">
+                  <SelectValue placeholder={t('form.birthDate.month')} />
+                </SelectTrigger>
+                <SelectContent>
+                  {monthOptions.map((m) => (
+                    <SelectItem key={m} value={m.toString()}>
+                      {m.toString().padStart(2, '0')}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            
+            <div className="text-muted-foreground">-</div>
+            
+            {/* Day Dropdown */}
+            <div className="w-16">
+              <Select 
+                value={dateComponents.day} 
+                onValueChange={(value) => handleDateComponentChange('day', value)}
+              >
+                <SelectTrigger className="border-0 bg-transparent shadow-none focus:ring-1 focus:ring-primary">
+                  <SelectValue placeholder={t('form.birthDate.day')} />
+                </SelectTrigger>
+                <SelectContent>
+                  {dayOptions.map((d) => (
+                    <SelectItem key={d} value={d.toString()}>
+                      {d.toString().padStart(2, '0')}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </div>
+        
+        {/* Age Categories */}
         <RadioGroup
           value={data.age}
           onValueChange={(value) => onDataChange("age", value)}
-          className="space-y-2"
+          className="grid grid-cols-2 gap-2"
         >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="29under" id="age-29under" />
@@ -265,89 +263,47 @@ export function AgeIncomeStep({ data, onDataChange }: AgeIncomeStepProps) {
         <RadioGroup
           value={data.annualSalary}
           onValueChange={(value) => onDataChange("annualSalary", value)}
-          className="grid grid-cols-1 md:grid-cols-2 gap-2"
+          className="grid grid-cols-2 gap-2"
         >
-          {/* Income options vary by visa type */}
-          {data.visaType === 'business' ? (
-            <>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="10m" id="income-10m" />
-                <Label htmlFor="income-10m" className="flex justify-between w-full">
-                  <span>{t('income.atLeast', { 
-                    amount: locale === 'en' ? formatEnMillionsJPY(10000000) : formatManEn(10000000, locale) 
-                  })}</span>
-                  <Badge variant="outline" className="bg-primary/10 ml-2">
-                    {fmtPoints(getAnnualSalaryPoints('10m'))}
-                  </Badge>
-                </Label>
-              </div>
-              
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="15m" id="income-15m" />
-                <Label htmlFor="income-15m" className="flex justify-between w-full">
-                  <span>{t('income.atLeast', { 
-                    amount: locale === 'en' ? formatEnMillionsJPY(15000000) : formatManEn(15000000, locale) 
-                  })}</span>
-                  <Badge variant="outline" className="bg-primary/10 ml-2">
-                    {fmtPoints(getAnnualSalaryPoints('15m'))}
-                  </Badge>
-                </Label>
-              </div>
-              
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="20m" id="income-20m" />
-                <Label htmlFor="income-20m" className="flex justify-between w-full">
-                  <span>{t('income.atLeast', { 
-                    amount: locale === 'en' ? formatEnMillionsJPY(20000000) : formatManEn(20000000, locale) 
-                  })}</span>
-                  <Badge variant="outline" className="bg-primary/10 ml-2">
-                    {fmtPoints(getAnnualSalaryPoints('20m'))}
-                  </Badge>
-                </Label>
-              </div>
-            </>
-          ) : (
-            <>
-              {/* Technical/Academic visa income options */}
-              {(data.age === "29under" || data.age === "30to34") && (
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="4m" id="income-4m" />
-                  <Label htmlFor="income-4m" className="flex justify-between w-full">
-                    <span>{t('income.atLeast', { 
-                      amount: locale === 'en' ? formatEnMillionsJPY(4000000) : formatManEn(4000000, locale) 
-                    })}</span>
-                    <Badge variant="outline" className="bg-primary/10 ml-2">
-                      {fmtPoints(getAnnualSalaryPoints('4m'))}
-                    </Badge>
-                  </Label>
-                </div>
-              )}
-              
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="5m" id="income-5m" />
-                <Label htmlFor="income-5m" className="flex justify-between w-full">
-                  <span>{t('income.atLeast', { 
-                    amount: locale === 'en' ? formatEnMillionsJPY(5000000) : formatManEn(5000000, locale) 
-                  })}</span>
-                  <Badge variant="outline" className="bg-primary/10 ml-2">
-                    {fmtPoints(getAnnualSalaryPoints('5m'))}
-                  </Badge>
-                </Label>
-              </div>
-              
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="6m" id="income-6m" />
-                <Label htmlFor="income-6m" className="flex justify-between w-full">
-                  <span>{t('income.atLeast', { 
-                    amount: locale === 'en' ? formatEnMillionsJPY(6000000) : formatManEn(6000000, locale) 
-                  })}</span>
-                  <Badge variant="outline" className="bg-primary/10 ml-2">
-                    {fmtPoints(getAnnualSalaryPoints('6m'))}
-                  </Badge>
-                </Label>
-              </div>
-            </>
-          )}
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="under3m" id="income-under3m" />
+            <Label htmlFor="income-under3m" className="flex justify-between w-full">
+              <span>300 만 엔 미만</span>
+              <Badge variant="outline" className="bg-muted/30 ml-2">{fmtPoints(getAnnualSalaryPoints('under3m'))}</Badge>
+            </Label>
+          </div>
+          
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="3to8m" id="income-3to8m" />
+            <Label htmlFor="income-3to8m" className="flex justify-between w-full">
+              <span>300 만 엔 ~ 800 만 엔 미만</span>
+              <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getAnnualSalaryPoints('3to8m'))}</Badge>
+            </Label>
+          </div>
+          
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="8m" id="income-8m" />
+            <Label htmlFor="income-8m" className="flex justify-between w-full">
+              <span>800 만 엔 이상</span>
+              <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getAnnualSalaryPoints('8m'))}</Badge>
+            </Label>
+          </div>
+          
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="9m" id="income-9m" />
+            <Label htmlFor="income-9m" className="flex justify-between w-full">
+              <span>900 만 엔 이상</span>
+              <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getAnnualSalaryPoints('9m'))}</Badge>
+            </Label>
+          </div>
+          
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="10m" id="income-10m" />
+            <Label htmlFor="income-10m" className="flex justify-between w-full">
+              <span>1,000 만 엔 이상</span>
+              <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getAnnualSalaryPoints('10m'))}</Badge>
+            </Label>
+          </div>
         </RadioGroup>
       </div>
     </div>

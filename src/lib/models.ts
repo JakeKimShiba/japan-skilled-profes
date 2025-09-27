@@ -177,6 +177,7 @@ export const licensePoints = {
   // Common for all visa types
   'national': 20,
   'other': 5,
+  'jp_national_per_license': 5,  // 일본 국가 자격증 1개당 점수
   'none': 0
 };
 
@@ -194,7 +195,9 @@ export const languagePoints = {
 
 export const specialPoints = {
   // Common for all visa types
-  'japanese_education': 10
+  'japanese_education': 10,
+  'innovation_bonus': 10,
+  'research_cost_bonus': 5
 };
 
 // Visa-specific bonus points  

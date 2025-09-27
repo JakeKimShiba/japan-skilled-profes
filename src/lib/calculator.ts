@@ -52,7 +52,7 @@ export function calculateTotalPoints(data: PointsData): number {
   // Calculate points for licenses
   const license = data.licenses.reduce((total, lic) => {
     return total + (licensePoints[lic as keyof typeof licensePoints] || 0);
-  }, 0) + (data.jpNationalLicenses * 5); // 5 points per Japanese national license
+  }, 0) + (data.jpNationalLicenses * licensePoints.jp_national_per_license); // Points per Japanese national license
   
   // Calculate points for language abilities
   // Map the value directly to the keys in languagePoints
@@ -65,8 +65,8 @@ export function calculateTotalPoints(data: PointsData): number {
   const universityBonus = data.universityEligible ? 10 : 0;
 
   // Calculate bonus points
-  const innovationBonusPoints = data.innovationBonus ? 10 : 0;
-  const researchCostBonusPoints = data.researchCostBonus ? 5 : 0;
+  const innovationBonusPoints = data.innovationBonus ? specialPoints.innovation_bonus : 0;
+  const researchCostBonusPoints = data.researchCostBonus ? specialPoints.research_cost_bonus : 0;
   
   // Calculate visa-specific bonus points
   let visaSpecificBonus = 0;
@@ -137,8 +137,8 @@ export function getCategoryPoints(data: PointsData) {
   }
   
   // Calculate bonus points
-  const innovationBonusPoints = data.innovationBonus ? 10 : 0;
-  const researchCostBonusPoints = data.researchCostBonus ? 5 : 0;
+  const innovationBonusPoints = data.innovationBonus ? specialPoints.innovation_bonus : 0;
+  const researchCostBonusPoints = data.researchCostBonus ? specialPoints.research_cost_bonus : 0;
   const bonusPoints = innovationBonusPoints + researchCostBonusPoints + (data.universityEligible ? 10 : 0);
   
   return {
@@ -155,7 +155,7 @@ export function getCategoryPoints(data: PointsData) {
           : 0),
     license: data.licenses.reduce((total, lic) => {
       return total + (licensePoints[lic as keyof typeof licensePoints] || 0);
-    }, 0) + (data.jpNationalLicenses * 5), // 5 points per Japanese national license
+    }, 0) + (data.jpNationalLicenses * licensePoints.jp_national_per_license), // Points per Japanese national license
     language: languagePoints[`japanese_${data.japaneseLanguage}` as keyof typeof languagePoints] || 0,
     special: (data.japaneseEducation ? specialPoints.japanese_education : 0) + bonusPoints
   };

@@ -8,7 +8,10 @@ import {
   EducationStep, 
   ExperienceStep, 
   AgeIncomeStep,
-  FormNavigation 
+  ResearchLicenseStep,
+  LanguageSpecialStep,
+  FormNavigation,
+  ProgressBar
 } from "@/components/form";
 
 interface PointsFormProps {
@@ -21,6 +24,8 @@ export function PointsForm({ data, setData }: PointsFormProps) {
   const fmtPoints = (n: number) => t('points.value', { value: n });
 
   const handleChange = (field: keyof PointsData, value: string | boolean | string[] | number) => {
+    console.log('📝 Form change:', field, '=', value);
+    
     const newData = {
       ...data,
       [field]: value,
@@ -32,6 +37,19 @@ export function PointsForm({ data, setData }: PointsFormProps) {
     }
     
     setData(newData);
+  };
+
+  const toggleArrayValue = (field: keyof PointsData, value: string) => {
+    const currentValues = [...(data[field] as string[])];
+    const index = currentValues.indexOf(value);
+    
+    if (index === -1) {
+      currentValues.push(value);
+    } else {
+      currentValues.splice(index, 1);
+    }
+    
+    handleChange(field, currentValues);
   };
 
   const steps = [
@@ -70,6 +88,8 @@ export function PointsForm({ data, setData }: PointsFormProps) {
   })();
 
   const renderStep = () => {
+    console.log('🎯 Rendering step:', currentStep, 'of', steps.length);
+    
     switch (currentStep) {
       case 0:
         return <EducationStep data={data} onDataChange={handleChange} />;
@@ -78,11 +98,20 @@ export function PointsForm({ data, setData }: PointsFormProps) {
       case 2:
         return <AgeIncomeStep data={data} onDataChange={handleChange} />;
       case 3:
-        // TODO: Research & License Step
-        return <div>Research & License Step - Coming Soon</div>;
+        return (
+          <ResearchLicenseStep 
+            data={data} 
+            onDataChange={handleChange}
+            toggleArrayValue={toggleArrayValue}
+          />
+        );
       case 4:
-        // TODO: Language & Special Step  
-        return <div>Language & Special Step - Coming Soon</div>;
+        return (
+          <LanguageSpecialStep 
+            data={data} 
+            onDataChange={handleChange}
+          />
+        );
       default:
         return null;
     }
@@ -95,16 +124,48 @@ export function PointsForm({ data, setData }: PointsFormProps) {
           <CardTitle className="text-xl text-primary max-w-[60%]">
             {t('form.title')}
           </CardTitle>
-          <div className="ml-auto flex items-center gap-2 text-sm">
-            <span className="text-muted-foreground hidden sm:inline">
-              {t(steps[currentStep].key)}
-            </span>
-            <span className="text-muted-foreground sm:hidden">
-              {t(steps[currentStep].shortKey)}
-            </span>
+          <div className="ml-auto flex items-center gap-3">
+            {/* Step Counter */}
+            <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                <span className="font-medium">{currentStep + 1}</span>
+                <span>/</span>
+                <span>{steps.length}</span>
+              </div>
+              <div className="hidden sm:block w-px h-4 bg-border"></div>
+            </div>
+            
+            {/* Current Step Title */}
+            <div className="flex items-center gap-2">
+              <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-primary/5 border border-primary/20 rounded-full">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-sm font-medium text-primary">
+                  {t(steps[currentStep].key)}
+                </span>
+              </div>
+              <div className="sm:hidden px-2 py-1 bg-primary/10 rounded-md">
+                <span className="text-xs font-medium text-primary">
+                  {t(steps[currentStep].shortKey)}
+                </span>
+              </div>
+            </div>
           </div>
         </div>
         
+        {/* Progress Bar at Top */}
+        <ProgressBar
+          currentStep={currentStep}
+          totalSteps={steps.length}
+          steps={steps}
+          onGoTo={goTo}
+        />
+      </CardHeader>
+
+      <CardContent className="space-y-6 pb-6">
+        {/* Step Content */}
+        {renderStep()}
+        
+        {/* Navigation Buttons at Bottom */}
         <FormNavigation
           currentStep={currentStep}
           totalSteps={steps.length}
@@ -112,12 +173,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
           onNext={goNext}
           onReset={goReset}
           canGoNext={canGoNext}
-          steps={steps}
         />
-      </CardHeader>
-
-      <CardContent className="space-y-6">
-        {renderStep()}
       </CardContent>
 
       {/* Mobile sticky summary bar */}
