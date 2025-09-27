@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { PointsForm } from "@/components/PointsForm";
+// import { PointsForm as PointsFormRefactored } from "@/components/PointsFormRefactored";
 import { PointsResult } from "@/components/PointsResult";
 import { InfoPanel } from "@/components/InfoPanel";
 import { PointsData, VisaType } from "@/lib/models";
@@ -20,10 +21,10 @@ function App() {
   // 초기 데이터 상태 정의 (비자 유형 선택 전 상태)
   const initialPointsData: PointsData = {
     visaType: null,
-    educationLevel: 'none',
-    workExperience: 'less3',
-    age: '40plus',
-    annualSalary: 'under3m',
+    educationLevel: '',
+    workExperience: '',
+    age: '',
+    annualSalary: '',
     researchAchievements: [],
     licenses: [],
     jpNationalLicenses: 0,
