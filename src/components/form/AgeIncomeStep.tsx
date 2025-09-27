@@ -2,11 +2,14 @@ import { useState, useEffect, useRef } from "react";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { PointsData, VisaType, agePoints, annualSalaryPoints } from "@/lib/models";
 import { useI18n } from "@/i18n";
 import { formatEnMillionsJPY, formatManEn } from "@/lib/utils";
+import { Warning } from "@phosphor-icons/react";
 
 interface AgeIncomeStepProps {
   data: PointsData;
@@ -254,22 +257,28 @@ export function AgeIncomeStep({ data, onDataChange }: AgeIncomeStepProps) {
           <h3 className="font-medium">{t('form.annualIncome')}</h3>
         </div>
         
-        <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg mb-3">
-          <p className="text-xs text-amber-700">
-            <span className="font-medium">{t('income.minimum.title')}</span> {t('income.minimum.description')}
-          </p>
-        </div>
+        <Alert className="mb-3 bg-amber-50 border-amber-200">
+          <Warning className="h-4 w-4 text-amber-600" />
+          <AlertDescription className="text-amber-700">
+            <span className="font-medium">최소 연수입 요건:</span> 300만엔 미만은 고도인재 비자 신청이 어렵습니다.
+          </AlertDescription>
+        </Alert>
 
         <RadioGroup
           value={data.annualSalary}
           onValueChange={(value) => onDataChange("annualSalary", value)}
           className="grid grid-cols-2 gap-2"
         >
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="under3m" id="income-under3m" />
-            <Label htmlFor="income-under3m" className="flex justify-between w-full">
+          <div className="flex items-center space-x-2 opacity-60">
+            <RadioGroupItem value="under3m" id="income-under3m" disabled />
+            <Label htmlFor="income-under3m" className="flex justify-between items-center w-full text-muted-foreground/70">
               <span>300 만 엔 미만</span>
-              <Badge variant="outline" className="bg-muted/30 ml-2">{fmtPoints(getAnnualSalaryPoints('under3m'))}</Badge>
+              <Badge 
+                variant="outline" 
+                className="bg-pink-50 text-pink-400 border-pink-200 hover:bg-pink-50"
+              >
+                비자 신청 불가
+              </Badge>
             </Label>
           </div>
           

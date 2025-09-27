@@ -298,7 +298,8 @@ export class SuggestionService {
    * Simulate a field change and calculate new total
    */
   private static simulateChange(data: PointsData, field: keyof PointsData, value: any): number {
-    return PointsCalculationService.calculateWithChange(data, field, value);
+    const result = PointsCalculationService.calculateFieldImpact(data, field, value);
+    return result.newPoints;
   }
 
   /**

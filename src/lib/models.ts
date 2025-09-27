@@ -154,14 +154,14 @@ export const researchPoints = {
     'patent_invention': 20,        // 특허 발명 1건 이상
     'official_journal': 20,        // 입국 전에 공식 기관에서 인정받은 연구에 종사했던 실적 3건 이상
     'academic_database': 20,       // 연구논문 실적에 대해서 일본의 국가 기관에서 이용되고 있는 학술 논문 데이터베이스에 등록되어 있는 논문 (신청인이 책임 저자제1저자일 경우에 한함) 3건 이상
-    'award_research': 20,          // 상기의 학문 이외에 상기 학문에 비교해 동등한 연구 실적이 있는 신청자가 이끄는 경우 (저명한 상의 수상이력 등) 관련 행정기관장의 의견을 들은 곳에서 법무대신이 개별로 포인트 부여 여부를 판단함
+    'award_research': 20,          // 상기의 학문 이외에 상기 항목들과 비교해 동등한 연구 실적이 있는 신청자가 이끄는 경우 (저명한 상의 수상이력 등) 관련 행정기관장의 의견을 들은 곳에서 법무대신이 개별로 포인트 부여 여부를 판단함
     'none': 0
   },
   technical: {
     'patent_invention': 15,        // 특허 발명 1건 이상 (Technical: 15점)
     'official_journal': 15,        // 입국 전에 공식 기관에서 인정받은 연구에 종사했던 실적 3건 이상 (Technical: 15점)
     'academic_database': 15,       // 연구논문 실적에 대해서 일본의 국가 기관에서 이용되고 있는 학술 논문 데이터베이스에 등록되어 있는 논문 3건 이상 (Technical: 15점)
-    'award_research': 15,          // 상기 학문에 비교해 동등한 연구 실적 (Technical: 15점)
+    'award_research': 15,          // 상기 항목들과 비교해 동등한 연구 실적 (Technical: 15점)
     'none': 0
   },
   business: {

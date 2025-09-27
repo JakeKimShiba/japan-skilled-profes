@@ -21,25 +21,35 @@ export interface ValidationWarning {
 
 /**
  * Validation service for form data and business rules
+ * Provides comprehensive validation with clear error and warning categorization
  */
 export class ValidationService {
   /**
    * Comprehensive validation of points data
+   * @param data - Points data to validate
+   * @returns Validation result with errors and warnings
    */
   static validatePointsData(data: PointsData): ValidationResult {
     const errors: ValidationError[] = [];
     const warnings: ValidationWarning[] = [];
 
-    // Basic field validation
+    // Only validate if we have a visa type selected
+    if (!data.visaType) {
+      return {
+        isValid: false,
+        errors: [{
+          field: 'visaType',
+          message: 'Visa type must be selected',
+          code: 'VISA_TYPE_REQUIRED'
+        }],
+        warnings: []
+      };
+    }
+
+    // Progressive validation based on completion
     errors.push(...this.validateRequiredFields(data));
-    
-    // Business rule validation
     errors.push(...this.validateBusinessRules(data));
-    
-    // Logic consistency validation
     warnings.push(...this.validateLogicalConsistency(data));
-    
-    // Optimization warnings
     warnings.push(...this.getOptimizationWarnings(data));
 
     return {
@@ -47,6 +57,29 @@ export class ValidationService {
       errors,
       warnings
     };
+  }
+
+  /**
+   * Quick validation for form step navigation
+   * @param data - Points data to validate
+   * @param step - Current form step
+   * @returns True if current step has valid data
+   */
+  static validateStep(data: PointsData, step: number): boolean {
+    switch (step) {
+      case 0: // Education
+        return !!data.educationLevel;
+      case 1: // Experience
+        return !!data.workExperience;
+      case 2: // Age & Income
+        return !!data.age && !!data.annualSalary;
+      case 3: // Research & Licenses
+        return true; // Optional fields
+      case 4: // Language & Special
+        return true; // Optional fields
+      default:
+        return true;
+    }
   }
 
   /**

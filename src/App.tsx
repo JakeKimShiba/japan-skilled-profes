@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
-// import { PointsForm } from "@/components/PointsForm";
-import { PointsForm } from "@/components/PointsFormRefactored";
+import { PointsForm } from "@/components/PointsForm";
 import { PointsResult } from "@/components/PointsResult";
 import { InfoPanel } from "@/components/InfoPanel";
 import { PointsData, VisaType } from "@/lib/models";
