@@ -50,11 +50,12 @@ export class ValidationService {
   }
 
   /**
-   * Validate required fields
+   * Validate required fields (only for final submission, not real-time calculation)
    */
   private static validateRequiredFields(data: PointsData): ValidationError[] {
     const errors: ValidationError[] = [];
 
+    // Only validate visa type as truly required for any calculation
     if (!data.visaType) {
       errors.push({
         field: 'visaType',
@@ -63,37 +64,8 @@ export class ValidationService {
       });
     }
 
-    if (!data.educationLevel) {
-      errors.push({
-        field: 'educationLevel',
-        message: '학력을 선택해주세요.',
-        code: 'REQUIRED_EDUCATION'
-      });
-    }
-
-    if (!data.workExperience) {
-      errors.push({
-        field: 'workExperience',
-        message: '경력을 선택해주세요.',
-        code: 'REQUIRED_EXPERIENCE'
-      });
-    }
-
-    if (!data.age) {
-      errors.push({
-        field: 'age',
-        message: '연령대를 선택해주세요.',
-        code: 'REQUIRED_AGE'
-      });
-    }
-
-    if (!data.annualSalary) {
-      errors.push({
-        field: 'annualSalary',
-        message: '연봉을 선택해주세요.',
-        code: 'REQUIRED_SALARY'
-      });
-    }
+    // Other fields are optional for progressive calculation
+    // They will show as warnings in getOptimizationWarnings instead
 
     return errors;
   }

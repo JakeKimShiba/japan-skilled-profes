@@ -6,11 +6,12 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { CheckCircle, Warning, Trophy, Download, Lightbulb } from "@phosphor-icons/react";
+import { calculateTotalPoints, getCategoryPoints, getQualificationStatus } from "@/lib/calculator";
 import { PointsData, VisaType } from "@/lib/models";
 import { useReactToPrint } from 'react-to-print';
 import { trackEvent } from '@/lib/analytics';
 import { useI18n } from "@/i18n";
-import { VisaCalculatorService } from "@/services";
+import { VisaCalculatorService, SuggestionService } from "@/services";
 
 interface PointsResultProps {
   data: PointsData;
@@ -18,14 +19,7 @@ interface PointsResultProps {
 
 export function PointsResult({ data }: PointsResultProps) {
   const { t } = useI18n();
-  const [totalPoints, setTotalPoints] = useState(0);
   const fmtPoints = (n: number) => t('points.value', { value: n });
-  const [categoryPoints, setCategoryPoints] = useState<Record<string, number>>({});
-  const [status, setStatus] = useState<{ qualified: boolean; expeditedPR: boolean; benefits: string[] }>({
-    qualified: false,
-    expeditedPR: false,
-    benefits: [],
-  });
   const prevTotalRef = useRef<number>(0);
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
   const resultRef = useRef<HTMLDivElement>(null);
@@ -60,27 +54,30 @@ export function PointsResult({ data }: PointsResultProps) {
     `
   });
 
-  // Calculate all values using the new service
-  const calculationResult = useMemo(() => {
-    return VisaCalculatorService.getDetailedAnalysis(data);
-  }, [data]);
+  // Use direct calculation functions for immediate response
+  const totalPoints = useMemo(() => calculateTotalPoints(data), [data]);
+  const categoryPoints = useMemo(() => getCategoryPoints(data), [data]);
+  const status = useMemo(() => {
+    const qualified = totalPoints >= 70;
+    const expeditedPR = totalPoints >= 80;
+    const benefits = [];
+    if (qualified) benefits.push(t('result.qualifiedBenefit') || '고도인재포인트제 해당');
+    if (expeditedPR) benefits.push(t('result.expeditedBenefit') || '영주권 신청 단축');
+    return { qualified, expeditedPR, benefits };
+  }, [totalPoints, t]);
 
+  // Track milestone thresholds once when crossing 70/80
   useEffect(() => {
-    const { totalPoints: total, categoryPoints: categories, qualificationStatus } = calculationResult;
-    
-    setTotalPoints(total);
-    setCategoryPoints(categories || {});
-    setStatus(qualificationStatus);
-    
-    // Track milestone thresholds once when crossing 70/80
     const prev = prevTotalRef.current;
-    if (prev < 80 && total >= 80) {
-      trackEvent('milestone_80_points', { total });
-    } else if (prev < 70 && total >= 70) {
-      trackEvent('milestone_70_points', { total });
+    if (prev < 80 && totalPoints >= 80) {
+      trackEvent('milestone_80_points', { total: totalPoints });
+    } else if (prev < 70 && totalPoints >= 70) {
+      trackEvent('milestone_70_points', { total: totalPoints });
     }
-    prevTotalRef.current = total;
-  }, [calculationResult]);
+    prevTotalRef.current = totalPoints;
+  }, [totalPoints, data]);
+
+
 
   const getBenefitLabel = (benefit: string) => {
     switch(benefit) {
@@ -152,8 +149,16 @@ export function PointsResult({ data }: PointsResultProps) {
 
 
 
-  // Use suggestions from the calculation result
-  const suggestions = calculationResult.suggestions || [];
+  // Get suggestions from service
+  const suggestions = useMemo(() => {
+    try {
+      const target = totalPoints >= 70 ? 80 : 70;
+      return SuggestionService.generateSuggestions(data, target);
+    } catch (error) {
+      console.error("Suggestion generation error:", error);
+      return [];
+    }
+  }, [data, totalPoints]);
   const target = totalPoints >= 70 ? 80 : 70;
   const gap = Math.max(0, target - totalPoints);
 

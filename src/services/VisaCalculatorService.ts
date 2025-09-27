@@ -14,15 +14,11 @@ export class VisaCalculatorService {
     // Validate input data
     const validation = ValidationService.validatePointsData(data);
     
-    // Calculate points if data is valid
-    const totalPoints = validation.isValid 
-      ? PointsCalculationService.calculateTotal(data)
-      : 0;
+    // Calculate points even if some fields are missing (for progressive calculation)
+    const totalPoints = PointsCalculationService.calculateTotal(data);
     
     // Get category breakdown
-    const categoryPoints = validation.isValid
-      ? PointsCalculationService.calculateByCategory(data)
-      : null;
+    const categoryPoints = PointsCalculationService.calculateByCategory(data);
     
     // Get qualification status
     const qualificationStatus = PointsCalculationService.getQualificationStatus(totalPoints);
