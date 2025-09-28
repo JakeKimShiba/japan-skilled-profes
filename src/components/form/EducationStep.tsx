@@ -96,7 +96,8 @@ export function EducationStep({ data, onDataChange }: EducationStepProps) {
               onSelect={(opt) => {
                 if (opt) {
                   onDataChange("university", opt.name);
-                  onDataChange("universityEligible", opt.eligible);
+                  // Automatically check the eligibility when selecting a university
+                  onDataChange("universityEligible", true);
                 } else {
                   onDataChange("university", "");
                   onDataChange("universityEligible", false);

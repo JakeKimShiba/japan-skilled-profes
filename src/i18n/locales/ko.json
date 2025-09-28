@@ -266,8 +266,8 @@
   "research.patents.detailed": "특허 발명 1건 이상",
   "research.official.detailed": "입국 전에 공식 기관에서 인정받은 연구에 종사했던 실적 3건 이상",
   "research.papers.detailed": "연구논문 실적에 대해서 일본의 국가 기관에서 이용되고 있는 학술 논문 데이터베이스에 등록되어 있는 논문 (신청인이 책임 저자제1저자일 경우에 한함) 3건 이상",
-  "research.awards.detailed": "상기의 학문 이외에 상기 항목들과 비교해 동등한 연구 실적이 있는 신청자가 이끄는 경우 (저명한 상의 수상이력 등) 관련 행정기관장의 의견을 들은 곳에서 법무대신이 개별로 포인트 부여 여부를 판단함",
-  "research.technical.equivalent": "상기 항목들과 비교해 동등한 연구 실적",
+  "research.awards.detailed": "상기의 학문 이외에 상기 항목들과 비교해 동등한 수준의 연구 실적이 있는 신청자가 이끄는 경우 (저명한 상의 수상이력 등) 관련 행정기관장의 의견을 들은 곳에서 법무대신이 개별로 포인트 부여 여부를 판단함",
+  "research.technical.equivalent": "상기 항목들과 비교해 동등한 수준의 연구 실적",
   "research.multiple.bonus": "📊 점수 적용:",
   "research.multiple.message": "2개 이상 연구 실적 선택으로 총 25점 획득!",
   "visa.select.other": "다른 비자 유형 선택"

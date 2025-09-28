@@ -35,8 +35,6 @@ function App() {
     japaneseEducation: false,
     university: '',
     universityEligible: false,
-    academicUniversityBonus: 'none',
-    businessInvestmentBonus: 'none',
     contractResearchBonus: false,
     innovativeFieldBonus: false
   };

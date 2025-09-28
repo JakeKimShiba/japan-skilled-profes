@@ -30,55 +30,105 @@ export function ExperienceStep({ data, onDataChange }: ExperienceStepProps) {
         onValueChange={(value) => onDataChange("workExperience", value)}
         className="grid grid-cols-1 md:grid-cols-2 gap-2"
       >
-        <div className="flex items-center space-x-2">
-          <RadioGroupItem value="10plus" id="work-10plus" />
-          <Label htmlFor="work-10plus" className="flex justify-between w-full">
-            <span>{t('work.10plus')}</span>
-            <Badge variant="outline" className="bg-primary/10 ml-2">
-              {fmtPoints(getWorkExperiencePoints('10plus'))}
-            </Badge>
-          </Label>
-        </div>
+        {/* Academic 비자: 간단한 구조 (7년 이상이 최고) */}
+        {data.visaType === 'academic' && (
+          <>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="7plus" id="work-7plus" />
+              <Label htmlFor="work-7plus" className="flex justify-between w-full">
+                <span>{t('work.7plus')}</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">
+                  {fmtPoints(getWorkExperiencePoints('7plus'))}
+                </Badge>
+              </Label>
+            </div>
+            
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="5to7" id="work-5to7" />
+              <Label htmlFor="work-5to7" className="flex justify-between w-full">
+                <span>{t('work.5to7')}</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">
+                  {fmtPoints(getWorkExperiencePoints('5to7'))}
+                </Badge>
+              </Label>
+            </div>
+            
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="3to5" id="work-3to5" />
+              <Label htmlFor="work-3to5" className="flex justify-between w-full">
+                <span>{t('work.3to5')}</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">
+                  {fmtPoints(getWorkExperiencePoints('3to5'))}
+                </Badge>
+              </Label>
+            </div>
+            
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="less3" id="work-less3" />
+              <Label htmlFor="work-less3" className="flex justify-between w-full">
+                <span>{t('work.less3')}</span>
+                <Badge variant="outline" className="bg-muted/30 ml-2">
+                  {fmtPoints(getWorkExperiencePoints('less3'))}
+                </Badge>
+              </Label>
+            </div>
+          </>
+        )}
         
-        <div className="flex items-center space-x-2">
-          <RadioGroupItem value="7to10" id="work-7to10" />
-          <Label htmlFor="work-7to10" className="flex justify-between w-full">
-            <span>{t('work.7to10')}</span>
-            <Badge variant="outline" className="bg-primary/10 ml-2">
-              {fmtPoints(getWorkExperiencePoints('7to10'))}
-            </Badge>
-          </Label>
-        </div>
-        
-        <div className="flex items-center space-x-2">
-          <RadioGroupItem value="5to7" id="work-5to7" />
-          <Label htmlFor="work-5to7" className="flex justify-between w-full">
-            <span>{t('work.5to7')}</span>
-            <Badge variant="outline" className="bg-primary/10 ml-2">
-              {fmtPoints(getWorkExperiencePoints('5to7'))}
-            </Badge>
-          </Label>
-        </div>
-        
-        <div className="flex items-center space-x-2">
-          <RadioGroupItem value="3to5" id="work-3to5" />
-          <Label htmlFor="work-3to5" className="flex justify-between w-full">
-            <span>{t('work.3to5')}</span>
-            <Badge variant="outline" className="bg-primary/10 ml-2">
-              {fmtPoints(getWorkExperiencePoints('3to5'))}
-            </Badge>
-          </Label>
-        </div>
-        
-        <div className="flex items-center space-x-2">
-          <RadioGroupItem value="under3" id="work-under3" />
-          <Label htmlFor="work-under3" className="flex justify-between w-full">
-            <span>{t('work.under3')}</span>
-            <Badge variant="outline" className="bg-muted/30 ml-2">
-              {fmtPoints(0)}
-            </Badge>
-          </Label>
-        </div>
+        {/* Technical & Business 비자: 상세 구조 (10년 이상까지) */}
+        {(data.visaType === 'technical' || data.visaType === 'business') && (
+          <>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="10plus" id="work-10plus" />
+              <Label htmlFor="work-10plus" className="flex justify-between w-full">
+                <span>{t('work.10plus')}</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">
+                  {fmtPoints(getWorkExperiencePoints('10plus'))}
+                </Badge>
+              </Label>
+            </div>
+            
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="7to10" id="work-7to10" />
+              <Label htmlFor="work-7to10" className="flex justify-between w-full">
+                <span>{t('work.7to10')}</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">
+                  {fmtPoints(getWorkExperiencePoints('7to10'))}
+                </Badge>
+              </Label>
+            </div>
+            
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="5to7" id="work-5to7" />
+              <Label htmlFor="work-5to7" className="flex justify-between w-full">
+                <span>{t('work.5to7')}</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">
+                  {fmtPoints(getWorkExperiencePoints('5to7'))}
+                </Badge>
+              </Label>
+            </div>
+            
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="3to5" id="work-3to5" />
+              <Label htmlFor="work-3to5" className="flex justify-between w-full">
+                <span>{t('work.3to5')}</span>
+                <Badge variant="outline" className="bg-primary/10 ml-2">
+                  {fmtPoints(getWorkExperiencePoints('3to5'))}
+                </Badge>
+              </Label>
+            </div>
+            
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="less3" id="work-less3" />
+              <Label htmlFor="work-less3" className="flex justify-between w-full">
+                <span>{t('work.less3')}</span>
+                <Badge variant="outline" className="bg-muted/30 ml-2">
+                  {fmtPoints(getWorkExperiencePoints('less3'))}
+                </Badge>
+              </Label>
+            </div>
+          </>
+        )}
       </RadioGroup>
     </div>
   );

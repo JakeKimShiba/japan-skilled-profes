@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Badge } from "@/components/ui/badge";
@@ -7,6 +7,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { PointsData, VisaType, agePoints, annualSalaryPoints } from "@/lib/models";
+import { PointsCalculationService } from "@/services/PointsCalculationService";
 import { useI18n } from "@/i18n";
 import { formatEnMillionsJPY, formatManEn } from "@/lib/utils";
 import { Warning } from "@phosphor-icons/react";
@@ -92,6 +93,47 @@ export function AgeIncomeStep({ data, onDataChange }: AgeIncomeStepProps) {
     } catch {
       return null;
     }
+  };
+
+  // Get available salary options based on age and visa type
+  const availableSalaryOptions = useMemo(() => {
+    if (!data.visaType || !data.age) return [];
+    
+    if (data.visaType === 'business') {
+      return ['under10m', '10m', '15m', '20m', '25m', '30m'];
+    }
+    
+    return PointsCalculationService.getAvailableSalaryOptions(data.age, data.visaType);
+  }, [data.age, data.visaType]);
+
+  // Reset salary selection if current selection is not available for new age/visa
+  useEffect(() => {
+    if (data.annualSalary && availableSalaryOptions.length > 0 && !availableSalaryOptions.includes(data.annualSalary)) {
+      onDataChange("annualSalary", "");
+    }
+  }, [availableSalaryOptions, data.annualSalary, onDataChange]);
+
+  // Generate salary option labels
+  const getSalaryLabel = (option: string): string => {
+    const labels: { [key: string]: string } = {
+      'under3m': '300만엔 미만',
+      'under10m': '1,000만엔 미만',
+      '3to5m': '300만엔 ~ 500만엔 미만',
+      '3to6m': '300만엔 ~ 600만엔 미만', 
+      '3to8m': '300만엔 ~ 800만엔 미만',
+      '4m': '400만엔 이상',
+      '5m': '500만엔 이상',
+      '6m': '600만엔 이상',
+      '7m': '700만엔 이상',
+      '8m': '800만엔 이상',
+      '9m': '900만엔 이상',
+      '10m': '1,000만엔 이상',
+      '15m': '1,500만엔 이상',
+      '20m': '2,000만엔 이상',
+      '25m': '2,500만엔 이상',
+      '30m': '3,000만엔 이상'
+    };
+    return labels[option] || option;
   };
 
   // Generate date options
@@ -269,50 +311,43 @@ export function AgeIncomeStep({ data, onDataChange }: AgeIncomeStepProps) {
           onValueChange={(value) => onDataChange("annualSalary", value)}
           className="grid grid-cols-2 gap-2"
         >
-          <div className="flex items-center space-x-2 opacity-60">
-            <RadioGroupItem value="under3m" id="income-under3m" disabled />
-            <Label htmlFor="income-under3m" className="flex justify-between items-center w-full text-muted-foreground/70">
-              <span>300 만 엔 미만</span>
-              <Badge 
-                variant="outline" 
-                className="bg-pink-50 text-pink-400 border-pink-200 hover:bg-pink-50"
+          {availableSalaryOptions.map((option) => {
+            const isIneligible = option === 'under3m' || option === 'under10m';
+            const points = getAnnualSalaryPoints(option);
+            
+            return (
+              <div 
+                key={option} 
+                className={`flex items-center space-x-2 ${isIneligible ? 'opacity-60' : ''}`}
               >
-                비자 신청 불가
-              </Badge>
-            </Label>
-          </div>
-          
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="3to8m" id="income-3to8m" />
-            <Label htmlFor="income-3to8m" className="flex justify-between w-full">
-              <span>300 만 엔 ~ 800 만 엔 미만</span>
-              <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getAnnualSalaryPoints('3to8m'))}</Badge>
-            </Label>
-          </div>
-          
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="8m" id="income-8m" />
-            <Label htmlFor="income-8m" className="flex justify-between w-full">
-              <span>800 만 엔 이상</span>
-              <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getAnnualSalaryPoints('8m'))}</Badge>
-            </Label>
-          </div>
-          
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="9m" id="income-9m" />
-            <Label htmlFor="income-9m" className="flex justify-between w-full">
-              <span>900 만 엔 이상</span>
-              <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getAnnualSalaryPoints('9m'))}</Badge>
-            </Label>
-          </div>
-          
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="10m" id="income-10m" />
-            <Label htmlFor="income-10m" className="flex justify-between w-full">
-              <span>1,000 만 엔 이상</span>
-              <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(getAnnualSalaryPoints('10m'))}</Badge>
-            </Label>
-          </div>
+                <RadioGroupItem 
+                  value={option} 
+                  id={`income-${option}`} 
+                  disabled={isIneligible}
+                />
+                <Label 
+                  htmlFor={`income-${option}`} 
+                  className={`flex justify-between items-center w-full ${
+                    isIneligible ? 'text-muted-foreground/70' : ''
+                  }`}
+                >
+                  <span>{getSalaryLabel(option)}</span>
+                  {isIneligible ? (
+                    <Badge 
+                      variant="outline" 
+                      className="bg-pink-50 text-pink-400 border-pink-200 hover:bg-pink-50"
+                    >
+                      비자 신청 불가
+                    </Badge>
+                  ) : (
+                    <Badge variant="outline" className="bg-primary/10 ml-2">
+                      {fmtPoints(points)}
+                    </Badge>
+                  )}
+                </Label>
+              </div>
+            );
+          })}
         </RadioGroup>
       </div>
     </div>

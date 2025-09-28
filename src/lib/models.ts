@@ -30,9 +30,7 @@ export interface PointsData {
   
   // Visa-specific bonuses
   academicResearchBonus: boolean; // Academic visa: Research achievements (25 points)
-  academicUniversityBonus: string; // Academic visa: Special university bonus (10-15 points)
   businessExecutiveBonus: string; // Business visa: Executive position bonus (5-10 points)
-  businessInvestmentBonus: string; // Business visa: Investment/export performance (5-15 points)
   
   // Contract organization bonuses (Academic)
   contractResearchBonus: boolean; // Contract organization research performance (5 points)
@@ -117,17 +115,14 @@ export const agePoints = {
 
 export const annualSalaryPoints = {
   academic: {
-    'under3m': 0,     // 300만엔 미만
-    '3to5m': 10,      // 300만엔~500만엔 미만 
-    '3to6m': 15,      // 300만엔~600만엔 미만  
-    '3to8m': 20,      // 300만엔~800만엔 미만 
-    '4m': 10,         // 400만엔 이상 (Academic 관대한 점수)
-    '5m': 15,         // 500만엔 이상 
-    '6m': 20,         // 600만엔 이상 
-    '7m': 25,         // 700만엔 이상 
-    '8m': 30,         // 800만엔 이상 
-    '9m': 35,         // 900만엔 이상 
-    '10m': 40         // 1000만엔 이상
+    'under3m': 0,     // 300만엔 미만 (점수 없음)
+    '4m': 10,         // 400만엔 이상 (29세 이하만 가능)
+    '5m': 15,         // 500만엔 이상 (29세 이하, 30-34세 가능)
+    '6m': 20,         // 600만엔 이상 (39세 이하까지 가능)
+    '7m': 25,         // 700만엔 이상 (39세 이하까지 가능)
+    '8m': 30,         // 800만엔 이상 (모든 나이)
+    '9m': 35,         // 900만엔 이상 (모든 나이)
+    '10m': 40         // 1000만엔 이상 (모든 나이)
   },
   technical: {
     'under3m': 0,     // 300만엔 미만 (점수 없음)
@@ -154,14 +149,14 @@ export const researchPoints = {
     'patent_invention': 20,        // 특허 발명 1건 이상
     'official_journal': 20,        // 입국 전에 공식 기관에서 인정받은 연구에 종사했던 실적 3건 이상
     'academic_database': 20,       // 연구논문 실적에 대해서 일본의 국가 기관에서 이용되고 있는 학술 논문 데이터베이스에 등록되어 있는 논문 (신청인이 책임 저자제1저자일 경우에 한함) 3건 이상
-    'award_research': 20,          // 상기의 학문 이외에 상기 항목들과 비교해 동등한 연구 실적이 있는 신청자가 이끄는 경우 (저명한 상의 수상이력 등) 관련 행정기관장의 의견을 들은 곳에서 법무대신이 개별로 포인트 부여 여부를 판단함
+    'award_research': 20,          // 상기의 학문 이외에 상기 항목들과 비교해 동등한 수준의 연구 실적이 있는 신청자가 이끄는 경우 (저명한 상의 수상이력 등) 관련 행정기관장의 의견을 들은 곳에서 법무대신이 개별로 포인트 부여 여부를 판단함
     'none': 0
   },
   technical: {
     'patent_invention': 15,        // 특허 발명 1건 이상 (Technical: 15점)
     'official_journal': 15,        // 입국 전에 공식 기관에서 인정받은 연구에 종사했던 실적 3건 이상 (Technical: 15점)
     'academic_database': 15,       // 연구논문 실적에 대해서 일본의 국가 기관에서 이용되고 있는 학술 논문 데이터베이스에 등록되어 있는 논문 3건 이상 (Technical: 15점)
-    'award_research': 15,          // 상기 항목들과 비교해 동등한 연구 실적 (Technical: 15점)
+    'award_research': 15,          // 상기 항목들과 비교해 동등한 수준의 연구 실적 (Technical: 15점)
     'none': 0
   },
   business: {
@@ -205,8 +200,6 @@ export const visaSpecificBonusPoints = {
   academic: {
     // 고도 학술 연구 활동(イ)의 연구 실적 점수는 calculator.ts에서 직접 처리
     // 1개: 20점, 2개 이상: 25점 (별도 보너스 없음)
-    'university_top': 15,            // Top-tier university contract
-    'university_recognized': 10,     // Recognized university contract  
     'contract_research': 5,          // Contract organization research
     'innovative_field': 10,          // Innovative business field
     'none': 0

@@ -146,6 +146,25 @@ export class PointsCalculationService {
   }
 
   /**
+   * Sort salary options by income amount (low to high)
+   * @private
+   */
+  private static sortSalaryOptions(options: string[]): string[] {
+    const salaryOrder = [
+      'under3m', 'under10m', 
+      '3to5m', '3to6m', '3to8m', 
+      '4m', '5m', '6m', '7m', '8m', '9m', '10m', 
+      '15m', '20m', '25m', '30m'
+    ];
+    
+    return options.sort((a, b) => {
+      const indexA = salaryOrder.indexOf(a);
+      const indexB = salaryOrder.indexOf(b);
+      return indexA - indexB;
+    });
+  }
+
+  /**
    * Get available salary options based on visa type and age
    * @param ageCategory - Age category string
    * @param visaType - Visa type (academic or technical)
@@ -158,7 +177,24 @@ export class PointsCalculationService {
     if (!ageNum) return [];
 
     if (visaType === 'academic') {
-      return ['under3m', '3to5m', '3to6m', '3to8m', '4m', '5m', '6m', '7m', '8m', '9m', '10m'];
+      const options = ['under3m'];
+      
+      // Age-based restrictions for academic visa (same as technical)
+      if (ageNum <= 29) {
+        options.push('4m', '5m');
+      }
+      if (ageNum <= 34) {
+        options.push('5m');
+      }
+      if (ageNum <= 39) {
+        options.push('6m', '7m');
+      }
+      
+      // Available for all ages
+      options.push('8m', '9m', '10m');
+      
+      // Remove duplicates and sort by income amount
+      return this.sortSalaryOptions([...new Set(options)]);
     }
 
     if (visaType === 'technical') {
@@ -178,8 +214,13 @@ export class PointsCalculationService {
       // Available for all ages
       options.push('8m', '9m', '10m');
       
-      // Remove duplicates and sort
-      return [...new Set(options)].sort();
+      // Remove duplicates and sort by income amount
+      return this.sortSalaryOptions([...new Set(options)]);
+    }
+
+    if (visaType === 'business') {
+      const options = ['under10m', '10m', '15m', '20m', '25m', '30m'];
+      return this.sortSalaryOptions(options);
     }
 
     return [];
