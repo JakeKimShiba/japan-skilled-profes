@@ -24,8 +24,6 @@ export function PointsForm({ data, setData }: PointsFormProps) {
   const fmtPoints = (n: number) => t('points.value', { value: n });
 
   const handleChange = (field: keyof PointsData, value: string | boolean | string[] | number) => {
-    console.log('📝 Form change:', field, '=', value);
-    
     const newData = {
       ...data,
       [field]: value,
@@ -35,6 +33,15 @@ export function PointsForm({ data, setData }: PointsFormProps) {
     if (field === 'japaneseLanguage' && value === 'n2') {
       newData.japaneseEducation = false;
     }
+    
+    setData(newData);
+  };
+
+  const handleBatchChange = (updates: Partial<PointsData>) => {
+    const newData = {
+      ...data,
+      ...updates,
+    };
     
     setData(newData);
   };
@@ -78,7 +85,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
   const renderStep = () => {
     switch (currentStep) {
       case 0:
-        return <EducationStep data={data} onDataChange={handleChange} />;
+        return <EducationStep data={data} onDataChange={handleChange} onBatchChange={handleBatchChange} />;
       case 1:
         return <ExperienceStep data={data} onDataChange={handleChange} />;
       case 2:

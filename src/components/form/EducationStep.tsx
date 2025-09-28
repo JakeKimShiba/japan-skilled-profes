@@ -9,11 +9,14 @@ import UniversitySelector from "@/components/UniversitySelector";
 interface EducationStepProps {
   data: PointsData;
   onDataChange: (field: keyof PointsData, value: string | boolean) => void;
+  onBatchChange?: (updates: Partial<PointsData>) => void;
 }
 
-export function EducationStep({ data, onDataChange }: EducationStepProps) {
+export function EducationStep({ data, onDataChange, onBatchChange }: EducationStepProps) {
   const { t } = useI18n();
   const fmtPoints = (n: number) => t('points.value', { value: n });
+  
+
 
   // Get education points from model
   const getEducationPoints = (level: string) => {
@@ -94,13 +97,30 @@ export function EducationStep({ data, onDataChange }: EducationStepProps) {
             <UniversitySelector
               selectedName={data.university}
               onSelect={(opt) => {
+
                 if (opt) {
-                  onDataChange("university", opt.name);
-                  // Automatically check the eligibility when selecting a university
-                  onDataChange("universityEligible", true);
+                  // Use batch update to set both fields at once
+                  if (onBatchChange) {
+                    onBatchChange({
+                      university: opt.name,
+                      universityEligible: true
+                    });
+                  } else {
+                    // Fallback to individual updates
+                    onDataChange("university", opt.name);
+                    onDataChange("universityEligible", true);
+                  }
                 } else {
-                  onDataChange("university", "");
-                  onDataChange("universityEligible", false);
+                  if (onBatchChange) {
+                    onBatchChange({
+                      university: "",
+                      universityEligible: false
+                    });
+                  } else {
+                    // Fallback to individual updates
+                    onDataChange("university", "");
+                    onDataChange("universityEligible", false);
+                  }
                 }
               }}
             />

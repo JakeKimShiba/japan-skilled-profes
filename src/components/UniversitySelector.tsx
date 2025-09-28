@@ -98,6 +98,8 @@ export default function UniversitySelector({ onSelect, selectedName }: { onSelec
   const [options, setOptions] = useState<Option[]>([]);
   const [query, setQuery] = useState('');
   const [filtered, setFiltered] = useState<Option[]>([]);
+  
+
 
   useEffect(() => {
     // Build a path that respects Vite's base URL (works for GitHub Pages and dev)
@@ -160,11 +162,19 @@ export default function UniversitySelector({ onSelect, selectedName }: { onSelec
       <div className="mt-2 max-h-56 overflow-auto border rounded">
         {filtered.length === 0 && <div className="p-2 text-sm text-muted-foreground">{t('university.noResults')}</div>}
         {filtered.map((o) => (
-          <button
+          <div
             key={o.name}
-            type="button"
-            className="w-full text-left p-2 hover:bg-muted flex items-center justify-between"
+            className="w-full text-left p-2 hover:bg-muted flex items-center justify-between cursor-pointer"
             onClick={() => onSelect(o)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                onSelect(o);
+              }
+            }}
+            tabIndex={0}
+            role="option"
+            aria-selected={selectedName === o.name}
           >
             <div className="flex items-center gap-3 w-full">
               {/* Flag column */}
@@ -197,12 +207,13 @@ export default function UniversitySelector({ onSelect, selectedName }: { onSelec
                   type="radio"
                   name="university-select"
                   checked={selectedName === o.name}
-                  readOnly
+                  onChange={() => {}}
+                  style={{ pointerEvents: 'none' }}
                   aria-label={t('university.selectAria', { name: o.name })}
                 />
               </div>
              </div>
-           </button>
+           </div>
          ))}
        </div>
      </div>
