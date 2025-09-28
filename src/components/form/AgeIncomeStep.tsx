@@ -115,25 +115,9 @@ export function AgeIncomeStep({ data, onDataChange }: AgeIncomeStepProps) {
 
   // Generate salary option labels
   const getSalaryLabel = (option: string): string => {
-    const labels: { [key: string]: string } = {
-      'under3m': '300만엔 미만',
-      'under10m': '1,000만엔 미만',
-      '3to5m': '300만엔 ~ 500만엔 미만',
-      '3to6m': '300만엔 ~ 600만엔 미만', 
-      '3to8m': '300만엔 ~ 800만엔 미만',
-      '4m': '400만엔 이상',
-      '5m': '500만엔 이상',
-      '6m': '600만엔 이상',
-      '7m': '700만엔 이상',
-      '8m': '800만엔 이상',
-      '9m': '900만엔 이상',
-      '10m': '1,000만엔 이상',
-      '15m': '1,500만엔 이상',
-      '20m': '2,000만엔 이상',
-      '25m': '2,500만엔 이상',
-      '30m': '3,000만엔 이상'
-    };
-    return labels[option] || option;
+    // Use translation keys for salary levels
+    const translationKey = `salary.level.${option}`;
+    return t(translationKey) || option;
   };
 
   // Generate date options
@@ -302,7 +286,7 @@ export function AgeIncomeStep({ data, onDataChange }: AgeIncomeStepProps) {
         <Alert className="mb-3 bg-amber-50 border-amber-200">
           <Warning className="h-4 w-4 text-amber-600" />
           <AlertDescription className="text-amber-700">
-            <span className="font-medium">최소 연수입 요건:</span> 300만엔 미만은 고도인재 비자 신청이 어렵습니다.
+            <span className="font-medium">{t('income.minimum.title')}</span> {t('income.minimum.description')}
           </AlertDescription>
         </Alert>
 
@@ -337,7 +321,7 @@ export function AgeIncomeStep({ data, onDataChange }: AgeIncomeStepProps) {
                       variant="outline" 
                       className="bg-pink-50 text-pink-400 border-pink-200 hover:bg-pink-50"
                     >
-                      비자 신청 불가
+                      {t('warning.visa.ineligible')}
                     </Badge>
                   ) : (
                     <Badge variant="outline" className="bg-primary/10 ml-2">
