@@ -293,7 +293,7 @@ export function AgeIncomeStep({ data, onDataChange }: AgeIncomeStepProps) {
         <RadioGroup
           value={data.annualSalary}
           onValueChange={(value) => onDataChange("annualSalary", value)}
-          className="grid grid-cols-2 gap-2"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-2"
         >
           {availableSalaryOptions.map((option) => {
             const isIneligible = option === 'under3m' || option === 'under10m';
