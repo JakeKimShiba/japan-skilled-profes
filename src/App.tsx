@@ -196,63 +196,113 @@ function App() {
                   ) : (
                     <div className="space-y-4 transition-all duration-500 ease-in-out">
                       {/* Selected Visa Card - Expanded */}
-                      <div className="flex justify-center">
-                        <div className={`relative p-8 border-2 rounded-xl shadow-lg transition-all duration-300 ${
-                          pointsData.visaType === 'academic' 
-                            ? 'border-blue-500 bg-blue-50/50 ring-2 ring-blue-200' 
-                            : pointsData.visaType === 'technical'
-                            ? 'border-green-500 bg-green-50/50 ring-2 ring-green-200'
-                            : 'border-purple-500 bg-purple-50/50 ring-2 ring-purple-200'
-                        }`}>
-                          <div className="flex flex-col items-center text-center space-y-4">
-                            <div className={`w-16 h-16 rounded-full flex items-center justify-center ${
-                              pointsData.visaType === 'academic' ? 'bg-blue-500' 
-                              : pointsData.visaType === 'technical' ? 'bg-green-500'
-                              : 'bg-purple-500'
-                            }`}>
-                              <span className="text-white text-2xl">
-                                {pointsData.visaType === 'academic' ? '🎓' 
-                                 : pointsData.visaType === 'technical' ? '⚙️'
-                                 : '💼'}
-                              </span>
-                            </div>
-                            <div>
-                              <div className="font-bold text-xl text-gray-900">
-                                {pointsData.visaType === 'academic' ? t('visa.academic.type')
-                                 : pointsData.visaType === 'technical' ? t('visa.technical.type')
-                                 : t('visa.business.type')}
-                              </div>
-                              <div className={`text-base font-medium ${
-                                pointsData.visaType === 'academic' ? 'text-blue-600' 
-                                : pointsData.visaType === 'technical' ? 'text-green-600'
-                                : 'text-purple-600'
-                              }`}>
-                                {pointsData.visaType === 'academic' ? t('visa.academic.jpName')
-                                 : pointsData.visaType === 'technical' ? t('visa.technical.jpName')
-                                 : t('visa.business.jpName')}
-                              </div>
-                              <div className="text-sm text-gray-500 mt-2">
-                                {pointsData.visaType === 'academic' ? t('visa.academic.description')
-                                 : pointsData.visaType === 'technical' ? t('visa.technical.description')
-                                 : t('visa.business.description')}
+                      {/* Mobile: Simple selected visa card */}
+                      <div className="md:hidden flex justify-center px-4">
+                        {(() => {
+                          const visaType = pointsData.visaType;
+                          const config = {
+                            academic: { color: 'bg-blue-500', icon: '🎓', border: 'border-blue-500', ring: 'ring-blue-200', textColor: 'text-blue-600' },
+                            technical: { color: 'bg-green-500', icon: '⚙️', border: 'border-green-500', ring: 'ring-green-200', textColor: 'text-green-600' },
+                            business: { color: 'bg-purple-500', icon: '💼', border: 'border-purple-500', ring: 'ring-purple-200', textColor: 'text-purple-600' }
+                          }[visaType];
+                          
+                          return (
+                            <div className={`bg-white rounded-xl border-2 ${config.border} ring-2 ${config.ring} p-6 w-full max-w-sm shadow-lg relative`}>
+                              <div className="flex flex-col items-center text-center space-y-3">
+                                <div className={`w-14 h-14 rounded-full flex items-center justify-center ${config.color}`}>
+                                  <span className="text-white text-xl">{config.icon}</span>
+                                </div>
+                                <div>
+                                  <div className="font-bold text-lg text-gray-900">
+                                    {t(`visa.${visaType}.type`)}
+                                  </div>
+                                  <div className={`text-sm font-medium ${config.textColor} mt-1`}>
+                                    {t(`visa.${visaType}.jpName`)}
+                                  </div>
+                                  <div className="text-xs text-gray-500 mt-2">
+                                    {t(`visa.${visaType}.description`)}
+                                  </div>
+                                </div>
+                                <div className="absolute -top-2 -right-2 w-7 h-7 bg-white rounded-full flex items-center justify-center shadow-md border-2 border-current">
+                                  <span className="text-xs">✓</span>
+                                </div>
                               </div>
                             </div>
-                            <div className="absolute -top-3 -right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md border-2 border-current">
-                              <span className="text-sm">✓</span>
-                            </div>
-                          </div>
+                          );
+                        })()}
+                      </div>
+                      
+                      {/* Desktop: Carousel-style visa type display */}
+                      <div className="hidden md:block">
+                        <div className="flex items-center justify-center gap-6 px-8">
+                          {(['academic', 'technical', 'business'] as const).map((visaType) => {
+                            const isSelected = visaType === pointsData.visaType;
+                            const config = {
+                              academic: { color: 'bg-blue-500', icon: '🎓', border: 'border-blue-500', ring: 'ring-blue-200', textColor: 'text-blue-600' },
+                              technical: { color: 'bg-green-500', icon: '⚙️', border: 'border-green-500', ring: 'ring-green-200', textColor: 'text-green-600' },
+                              business: { color: 'bg-purple-500', icon: '💼', border: 'border-purple-500', ring: 'ring-purple-200', textColor: 'text-purple-600' }
+                            }[visaType];
+                            
+                            return (
+                              <div 
+                                key={visaType} 
+                                className={`bg-white rounded-xl border-2 transition-all duration-300 ${
+                                  isSelected 
+                                    ? `${config.border} ring-2 ${config.ring} p-8 w-80 opacity-100 scale-100 z-10 shadow-lg` 
+                                    : `border-gray-200 p-6 w-64 opacity-40 scale-90 blur-[1.5px] hover:opacity-60 hover:scale-95 hover:blur-[0.5px] cursor-pointer shadow-sm`
+                                }`}
+                                onClick={() => {
+                                  if (!isSelected) {
+                                    setPointsData({ ...initialPointsData, visaType });
+                                  }
+                                }}
+                              >
+                                <div className="relative">
+                                  <div className="flex flex-col items-center text-center space-y-4">
+                                    <div className={`rounded-full flex items-center justify-center ${config.color} ${
+                                      isSelected ? 'w-16 h-16' : 'w-12 h-12'
+                                    }`}>
+                                      <span className={`text-white ${isSelected ? 'text-2xl' : 'text-xl'}`}>
+                                        {config.icon}
+                                      </span>
+                                    </div>
+                                    <div>
+                                      <div className={`font-bold text-gray-900 ${isSelected ? 'text-xl' : 'text-base'}`}>
+                                        {t(`visa.${visaType}.type`)}
+                                      </div>
+                                      {isSelected && (
+                                        <>
+                                          <div className={`text-base font-medium ${config.textColor} mt-1`}>
+                                            {t(`visa.${visaType}.jpName`)}
+                                          </div>
+                                          <div className="text-sm text-gray-500 mt-2">
+                                            {t(`visa.${visaType}.description`)}
+                                          </div>
+                                        </>
+                                      )}
+                                    </div>
+                                    {isSelected && (
+                                      <div className="absolute -top-3 -right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md border-2 border-current">
+                                        <span className="text-sm">✓</span>
+                                      </div>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })}
                         </div>
                       </div>
                       
-                      {/* Change Visa Type Button */}
-                      <div className="flex justify-center">
+                      {/* Change Visa Type Button - Mobile only */}
+                      <div className="md:hidden flex justify-center">
                         <Button 
                           variant="outline" 
                           onClick={() => {
                             setShowAllVisaTypes(true);
                             setPointsData(initialPointsData);
                           }}
-                          className="px-6 py-2 text-sm font-medium border-gray-300 hover:bg-gray-50"
+                          className="px-6 py-2 text-sm font-medium border-2 border-gray-300 hover:border-primary hover:bg-primary/5 hover:text-primary hover:shadow-sm transition-all duration-200 hover:scale-[1.02]"
                         >
                           <span className="mr-2">🔄</span>
                           {t('visa.select.other')}
