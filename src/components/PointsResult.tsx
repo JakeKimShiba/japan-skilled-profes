@@ -5,13 +5,15 @@ import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { CheckCircle, Warning, Trophy, Download, Lightbulb } from "@phosphor-icons/react";
+import { CheckCircle, Warning, Trophy, Download, Lightbulb, CaretDown } from "@phosphor-icons/react";
 import { calculateTotalPoints, getCategoryPoints, getQualificationStatus } from "@/lib/calculator";
 import { PointsData, VisaType } from "@/lib/models";
 import { useReactToPrint } from 'react-to-print';
 import { trackEvent } from '@/lib/analytics';
 import { useI18n } from "@/i18n";
 import { VisaCalculatorService, SuggestionService } from "@/services";
+import { CategoryDetailsAccordion } from "@/components/CategoryDetailsAccordion";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 interface PointsResultProps {
   data: PointsData;
@@ -22,6 +24,7 @@ export function PointsResult({ data }: PointsResultProps) {
   const fmtPoints = (n: number) => t('points.value', { value: n });
   const prevTotalRef = useRef<number>(0);
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
+  const [showAllSuggestions, setShowAllSuggestions] = useState(false);
   const resultRef = useRef<HTMLDivElement>(null);
 
   const handlePrint = useReactToPrint({
@@ -49,6 +52,11 @@ export function PointsResult({ data }: PointsResultProps) {
         }
         .print-only {
           display: block !important;
+        }
+        /* Expand all collapsible suggestions in print */
+        [data-state="closed"] > [data-radix-collapsible-content] {
+          display: block !important;
+          height: auto !important;
         }
       }
     `
@@ -259,38 +267,63 @@ export function PointsResult({ data }: PointsResultProps) {
                 <span className="text-xs text-muted-foreground">{t('suggestions.goal', { target, gap })}</span>
               </div>
             </div>
-            <div className="grid grid-cols-1 gap-2">
-              {suggestions.map((s, index) => (
-                <div key={s.key} className="flex items-center justify-between rounded border p-3">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-medium">{s.label}</span>
+            
+            <Collapsible open={showAllSuggestions} onOpenChange={setShowAllSuggestions}>
+              <div className="grid grid-cols-1 gap-2">
+                {/* Show first suggestion */}
+                {suggestions[0] && (
+                  <div className="flex items-center justify-between rounded border p-3">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium">{t(suggestions[0].label)}</span>
+                      </div>
                     </div>
+                    <Badge variant="outline" className="bg-primary/10 ml-3">+{fmtPoints(suggestions[0].pointsDelta)}</Badge>
                   </div>
-                  <Badge variant="outline" className="bg-primary/10 ml-3">+{fmtPoints(s.pointsDelta)}</Badge>
-                </div>
-              ))}
-            </div>
+                )}
+                
+                {/* Collapsible remaining suggestions */}
+                <CollapsibleContent className="space-y-2">
+                  {suggestions.slice(1).map((s) => (
+                    <div key={s.key} className="flex items-center justify-between rounded border p-3">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-medium">{t(s.label)}</span>
+                        </div>
+                      </div>
+                      <Badge variant="outline" className="bg-primary/10 ml-3">+{fmtPoints(s.pointsDelta)}</Badge>
+                    </div>
+                  ))}
+                </CollapsibleContent>
+              </div>
+              
+              {/* Show more button - hide in print */}
+              {suggestions.length > 1 && (
+                <CollapsibleTrigger asChild>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full mt-2 no-print hover:bg-primary/5 hover:text-primary hover:border-primary/30 transition-colors"
+                  >
+                    <span className="text-xs">
+                      {showAllSuggestions ? t('suggestions.showLess') : t('suggestions.showMore', { count: suggestions.length - 1 })}
+                    </span>
+                    <CaretDown 
+                      size={14} 
+                      className={`ml-1 transition-transform ${showAllSuggestions ? 'rotate-180' : ''}`}
+                    />
+                  </Button>
+                </CollapsibleTrigger>
+              )}
+            </Collapsible>
+            
             <p className="text-xs text-muted-foreground mt-2">{t('suggestions.note')}</p>
           </div>
   )}
 
         <Separator className="my-4" />
 
-        <div>
-          <h3 className="font-medium mb-3">{t('result.categoriesTitle')}</h3>
-          <div className="space-y-3">
-            {Object.entries(categoryPoints).map(([category, points]) => (
-              <div key={category}>
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-sm">{getCategoryLabel(category)}</span>
-                  <span className="font-medium">{fmtPoints(points)}</span>
-                </div>
-                <Progress value={points > 0 ? 100 : 0} className="h-1.5" />
-              </div>
-            ))}
-          </div>
-        </div>
+        <CategoryDetailsAccordion data={data} categoryPoints={categoryPoints} />
       </CardContent>
     </Card>
   );
