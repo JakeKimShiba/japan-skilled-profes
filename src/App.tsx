@@ -11,6 +11,8 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
 import { useI18n } from '@/i18n';
+import { trackVisaTypeSelected, trackCalculationCompleted } from '@/lib/analytics';
+import { VisaCalculatorService } from '@/services';
 
 function App() {
   const { t } = useI18n();
@@ -66,11 +68,29 @@ function App() {
       ...pointsData,
       visaType: type
     });
+    // Track visa type selection
+    trackVisaTypeSelected(type);
     // 실제 비자 타입이 선택된 경우에만 축소 모드로 전환
     setShowAllVisaTypes(false);
   };
 
   const handleViewResults = () => {
+    // Track calculation completion with detailed data
+    const calculationResult = VisaCalculatorService.calculatePoints(pointsData);
+    
+    trackCalculationCompleted({
+      total_points: calculationResult.totalPoints,
+      qualified: calculationResult.isQualified,
+      expedited: calculationResult.totalPoints >= 80,
+      visa_type: pointsData.visaType as 'technical' | 'academic' | 'business',
+      education_level: pointsData.educationLevel,
+      work_experience: pointsData.workExperience,
+      age_category: pointsData.age,
+      salary_range: pointsData.annualSalary,
+      has_university_bonus: pointsData.universityEligible,
+      language_ability: pointsData.japaneseLanguage
+    });
+    
     // 모바일에서 결과 섹션으로 스크롤
     if (resultsRef.current) {
       resultsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });

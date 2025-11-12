@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useI18n } from "@/i18n";
+import { trackStepCompleted } from "@/lib/analytics";
 
 interface FormNavigationProps {
   currentStep: number;
@@ -12,6 +13,7 @@ interface FormNavigationProps {
   onViewResults?: () => void;
   canGoNext: boolean;
   steps: Array<{ id: string; key: string; shortKey: string }>;
+  visaType: 'technical' | 'academic' | 'business';
 }
 
 interface ProgressBarProps {
@@ -111,9 +113,44 @@ export function FormNavigation({
   onNext,
   onReset,
   onViewResults,
-  canGoNext
+  canGoNext,
+  visaType
 }: Omit<FormNavigationProps, 'steps'>) {
   const { t } = useI18n();
+
+  const stepNames: Record<number, 'education' | 'experience' | 'age_income' | 'research_license' | 'language_special'> = {
+    0: 'education',
+    1: 'experience',
+    2: 'age_income',
+    3: 'research_license',
+    4: 'language_special'
+  };
+
+  const handleNext = () => {
+    // Track step completion
+    trackStepCompleted({
+      step_number: currentStep + 1,
+      step_name: stepNames[currentStep],
+      visa_type: visaType
+    });
+    
+    onNext();
+  };
+
+  const handleViewResults = () => {
+    // Track final step completion
+    trackStepCompleted({
+      step_number: 5,
+      step_name: 'language_special',
+      visa_type: visaType
+    });
+    
+    if (onViewResults) {
+      onViewResults();
+    } else {
+      onReset();
+    }
+  };
 
   return (
     <div className="flex justify-between pt-4 border-t mt-6">
@@ -140,14 +177,14 @@ export function FormNavigation({
         <Button 
           type="button" 
           disabled={!canGoNext}
-          onClick={onNext}
+          onClick={handleNext}
         >
           {t('nav.next')}
         </Button>
       ) : (
         <Button 
           type="button" 
-          onClick={onViewResults || onReset}
+          onClick={handleViewResults}
         >
           {t('nav.viewResults')}
         </Button>

@@ -43,3 +43,47 @@ export function trackEvent(eventName: string, params?: Record<string, any>) {
     window.gtag('event', eventName, params);
   }
 }
+
+// Analytics event types
+export interface StepCompletedParams {
+  step_number: number;
+  step_name: 'education' | 'experience' | 'age_income' | 'research_license' | 'language_special';
+  visa_type: 'technical' | 'academic' | 'business';
+}
+
+export interface FieldChangedParams {
+  field_name: string;
+  field_value: any;
+  step_number: number;
+  visa_type?: 'technical' | 'academic' | 'business';
+}
+
+export interface CalculationCompletedParams {
+  total_points: number;
+  qualified: boolean;
+  expedited: boolean;
+  visa_type: 'technical' | 'academic' | 'business';
+  education_level?: string;
+  work_experience?: string;
+  age_category?: string;
+  salary_range?: string;
+  has_university_bonus?: boolean;
+  language_ability?: string;
+}
+
+// Helper functions for specific events
+export function trackStepCompleted(params: StepCompletedParams) {
+  trackEvent('step_completed', params);
+}
+
+export function trackFieldChanged(params: FieldChangedParams) {
+  trackEvent('field_changed', params);
+}
+
+export function trackCalculationCompleted(params: CalculationCompletedParams) {
+  trackEvent('calculation_completed', params);
+}
+
+export function trackVisaTypeSelected(visaType: 'technical' | 'academic' | 'business') {
+  trackEvent('visa_type_selected', { visa_type: visaType });
+}

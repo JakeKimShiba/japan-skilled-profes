@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { PointsData } from "@/lib/models";
 import { VisaCalculatorService, ValidationService } from "@/services";
 import { useI18n } from "@/i18n";
+import { trackFieldChanged } from "@/lib/analytics";
 import { 
   EducationStep, 
   ExperienceStep, 
@@ -35,6 +36,16 @@ export function PointsForm({ data, setData, onViewResults }: PointsFormProps) {
       newData.japaneseEducation = false;
     }
     
+    // Track field changes on step 5 (language and special bonuses)
+    if (currentStep === 4) {
+      trackFieldChanged({
+        field_name: field,
+        field_value: value,
+        step_number: 5,
+        visa_type: data.visaType
+      });
+    }
+    
     setData(newData);
   };
 
@@ -43,6 +54,18 @@ export function PointsForm({ data, setData, onViewResults }: PointsFormProps) {
       ...data,
       ...updates,
     };
+    
+    // Track field changes on step 5 (language and special bonuses)
+    if (currentStep === 4) {
+      Object.entries(updates).forEach(([key, value]) => {
+        trackFieldChanged({
+          field_name: key,
+          field_value: value,
+          step_number: 5,
+          visa_type: data.visaType
+        });
+      });
+    }
     
     setData(newData);
   };
@@ -168,6 +191,7 @@ export function PointsForm({ data, setData, onViewResults }: PointsFormProps) {
           onReset={goReset}
           onViewResults={onViewResults}
           canGoNext={canGoNext}
+          visaType={data.visaType}
         />
       </CardContent>
 
