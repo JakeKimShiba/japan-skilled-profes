@@ -104,8 +104,8 @@
   "income.unit.manEn": "以萬日圓為單位",
   "nav.prev": "上一步",
   "nav.next": "下一步",
-  "nav.reset": "重新開始"
-  ,
+  "nav.reset": "重新開始",
+  "nav.viewResults": "查看結果",
   "info.title": "高度人才積分制度介紹 (高度人材ポイント制)",
   "info.intro": "日本高端人才制度會依據學歷、工作經驗、年收入、研究成果、語言及特別條件等項目給予積分。",
   "info.notice": "本計算器以 {visa} 要求為基準提供參考。實際解釋與要求可能不同，請以官方指南為準。",

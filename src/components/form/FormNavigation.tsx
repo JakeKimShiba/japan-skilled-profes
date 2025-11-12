@@ -9,6 +9,7 @@ interface FormNavigationProps {
   onPrev: () => void;
   onNext: () => void;
   onReset: () => void;
+  onViewResults?: () => void;
   canGoNext: boolean;
   steps: Array<{ id: string; key: string; shortKey: string }>;
 }
@@ -109,20 +110,31 @@ export function FormNavigation({
   onPrev,
   onNext,
   onReset,
+  onViewResults,
   canGoNext
 }: Omit<FormNavigationProps, 'steps'>) {
   const { t } = useI18n();
 
   return (
     <div className="flex justify-between pt-4 border-t mt-6">
-      <Button 
-        type="button" 
-        variant="outline" 
-        disabled={currentStep === 0} 
-        onClick={onPrev}
-      >
-        {t('nav.prev')}
-      </Button>
+      <div className="flex gap-2">
+        <Button 
+          type="button" 
+          variant="outline" 
+          disabled={currentStep === 0} 
+          onClick={onPrev}
+        >
+          {t('nav.prev')}
+        </Button>
+        
+        <Button 
+          type="button" 
+          variant="ghost" 
+          onClick={onReset}
+        >
+          {t('nav.reset')}
+        </Button>
+      </div>
       
       {currentStep < totalSteps - 1 ? (
         <Button 
@@ -135,10 +147,9 @@ export function FormNavigation({
       ) : (
         <Button 
           type="button" 
-          variant="secondary" 
-          onClick={onReset}
+          onClick={onViewResults || onReset}
         >
-          {t('nav.reset')}
+          {t('nav.viewResults')}
         </Button>
       )}
     </div>

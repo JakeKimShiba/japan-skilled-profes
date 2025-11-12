@@ -17,9 +17,10 @@ import {
 interface PointsFormProps {
   data: PointsData;
   setData: (data: PointsData) => void;
+  onViewResults?: () => void;
 }
 
-export function PointsForm({ data, setData }: PointsFormProps) {
+export function PointsForm({ data, setData, onViewResults }: PointsFormProps) {
   const { t } = useI18n();
   const fmtPoints = (n: number) => t('points.value', { value: n });
 
@@ -165,6 +166,7 @@ export function PointsForm({ data, setData }: PointsFormProps) {
           onPrev={goPrev}
           onNext={goNext}
           onReset={goReset}
+          onViewResults={onViewResults}
           canGoNext={canGoNext}
         />
       </CardContent>

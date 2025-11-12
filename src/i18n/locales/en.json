@@ -111,8 +111,8 @@
   "income.unit.manEn": "in 10k JPY units",
   "nav.prev": "Previous",
   "nav.next": "Next",
-  "nav.reset": "Start over"
-  ,
+  "nav.reset": "Start over",
+  "nav.viewResults": "View Results",
     "points.value": "{value} pts",
     "points.unit": "pts",
     "common.none": "None",

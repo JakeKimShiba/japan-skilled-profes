@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Header } from "@/components/Header";
 import { PointsForm } from "@/components/PointsForm";
 import { PointsResult } from "@/components/PointsResult";
@@ -14,6 +14,7 @@ import { useI18n } from '@/i18n';
 
 function App() {
   const { t } = useI18n();
+  const resultsRef = useRef<HTMLDivElement>(null);
 
   const [showAllVisaTypes, setShowAllVisaTypes] = useState(true);
   
@@ -67,6 +68,13 @@ function App() {
     });
     // 실제 비자 타입이 선택된 경우에만 축소 모드로 전환
     setShowAllVisaTypes(false);
+  };
+
+  const handleViewResults = () => {
+    // 모바일에서 결과 섹션으로 스크롤
+    if (resultsRef.current) {
+      resultsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   };
 
   // Labels are localized via i18n keys
@@ -317,9 +325,16 @@ function App() {
             {pointsData.visaType !== null && (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="md:col-span-2">
-                  <PointsForm data={pointsData} setData={setPointsData} />
+                  <PointsForm 
+                    data={pointsData} 
+                    setData={setPointsData} 
+                    onViewResults={handleViewResults}
+                  />
                 </div>
-                <div className="md:col-span-1 md:sticky md:top-4 h-fit md:max-h-[calc(100vh-2rem)] md:overflow-auto">
+                <div 
+                  ref={resultsRef}
+                  className="md:col-span-1 md:sticky md:top-4 h-fit md:max-h-[calc(100vh-2rem)] md:overflow-auto"
+                >
                   <PointsResult data={pointsData} />
                 </div>
               </div>
