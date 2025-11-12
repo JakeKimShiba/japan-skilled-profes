@@ -136,27 +136,53 @@ export function getCategoryPoints(data: PointsData) {
     };
   }
   
-  // Calculate bonus points
+  // University bonus should be in academic category
+  const universityBonus = data.universityEligible ? 10 : 0;
+  
+  // Calculate special bonus points (common to all visa types)
   const innovationBonusPoints = data.innovationBonus ? specialPoints.innovation_bonus : 0;
   const researchCostBonusPoints = data.researchCostBonus ? specialPoints.research_cost_bonus : 0;
-  const bonusPoints = innovationBonusPoints + researchCostBonusPoints + (data.universityEligible ? 10 : 0);
+  
+  // Calculate visa-specific bonus points for special category
+  let visaSpecificBonus = 0;
+  if (data.visaType === 'academic') {
+    if (data.contractResearchBonus) {
+      visaSpecificBonus += visaSpecificBonusPoints.academic.contract_research;
+    }
+    if (data.innovativeFieldBonus) {
+      visaSpecificBonus += visaSpecificBonusPoints.academic.innovative_field;
+    }
+  } else if (data.visaType === 'business' && data.businessExecutiveBonus) {
+    const bonusPoints = visaSpecificBonusPoints.business[data.businessExecutiveBonus as keyof typeof visaSpecificBonusPoints.business];
+    visaSpecificBonus += bonusPoints || 0;
+  }
+  
+  // Calculate research points (same logic as calculateTotalPoints)
+  let researchPoints_total = 0;
+  if (data.visaType === 'academic') {
+    // 고도 학술 연구 활동(イ): 1개 선택시 20점, 2개 이상 선택시 총 25점
+    if (data.researchAchievements.length === 1) {
+      researchPoints_total = 20;
+    } else if (data.researchAchievements.length >= 2) {
+      researchPoints_total = 25;
+    }
+  } else {
+    // 고도 전문·기술 활동(ロ) / 고도 경영·관리 활동(ハ): 기존처럼 하나만 선택
+    researchPoints_total = data.researchAchievements.length > 0 
+      ? (researchPoints[visaType]?.[data.researchAchievements[0] as keyof (typeof researchPoints)[VisaType]] || 0)
+      : 0;
+  }
   
   return {
-    academic: educationPoints[visaType]?.[data.educationLevel as keyof (typeof educationPoints)[VisaType]] || 0,
+    academic: (educationPoints[visaType]?.[data.educationLevel as keyof (typeof educationPoints)[VisaType]] || 0) + universityBonus,
     career: workExperiencePoints[visaType]?.[data.workExperience as keyof (typeof workExperiencePoints)[VisaType]] || 0,
     age: agePoints[visaType]?.[data.age as keyof (typeof agePoints)[VisaType]] || 0,
     salary: annualSalaryPoints[visaType]?.[data.annualSalary as keyof (typeof annualSalaryPoints)[VisaType]] || 0,
-    research: data.visaType === 'academic' 
-      ? data.researchAchievements.reduce((total, achievement) => {
-          return total + (researchPoints[visaType]?.[achievement as keyof (typeof researchPoints)[VisaType]] || 0);
-        }, 0)
-      : (data.researchAchievements.length > 0
-          ? (researchPoints[visaType]?.[data.researchAchievements[0] as keyof (typeof researchPoints)[VisaType]] || 0)
-          : 0),
+    research: researchPoints_total,
     license: data.licenses.reduce((total, lic) => {
       return total + (licensePoints[lic as keyof typeof licensePoints] || 0);
     }, 0) + (data.jpNationalLicenses * licensePoints.jp_national_per_license), // Points per Japanese national license
     language: languagePoints[`japanese_${data.japaneseLanguage}` as keyof typeof languagePoints] || 0,
-    special: (data.japaneseEducation ? specialPoints.japanese_education : 0) + bonusPoints
+    special: (data.japaneseEducation ? specialPoints.japanese_education : 0) + innovationBonusPoints + researchCostBonusPoints + visaSpecificBonus
   };
 }
