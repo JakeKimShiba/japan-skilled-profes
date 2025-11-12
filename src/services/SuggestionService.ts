@@ -72,7 +72,7 @@ export class SuggestionService {
     if (gap <= 0) {
       return [{
         key: 'already_premium',
-        label: '이미 프리미엄 등급입니다',
+        label: 'suggestions.items.alreadyPremium',
         pointsDelta: 0,
         difficulty: 1,
         timeframe: '달성됨',
@@ -94,7 +94,7 @@ export class SuggestionService {
       const n2Delta = this.simulateChange(data, 'japaneseLanguage', 'n2') - currentTotal;
       suggestions.push({
         key: 'jlpt-n2',
-        label: 'JLPT N2 취득',
+        label: 'suggestions.items.jlptN2',
         pointsDelta: n2Delta,
         difficulty: 2,
         timeframe: '3-6개월',
@@ -105,7 +105,7 @@ export class SuggestionService {
       const n1Delta = this.simulateChange(data, 'japaneseLanguage', 'n1') - currentTotal;
       suggestions.push({
         key: 'jlpt-n1',
-        label: 'JLPT N1 취득',
+        label: 'suggestions.items.jlptN1',
         pointsDelta: n1Delta,
         difficulty: 3,
         timeframe: '6-12개월',
@@ -116,7 +116,7 @@ export class SuggestionService {
       const n1Delta = this.simulateChange(data, 'japaneseLanguage', 'n1') - currentTotal;
       suggestions.push({
         key: 'jlpt-n1-upgrade',
-        label: 'JLPT N2에서 N1로 업그레이드',
+        label: 'suggestions.items.jlptN1Upgrade',
         pointsDelta: n1Delta,
         difficulty: 3,
         timeframe: '6-12개월',
@@ -138,7 +138,7 @@ export class SuggestionService {
       const mastersDelta = this.simulateChange(data, 'educationLevel', 'masters') - currentTotal;
       suggestions.push({
         key: 'masters-degree',
-        label: '석사학위 취득',
+        label: 'suggestions.items.mastersDegree',
         pointsDelta: mastersDelta,
         difficulty: 4,
         timeframe: '2-3년',
@@ -149,7 +149,7 @@ export class SuggestionService {
       const phdDelta = this.simulateChange(data, 'educationLevel', 'doctorate') - currentTotal;
       suggestions.push({
         key: 'phd-degree',
-        label: '박사학위 취득',
+        label: 'suggestions.items.phdDegree',
         pointsDelta: phdDelta,
         difficulty: 4,
         timeframe: '4-6년',
@@ -162,7 +162,7 @@ export class SuggestionService {
       const japaneseEduDelta = this.simulateChange(data, 'japaneseEducation', true) - currentTotal;
       suggestions.push({
         key: 'japanese-education',
-        label: '일본 대학 졸업',
+        label: 'suggestions.items.japaneseEducation',
         pointsDelta: japaneseEduDelta,
         difficulty: 4,
         timeframe: '2-4년',
@@ -189,7 +189,7 @@ export class SuggestionService {
       
       suggestions.push({
         key: `salary-increase-${nextSalary}`,
-        label: `연봉 인상 협상 또는 이직`,
+        label: `suggestions.items.salaryIncrease`,
         pointsDelta: salaryDelta,
         difficulty: 3,
         timeframe: '6개월-2년',
@@ -211,7 +211,7 @@ export class SuggestionService {
       const licenseDelta = this.simulateChange(data, 'licenses', [...data.licenses, 'other']) - currentTotal;
       suggestions.push({
         key: 'foreign-license',
-        label: '해외 전문자격 취득',
+        label: 'suggestions.items.foreignLicense',
         pointsDelta: licenseDelta,
         difficulty: 2,
         timeframe: '3-6개월',
@@ -225,7 +225,7 @@ export class SuggestionService {
       const jpLicenseDelta = this.simulateChange(data, 'jpNationalLicenses', nextCount) - currentTotal;
       suggestions.push({
         key: 'japanese-license',
-        label: '일본 국가자격 취득',
+        label: 'suggestions.items.japaneseLicense',
         pointsDelta: jpLicenseDelta,
         difficulty: 3,
         timeframe: '6-12개월',
@@ -247,7 +247,7 @@ export class SuggestionService {
       const innovationDelta = this.simulateChange(data, 'innovationBonus', true) - currentTotal;
       suggestions.push({
         key: 'innovation-bonus',
-        label: '혁신적 사업 지원조치 대상 기업 입사',
+        label: 'suggestions.items.innovationBonus',
         pointsDelta: innovationDelta,
         difficulty: 4,
         timeframe: '6개월-2년',
@@ -260,7 +260,7 @@ export class SuggestionService {
       const researchDelta = this.simulateChange(data, 'researchCostBonus', true) - currentTotal;
       suggestions.push({
         key: 'research-bonus',
-        label: '연구개발비 3% 이상 중소기업 입사',
+        label: 'suggestions.items.researchBonus',
         pointsDelta: researchDelta,
         difficulty: 3,
         timeframe: '6개월-2년',
@@ -282,7 +282,7 @@ export class SuggestionService {
       const researchDelta = this.simulateChange(data, 'researchAchievements', ['patents']) - currentTotal;
       suggestions.push({
         key: 'research-achievement',
-        label: '연구실적 또는 특허 취득',
+        label: 'suggestions.items.researchAchievement',
         pointsDelta: researchDelta,
         difficulty: 3,
         timeframe: '1-2년',
