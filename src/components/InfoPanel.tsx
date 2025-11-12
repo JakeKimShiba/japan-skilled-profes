@@ -8,7 +8,7 @@ export function InfoPanel() {
   return (
     <Card className="mb-6 bg-muted/50">
       <CardHeader>
-        <CardTitle className="text-xl text-primary">{t('info.title', { visa: t('visa.type') })}</CardTitle>
+        <CardTitle className="text-xl text-primary">{t('info.title')}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4 text-sm">
         <p>{t('info.intro')}</p>
