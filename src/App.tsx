@@ -3,6 +3,7 @@ import { Header } from "@/components/Header";
 import { PointsForm } from "@/components/PointsForm";
 import { PointsResult } from "@/components/PointsResult";
 import { InfoPanel } from "@/components/InfoPanel";
+import { FAQ } from "@/components/FAQ";
 import { PointsData, VisaType } from "@/lib/models";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
@@ -105,9 +106,10 @@ function App() {
         <Header />
         
         <Tabs defaultValue="calculator" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-6">
+          <TabsList className="grid w-full grid-cols-3 mb-6">
             <TabsTrigger value="calculator">{t('tabs.calculator')}</TabsTrigger>
             <TabsTrigger value="info">{t('tabs.info')}</TabsTrigger>
+            <TabsTrigger value="faq">{t('tabs.faq')}</TabsTrigger>
           </TabsList>
           
           <TabsContent value="calculator" className="space-y-6">
@@ -363,6 +365,10 @@ function App() {
           
           <TabsContent value="info">
             <InfoPanel />
+          </TabsContent>
+          
+          <TabsContent value="faq">
+            <FAQ />
           </TabsContent>
         </Tabs>
         
