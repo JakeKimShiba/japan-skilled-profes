@@ -29,10 +29,10 @@ export function FAQ() {
                 <p>{t('faq.q1.answer1')}</p>
                 <p>{t('faq.q1.answer2')}</p>
                 <div className="flex flex-wrap gap-2 mt-4">
-                  <Badge variant="secondary">{t('faq.q1.benefit1')}</Badge>
-                  <Badge variant="secondary">{t('faq.q1.benefit2')}</Badge>
-                  <Badge variant="secondary">{t('faq.q1.benefit3')}</Badge>
-                  <Badge variant="secondary">{t('faq.q1.benefit4')}</Badge>
+                  <Badge variant="default" className="bg-blue-600 hover:bg-blue-700 text-white">{t('faq.q1.benefit1')}</Badge>
+                  <Badge variant="default" className="bg-green-600 hover:bg-green-700 text-white">{t('faq.q1.benefit2')}</Badge>
+                  <Badge variant="default" className="bg-purple-600 hover:bg-purple-700 text-white">{t('faq.q1.benefit3')}</Badge>
+                  <Badge variant="default" className="bg-amber-600 hover:bg-amber-700 text-white">{t('faq.q1.benefit4')}</Badge>
                 </div>
               </AccordionContent>
             </AccordionItem>
