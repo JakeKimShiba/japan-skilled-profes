@@ -76,6 +76,10 @@ export function CategoryDetailsAccordion({ data, categoryPoints }: CategoryDetai
   const getSalaryLabel = (salary: string) => {
     switch(salary) {
       case 'under3m': return t('salary.under3m');
+      case 'under5m': return t('salary.level.under5m');
+      case 'under6m': return t('salary.level.under6m');
+      case 'under8m': return t('salary.level.under8m');
+      case 'under10m': return t('salary.under10m');
       case '4m': return t('salary.4m');
       case '5m': return t('salary.5m');
       case '6m': return t('salary.6m');
@@ -83,7 +87,6 @@ export function CategoryDetailsAccordion({ data, categoryPoints }: CategoryDetai
       case '8m': return t('salary.8m');
       case '9m': return t('salary.9m');
       case '10m': return t('salary.10m');
-      case 'under10m': return t('salary.under10m');
       case '15m': return t('salary.15m');
       case '20m': return t('salary.20m');
       case '25m': return t('salary.25m');

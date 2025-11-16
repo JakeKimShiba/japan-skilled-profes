@@ -151,7 +151,7 @@ export class PointsCalculationService {
    */
   private static sortSalaryOptions(options: string[]): string[] {
     const salaryOrder = [
-      'under3m', 'under10m', 
+      'under3m', 'under5m', 'under6m', 'under8m', 'under10m', 
       '3to5m', '3to6m', '3to8m', 
       '4m', '5m', '6m', '7m', '8m', '9m', '10m', 
       '15m', '20m', '25m', '30m'
@@ -182,12 +182,12 @@ export class PointsCalculationService {
       // Age-based restrictions for academic visa (same as technical)
       if (ageNum <= 29) {
         options.push('4m', '5m');
-      }
-      if (ageNum <= 34) {
-        options.push('5m');
-      }
-      if (ageNum <= 39) {
-        options.push('6m', '7m');
+      } else if (ageNum >= 30 && ageNum <= 34) {
+        options.push('under5m', '5m');
+      } else if (ageNum >= 35 && ageNum <= 39) {
+        options.push('under6m', '6m', '7m');
+      } else if (ageNum >= 40) {
+        options.push('under8m');
       }
       
       // Available for all ages
@@ -203,12 +203,12 @@ export class PointsCalculationService {
       // Age-based restrictions for technical visa
       if (ageNum <= 29) {
         options.push('4m', '5m');
-      }
-      if (ageNum <= 34) {
-        options.push('5m');
-      }
-      if (ageNum <= 39) {
-        options.push('6m', '7m');
+      } else if (ageNum >= 30 && ageNum <= 34) {
+        options.push('under5m', '5m');
+      } else if (ageNum >= 35 && ageNum <= 39) {
+        options.push('under6m', '6m', '7m');
+      } else if (ageNum >= 40) {
+        options.push('under8m');
       }
       
       // Available for all ages

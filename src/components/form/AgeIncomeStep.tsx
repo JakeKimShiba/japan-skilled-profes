@@ -297,6 +297,7 @@ export function AgeIncomeStep({ data, onDataChange }: AgeIncomeStepProps) {
         >
           {availableSalaryOptions.map((option) => {
             const isIneligible = option === 'under3m' || option === 'under10m';
+            const isZeroPoints = option === 'under5m' || option === 'under6m' || option === 'under8m';
             const points = getAnnualSalaryPoints(option);
             
             return (
@@ -322,6 +323,10 @@ export function AgeIncomeStep({ data, onDataChange }: AgeIncomeStepProps) {
                       className="bg-pink-50 text-pink-400 border-pink-200 hover:bg-pink-50"
                     >
                       {t('warning.visa.ineligible')}
+                    </Badge>
+                  ) : isZeroPoints ? (
+                    <Badge variant="outline" className="bg-muted/30 ml-2">
+                      {fmtPoints(0)}
                     </Badge>
                   ) : (
                     <Badge variant="outline" className="bg-primary/10 ml-2">
