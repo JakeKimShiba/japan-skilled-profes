@@ -246,6 +246,71 @@ export function FAQ() {
                 </div>
               </AccordionContent>
             </AccordionItem>
+
+            {/* Q11: Multiple Degrees */}
+            <AccordionItem value="item-11">
+              <AccordionTrigger className="text-left">
+                <span className="font-semibold">{t('faq.q11.question')}</span>
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground space-y-3">
+                <p>{t('faq.q11.answer1')}</p>
+                <ul className="list-none space-y-3 mt-4">
+                  <li className="p-3 bg-green-50 dark:bg-green-950 border-l-4 border-green-500 rounded">
+                    <strong className="text-green-900 dark:text-green-100">{t('faq.q11.point1.title')}</strong>
+                    <p className="text-sm mt-1">{t('faq.q11.point1.desc')}</p>
+                  </li>
+                  <li className="p-3 bg-amber-50 dark:bg-amber-950 border-l-4 border-amber-500 rounded">
+                    <strong className="text-amber-900 dark:text-amber-100">{t('faq.q11.point2.title')}</strong>
+                    <p className="text-sm mt-1">{t('faq.q11.point2.desc')}</p>
+                  </li>
+                  <li className="p-3 bg-blue-50 dark:bg-blue-950 border-l-4 border-blue-500 rounded">
+                    <strong className="text-blue-900 dark:text-blue-100">{t('faq.q11.point3.title')}</strong>
+                    <p className="text-sm mt-1">{t('faq.q11.point3.desc')}</p>
+                  </li>
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+
+            {/* Q12: Salary/Compensation Definition */}
+            <AccordionItem value="item-12">
+              <AccordionTrigger className="text-left">
+                <span className="font-semibold">{t('faq.q12.question')}</span>
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground space-y-4">
+                <p>{t('faq.q12.answer1')}</p>
+                
+                {/* Included Items */}
+                <div className="mt-4">
+                  <h4 className="font-semibold text-foreground mb-2">{t('faq.q12.included.title')}</h4>
+                  <ul className="list-disc list-inside space-y-1 ml-2">
+                    <li>{t('faq.q12.included.item1')}</li>
+                    <li>{t('faq.q12.included.item2')}</li>
+                    <li>{t('faq.q12.included.item3')}</li>
+                    <li>{t('faq.q12.included.item4')}</li>
+                    <li>{t('faq.q12.included.item5')}</li>
+                  </ul>
+                </div>
+
+                {/* Excluded Items */}
+                <div className="mt-4">
+                  <h4 className="font-semibold text-foreground mb-2">{t('faq.q12.excluded.title')}</h4>
+                  <ul className="list-disc list-inside space-y-1 ml-2">
+                    <li>{t('faq.q12.excluded.item1')}</li>
+                    <li>{t('faq.q12.excluded.item2')}</li>
+                    <li>{t('faq.q12.excluded.item3')}</li>
+                  </ul>
+                </div>
+
+                {/* Recognition Criteria */}
+                <div className="p-4 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg mt-4">
+                  <h4 className="font-semibold text-blue-900 dark:text-blue-100 mb-2">{t('faq.q12.criteria.title')}</h4>
+                  <ul className="list-disc list-inside space-y-1 text-sm">
+                    <li>{t('faq.q12.criteria.desc1')}</li>
+                    <li>{t('faq.q12.criteria.desc2')}</li>
+                  </ul>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
           </Accordion>
         </CardContent>
       </Card>
