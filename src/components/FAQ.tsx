@@ -107,6 +107,15 @@ export function FAQ() {
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground space-y-3">
                 <p>{t('faq.q5.answer1')}</p>
+                <div className="space-y-2 mt-3 mb-4">
+                  <div className="p-3 bg-red-50 dark:bg-red-950 border-l-4 border-red-500 rounded">
+                    <p className="text-sm font-semibold text-red-900 dark:text-red-100">{t('faq.q5.technical')}</p>
+                  </div>
+                  <div className="p-3 bg-purple-50 dark:bg-purple-950 border-l-4 border-purple-500 rounded">
+                    <p className="text-sm font-semibold text-purple-900 dark:text-purple-100">{t('faq.q5.business')}</p>
+                  </div>
+                </div>
+                <p className="font-medium mt-4">점수 구간:</p>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center p-3 bg-amber-50 dark:bg-amber-950 rounded">
                     <span>{t('faq.q5.salary1')}</span>
@@ -203,6 +212,38 @@ export function FAQ() {
                 </div>
                 <p className="text-sm mt-3">{t('faq.q9.note')}</p>
                 <Badge variant="outline" className="mt-2">+5{t('points.unit')}</Badge>
+              </AccordionContent>
+            </AccordionItem>
+
+            {/* FAQ 10: 영주권 반려 사유 */}
+            <AccordionItem value="pr-rejection">
+              <AccordionTrigger className="text-left">
+                <span className="font-semibold">{t('faq.q10.question')}</span>
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground space-y-3">
+                <p>{t('faq.q10.answer1')}</p>
+                <ul className="list-none space-y-3 mt-4">
+                  <li className="p-3 bg-red-50 dark:bg-red-950 border-l-4 border-red-500 rounded">
+                    <strong className="text-red-900 dark:text-red-100">{t('faq.q10.reason1.title')}</strong>
+                    <p className="text-sm mt-1">{t('faq.q10.reason1.desc')}</p>
+                  </li>
+                  <li className="p-3 bg-orange-50 dark:bg-orange-950 border-l-4 border-orange-500 rounded">
+                    <strong className="text-orange-900 dark:text-orange-100">{t('faq.q10.reason2.title')}</strong>
+                    <p className="text-sm mt-1">{t('faq.q10.reason2.desc')}</p>
+                  </li>
+                  <li className="p-3 bg-purple-50 dark:bg-purple-950 border-l-4 border-purple-500 rounded">
+                    <strong className="text-purple-900 dark:text-purple-100">{t('faq.q10.reason3.title')}</strong>
+                    <p className="text-sm mt-1">{t('faq.q10.reason3.desc')}</p>
+                  </li>
+                  <li className="p-3 bg-gray-50 dark:bg-gray-900 border-l-4 border-gray-400 rounded">
+                    <strong>{t('faq.q10.reason4.title')}</strong>
+                    <p className="text-sm mt-1">{t('faq.q10.reason4.desc')}</p>
+                  </li>
+                </ul>
+                <div className="p-4 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg mt-4">
+                  <strong className="text-blue-900 dark:text-blue-100">{t('faq.q10.solution.title')}</strong>
+                  <p className="text-sm mt-2">{t('faq.q10.solution.desc')}</p>
+                </div>
               </AccordionContent>
             </AccordionItem>
           </Accordion>
