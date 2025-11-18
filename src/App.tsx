@@ -385,6 +385,21 @@ function App() {
             {pointsData.visaType === 'business' && `${t('visa.business.jpName')} / ${t('visa.business.enName')}`}
           </p>
           
+          {/* Disclaimer */}
+          <div className="mt-4 pt-4 border-t border-muted">
+            <p className="text-xs text-muted-foreground/70">
+              {t('info.disclaimer')}{' '}
+              <a 
+                href="https://www.moj.go.jp/isa/applications/resources/newimmiact_3_system_index.html" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:text-primary/80 transition-colors underline"
+              >
+                {t('info.disclaimer.link')}
+              </a>
+            </p>
+          </div>
+          
           {/* Business Partnership & Feedback Contact */}
           <div className="mt-4 pt-4 border-t border-muted">
             <p className="text-xs text-muted-foreground/80">
