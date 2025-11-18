@@ -90,7 +90,7 @@
   "faq.q10.question": "Can PR be rejected even after meeting the HSP point requirements?",
   "faq.q10.answer1": "Yes. PR applications may be rejected for the following reasons:",
   "faq.q10.reason1.title": "Tax Issues",
-  "faq.q10.reason1.desc": "Long-term tax delinquency or non-payment",
+  "faq.q10.reason1.desc": "Long-term tax delinquency or non-payment (for resident tax, even a single non-payment has a very high rejection risk)",
   "faq.q10.reason2.title": "Failure to Report",
   "faq.q10.reason2.desc": "Foreigners must report job changes to the Immigration Bureau (契約機関に関する届出) within 14 days of resignation/employment. Failure to report may result in penalties",
   "faq.q10.reason3.title": "Criminal Record",
