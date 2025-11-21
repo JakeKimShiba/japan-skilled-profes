@@ -97,6 +97,32 @@ export function PointsForm({ data, setData, onViewResults }: PointsFormProps) {
   const goPrev = () => setCurrentStep((s) => Math.max(s - 1, 0));
   const goTo = (index: number) => setCurrentStep(index);
   const goReset = () => goTo(0);
+  
+  const handleClearAll = () => {
+    // Reset to initial state
+    const initialData: PointsData = {
+      visaType: data.visaType, // Keep visa type
+      educationLevel: '',
+      workExperience: '',
+      age: '',
+      annualSalary: '',
+      researchAchievements: [],
+      licenses: [],
+      jpNationalLicenses: 0,
+      innovationBonus: false,
+      researchCostBonus: false,
+      academicResearchBonus: false,
+      businessExecutiveBonus: 'none',
+      japaneseLanguage: 'none',
+      japaneseEducation: false,
+      university: '',
+      universityEligible: false,
+      contractResearchBonus: false,
+      innovativeFieldBonus: false
+    };
+    setData(initialData);
+    goTo(0); // Go back to first step
+  };
 
   // Mobile summary values using improved service
   const calculationResult = VisaCalculatorService.calculatePoints(data);
@@ -189,6 +215,7 @@ export function PointsForm({ data, setData, onViewResults }: PointsFormProps) {
           onPrev={goPrev}
           onNext={goNext}
           onReset={goReset}
+          onClearAll={handleClearAll}
           onViewResults={onViewResults}
           canGoNext={canGoNext}
           visaType={data.visaType}

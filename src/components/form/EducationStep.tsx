@@ -133,9 +133,22 @@ export function EducationStep({ data, onDataChange, onBatchChange }: EducationSt
               checked={Boolean(data.universityEligible)}
               onCheckedChange={(checked) => {
                 const isTrue = checked === true;
-                onDataChange("universityEligible", isTrue);
                 if (!isTrue) {
-                  onDataChange("university", "");
+                  // Uncheck: Reset both university and eligibility
+                  if (onBatchChange) {
+                    onBatchChange({
+                      university: "",
+                      universityEligible: false
+                    });
+                  } else {
+                    onDataChange("university", "");
+                    onDataChange("universityEligible", false);
+                  }
+                } else {
+                  // Check: Only enable if university is selected
+                  if (data.university) {
+                    onDataChange("universityEligible", true);
+                  }
                 }
               }}
             />
