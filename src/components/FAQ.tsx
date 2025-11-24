@@ -311,6 +311,56 @@ export function FAQ() {
                 </div>
               </AccordionContent>
             </AccordionItem>
+
+            {/* Q13: Korean IT Certifications */}
+            <AccordionItem value="item-13">
+              <AccordionTrigger className="text-left">
+                <span className="font-semibold">{t('faq.q13.question')}</span>
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground space-y-4">
+                <p>{t('faq.q13.answer1')}</p>
+                
+                {/* Recognition Details */}
+                <div className="bg-muted/50 p-4 rounded-lg space-y-2">
+                  <div className="flex items-start gap-2">
+                    <span className="text-green-600 dark:text-green-400 mt-1">✓</span>
+                    <span>{t('faq.q13.recognition1')}</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="text-green-600 dark:text-green-400 mt-1">✓</span>
+                    <span>{t('faq.q13.recognition2')}</span>
+                  </div>
+                </div>
+
+                <p>{t('faq.q13.answer2')}</p>
+
+                {/* Important Notes */}
+                <div className="p-4 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg mt-4">
+                  <h4 className="font-semibold text-amber-900 dark:text-amber-100 mb-2">{t('faq.q13.note.title')}</h4>
+                  <ul className="list-disc list-inside space-y-1 text-sm">
+                    <li>{t('faq.q13.note1')}</li>
+                    <li>{t('faq.q13.note2')}</li>
+                  </ul>
+                </div>
+
+                {/* IPA Link */}
+                <div className="mt-4">
+                  <a 
+                    href="https://www.ipa.go.jp/shiken/asia/mutual-recognition/korea.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-sm text-primary hover:text-primary/80 transition-colors underline"
+                  >
+                    {t('faq.q13.link')}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                      <polyline points="15 3 21 3 21 9"/>
+                      <line x1="10" y1="14" x2="21" y2="3"/>
+                    </svg>
+                  </a>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
           </Accordion>
         </CardContent>
       </Card>

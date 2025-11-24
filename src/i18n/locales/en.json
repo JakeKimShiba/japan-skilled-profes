@@ -123,6 +123,16 @@
   "faq.q12.criteria.desc1": "Must be verifiable with objective documents such as employment contracts, work regulations, and pay stubs",
   "faq.q12.criteria.desc2": "Point calculation is based on the total annual verifiable compensation",
   
+  "faq.q13.question": "Are Korean IT certifications (Engineer/Industrial Engineer Information Processing) recognized for HSP visa points?",
+  "faq.q13.answer1": "According to the official mutual recognition system by Japan's IPA, they are recognized as follows:",
+  "faq.q13.recognition1": "Engineer Information Processing → Equivalent to Japan's Applied Information Technology Engineer (AP)",
+  "faq.q13.recognition2": "Industrial Engineer Information Processing → Equivalent to Japan's Fundamental Information Technology Engineer (FE)",
+  "faq.q13.answer2": "These qualifications correspond to Japan's Information Technology Engineer Examinations (IT professional exams), and in the HSP visa points system, they may be eligible for additional points under the 'job-related qualifications' category if their relevance to the applicant's work is recognized.",
+  "faq.q13.note.title": "Important Notes",
+  "faq.q13.note1": "Higher and lower qualifications in the same field (AP/FE) are not counted cumulatively",
+  "faq.q13.note2": "Actual recognition and points awarded are subject to the Immigration Bureau's examination",
+  "faq.q13.link": "IPA Official Mutual Recognition System",
+  
   "form.title": "Input",
   "form.education": "Education",
   "form.experience": "Work Experience",
