@@ -361,6 +361,27 @@ export function FAQ() {
                 </div>
               </AccordionContent>
             </AccordionItem>
+
+            {/* Q14: MBA/MOT Professional Degree Points */}
+            <AccordionItem value="item-14">
+              <AccordionTrigger className="text-left">
+                <span className="font-semibold">{t('faq.q14.question')}</span>
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground space-y-4">
+                <p>{t('faq.q14.answer1')}</p>
+                <p>{t('faq.q14.answer2')}</p>
+                <p>{t('faq.q14.answer3')}</p>
+
+                {/* Recognition Criteria */}
+                <div className="p-4 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg mt-4">
+                  <h4 className="font-semibold text-blue-900 dark:text-blue-100 mb-2">{t('faq.q14.criteria.title')}</h4>
+                  <ul className="list-disc list-inside space-y-2 text-sm">
+                    <li>{t('faq.q14.criteria.activity')}</li>
+                    <li>{t('faq.q14.criteria.content')}</li>
+                  </ul>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
           </Accordion>
         </CardContent>
       </Card>
@@ -441,6 +462,14 @@ export function FAQ() {
               "acceptedAnswer": {
                 "@type": "Answer",
                 "text": t('faq.q9.answer1') + ' ' + t('faq.q9.answer2')
+              }
+            },
+            {
+              "@type": "Question",
+              "name": t('faq.q14.question'),
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": t('faq.q14.answer1') + ' ' + t('faq.q14.answer2') + ' ' + t('faq.q14.answer3')
               }
             }
           ]

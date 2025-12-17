@@ -132,6 +132,14 @@
   "faq.q13.note1": "Higher and lower qualifications in the same field (AP/FE) are not counted cumulatively",
   "faq.q13.note2": "Actual recognition and points awarded are subject to the Immigration Bureau's examination",
   "faq.q13.link": "IPA Official Mutual Recognition System",
+
+  "faq.q14.question": "Can I always get 25 points for my degree if I have a professional degree in business management (MBA/MOT)?",
+  "faq.q14.answer1": "No, you cannot. Having a professional degree in business management (MBA, MOT, etc.) does not automatically grant you 25 points for your degree.",
+  "faq.q14.answer2": "In the HSP visa points system, the type of degree is not the only factor considered. The review comprehensively evaluates whether the type of activity you are applying for (technical/specialist or management/administration) and your actual work experience/job content are substantially related to the nature of your degree.",
+  "faq.q14.answer3": "Therefore, even if you have an MBA or MOT, if your work experience or job content is judged to be unrelated to management/administration, you may not be recognized for 'professional degree in business management (25 points)' and may be treated the same as a regular master's degree at 20 points.",
+  "faq.q14.criteria.title": "Requirements for 25 points recognition",
+  "faq.q14.criteria.activity": "The activity applied for must be Technical/Specialist activities (高度専門職1号ロ) or Management/Administration activities (高度専門職1号ハ)",
+  "faq.q14.criteria.content": "Job content must substantially include management elements such as business planning, organizational operations, project management, and participation in decision-making",
   
   "form.title": "Input",
   "form.education": "Education",
