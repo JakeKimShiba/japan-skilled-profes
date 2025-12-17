@@ -36,7 +36,7 @@ export function EducationStep({ data, onDataChange, onBatchChange }: EducationSt
           onValueChange={(value) => onDataChange("educationLevel", value)}
           className="grid grid-cols-1 md:grid-cols-2 gap-2"
         >
-          {data.visaType === 'business' && (
+          {(data.visaType === 'business' || data.visaType === 'technical') && (
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="mba" id="mba" />
               <Label htmlFor="mba" className="flex justify-between w-full">

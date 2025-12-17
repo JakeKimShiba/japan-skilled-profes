@@ -55,6 +55,7 @@ export const educationPoints = {
     'none': 0         // 해당없음
   },
   technical: {
+    'mba': 25,        // MBA, MOT 학위 취득자 (경영관리 전문직 학위)
     'doctorate': 30,  // 박사학위 취득자
     'masters': 20,    // 석사학위 취득자
     'bachelors': 10,  // 학사학위 취득자
