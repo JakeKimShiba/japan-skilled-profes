@@ -7,6 +7,14 @@
   
   "faq.title": "常见问题（FAQ）",
   "faq.subtitle": "关于日本高级人才签证的常见问题与解答。",
+  "faq.category.all": "全部",
+  "faq.category.basics": "基本概念",
+  "faq.category.education": "学历",
+  "faq.category.salary": "年收入",
+  "faq.category.experience": "工作经历",
+  "faq.category.language": "语言",
+  "faq.category.qualifications": "资格",
+  "faq.category.pr": "永久居留",
   
   "faq.q1.question": "什么是日本高级人才签证？",
   "faq.q1.answer1": "高级人才签证（高度専門職）是日本政府为吸引优秀外国人才而设立的特殊签证。",
@@ -44,6 +52,7 @@
   "faq.q5.answer1": "是的，不同签证类型有不同的最低年薪要求：",
   "faq.q5.technical": "高度专业·技术活动：最低需300万日元",
   "faq.q5.business": "高度经营·管理活动：最低需1000万日元",
+  "faq.q5.salaryRanges": "年薪对应分数：",
   "faq.q5.salary1": "1000万日元以上",
   "faq.q5.salary2": "800万日元以上",
   "faq.q5.salary3": "600万日元以上",

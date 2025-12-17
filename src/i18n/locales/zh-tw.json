@@ -7,6 +7,14 @@
   
   "faq.title": "常見問題（FAQ）",
   "faq.subtitle": "關於日本高級人才簽證的常見問題與解答。",
+  "faq.category.all": "全部",
+  "faq.category.basics": "基本概念",
+  "faq.category.education": "學歷",
+  "faq.category.salary": "年收入",
+  "faq.category.experience": "工作經歷",
+  "faq.category.language": "語言",
+  "faq.category.qualifications": "資格",
+  "faq.category.pr": "永久居留",
   
   "faq.q1.question": "什麼是日本高級人才簽證？",
   "faq.q1.answer1": "高級人才簽證（高度專門職）是日本政府為吸引優秀外國人才而設立的特殊簽證。",
@@ -44,6 +52,7 @@
   "faq.q5.answer1": "是的，不同簽證類型有不同的最低年薪要求：",
   "faq.q5.technical": "高度專業·技術活動：最低需300萬日圓",
   "faq.q5.business": "高度經營·管理活動：最低需1000萬日圓",
+  "faq.q5.salaryRanges": "年薪對應分數：",
   "faq.q5.salary1": "1000萬日元以上",
   "faq.q5.salary2": "800萬日元以上",
   "faq.q5.salary3": "600萬日元以上",

@@ -7,6 +7,14 @@
   
   "faq.title": "자주 묻는 질문 (FAQ)",
   "faq.subtitle": "일본 고도인재 비자에 대해 자주 묻는 질문과 답변입니다.",
+  "faq.category.all": "전체",
+  "faq.category.basics": "기본 개념",
+  "faq.category.education": "학력",
+  "faq.category.salary": "연봉",
+  "faq.category.experience": "경력",
+  "faq.category.language": "언어",
+  "faq.category.qualifications": "자격",
+  "faq.category.pr": "영주권",
   
   "faq.q1.question": "일본 고도인재 비자란 무엇인가요?",
   "faq.q1.answer1": "고도인재 비자(高度専門職)는 일본 정부가 우수한 외국인 인재를 유치하기 위해 만든 특별 비자입니다.",
@@ -44,6 +52,7 @@
   "faq.q5.answer1": "네, 비자 유형별로 최소 연봉 요구사항이 있습니다:",
   "faq.q5.technical": "고도 전문 기술 활동: 300만엔 이상 필수",
   "faq.q5.business": "고도 경영 관리 활동: 1000만엔 이상 필수",
+  "faq.q5.salaryRanges": "점수 구간:",
   "faq.q5.salary1": "1000만엔 이상",
   "faq.q5.salary2": "800만엔 이상",
   "faq.q5.salary3": "600만엔 이상",
