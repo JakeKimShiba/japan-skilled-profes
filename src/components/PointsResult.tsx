@@ -5,13 +5,14 @@ import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { CheckCircle, Warning, Trophy, Download, Lightbulb, CaretDown } from "@phosphor-icons/react";
+import { CheckCircle, Warning, Trophy, Download, Lightbulb, CaretDown, ShareNetwork } from "@phosphor-icons/react";
 import { calculateTotalPoints, getCategoryPoints, getQualificationStatus } from "@/lib/calculator";
 import { PointsData, VisaType } from "@/lib/models";
 import { useReactToPrint } from 'react-to-print';
 import { trackEvent } from '@/lib/analytics';
 import { useI18n } from "@/i18n";
 import { VisaCalculatorService, SuggestionService } from "@/services";
+import { buildShareUrl } from "@/lib/urlShare";
 import { CategoryDetailsAccordion } from "@/components/CategoryDetailsAccordion";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
@@ -25,6 +26,7 @@ export function PointsResult({ data }: PointsResultProps) {
   const prevTotalRef = useRef<number>(0);
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
   const [showAllSuggestions, setShowAllSuggestions] = useState(false);
+  const [shareTooltip, setShareTooltip] = useState<string | null>(null);
   const resultRef = useRef<HTMLDivElement>(null);
 
   const handlePrint = useReactToPrint({
@@ -145,6 +147,19 @@ export function PointsResult({ data }: PointsResultProps) {
     handlePrint();
   };
 
+  const handleShare = async () => {
+    const url = buildShareUrl(data);
+    try {
+      await navigator.clipboard.writeText(url);
+      trackEvent('share_url_copied', { total_points: totalPoints, visa_type: data.visaType });
+      setShareTooltip(t('result.shareCopied') || 'URL copied!');
+    } catch {
+      // Fallback for browsers that don't support clipboard API
+      setShareTooltip(t('result.shareError') || 'Copy failed');
+    }
+    setTimeout(() => setShareTooltip(null), 2000);
+  };
+
   // Suggestion helpers
   const simulate = (patch: Partial<PointsData>) => {
     const updatedData = { ...data, ...patch };
@@ -175,16 +190,34 @@ export function PointsResult({ data }: PointsResultProps) {
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="text-xl text-primary">{t('result.title')}</CardTitle>
-          <Button
-            onClick={handleDownloadPDF}
-            disabled={isGeneratingPDF}
-            variant="outline"
-            size="sm"
-            className="gap-2 no-print"
-          >
-            <Download size={16} />
-            {isGeneratingPDF ? t('result.downloading') : t('result.downloadPDF')}
-          </Button>
+          <div className="flex gap-2 no-print">
+            <div className="relative">
+              <Button
+                onClick={handleShare}
+                variant="outline"
+                size="sm"
+                className="gap-2"
+              >
+                <ShareNetwork size={16} />
+                {t('result.shareResult') || 'Share'}
+              </Button>
+              {shareTooltip && (
+                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-foreground px-2 py-1 text-xs text-background shadow">
+                  {shareTooltip}
+                </div>
+              )}
+            </div>
+            <Button
+              onClick={handleDownloadPDF}
+              disabled={isGeneratingPDF}
+              variant="outline"
+              size="sm"
+              className="gap-2"
+            >
+              <Download size={16} />
+              {isGeneratingPDF ? t('result.downloading') : t('result.downloadPDF')}
+            </Button>
+          </div>
         </div>
       </CardHeader>
       <CardContent className="space-y-6">

@@ -3,6 +3,7 @@ import { Header } from "@/components/Header";
 import { PointsForm } from "@/components/PointsForm";
 import { PointsResult } from "@/components/PointsResult";
 import { InfoPanel } from "@/components/InfoPanel";
+import { decodePointsData } from "@/lib/urlShare";
 import { FAQ } from "@/components/FAQ";
 import { PointsData, VisaType } from "@/lib/models";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -44,6 +45,17 @@ function App() {
   };
   
   const [pointsData, setPointsData] = useState<PointsData>(initialPointsData);
+
+  // Restore state from shared URL parameters
+  useEffect(() => {
+    const shared = decodePointsData(window.location.search);
+    if (shared) {
+      setPointsData(shared);
+      setShowAllVisaTypes(false);
+      // Clean up URL without reload
+      window.history.replaceState({}, '', window.location.pathname);
+    }
+  }, []);
 
   useEffect(() => {
     // Map old work experience values to new ones if needed
