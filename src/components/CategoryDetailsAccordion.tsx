@@ -11,9 +11,10 @@ import { Badge } from "@/components/ui/badge";
 interface CategoryDetailsAccordionProps {
   data: PointsData;
   categoryPoints: Record<string, number>;
+  expandAll?: boolean;
 }
 
-export function CategoryDetailsAccordion({ data, categoryPoints }: CategoryDetailsAccordionProps) {
+export function CategoryDetailsAccordion({ data, categoryPoints, expandAll }: CategoryDetailsAccordionProps) {
   const { t } = useI18n();
 
   const getCategoryLabel = (category: string) => {
@@ -273,7 +274,11 @@ export function CategoryDetailsAccordion({ data, categoryPoints }: CategoryDetai
   return (
     <div className="space-y-2">
       <h3 className="font-medium mb-3">{t('result.categoryDetails.title')}</h3>
-      <Accordion type="multiple" className="w-full">
+      <Accordion
+        type="multiple"
+        className="w-full"
+        {...(expandAll ? { value: Object.keys(categoryPoints) } : {})}
+      >
         {Object.entries(categoryPoints).map(([category, points]) => {
           const details = categoryRenderers[category]?.() || [t('result.categoryDetails.none')];
           
@@ -302,20 +307,6 @@ export function CategoryDetailsAccordion({ data, categoryPoints }: CategoryDetai
         })}
       </Accordion>
       
-      {/* Print styles: expand all items */}
-      <style>{`
-        @media print {
-          [data-state="closed"] [data-accordion-content] {
-            display: block !important;
-            height: auto !important;
-            overflow: visible !important;
-          }
-          
-          [data-accordion-trigger] svg {
-            display: none;
-          }
-        }
-      `}</style>
     </div>
   );
 }
