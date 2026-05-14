@@ -1,13 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { PointsForm } from "@/components/PointsForm";
 import { PointsResult } from "@/components/PointsResult";
-import { InfoPanel } from "@/components/InfoPanel";
 import { decodePointsData } from "@/lib/urlShare";
-import { FAQ } from "@/components/FAQ";
 import { PointsData, VisaType } from "@/lib/models";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -16,20 +13,45 @@ import { Button } from "@/components/ui/button";
 import { useI18n } from '@/i18n';
 import { trackVisaTypeSelected, trackCalculationCompleted } from '@/lib/analytics';
 import { VisaCalculatorService } from '@/services';
-import { GraduationCap, Gear, Briefcase, Check, ArrowsClockwise } from "@phosphor-icons/react";
-import { GuideLayout } from "@/pages/GuideLayout";
-import { GuideIndex } from "@/pages/GuideIndex";
-import { GuidePage } from "@/pages/GuidePage";
+import { GraduationCap, Gear, Briefcase, Check, ArrowsClockwise, BookOpen } from "@phosphor-icons/react";
+
+const GuideLayout = lazy(() => import("@/pages/GuideLayout").then(m => ({ default: m.GuideLayout })));
+const GuideIndex = lazy(() => import("@/pages/GuideIndex").then(m => ({ default: m.GuideIndex })));
+const GuidePage = lazy(() => import("@/pages/GuidePage").then(m => ({ default: m.GuidePage })));
+const InfoPage = lazy(() => import("@/pages/InfoPage").then(m => ({ default: m.InfoPage })));
+const FAQPage = lazy(() => import("@/pages/FAQPage").then(m => ({ default: m.FAQPage })));
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<CalculatorPage />} />
-      <Route path="/guide" element={<GuideLayout />}>
-        <Route index element={<GuideIndex />} />
-        <Route path=":slug" element={<GuidePage />} />
-      </Route>
-    </Routes>
+    <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center text-muted-foreground">로딩 중...</div>}>
+      <Routes>
+        <Route path="/" element={<CalculatorPage />} />
+        <Route path="/guide" element={<GuideLayout />}>
+          <Route index element={<GuideIndex />} />
+          <Route path="info" element={<InfoPage />} />
+          <Route path="faq" element={<FAQPage />} />
+          <Route path=":slug" element={<GuidePage />} />
+        </Route>
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </Suspense>
+  );
+}
+
+function NotFoundPage() {
+  return (
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center gap-4 p-8 text-center">
+      <h1 className="text-4xl font-bold text-foreground">404</h1>
+      <p className="text-muted-foreground">페이지를 찾을 수 없습니다.</p>
+      <div className="flex gap-3">
+        <Link to="/" className="bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors">
+          포인트 계산기
+        </Link>
+        <Link to="/guide" className="border px-4 py-2 rounded-lg text-sm font-medium hover:bg-muted transition-colors">
+          가이드
+        </Link>
+      </div>
+    </div>
   );
 }
 
@@ -134,14 +156,6 @@ function CalculatorPage() {
       <div className="container mx-auto px-4 py-8 max-w-5xl">
         <Header />
         
-        <Tabs defaultValue="calculator" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-6">
-            <TabsTrigger value="calculator">{t('tabs.calculator')}</TabsTrigger>
-            <TabsTrigger value="info">{t('tabs.info')}</TabsTrigger>
-            <TabsTrigger value="faq">{t('tabs.faq')}</TabsTrigger>
-          </TabsList>
-          
-          <TabsContent value="calculator" className="space-y-6">
             <Card className="overflow-hidden">
               <CardContent className="pt-6">
                 <div className="mb-6">
@@ -384,16 +398,24 @@ function CalculatorPage() {
                 </div>
               </div>
             )}
-          </TabsContent>
-          
-          <TabsContent value="info">
-            <InfoPanel />
-          </TabsContent>
-          
-          <TabsContent value="faq">
-            <FAQ />
-          </TabsContent>
-        </Tabs>
+
+        {/* Guide link section for internal linking / SEO */}
+        <Card className="mt-6 bg-muted/30 border-muted">
+          <CardContent className="pt-5 pb-5">
+            <Link to="/guide" className="flex items-center gap-3 group">
+              <BookOpen size={20} className="text-primary shrink-0" />
+              <div className="flex-1 min-w-0">
+                <div className="font-medium text-sm text-foreground group-hover:text-primary transition-colors">
+                  고도인재 비자 가이드
+                </div>
+                <div className="text-xs text-muted-foreground mt-0.5">
+                  제도 안내, 자주 묻는 질문, 비자 유형별 포인트 올리는 방법 등
+                </div>
+              </div>
+              <span className="text-muted-foreground group-hover:text-primary transition-colors shrink-0">→</span>
+            </Link>
+          </CardContent>
+        </Card>
         
         <Separator className="my-8" />
         
