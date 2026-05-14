@@ -35,6 +35,8 @@ export function PointsResult({ data }: PointsResultProps) {
     // Important for mobile (iOS Safari/Android): don't update state before invoking print
     onBeforePrint: async () => {
       setIsGeneratingPDF(true);
+      // Wait for React to re-render with expanded accordions
+      await new Promise(r => setTimeout(r, 100));
     },
     onAfterPrint: async () => {
       setIsGeneratingPDF(false);
@@ -374,7 +376,7 @@ export function PointsResult({ data }: PointsResultProps) {
 
         <Separator className="my-4" />
 
-        <CategoryDetailsAccordion data={data} categoryPoints={categoryPoints} />
+        <CategoryDetailsAccordion data={data} categoryPoints={categoryPoints} expandAll={isGeneratingPDF} />
       </CardContent>
     </Card>
   );
