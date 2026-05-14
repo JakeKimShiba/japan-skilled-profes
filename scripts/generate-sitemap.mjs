@@ -21,6 +21,8 @@ const staticPages = [
 const guidePages = [
   { slug: '고도인재-비자-완벽-가이드', priority: '0.9' },
   { slug: '포인트-올리는-방법', priority: '0.9' },
+  { slug: 'jlpt-일본어-고도인재-비자', priority: '0.9' },
+  { slug: '고도인재-비자-영주권-가이드', priority: '0.9' },
 ];
 
 const urls = [

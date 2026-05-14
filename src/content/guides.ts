@@ -301,4 +301,249 @@ export const guides: Guide[] = [
       },
     ],
   },
+  {
+    slug: "jlpt-일본어-고도인재-비자",
+    title: "JLPT N1/N2와 고도인재 비자: 일본어 능력별 포인트 완벽 정리",
+    description:
+      "JLPT N1, N2, BJT가 고도인재 비자 포인트에 미치는 영향을 상세히 정리합니다. 일본어 능력 시험별 점수 차이, 시험 준비 전략, N2에서 N1 올리는 팁까지 한눈에 확인하세요.",
+    keywords: ["JLPT N1", "JLPT N2", "일본 비자 n2", "BJT", "일본어 능력시험", "고도인재 일본어", "jlpt 점수 계산"],
+    datePublished: "2026-05-14",
+    dateModified: today,
+    sections: [
+      {
+        title: "일본어 능력과 고도인재 포인트",
+        content: `
+<p>고도인재 비자 포인트 제도에서 <strong>일본어 능력</strong>은 최대 <strong>15점</strong>을 획득할 수 있는 중요한 항목입니다. 특히 다른 조건(학력, 경력)은 단기간에 바꾸기 어렵지만, 일본어 시험은 <strong>본인의 노력으로 확실하게 올릴 수 있는 포인트</strong>입니다.</p>
+
+<table>
+  <thead><tr><th>자격/시험</th><th>포인트</th><th>난이도</th></tr></thead>
+  <tbody>
+    <tr><td><strong>JLPT N1</strong> 합격</td><td><strong>15점</strong></td><td>최상</td></tr>
+    <tr><td><strong>BJT 480점</strong> 이상</td><td><strong>15점</strong></td><td>상</td></tr>
+    <tr><td>일본어 전공 대학 졸업</td><td><strong>15점</strong></td><td>—</td></tr>
+    <tr><td><strong>JLPT N2</strong> 합격</td><td><strong>10점</strong></td><td>중상</td></tr>
+    <tr><td><strong>BJT 400점</strong> 이상</td><td><strong>10점</strong></td><td>중</td></tr>
+    <tr><td>해당 없음</td><td>0점</td><td>—</td></tr>
+  </tbody>
+</table>
+
+<p><strong>핵심:</strong> JLPT N2 → N1으로 올리면 <strong>+5점</strong>, 일본어 자격이 없는 상태에서 N1을 취득하면 <strong>+15점</strong>입니다. 70점에 5~15점 부족한 사람에게 가장 현실적인 해결책입니다.</p>`,
+      },
+      {
+        title: "JLPT N1 vs N2: 어떤 것을 목표로 해야 할까?",
+        content: `
+<p>결론부터 말하면, <strong>시간이 있다면 반드시 N1을 목표</strong>로 하세요.</p>
+
+<table>
+  <thead><tr><th>비교 항목</th><th>JLPT N2</th><th>JLPT N1</th></tr></thead>
+  <tbody>
+    <tr><td>고도인재 포인트</td><td>10점</td><td><strong>15점</strong></td></tr>
+    <tr><td>준비 기간 (독학 기준)</td><td>6~12개월</td><td>12~24개월</td></tr>
+    <tr><td>합격률 (2024년 기준)</td><td>약 40%</td><td>약 30%</td></tr>
+    <tr><td>일본 취업 시장 평가</td><td>기본 요건</td><td><strong>우대 조건</strong></td></tr>
+    <tr><td>시험 횟수/년</td><td>7월, 12월</td><td>7월, 12월</td></tr>
+  </tbody>
+</table>
+
+<p>현재 N2라면 N1까지 추가로 6~12개월 정도 필요합니다. 비자 신청 시점까지 시간적 여유가 있다면 N1을 도전하세요.</p>`,
+      },
+      {
+        title: "BJT(비즈니스 일본어능력시험)도 인정됩니다",
+        content: `
+<p><strong>BJT(ビジネス日本語能力テスト)</strong>는 일본어 비즈니스 능력을 측정하는 시험으로, 고도인재 포인트에서 JLPT와 동등하게 인정됩니다.</p>
+
+<ul>
+  <li><strong>BJT 480점 이상</strong> = JLPT N1과 동일 (15점)</li>
+  <li><strong>BJT 400점 이상</strong> = JLPT N2와 동일 (10점)</li>
+</ul>
+
+<p><strong>BJT의 장점:</strong></p>
+<ul>
+  <li>CBT(컴퓨터) 방식으로 <strong>거의 매일 응시 가능</strong></li>
+  <li>결과가 즉시 나옴 (JLPT는 2~3개월 대기)</li>
+  <li>비즈니스 일본어에 익숙한 직장인에게 유리</li>
+</ul>
+
+<p>JLPT 시험일까지 기다리기 어렵다면 BJT를 먼저 응시하는 것도 전략입니다.</p>`,
+      },
+      {
+        title: "일본어 전공자 특별 조건",
+        content: `
+<p>해외 대학에서 <strong>일본어를 전공</strong>하고 졸업한 경우, 별도의 시험 없이도 <strong>15점</strong>을 받을 수 있습니다.</p>
+<p>이 경우 JLPT나 BJT 점수와 중복으로 받을 수는 없으며, 가장 높은 점수 하나만 적용됩니다.</p>
+<p><strong>증빙 서류:</strong> 대학 졸업증명서 + 성적증명서 (일본어 전공 확인 가능한 것)</p>`,
+      },
+      {
+        title: "효율적인 JLPT 준비 전략",
+        content: `
+<p><strong>N2 목표 (6~12개월):</strong></p>
+<ol>
+  <li>기초 한자 1,000자 + 어휘 6,000개 암기</li>
+  <li>문법 교재 1권 완독 (예: 新完全マスター N2)</li>
+  <li>독해 연습 — NHK NEWS WEB EASY 매일 1기사</li>
+  <li>청해 — 일본 팟캐스트/유튜브 매일 30분</li>
+  <li>모의시험 3회 이상</li>
+</ol>
+
+<p><strong>N1 목표 (N2 합격 후 6~12개월):</strong></p>
+<ol>
+  <li>한자 2,000자 + 어휘 10,000개</li>
+  <li>N1 전용 문법 (약 200개 문형 추가)</li>
+  <li>신문/소설 독해로 독해력 강화</li>
+  <li>일본 뉴스 청취 (NHK, TBS)</li>
+  <li>과거 문제집 반복 풀이</li>
+</ol>
+
+<p><strong>팁:</strong> 일본에 거주 중이라면 일상 생활 자체가 최고의 학습 환경입니다. 직장에서 일본어를 사용하면 N1 준비가 훨씬 수월합니다.</p>`,
+      },
+    ],
+    faq: [
+      {
+        question: "JLPT N2만으로도 고도인재 비자를 받을 수 있나요?",
+        answer:
+          "네, 가능합니다. N2는 10점이며 다른 항목(학력, 경력, 연봉 등)에서 60점 이상을 확보하면 됩니다. 다만 N1이면 5점 더 받을 수 있어 70점 달성이 훨씬 쉬워집니다.",
+      },
+      {
+        question: "JLPT와 BJT를 둘 다 가지고 있으면 점수가 합산되나요?",
+        answer:
+          "아니요. 일본어 능력 항목에서 가장 높은 점수 하나만 인정됩니다. JLPT N1(15점)과 BJT 480+(15점)을 모두 가지고 있어도 15점입니다.",
+      },
+      {
+        question: "JLPT 시험은 언제 볼 수 있나요?",
+        answer:
+          "매년 7월과 12월 총 2회 실시됩니다. 한국에서는 약 3~4개월 전에 접수가 시작됩니다. 일본에서는 일부 지역에서 추가 시행될 수 있으니 공식 사이트를 확인하세요.",
+      },
+    ],
+  },
+  {
+    slug: "고도인재-비자-영주권-가이드",
+    title: "고도인재 비자로 일본 영주권 받기: 1년·3년 최단 루트 완벽 가이드",
+    description:
+      "고도인재 비자를 통한 일본 영주권 취득 방법을 상세히 안내합니다. 70점·80점별 영주권 신청 시기, 필요 서류, 심사 기간, 주의사항까지 단계별로 정리했습니다.",
+    keywords: ["일본 영주권", "고도인재 영주권", "일본 영주권 고도인재", "일본 영주권 취득", "고도인재 비자 영주권", "일본 정주"],
+    datePublished: "2026-05-14",
+    dateModified: today,
+    sections: [
+      {
+        title: "고도인재 비자의 영주권 혜택",
+        content: `
+<p>일본에서 영주권을 취득하는 일반적인 루트는 <strong>10년 이상 일본에 계속 거주</strong>하는 것입니다. 하지만 고도인재 비자를 통하면 이 기간을 대폭 단축할 수 있습니다.</p>
+
+<table>
+  <thead><tr><th>포인트</th><th>영주권 신청 가능 시점</th><th>단축 기간</th></tr></thead>
+  <tbody>
+    <tr><td><strong>80점 이상</strong></td><td><strong>1년 후</strong></td><td>9년 단축</td></tr>
+    <tr><td><strong>70점 이상</strong></td><td><strong>3년 후</strong></td><td>7년 단축</td></tr>
+    <tr><td>일반 취업비자</td><td>10년 후</td><td>—</td></tr>
+  </tbody>
+</table>
+
+<p>이것이 고도인재 비자가 <strong>일본 영주권의 최단 루트</strong>로 불리는 이유입니다.</p>`,
+      },
+      {
+        title: "영주권 신청 조건",
+        content: `
+<p>고도인재 비자로 영주권을 신청하려면 다음 조건을 충족해야 합니다.</p>
+
+<ol>
+  <li><strong>포인트 유지</strong> — 신청 시점에서도 70점(또는 80점) 이상이어야 합니다</li>
+  <li><strong>거주 기간</strong> — 70점: 3년, 80점: 1년 이상 일본에 계속 거주</li>
+  <li><strong>세금·연금·보험 납부</strong> — 체납 없이 정상 납부</li>
+  <li><strong>법규 준수</strong> — 범법 행위 없음</li>
+  <li><strong>경제적 안정</strong> — 독립 생계 유지 능력</li>
+  <li><strong>신원 보증인</strong> — 일본인 또는 영주자 1명</li>
+</ol>
+
+<p><strong>주의:</strong> "계속 거주"란 중간에 장기간 출국하지 않는 것을 의미합니다. 1회 출국 시 <strong>3개월 이상</strong>, 연간 합계 <strong>100일 이상</strong> 출국하면 "계속 거주"로 인정되지 않을 수 있습니다.</p>`,
+      },
+      {
+        title: "80점 최단 1년 루트 상세",
+        content: `
+<p><strong>80점 이상</strong>으로 고도인재 비자를 취득하면, 입국(또는 자격 변경) 후 <strong>1년이 경과한 시점</strong>에서 영주권을 신청할 수 있습니다.</p>
+
+<p><strong>타임라인 예시:</strong></p>
+<ol>
+  <li><strong>0개월</strong> — 고도인재 비자(80점 이상)로 입국 또는 자격 변경</li>
+  <li><strong>6개월</strong> — 세금, 연금, 보험 납부 기록 확인 (체납 없는지)</li>
+  <li><strong>10개월</strong> — 영주권 신청 서류 준비 시작</li>
+  <li><strong>12개월</strong> — 영주권 신청 (입관에 접수)</li>
+  <li><strong>16~18개월</strong> — 영주권 허가 (심사 4~6개월)</li>
+</ol>
+
+<p>즉, 최단 <strong>약 1년 6개월</strong> 만에 일본 영주권을 취득할 수 있습니다.</p>`,
+      },
+      {
+        title: "영주권 신청 필요 서류",
+        content: `
+<p>고도인재 비자를 통한 영주권 신청 시 필요한 주요 서류입니다.</p>
+
+<ul>
+  <li><strong>영주허가신청서</strong> (入管 양식)</li>
+  <li><strong>포인트 계산표</strong> + 증빙 서류 일체</li>
+  <li><strong>이유서</strong> — 영주를 희망하는 이유 (A4 1장 정도)</li>
+  <li><strong>재직증명서</strong> — 현재 소속 확인</li>
+  <li><strong>과세·납세 증명서</strong> — 시구정촌 발행 (3년분 또는 1년분)</li>
+  <li><strong>건강보험·연금 납부 증명</strong></li>
+  <li><strong>주민세 납세 증명서</strong></li>
+  <li><strong>신원보증서</strong> + 보증인 서류</li>
+  <li><strong>여권 및 재류카드 사본</strong></li>
+  <li><strong>증명 사진</strong> (4cm × 3cm)</li>
+</ul>
+
+<p><strong>팁:</strong> 행정서사(行政書士)에게 의뢰하면 서류 준비부터 제출까지 대행해줍니다. 비용은 10~30만엔 정도이며, 복잡한 경우(이직 이력, 출국 기록 등)에는 전문가 도움을 받는 것이 안전합니다.</p>`,
+      },
+      {
+        title: "영주권 심사 기간과 결과",
+        content: `
+<p>영주권 심사는 <strong>약 4~6개월</strong>이 소요됩니다. 고도인재의 경우 일반 신청보다 약간 빠르게 처리되는 경향이 있습니다.</p>
+
+<p><strong>심사 중 주의사항:</strong></p>
+<ul>
+  <li>심사 중 이직하면 불리할 수 있음 → 결과가 나올 때까지 대기 권장</li>
+  <li>추가 서류 요청(資料提出通知)이 올 수 있음 → 기한 내 제출</li>
+  <li>장기 출국 자제 → 심사에 영향</li>
+</ul>
+
+<p><strong>허가된 경우:</strong> 입관에서 통지 → 방문하여 재류카드를 영주자 카드로 교체</p>
+<p><strong>불허된 경우:</strong> 이유를 확인 후 재신청 가능 (보통 세금/연금 문제, 출국 일수 초과 등)</p>`,
+      },
+      {
+        title: "영주권 취득 후 주의사항",
+        content: `
+<p>영주권을 취득하면 체류 기간 제한 없이 일본에 거주할 수 있지만, 몇 가지 주의할 점이 있습니다.</p>
+
+<ul>
+  <li><strong>재입국 허가</strong> — 1년 이상 출국 시 재입국 허가 필요 (최대 5년)</li>
+  <li><strong>재류카드 갱신</strong> — 7년마다 재류카드 갱신 필요 (영주권 자체는 영구)</li>
+  <li><strong>장기 해외 체류</strong> — 일본을 생활 기반으로 하지 않으면 취소될 수 있음</li>
+  <li><strong>범죄</strong> — 강제퇴거 사유에 해당하면 영주권 취소 가능</li>
+</ul>
+
+<p><strong>영주권의 장점:</strong></p>
+<ul>
+  <li>직종·업종 제한 없이 자유롭게 일할 수 있음</li>
+  <li>주택 대출(住宅ローン) 심사에서 유리</li>
+  <li>비자 갱신 걱정 없음</li>
+  <li>배우자·자녀도 안정적 체류 가능</li>
+</ul>`,
+      },
+    ],
+    faq: [
+      {
+        question: "영주권 신청 시점에서도 70점/80점 이상이어야 하나요?",
+        answer:
+          "네. 고도인재 비자 취득 시점과 영주권 신청 시점 모두에서 해당 포인트를 충족해야 합니다. 예를 들어 입국 시 80점이었지만 이직으로 연봉이 줄어 70점이 된 경우, 1년 루트는 사용할 수 없고 3년 루트를 이용해야 합니다.",
+      },
+      {
+        question: "이직하면 영주권 신청에 불리한가요?",
+        answer:
+          "이직 자체가 불리하진 않지만, 이직 시 14일 이내에 입관에 신고해야 하며, 포인트가 70점/80점 이상 유지되어야 합니다. 또한 영주권 심사 중 이직하면 추가 서류가 필요할 수 있어 가능하면 결과가 나온 후에 이직하는 것이 좋습니다.",
+      },
+      {
+        question: "가족도 영주권을 받을 수 있나요?",
+        answer:
+          "배우자는 별도로 영주권을 신청해야 합니다. 다만 '영주자의 배우자'로서 일반 영주 신청보다 요건이 완화됩니다. 자녀는 일본에서 출생한 경우 출생신고와 함께 영주 자격을 신청할 수 있습니다.",
+      },
+    ],
+  },
 ];
