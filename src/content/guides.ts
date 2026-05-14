@@ -45,6 +45,37 @@ export const guides: Guide[] = [
 </table>`,
       },
       {
+        title: "2025년 경영비자 요건 강화와 고도인재 비자의 가치",
+        content: `
+<p><strong>2025년 10월 16일</strong>, 일본 정부는 경영·관리 비자(経営・管理ビザ)의 요건을 대폭 강화했습니다. 기존의 「자본금 500만엔으로 1인 창업」이라는 방식은 더 이상 통하지 않게 되었으며, <strong>고도인재 비자(ハ)의 상대적 가치가 크게 높아졌습니다.</strong></p>
+
+<table>
+  <thead><tr><th>항목</th><th>이전 규정</th><th>2025년 10월 이후</th></tr></thead>
+  <tbody>
+    <tr><td><strong>자본금</strong></td><td>500만엔 이상</td><td><strong>3,000만엔 이상</strong> (6배 증가)</td></tr>
+    <tr><td><strong>직원 고용</strong></td><td>2인 이상 또는 자본금 500만엔</td><td><strong>일본 거주 상근직원 1명 이상 필수</strong></td></tr>
+    <tr><td><strong>경영 경험</strong></td><td>불문</td><td><strong>3년 이상 경영 경험</strong> 또는 경영계 석·박사 학위</td></tr>
+    <tr><td><strong>사업계획 평가</strong></td><td>자체 작성 가능</td><td><strong>외부 전문가</strong>(세무사, 중소기업진단사, 공인회계사) 확인 필수</td></tr>
+    <tr><td><strong>일본어 능력</strong></td><td>불문</td><td>신청자 또는 상근직원이 <strong>JLPT N2 이상</strong> (또는 BJT 400점 이상)</td></tr>
+    <tr><td><strong>사무실</strong></td><td>자택 겸용 가능</td><td><strong>독립 사무소 필수</strong> (자택 겸용 불가)</td></tr>
+  </tbody>
+</table>
+
+<p>이번 개정으로 외국인 창업자에게는 「충분한 자금」「인재」「일본어 능력」「검증된 사업 계획」이라는 <strong>극히 높은 종합력</strong>이 요구되게 되었습니다. 1인 스몰 스타트는 사실상 불가능해졌습니다.</p>
+
+<p><strong>경과 조치:</strong> 시행일(2025.10.16)부터 <strong>3년간(~2028년 10월 16일)</strong> 기존 재류자는 '개선계획서'와 '충족예정' 증빙을 제시하면 갱신이 가능합니다. 단, 2028년 10월 이후에는 신기준을 완전히 충족해야 합니다.</p>
+
+<p><strong>고도인재 비자(ハ)가 대안인 이유:</strong></p>
+<ul>
+  <li><strong>자본금 3,000만엔 요건 없음</strong> — 포인트제 기반으로 학력·경력·연봉 등 복합 평가</li>
+  <li><strong>영주권 최단 1년</strong> — 80점 이상 시 1년 후 영주권 신청 가능 (경영비자는 일반적으로 10년)</li>
+  <li><strong>배우자 취업 허가, 부모 초청</strong> 등 경영비자에 없는 추가 혜택</li>
+  <li><strong>고도전문직 2호</strong> 전환 시 활동 제한 없는 무기한 체류 가능</li>
+</ul>
+
+<p>일본에서 사업을 시작하려는 분이라면, 경영비자보다 <strong>고도인재 비자(ハ) → 영주권 취득</strong> 루트가 훨씬 현실적인 선택지가 되었습니다.</p>`,
+      },
+      {
         title: "비자 3가지 유형과 차이점",
         content: `
 <p>고도인재 비자는 활동 내용에 따라 3가지 유형으로 나뉩니다. <strong>각 유형별로 포인트 배점이 다르므로</strong> 자신에게 유리한 유형을 선택하는 것이 중요합니다.</p>
