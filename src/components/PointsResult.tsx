@@ -60,6 +60,18 @@ export function PointsResult({ data }: PointsResultProps) {
           display: block !important;
           height: auto !important;
         }
+        /* Expand all accordion items (category details) in print */
+        [data-state="closed"] > [data-radix-accordion-content] {
+          display: block !important;
+          height: auto !important;
+        }
+        [data-radix-accordion-content] {
+          height: auto !important;
+        }
+        /* Hide accordion chevron arrows in print */
+        [data-radix-accordion-trigger] svg {
+          display: none !important;
+        }
       }
     `
   });
