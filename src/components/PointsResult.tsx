@@ -188,7 +188,7 @@ export function PointsResult({ data }: PointsResultProps) {
   return (
     <Card ref={resultRef}>
       <CardHeader>
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <CardTitle className="text-xl text-primary">{t('result.title')}</CardTitle>
           <div className="flex gap-2 no-print">
             <div className="relative">
@@ -202,7 +202,7 @@ export function PointsResult({ data }: PointsResultProps) {
                 {t('result.shareResult') || 'Share'}
               </Button>
               {shareTooltip && (
-                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-foreground px-2 py-1 text-xs text-background shadow">
+                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-foreground px-2 py-1 text-xs text-background shadow z-10">
                   {shareTooltip}
                 </div>
               )}
