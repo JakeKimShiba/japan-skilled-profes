@@ -44,18 +44,25 @@ export function PointsResult({ data }: PointsResultProps) {
     pageStyle: `
       @page {
         size: A4;
-        margin: 20mm;
+        margin: 16mm 20mm;
       }
       @media print {
         body {
           -webkit-print-color-adjust: exact;
           color-adjust: exact;
+          font-size: 11pt;
         }
         .no-print {
           display: none !important;
         }
         .print-only {
           display: block !important;
+        }
+        /* Remove card styling for clean document look */
+        [data-slot="card"] {
+          border: none !important;
+          box-shadow: none !important;
+          padding: 0 !important;
         }
         /* Expand all collapsible suggestions in print */
         [data-state="closed"] > [data-radix-collapsible-content] {
@@ -73,6 +80,15 @@ export function PointsResult({ data }: PointsResultProps) {
         /* Hide accordion chevron arrows in print */
         [data-radix-accordion-trigger] svg {
           display: none !important;
+        }
+        /* Accordion items: clean borders for print */
+        [data-slot="accordion-item"] {
+          break-inside: avoid;
+        }
+        /* Progress bar: ensure visible in print */
+        [role="progressbar"] {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
         }
       }
     `
@@ -199,8 +215,28 @@ export function PointsResult({ data }: PointsResultProps) {
   const target = totalPoints >= 70 ? 80 : 70;
   const gap = Math.max(0, target - totalPoints);
 
+  const visaTypeJpNames: Record<string, string> = {
+    academic: '高度専門職1号（イ）',
+    technical: '高度専門職1号（ロ）',
+    business: '高度専門職1号（ハ）',
+  };
+
   return (
     <Card ref={resultRef}>
+      {/* Print-only document header */}
+      <div className="print-only hidden mb-6">
+        <div className="flex items-center justify-between border-b-2 border-primary pb-3 mb-4">
+          <div>
+            <h1 className="text-lg font-bold text-primary">일본 고도인재 포인트 계산 결과</h1>
+            <p className="text-xs text-muted-foreground mt-0.5">kodocalc.com</p>
+          </div>
+          <div className="text-right text-xs text-muted-foreground">
+            <p>{new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+            <p className="mt-0.5">{getVisaTypeLabel(data.visaType)} ({visaTypeJpNames[data.visaType || 'technical']})</p>
+          </div>
+        </div>
+      </div>
+
       <CardHeader className="flex flex-col gap-3 space-y-0">
         <CardTitle className="text-xl text-primary">{t('result.title')}</CardTitle>
         <div className="flex gap-2 no-print flex-wrap">
@@ -321,7 +357,7 @@ export function PointsResult({ data }: PointsResultProps) {
               </div>
             </div>
             
-            <Collapsible open={showAllSuggestions} onOpenChange={setShowAllSuggestions}>
+            <Collapsible open={showAllSuggestions || isGeneratingPDF} onOpenChange={setShowAllSuggestions}>
               <div className="grid grid-cols-1 gap-2">
                 {/* Show first suggestion */}
                 {suggestions[0] && (
@@ -377,6 +413,16 @@ export function PointsResult({ data }: PointsResultProps) {
         <Separator className="my-4" />
 
         <CategoryDetailsAccordion data={data} categoryPoints={categoryPoints} expandAll={isGeneratingPDF} />
+
+        {/* Print-only document footer */}
+        <div className="print-only hidden mt-8 pt-4 border-t text-center">
+          <p className="text-xs text-muted-foreground">
+            본 결과는 참고용이며, 실제 심사 결과와 다를 수 있습니다.
+          </p>
+          <p className="text-xs text-muted-foreground mt-1">
+            공식 정보: www.moj.go.jp/isa | 계산기: kodocalc.com
+          </p>
+        </div>
       </CardContent>
     </Card>
   );
