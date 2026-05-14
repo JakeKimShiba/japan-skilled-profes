@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { useI18n } from '@/i18n';
 import { trackVisaTypeSelected, trackCalculationCompleted } from '@/lib/analytics';
 import { VisaCalculatorService } from '@/services';
+import { GraduationCap, Gear, Briefcase, Check, ArrowsClockwise } from "@phosphor-icons/react";
 
 function App() {
   const { t } = useI18n();
@@ -129,8 +130,8 @@ function App() {
               <CardContent className="pt-6">
                 <div className="mb-6">
                   <div className="flex items-center gap-2 mb-6">
-                    <div className="w-2 h-8 bg-gradient-to-b from-blue-500 to-purple-600 rounded-full"></div>
-                    <h3 className="text-xl font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    <div className="w-2 h-8 bg-gradient-to-b from-primary to-primary/60 rounded-full"></div>
+                    <h3 className="text-xl font-semibold text-primary">
                       {t('result.visaType')}
                     </h3>
                   </div>
@@ -143,30 +144,28 @@ function App() {
                       >
                     {/* Academic Visa Card */}
                     <div 
-                      className={`relative p-5 border-2 rounded-xl cursor-pointer transition-all duration-300 hover:shadow-lg ${
+                      className={`relative p-5 border-2 rounded-xl cursor-pointer transition-all duration-300 hover:shadow-lg focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 ${
                         pointsData.visaType === 'academic' 
-                          ? 'border-blue-500 bg-blue-50/50 shadow-md ring-2 ring-blue-200' 
-                          : 'border-gray-200 hover:border-blue-300 hover:bg-blue-50/30'
+                          ? 'border-primary bg-primary/5 shadow-md ring-2 ring-primary/20' 
+                          : 'border-muted hover:border-primary/40 hover:bg-primary/5'
                       }`}
                       onClick={() => handleVisaTypeChange('academic')}
                     >
                       <RadioGroupItem value="academic" id="visa-academic" className="sr-only" />
                       <div className="flex flex-col items-center text-center space-y-3">
-                        <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                          pointsData.visaType === 'academic' ? 'bg-blue-500' : 'bg-blue-100'
+                        <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-colors ${
+                          pointsData.visaType === 'academic' ? 'bg-primary text-primary-foreground' : 'bg-primary/10 text-primary'
                         }`}>
-                          <span className={`text-xl ${
-                            pointsData.visaType === 'academic' ? 'text-white' : 'text-blue-600'
-                          }`}>🎓</span>
+                          <GraduationCap size={24} weight="duotone" />
                         </div>
                         <div>
-                          <div className="font-semibold text-gray-900">{t('visa.academic.type')}</div>
-                          <div className="text-sm text-blue-600 font-medium">{t('visa.academic.jpName')}</div>
-                          <div className="text-xs text-gray-500 mt-1">{t('visa.academic.description')}</div>
+                          <div className="font-semibold text-foreground">{t('visa.academic.type')}</div>
+                          <div className="text-sm text-primary font-medium">{t('visa.academic.jpName')}</div>
+                          <div className="text-xs text-muted-foreground mt-1">{t('visa.academic.description')}</div>
                         </div>
                         {pointsData.visaType === 'academic' && (
-                          <div className="absolute -top-2 -right-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-                            <span className="text-white text-xs">✓</span>
+                          <div className="absolute -top-2 -right-2 w-6 h-6 bg-primary rounded-full flex items-center justify-center">
+                            <Check size={14} weight="bold" className="text-primary-foreground" />
                           </div>
                         )}
                       </div>
@@ -174,30 +173,28 @@ function App() {
 
                     {/* Technical Visa Card */}
                     <div 
-                      className={`relative p-5 border-2 rounded-xl cursor-pointer transition-all duration-300 hover:shadow-lg ${
+                      className={`relative p-5 border-2 rounded-xl cursor-pointer transition-all duration-300 hover:shadow-lg focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 ${
                         pointsData.visaType === 'technical' 
-                          ? 'border-green-500 bg-green-50/50 shadow-md ring-2 ring-green-200' 
-                          : 'border-gray-200 hover:border-green-300 hover:bg-green-50/30'
+                          ? 'border-primary bg-primary/5 shadow-md ring-2 ring-primary/20' 
+                          : 'border-muted hover:border-primary/40 hover:bg-primary/5'
                       }`}
                       onClick={() => handleVisaTypeChange('technical')}
                     >
                       <RadioGroupItem value="technical" id="visa-technical" className="sr-only" />
                       <div className="flex flex-col items-center text-center space-y-3">
-                        <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                          pointsData.visaType === 'technical' ? 'bg-green-500' : 'bg-green-100'
+                        <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-colors ${
+                          pointsData.visaType === 'technical' ? 'bg-primary text-primary-foreground' : 'bg-primary/10 text-primary'
                         }`}>
-                          <span className={`text-xl ${
-                            pointsData.visaType === 'technical' ? 'text-white' : 'text-green-600'
-                          }`}>⚙️</span>
+                          <Gear size={24} weight="duotone" />
                         </div>
                         <div>
-                          <div className="font-semibold text-gray-900">{t('visa.technical.type')}</div>
-                          <div className="text-sm text-green-600 font-medium">{t('visa.technical.jpName')}</div>
-                          <div className="text-xs text-gray-500 mt-1">{t('visa.technical.description')}</div>
+                          <div className="font-semibold text-foreground">{t('visa.technical.type')}</div>
+                          <div className="text-sm text-primary font-medium">{t('visa.technical.jpName')}</div>
+                          <div className="text-xs text-muted-foreground mt-1">{t('visa.technical.description')}</div>
                         </div>
                         {pointsData.visaType === 'technical' && (
-                          <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                            <span className="text-white text-xs">✓</span>
+                          <div className="absolute -top-2 -right-2 w-6 h-6 bg-primary rounded-full flex items-center justify-center">
+                            <Check size={14} weight="bold" className="text-primary-foreground" />
                           </div>
                         )}
                       </div>
@@ -205,30 +202,28 @@ function App() {
 
                     {/* Business Visa Card */}
                     <div 
-                      className={`relative p-5 border-2 rounded-xl cursor-pointer transition-all duration-300 hover:shadow-lg ${
+                      className={`relative p-5 border-2 rounded-xl cursor-pointer transition-all duration-300 hover:shadow-lg focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 ${
                         pointsData.visaType === 'business' 
-                          ? 'border-purple-500 bg-purple-50/50 shadow-md ring-2 ring-purple-200' 
-                          : 'border-gray-200 hover:border-purple-300 hover:bg-purple-50/30'
+                          ? 'border-primary bg-primary/5 shadow-md ring-2 ring-primary/20' 
+                          : 'border-muted hover:border-primary/40 hover:bg-primary/5'
                       }`}
                       onClick={() => handleVisaTypeChange('business')}
                     >
                       <RadioGroupItem value="business" id="visa-business" className="sr-only" />
                       <div className="flex flex-col items-center text-center space-y-3">
-                        <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                          pointsData.visaType === 'business' ? 'bg-purple-500' : 'bg-purple-100'
+                        <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-colors ${
+                          pointsData.visaType === 'business' ? 'bg-primary text-primary-foreground' : 'bg-primary/10 text-primary'
                         }`}>
-                          <span className={`text-xl ${
-                            pointsData.visaType === 'business' ? 'text-white' : 'text-purple-600'
-                          }`}>💼</span>
+                          <Briefcase size={24} weight="duotone" />
                         </div>
                         <div>
-                          <div className="font-semibold text-gray-900">{t('visa.business.type')}</div>
-                          <div className="text-sm text-purple-600 font-medium">{t('visa.business.jpName')}</div>
-                          <div className="text-xs text-gray-500 mt-1">{t('visa.business.description')}</div>
+                          <div className="font-semibold text-foreground">{t('visa.business.type')}</div>
+                          <div className="text-sm text-primary font-medium">{t('visa.business.jpName')}</div>
+                          <div className="text-xs text-muted-foreground mt-1">{t('visa.business.description')}</div>
                         </div>
                         {pointsData.visaType === 'business' && (
-                          <div className="absolute -top-2 -right-2 w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
-                            <span className="text-white text-xs">✓</span>
+                          <div className="absolute -top-2 -right-2 w-6 h-6 bg-primary rounded-full flex items-center justify-center">
+                            <Check size={14} weight="bold" className="text-primary-foreground" />
                           </div>
                         )}
                       </div>
@@ -242,31 +237,31 @@ function App() {
                       <div className="md:hidden flex justify-center px-4">
                         {(() => {
                           const visaType = pointsData.visaType;
-                          const config = {
-                            academic: { color: 'bg-blue-500', icon: '🎓', border: 'border-blue-500', ring: 'ring-blue-200', textColor: 'text-blue-600' },
-                            technical: { color: 'bg-green-500', icon: '⚙️', border: 'border-green-500', ring: 'ring-green-200', textColor: 'text-green-600' },
-                            business: { color: 'bg-purple-500', icon: '💼', border: 'border-purple-500', ring: 'ring-purple-200', textColor: 'text-purple-600' }
-                          }[visaType];
+                          const iconMap = {
+                            academic: <GraduationCap size={24} weight="duotone" />,
+                            technical: <Gear size={24} weight="duotone" />,
+                            business: <Briefcase size={24} weight="duotone" />,
+                          };
                           
                           return (
-                            <div className={`bg-white rounded-xl border-2 ${config.border} ring-2 ${config.ring} p-6 w-full max-w-sm shadow-lg relative`}>
+                            <div className="bg-card rounded-xl border-2 border-primary ring-2 ring-primary/20 p-6 w-full max-w-sm shadow-lg relative">
                               <div className="flex flex-col items-center text-center space-y-3">
-                                <div className={`w-14 h-14 rounded-full flex items-center justify-center ${config.color}`}>
-                                  <span className="text-white text-xl">{config.icon}</span>
+                                <div className="w-14 h-14 rounded-full flex items-center justify-center bg-primary text-primary-foreground">
+                                  {iconMap[visaType]}
                                 </div>
                                 <div>
-                                  <div className="font-bold text-lg text-gray-900">
+                                  <div className="font-bold text-lg text-foreground">
                                     {t(`visa.${visaType}.type`)}
                                   </div>
-                                  <div className={`text-sm font-medium ${config.textColor} mt-1`}>
+                                  <div className="text-sm font-medium text-primary mt-1">
                                     {t(`visa.${visaType}.jpName`)}
                                   </div>
-                                  <div className="text-xs text-gray-500 mt-2">
+                                  <div className="text-xs text-muted-foreground mt-2">
                                     {t(`visa.${visaType}.description`)}
                                   </div>
                                 </div>
-                                <div className="absolute -top-2 -right-2 w-7 h-7 bg-white rounded-full flex items-center justify-center shadow-md border-2 border-current">
-                                  <span className="text-xs">✓</span>
+                                <div className="absolute -top-2 -right-2 w-7 h-7 bg-primary rounded-full flex items-center justify-center shadow-md">
+                                  <Check size={16} weight="bold" className="text-primary-foreground" />
                                 </div>
                               </div>
                             </div>
@@ -279,19 +274,19 @@ function App() {
                         <div className="flex items-center justify-center gap-6 px-8">
                           {(['academic', 'technical', 'business'] as const).map((visaType) => {
                             const isSelected = visaType === pointsData.visaType;
-                            const config = {
-                              academic: { color: 'bg-blue-500', icon: '🎓', border: 'border-blue-500', ring: 'ring-blue-200', textColor: 'text-blue-600' },
-                              technical: { color: 'bg-green-500', icon: '⚙️', border: 'border-green-500', ring: 'ring-green-200', textColor: 'text-green-600' },
-                              business: { color: 'bg-purple-500', icon: '💼', border: 'border-purple-500', ring: 'ring-purple-200', textColor: 'text-purple-600' }
-                            }[visaType];
+                            const iconMap = {
+                              academic: <GraduationCap size={isSelected ? 28 : 24} weight="duotone" />,
+                              technical: <Gear size={isSelected ? 28 : 24} weight="duotone" />,
+                              business: <Briefcase size={isSelected ? 28 : 24} weight="duotone" />,
+                            };
                             
                             return (
                               <div 
                                 key={visaType} 
-                                className={`bg-white rounded-xl border-2 transition-all duration-300 ${
+                                className={`bg-card rounded-xl border-2 transition-all duration-300 ${
                                   isSelected 
-                                    ? `${config.border} ring-2 ${config.ring} p-8 w-80 opacity-100 scale-100 z-10 shadow-lg` 
-                                    : `border-gray-200 p-6 w-64 opacity-40 scale-90 blur-[1.5px] hover:opacity-60 hover:scale-95 hover:blur-[0.5px] cursor-pointer shadow-sm`
+                                    ? 'border-primary ring-2 ring-primary/20 p-8 w-80 opacity-100 scale-100 z-10 shadow-lg' 
+                                    : 'border-muted p-6 w-64 opacity-40 scale-90 blur-[1.5px] hover:opacity-60 hover:scale-95 hover:blur-[0.5px] cursor-pointer shadow-sm'
                                 }`}
                                 onClick={() => {
                                   if (!isSelected) {
@@ -301,31 +296,31 @@ function App() {
                               >
                                 <div className="relative">
                                   <div className="flex flex-col items-center text-center space-y-4">
-                                    <div className={`rounded-full flex items-center justify-center ${config.color} ${
-                                      isSelected ? 'w-16 h-16' : 'w-12 h-12'
+                                    <div className={`rounded-full flex items-center justify-center transition-colors ${
+                                      isSelected 
+                                        ? 'w-16 h-16 bg-primary text-primary-foreground' 
+                                        : 'w-12 h-12 bg-primary/10 text-primary'
                                     }`}>
-                                      <span className={`text-white ${isSelected ? 'text-2xl' : 'text-xl'}`}>
-                                        {config.icon}
-                                      </span>
+                                      {iconMap[visaType]}
                                     </div>
                                     <div>
-                                      <div className={`font-bold text-gray-900 ${isSelected ? 'text-xl' : 'text-base'}`}>
+                                      <div className={`font-bold text-foreground ${isSelected ? 'text-xl' : 'text-base'}`}>
                                         {t(`visa.${visaType}.type`)}
                                       </div>
                                       {isSelected && (
                                         <>
-                                          <div className={`text-base font-medium ${config.textColor} mt-1`}>
+                                          <div className="text-base font-medium text-primary mt-1">
                                             {t(`visa.${visaType}.jpName`)}
                                           </div>
-                                          <div className="text-sm text-gray-500 mt-2">
+                                          <div className="text-sm text-muted-foreground mt-2">
                                             {t(`visa.${visaType}.description`)}
                                           </div>
                                         </>
                                       )}
                                     </div>
                                     {isSelected && (
-                                      <div className="absolute -top-3 -right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md border-2 border-current">
-                                        <span className="text-sm">✓</span>
+                                      <div className="absolute -top-3 -right-3 w-8 h-8 bg-primary rounded-full flex items-center justify-center shadow-md">
+                                        <Check size={16} weight="bold" className="text-primary-foreground" />
                                       </div>
                                     )}
                                   </div>
@@ -344,9 +339,9 @@ function App() {
                             setShowAllVisaTypes(true);
                             setPointsData(initialPointsData);
                           }}
-                          className="px-6 py-2 text-sm font-medium border-2 border-gray-300 hover:border-primary hover:bg-primary/5 hover:text-primary hover:shadow-sm transition-all duration-200 hover:scale-[1.02]"
+                          className="px-6 py-2 text-sm font-medium border-2 border-muted hover:border-primary hover:bg-primary/5 hover:text-primary hover:shadow-sm transition-all duration-200 hover:scale-[1.02] gap-2"
                         >
-                          <span className="mr-2">🔄</span>
+                          <ArrowsClockwise size={16} />
                           {t('visa.select.other')}
                         </Button>
                       </div>
