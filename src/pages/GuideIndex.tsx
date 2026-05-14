@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Info, Question } from "@phosphor-icons/react";
+import { ArrowRight } from "@phosphor-icons/react/dist/ssr/ArrowRight";
+import { Info } from "@phosphor-icons/react/dist/ssr/Info";
+import { Question } from "@phosphor-icons/react/dist/ssr/Question";
 import { guides } from "@/content/guides";
 import { SEOHead } from "@/components/SEOHead";
 

@@ -2,7 +2,8 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { ArrowLeft, Calculator } from "@phosphor-icons/react";
+import { ArrowLeft } from "@phosphor-icons/react/dist/ssr/ArrowLeft";
+import { Calculator } from "@phosphor-icons/react/dist/ssr/Calculator";
 import { guides } from "@/content/guides";
 import { SEOHead } from "@/components/SEOHead";
 

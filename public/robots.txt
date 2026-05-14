@@ -5,6 +5,9 @@ Allow: /?lang=*
 # Sitemap
 Sitemap: https://kodocalc.com/sitemap.xml
 
+# AI Crawlers
+# llms.txt: https://kodocalc.com/llms.txt
+
 # Crawl-delay (더 빈번한 크롤링 허용)
 Crawl-delay: 0.5
 

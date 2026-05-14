@@ -10,7 +10,7 @@ import { PointsData, VisaType, agePoints, annualSalaryPoints } from "@/lib/model
 import { PointsCalculationService } from "@/services/PointsCalculationService";
 import { useI18n } from "@/i18n";
 import { formatEnMillionsJPY, formatManEn } from "@/lib/utils";
-import { Warning } from "@phosphor-icons/react";
+import { Warning } from "@phosphor-icons/react/dist/ssr/Warning";
 
 interface AgeIncomeStepProps {
   data: PointsData;

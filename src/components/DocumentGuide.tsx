@@ -2,7 +2,10 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { FileText, Warning, Info, CheckCircle } from "@phosphor-icons/react";
+import { FileText } from "@phosphor-icons/react/dist/ssr/FileText";
+import { Warning } from "@phosphor-icons/react/dist/ssr/Warning";
+import { Info } from "@phosphor-icons/react/dist/ssr/Info";
+import { CheckCircle } from "@phosphor-icons/react/dist/ssr/CheckCircle";
 import { PointsData } from "@/lib/models";
 
 interface DocumentGuideProps {

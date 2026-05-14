@@ -13,7 +13,12 @@ import { Button } from "@/components/ui/button";
 import { useI18n } from '@/i18n';
 import { trackVisaTypeSelected, trackCalculationCompleted } from '@/lib/analytics';
 import { VisaCalculatorService } from '@/services';
-import { GraduationCap, Gear, Briefcase, Check, ArrowsClockwise, BookOpen } from "@phosphor-icons/react";
+import { GraduationCap } from "@phosphor-icons/react/dist/ssr/GraduationCap";
+import { Gear } from "@phosphor-icons/react/dist/ssr/Gear";
+import { Briefcase } from "@phosphor-icons/react/dist/ssr/Briefcase";
+import { Check } from "@phosphor-icons/react/dist/ssr/Check";
+import { ArrowsClockwise } from "@phosphor-icons/react/dist/ssr/ArrowsClockwise";
+import { BookOpen } from "@phosphor-icons/react/dist/ssr/BookOpen";
 
 const GuideLayout = lazy(() => import("@/pages/GuideLayout").then(m => ({ default: m.GuideLayout })));
 const GuideIndex = lazy(() => import("@/pages/GuideIndex").then(m => ({ default: m.GuideIndex })));

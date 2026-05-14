@@ -1,7 +1,7 @@
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { useI18n } from "@/i18n";
-import { GlobeSimple } from "@phosphor-icons/react";
+import { GlobeSimple } from "@phosphor-icons/react/dist/ssr/GlobeSimple";
 
 export function Header() {
   const { locale, setLocale, t } = useI18n();

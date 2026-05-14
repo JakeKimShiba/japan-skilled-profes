@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Separator } from "@/components/ui/separator";
-import { ArrowLeft, Calculator } from "@phosphor-icons/react";
+import { ArrowLeft } from "@phosphor-icons/react/dist/ssr/ArrowLeft";
+import { Calculator } from "@phosphor-icons/react/dist/ssr/Calculator";
 import { useI18n } from "@/i18n";
 
 export function GuideLayout() {
