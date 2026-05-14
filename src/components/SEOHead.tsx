@@ -27,8 +27,9 @@ export function SEOHead({ title, description, path, jsonLd }: SEOHeadProps) {
     setMeta("og:title", title, "property");
     setMeta("og:description", description, "property");
     setMeta("og:url", fullUrl, "property");
-    setMeta("twitter:title", title, "property");
-    setMeta("twitter:description", description, "property");
+    setMeta("twitter:title", title);
+    setMeta("twitter:description", description);
+    setMeta("twitter:url", fullUrl);
 
     // Update canonical
     let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;

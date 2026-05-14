@@ -13,6 +13,8 @@ const staticPages = [
   { loc: '/?lang=zh-cn', changefreq: 'weekly', priority: '0.7' },
   { loc: '/?lang=zh-tw', changefreq: 'weekly', priority: '0.7' },
   { loc: '/guide', changefreq: 'weekly', priority: '0.8' },
+  { loc: '/guide/info', changefreq: 'weekly', priority: '0.8' },
+  { loc: '/guide/faq', changefreq: 'weekly', priority: '0.8' },
 ];
 
 // Guide pages — add new guides here
