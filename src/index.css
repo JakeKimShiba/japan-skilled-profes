@@ -112,4 +112,20 @@
   [data-category] {
     page-break-inside: avoid;
   }
+  /* Force all accordion items open in print */
+  [data-state="closed"] > [data-radix-accordion-content] {
+    display: block !important;
+    height: auto !important;
+  }
+  [data-radix-accordion-content] {
+    height: auto !important;
+  }
+  [data-radix-accordion-trigger] svg {
+    display: none !important;
+  }
+  /* Force all collapsibles open in print */
+  [data-state="closed"] > [data-radix-collapsible-content] {
+    display: block !important;
+    height: auto !important;
+  }
 }
