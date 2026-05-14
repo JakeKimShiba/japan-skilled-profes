@@ -198,7 +198,7 @@ export const guides: Guide[] = [
   <li>일본 국가 자격증 보유: +5~10점</li>
 </ul>
 
-<div class="guide-callout guide-callout-info">정확한 포인트는 <a href="https://kodocalc.com">kodocalc.com 무료 계산기</a>로 즉시 확인할 수 있습니다. 항목별 점수와 부족한 점수를 자동으로 분석해 드립니다.</div>`,
+<div class="guide-callout guide-callout-info">정확한 포인트는 <a href="/">kodocalc.com 무료 계산기</a>로 즉시 확인할 수 있습니다. 항목별 점수와 부족한 점수를 자동으로 분석해 드립니다.</div>`,
       },
       {
         title: "70점 달성을 위한 현실적인 전략",
@@ -324,7 +324,7 @@ export const guides: Guide[] = [
       {
         title: "현재 점수 진단하기",
         content: `
-<p>포인트를 올리려면 먼저 <strong>현재 몇 점인지 정확히 파악</strong>하는 것이 중요합니다. <a href="https://kodocalc.com">kodocalc.com 계산기</a>에서 현재 조건을 입력하면 항목별 점수와 부족한 점수를 즉시 확인할 수 있습니다.</p>
+<p>포인트를 올리려면 먼저 <strong>현재 몇 점인지 정확히 파악</strong>하는 것이 중요합니다. <a href="/">kodocalc.com 계산기</a>에서 현재 조건을 입력하면 항목별 점수와 부족한 점수를 즉시 확인할 수 있습니다.</p>
 
 <div class="guide-callout guide-callout-info">보통 <strong>5~15점 부족</strong>한 경우가 많으며, 아래 6가지 방법 중 2~3가지를 조합하면 충분히 달성 가능합니다.</div>
 

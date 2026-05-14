@@ -4,7 +4,6 @@
   "tabs.calculator": "积分计算器",
   "tabs.info": "制度说明",
   "tabs.faq": "常见问题",
-  
   "faq.title": "常见问题（FAQ）",
   "faq.subtitle": "关于日本高级人才签证的常见问题与解答。",
   "faq.category.all": "全部",
@@ -15,7 +14,6 @@
   "faq.category.language": "语言",
   "faq.category.qualifications": "资格",
   "faq.category.pr": "永久居留",
-  
   "faq.q1.question": "什么是日本高级人才签证？",
   "faq.q1.answer1": "高级人才签证（高度専門職）是日本政府为吸引优秀外国人才而设立的特殊签证。",
   "faq.q1.answer2": "通过对学历、工作经验、年收入、日语能力等进行评分，达到70分以上即可获得资格，享受比普通工作签证更多的优惠。",
@@ -23,7 +21,6 @@
   "faq.q1.benefit2": "配偶工作许可",
   "faq.q1.benefit3": "父母可随行",
   "faq.q1.benefit4": "允许多种活动",
-  
   "faq.q2.question": "如何达到70分？",
   "faq.q2.answer1": "达到70分的策略方法：",
   "faq.q2.tip1.title": "获得硕士学位",
@@ -36,18 +33,15 @@
   "faq.q2.tip4.desc": "世界排名前300名大学：+10分",
   "faq.q2.tip5.title": "积累工作经验",
   "faq.q2.tip5.desc": "10年以上经验：25分",
-  
   "faq.q3.question": "JLPT N1和N2有什么区别？",
   "faq.q3.n1.desc": "最高难度。证明高级日语能力。",
   "faq.q3.n2.desc": "中上级水平。可用于日常生活和工作。",
   "faq.q3.recommendation": "N2也很有价值，但5分的差距可能对是否符合资格起决定性作用。",
-  
   "faq.q4.question": "各学历能获得多少分？",
   "faq.q4.doctorate": "博士学位",
   "faq.q4.masters": "硕士学位",
   "faq.q4.bachelors": "学士学位",
   "faq.q4.note": "* 日本大学毕业可能有额外加分。",
-  
   "faq.q5.question": "有最低年薪要求吗？",
   "faq.q5.answer1": "是的，不同签证类型有不同的最低年薪要求：",
   "faq.q5.technical": "高度专业·技术活动：最低需300万日元",
@@ -58,25 +52,21 @@
   "faq.q5.salary3": "600万日元以上",
   "faq.q5.salary4": "400万日元以上",
   "faq.q5.note": "* 年薪越高得分越多。根据年龄，分数标准可能有所不同。",
-  
   "faq.q6.question": "工作经验如何认定？",
   "faq.q6.answer1": "工作经验认定条件：",
   "faq.q6.req1": "仅认定全职工作经验",
   "faq.q6.req2": "必须是相关领域的经验",
   "faq.q6.req3": "需要在职证明或工作证明",
   "faq.q6.answer2": "拥有10年以上经验可获得最高25分。",
-  
   "faq.q7.question": "80分以上有什么额外优惠？",
   "faq.q7.answer1": "达到80分以上的额外优惠：",
   "faq.q7.standard.title": "70-79分",
   "faq.q7.standard.desc": "3年后可申请永久居留",
   "faq.q7.expedited.title": "80分以上 🌟",
   "faq.q7.expedited.desc": "仅1年后即可申请永久居留（超快速！）",
-  
   "faq.q8.question": "如何获得大学加分？",
   "faq.q8.answer1": "如果您毕业于世界排名前300名的大学，可获得10分加分。",
   "faq.q8.answer2": "使用本网站的大学搜索功能，查看您的大学是否在名单中。",
-  
   "faq.q9.question": "哪些外国专业资格或国际获奖经历被认可？",
   "faq.q9.answer1": "如果持有日本法务省认可的14项外国专业资格或国际设计/时尚奖项之一，可获得5分加分。",
   "faq.q9.answer2": "认可的资格/奖项列表：",
@@ -95,7 +85,6 @@
   "faq.q9.qual13": "13. 国际羊毛标志大奖（获奖者）",
   "faq.q9.qual14": "14. 时尚大奖（年度设计师）",
   "faq.q9.note": "* 该资格/奖项必须与您的专业领域相关。",
-  
   "faq.q10.question": "即使满足高级人才积分要求，永久居留申请也可能被拒吗？",
   "faq.q10.answer1": "是的。可能因以下原因被拒：",
   "faq.q10.reason1.title": "税务问题",
@@ -131,7 +120,6 @@
   "faq.q12.criteria.title": "认定标准",
   "faq.q12.criteria.desc1": "必须可以通过雇佣合同、工作规则、工资明细等客观资料证明",
   "faq.q12.criteria.desc2": "积分计算基于这些可证明的年度报酬总额",
-  
   "faq.q13.question": "韩国的信息处理技师/信息处理产业技师是否被高级人才签证积分认可?",
   "faq.q13.answer1": "根据日本IPA的官方互认制度，认定如下:",
   "faq.q13.recognition1": "信息处理技师 → 相当于日本应用信息技术工程师(AP)",
@@ -141,7 +129,6 @@
   "faq.q13.note1": "同一领域的上位·下位资格(AP/FE)不重复累加",
   "faq.q13.note2": "实际是否加分及分数由入国管理局审查决定",
   "faq.q13.link": "IPA官方互认制度",
-
   "faq.q14.question": "拥有工商管理专业学位（MBA/MOT）是否总能获得25分的学历加分？",
   "faq.q14.answer1": "不是的。拥有工商管理专业学位（MBA、MOT等）并不意味着学历加分会自动获得25分。",
   "faq.q14.answer2": "在高级人才签证积分制中，不仅考虑学位类型，还会综合审查申请的活动类型（专业·技术或经营·管理）以及实际工作经历和工作内容是否与学位性质实质相关。",
@@ -149,7 +136,6 @@
   "faq.q14.criteria.title": "获得25分认定的条件",
   "faq.q14.criteria.activity": "申请活动属于专业·技术活动（高度専门职1号ロ）或经营·管理活动（高度専门职1号ハ）",
   "faq.q14.criteria.content": "职务内容实质性包含事业企划、组织运营、项目管理、参与决策等经营·管理要素",
-  
   "form.title": "填写信息",
   "form.education": "学历",
   "form.experience": "工作经验",
@@ -297,7 +283,6 @@
   "info.license.linkText": "日本法务省官方政策",
   "info.disclaimer": "本工具仅供参考。权威信息请访问",
   "info.disclaimer.link": "日本出入国在留管理厅官网",
-  
   "points.value": "{value} 分",
   "points.unit": "分",
   "common.none": "无",
@@ -345,8 +330,7 @@
   "special.japaneseEducation": "在日本高等教育机构（四年制大学及以上）取得学位",
   "special.japaneseEducation.n2Restriction": "不可与 JLPT N2 加分项重复计算",
   "tooltip.experience": "请选择您的工作经验区间。",
-  "tooltip.researchLicense": "请选择研究成果与资格证项目。"
-  ,
+  "tooltip.researchLicense": "请选择研究成果与资格证项目。",
   "category.academic": "学历",
   "category.career": "工作经验",
   "category.age": "年龄",
@@ -469,5 +453,33 @@
   "research.technical.equivalent": "与上述学问相比的同等研究实绩",
   "research.multiple.bonus": "📊 分数适用：",
   "research.multiple.message": "选择2项以上研究实绩总共获得25分！",
-  "visa.select.other": "选择其他签证类型"
+  "visa.select.other": "选择其他签证类型",
+  "page.loading": "加载中...",
+  "page.notFound": "页面未找到。",
+  "page.notFound.desc": "您请求的页面不存在。",
+  "nav.calculator": "积分计算器",
+  "nav.guide": "指南",
+  "guide.index.title": "高度人才签证指南",
+  "guide.index.desc": "日本高度人才签证(高度専門職)申请所需的全部信息。",
+  "guide.index.subdesc": "从制度介绍到积分计算、永住权申请，逐步指导。",
+  "guide.index.info": "制度介绍",
+  "guide.index.info.desc": "签证类型、优惠、永住权、资格等",
+  "guide.index.faq": "常见问题",
+  "guide.index.faq.desc": "积分标准、申请方法、永住权等",
+  "guide.index.detailed": "详细指南",
+  "guide.index.cta": "立即计算您的积分",
+  "guide.index.cta.desc": "输入学历、工作经验、年收入、资格证书，即可确认高度人才积分。",
+  "guide.index.cta.button": "免费积分计算器 →",
+  "guide.toc": "目录",
+  "guide.faq": "常见问题",
+  "guide.lastUpdated": "最后更新",
+  "guide.cta.title": "我的高度人才积分是多少？",
+  "guide.cta.desc": "在免费计算器中输入学历、工作经验、年收入、资格证书即可确认。",
+  "guide.cta.button": "计算积分",
+  "guide.related": "相关指南",
+  "breadcrumb.home": "首页",
+  "breadcrumb.guide": "指南",
+  "footer.guide.title": "高度人才签证指南",
+  "footer.guide.desc": "制度介绍、常见问题、各签证类型积分提升方法等",
+  "footer.official": "法务省官方网站"
 }

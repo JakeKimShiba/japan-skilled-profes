@@ -27,8 +27,9 @@ const InfoPage = lazy(() => import("@/pages/InfoPage").then(m => ({ default: m.I
 const FAQPage = lazy(() => import("@/pages/FAQPage").then(m => ({ default: m.FAQPage })));
 
 function App() {
+  const { t } = useI18n();
   return (
-    <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center text-muted-foreground">로딩 중...</div>}>
+    <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center text-muted-foreground">{t('page.loading')}</div>}>
       <Routes>
         <Route path="/" element={<CalculatorPage />} />
         <Route path="/guide" element={<GuideLayout />}>
@@ -44,16 +45,17 @@ function App() {
 }
 
 function NotFoundPage() {
+  const { t } = useI18n();
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center gap-4 p-8 text-center">
       <h1 className="text-4xl font-bold text-foreground">404</h1>
-      <p className="text-muted-foreground">페이지를 찾을 수 없습니다.</p>
+      <p className="text-muted-foreground">{t('page.notFound')}</p>
       <div className="flex gap-3">
         <Link to="/" className="bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors">
-          포인트 계산기
+          {t('nav.calculator')}
         </Link>
         <Link to="/guide" className="border px-4 py-2 rounded-lg text-sm font-medium hover:bg-muted transition-colors">
-          가이드
+          {t('nav.guide')}
         </Link>
       </div>
     </div>
@@ -411,10 +413,10 @@ function CalculatorPage() {
               <BookOpen size={20} className="text-primary shrink-0" />
               <div className="flex-1 min-w-0">
                 <div className="font-medium text-sm text-foreground group-hover:text-primary transition-colors">
-                  고도인재 비자 가이드
+                  {t('footer.guide.title')}
                 </div>
                 <div className="text-xs text-muted-foreground mt-0.5">
-                  제도 안내, 자주 묻는 질문, 비자 유형별 포인트 올리는 방법 등
+                  {t('footer.guide.desc')}
                 </div>
               </div>
               <span className="text-muted-foreground group-hover:text-primary transition-colors shrink-0">→</span>

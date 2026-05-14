@@ -6,9 +6,11 @@ import { ArrowLeft } from "@phosphor-icons/react/dist/ssr/ArrowLeft";
 import { Calculator } from "@phosphor-icons/react/dist/ssr/Calculator";
 import { guides } from "@/content/guides";
 import { SEOHead } from "@/components/SEOHead";
+import { useI18n } from "@/i18n";
 
 export function GuidePage() {
   const { slug } = useParams<{ slug: string }>();
+  const { t } = useI18n();
   const guide = guides.find((g) => g.slug === slug);
 
   if (!guide) {
@@ -50,8 +52,8 @@ export function GuidePage() {
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://kodocalc.com/" },
-              { "@type": "ListItem", "position": 2, "name": "가이드", "item": "https://kodocalc.com/guide" },
+              { "@type": "ListItem", "position": 1, "name": t('breadcrumb.home'), "item": "https://kodocalc.com/" },
+              { "@type": "ListItem", "position": 2, "name": t('breadcrumb.guide'), "item": "https://kodocalc.com/guide" },
               { "@type": "ListItem", "position": 3, "name": guide.title, "item": `https://kodocalc.com/guide/${guide.slug}` },
             ],
           },
@@ -73,14 +75,14 @@ export function GuidePage() {
             {guide.description}
           </p>
           <div className="mt-3 text-xs text-muted-foreground">
-            최종 업데이트: {guide.dateModified}
+            {t('guide.lastUpdated')}: {guide.dateModified}
           </div>
         </header>
 
         {/* Table of Contents */}
         {guide.sections.length > 2 && (
           <nav className="mb-8 p-4 bg-muted/50 rounded-lg border">
-            <h2 className="text-sm font-semibold mb-3">목차</h2>
+            <h2 className="text-sm font-semibold mb-3">{t('guide.toc')}</h2>
             <ol className="space-y-1.5 text-sm">
               {guide.sections.map((section, idx) => (
                 <li key={idx}>
@@ -117,7 +119,7 @@ export function GuidePage() {
             <Separator className="my-8" />
             <section>
               <h2 className="text-2xl font-semibold tracking-tight text-foreground mb-6">
-                자주 묻는 질문
+                {t('guide.faq')}
               </h2>
               <div className="space-y-4">
                 {guide.faq.map((item, idx) => (
@@ -139,16 +141,16 @@ export function GuidePage() {
         {/* CTA */}
         <Card className="mt-8 bg-primary/5 border-primary/20">
           <CardContent className="pt-6 text-center space-y-3">
-            <h2 className="text-xl font-semibold">나의 고도인재 포인트는?</h2>
+            <h2 className="text-xl font-semibold">{t('guide.cta.title')}</h2>
             <p className="text-muted-foreground text-sm">
-              무료 계산기로 학력·경력·연봉·자격증을 입력하면 즉시 확인할 수 있습니다.
+              {t('guide.cta.desc')}
             </p>
             <Link
               to="/"
               className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-2.5 rounded-lg font-medium hover:bg-primary/90 transition-colors"
             >
               <Calculator size={18} />
-              포인트 계산하기
+              {t('guide.cta.button')}
             </Link>
           </CardContent>
         </Card>
@@ -156,7 +158,7 @@ export function GuidePage() {
         {/* Related Guides */}
         {guides.filter((g) => g.slug !== guide.slug).length > 0 && (
           <div className="mt-8">
-            <h3 className="text-lg font-semibold mb-4">관련 가이드</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('guide.related')}</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {guides
                 .filter((g) => g.slug !== guide.slug)

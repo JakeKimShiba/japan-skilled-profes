@@ -6,24 +6,26 @@ import { Info } from "@phosphor-icons/react/dist/ssr/Info";
 import { Question } from "@phosphor-icons/react/dist/ssr/Question";
 import { guides } from "@/content/guides";
 import { SEOHead } from "@/components/SEOHead";
+import { useI18n } from "@/i18n";
 
 export function GuideIndex() {
+  const { t } = useI18n();
   return (
     <>
       <SEOHead
-        title="고도인재 비자 가이드 | kodocalc.com"
-        description="일본 고도인재 비자(HSP) 신청에 필요한 모든 정보를 정리한 가이드 모음. 제도 안내, FAQ, 포인트 계산, 영주권 신청 등."
+        title={`${t('guide.index.title')} | kodocalc.com`}
+        description={t('guide.index.desc')}
         path="/guide"
       />
 
       <div className="space-y-8">
         <div>
           <h1 className="text-3xl font-bold tracking-tight text-foreground">
-            고도인재 비자 가이드
+            {t('guide.index.title')}
           </h1>
           <p className="mt-3 text-lg text-muted-foreground leading-relaxed">
-            일본 고도인재 비자(高度専門職) 신청에 필요한 모든 정보를 한곳에 모았습니다.
-            제도 안내부터 포인트 계산, 영주권 신청까지 단계별로 안내합니다.
+            {t('guide.index.desc')}{' '}
+            {t('guide.index.subdesc')}
           </p>
         </div>
 
@@ -34,8 +36,8 @@ export function GuideIndex() {
               <CardContent className="pt-5 pb-5 flex items-center gap-3">
                 <Info size={22} className="text-primary shrink-0" />
                 <div className="flex-1 min-w-0">
-                  <div className="font-semibold text-foreground group-hover:text-primary transition-colors">제도 안내</div>
-                  <div className="text-xs text-muted-foreground mt-0.5">비자 유형, 혜택, 영주권, 자격증 등</div>
+                  <div className="font-semibold text-foreground group-hover:text-primary transition-colors">{t('guide.index.info')}</div>
+                  <div className="text-xs text-muted-foreground mt-0.5">{t('guide.index.info.desc')}</div>
                 </div>
                 <ArrowRight size={16} className="text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
               </CardContent>
@@ -46,8 +48,8 @@ export function GuideIndex() {
               <CardContent className="pt-5 pb-5 flex items-center gap-3">
                 <Question size={22} className="text-primary shrink-0" />
                 <div className="flex-1 min-w-0">
-                  <div className="font-semibold text-foreground group-hover:text-primary transition-colors">자주 묻는 질문</div>
-                  <div className="text-xs text-muted-foreground mt-0.5">포인트 기준, 신청 방법, 영주권 등</div>
+                  <div className="font-semibold text-foreground group-hover:text-primary transition-colors">{t('guide.index.faq')}</div>
+                  <div className="text-xs text-muted-foreground mt-0.5">{t('guide.index.faq.desc')}</div>
                 </div>
                 <ArrowRight size={16} className="text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
               </CardContent>
@@ -57,7 +59,7 @@ export function GuideIndex() {
 
         {/* Guide articles */}
         <div>
-          <h2 className="text-lg font-semibold text-foreground mb-3">상세 가이드</h2>
+          <h2 className="text-lg font-semibold text-foreground mb-3">{t('guide.index.detailed')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {guides.map((guide) => (
               <Link key={guide.slug} to={`/guide/${guide.slug}`} className="group">
@@ -89,15 +91,15 @@ export function GuideIndex() {
         {/* CTA to calculator */}
         <Card className="bg-primary/5 border-primary/20">
           <CardContent className="pt-6 text-center space-y-3">
-            <h2 className="text-xl font-semibold">지금 바로 포인트를 계산해보세요</h2>
+            <h2 className="text-xl font-semibold">{t('guide.index.cta')}</h2>
             <p className="text-muted-foreground">
-              학력, 경력, 연봉, 자격증 등을 입력하면 즉시 고도인재 포인트를 확인할 수 있습니다.
+              {t('guide.index.cta.desc')}
             </p>
             <Link
               to="/"
               className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-2.5 rounded-lg font-medium hover:bg-primary/90 transition-colors"
             >
-              무료 포인트 계산기 →
+              {t('guide.index.cta.button')}
             </Link>
           </CardContent>
         </Card>
