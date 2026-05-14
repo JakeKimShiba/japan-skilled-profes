@@ -1,27 +1,8 @@
-export interface GuideSection {
-  title: string;
-  content: string; // HTML string
-}
-
-export interface GuideFAQ {
-  question: string;
-  answer: string;
-}
-
-export interface Guide {
-  slug: string;
-  title: string;
-  description: string;
-  keywords: string[];
-  datePublished: string;
-  dateModified: string;
-  sections: GuideSection[];
-  faq: GuideFAQ[];
-}
+import type { Guide } from './types';
 
 const today = new Date().toISOString().split("T")[0];
 
-export const guides: Guide[] = [
+export const guidesKo: Guide[] = [
   {
     slug: "고도인재-비자-완벽-가이드",
     title: "일본 고도인재 비자(高度専門職) 완벽 가이드 2026",

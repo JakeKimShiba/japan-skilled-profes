@@ -4,13 +4,14 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ArrowLeft } from "@phosphor-icons/react/dist/ssr/ArrowLeft";
 import { Calculator } from "@phosphor-icons/react/dist/ssr/Calculator";
-import { guides } from "@/content/guides";
+import { useGuides } from "@/hooks/useGuides";
 import { SEOHead } from "@/components/SEOHead";
 import { useI18n } from "@/i18n";
 
 export function GuidePage() {
   const { slug } = useParams<{ slug: string }>();
   const { t } = useI18n();
+  const guides = useGuides();
   const guide = guides.find((g) => g.slug === slug);
 
   if (!guide) {

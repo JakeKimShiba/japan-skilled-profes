@@ -4,12 +4,13 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr/ArrowRight";
 import { Info } from "@phosphor-icons/react/dist/ssr/Info";
 import { Question } from "@phosphor-icons/react/dist/ssr/Question";
-import { guides } from "@/content/guides";
+import { useGuides } from "@/hooks/useGuides";
 import { SEOHead } from "@/components/SEOHead";
 import { useI18n } from "@/i18n";
 
 export function GuideIndex() {
   const { t } = useI18n();
+  const guides = useGuides();
   return (
     <>
       <SEOHead
