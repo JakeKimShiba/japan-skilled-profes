@@ -187,10 +187,9 @@ export function PointsResult({ data }: PointsResultProps) {
 
   return (
     <Card ref={resultRef}>
-      <CardHeader>
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <CardTitle className="text-xl text-primary">{t('result.title')}</CardTitle>
-          <div className="flex gap-2 no-print">
+      <CardHeader className="flex flex-col gap-3 space-y-0">
+        <CardTitle className="text-xl text-primary">{t('result.title')}</CardTitle>
+        <div className="flex gap-2 no-print flex-wrap">
             <div className="relative">
               <Button
                 onClick={handleShare}
@@ -217,7 +216,6 @@ export function PointsResult({ data }: PointsResultProps) {
               <Download size={16} />
               {isGeneratingPDF ? t('result.downloading') : t('result.downloadPDF')}
             </Button>
-          </div>
         </div>
       </CardHeader>
       <CardContent className="space-y-6">
