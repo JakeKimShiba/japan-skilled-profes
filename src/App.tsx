@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Routes, Route, Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { PointsForm } from "@/components/PointsForm";
 import { PointsResult } from "@/components/PointsResult";
@@ -16,8 +17,23 @@ import { useI18n } from '@/i18n';
 import { trackVisaTypeSelected, trackCalculationCompleted } from '@/lib/analytics';
 import { VisaCalculatorService } from '@/services';
 import { GraduationCap, Gear, Briefcase, Check, ArrowsClockwise } from "@phosphor-icons/react";
+import { GuideLayout } from "@/pages/GuideLayout";
+import { GuideIndex } from "@/pages/GuideIndex";
+import { GuidePage } from "@/pages/GuidePage";
 
 function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<CalculatorPage />} />
+      <Route path="/guide" element={<GuideLayout />}>
+        <Route index element={<GuideIndex />} />
+        <Route path=":slug" element={<GuidePage />} />
+      </Route>
+    </Routes>
+  );
+}
+
+function CalculatorPage() {
   const { t } = useI18n();
   const resultsRef = useRef<HTMLDivElement>(null);
 
