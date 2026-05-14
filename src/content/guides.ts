@@ -575,7 +575,7 @@ export const guides: Guide[] = [
         content: `
 <p><strong>80점 이상</strong>으로 고도인재 비자를 취득하면, 입국(또는 자격 변경) 후 <strong>1년이 경과한 시점</strong>에서 영주권을 신청할 수 있습니다.</p>
 
-<div class="guide-callout guide-callout-info">최단 <strong>약 1년 6개월</strong> 만에 일본 영주권을 취득할 수 있습니다. 일반 취업비자(10년) 대비 <strong>85% 단축</strong>!</div>
+<div class="guide-callout guide-callout-info">80점 기준 신청 후, 도쿄에서는 최근 심사에 <strong>약 1년 6개월 이상</strong> 소요되어 총 <strong>약 2년 반~3년</strong>이 걸릴 수 있습니다. 지방 입관은 비교적 빠른 편입니다.</div>
 
 <p><strong>타임라인:</strong></p>
 <div class="guide-timeline">
@@ -583,7 +583,7 @@ export const guides: Guide[] = [
   <div class="guide-timeline-item"><div class="step-title">6개월 — 중간 점검</div><div class="step-desc">세금, 연금, 보험 납부 기록 확인 (체납 없는지)</div></div>
   <div class="guide-timeline-item"><div class="step-title">10개월 — 서류 준비</div><div class="step-desc">영주권 신청 서류 준비 시작 (증빙 수집)</div></div>
   <div class="guide-timeline-item"><div class="step-title">12개월 — 영주권 신청</div><div class="step-desc">입관에 영주허가 신청서 접수</div></div>
-  <div class="guide-timeline-item"><div class="step-title">16~18개월 — 영주권 허가 🎉</div><div class="step-desc">심사 4~6개월 후 영주권 취득!</div></div>
+  <div class="guide-timeline-item"><div class="step-title">24~30개월 — 영주권 허가 🎉</div><div class="step-desc">도쿄 기준 최근 심사 1년 6개월 이상 소요. 지역에 따라 편차 있음</div></div>
 </div>`,
       },
       {
@@ -609,7 +609,9 @@ export const guides: Guide[] = [
       {
         title: "영주권 심사 기간과 결과",
         content: `
-<p>영주권 심사는 <strong>약 4~6개월</strong>이 소요됩니다. 고도인재의 경우 일반 신청보다 약간 빠르게 처리되는 경향이 있습니다.</p>
+<p>영주권 심사는 공식적으로는 약 4개월로 안내되고 있으나, <strong>도쿄 기준 최근에는 1년 6개월 이상</strong> 소요되는 경우가 늘고 있습니다. 지역과 시기에 따라 편차가 큽니다.</p>
+
+<div class="guide-callout guide-callout-warning"><strong>최신 정보:</strong> 도쿄 입관은 신청 건수 증가로 심사가 크게 지연되고 있습니다. 여유를 갖고 <strong>1년 이상의 대기 기간</strong>을 감안하세요.</div>
 
 <p><strong>심사 중 주의사항:</strong></p>
 <ul>
