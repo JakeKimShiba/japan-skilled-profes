@@ -1,0 +1,40 @@
+# kodocalc.com — Japan Highly Skilled Professional (HSP) Visa Points Calculator
+
+## What is this site?
+kodocalc.com is a free online calculator for Japan's Highly Skilled Professional (HSP / 高度専門職) visa point system. Users input their education, work experience, salary, age, language ability, and qualifications to calculate their total points and determine eligibility for Japan's preferential immigration treatment.
+
+## Key Facts
+- 70 points or more: Eligible for HSP visa (permanent residency in 3 years)
+- 80 points or more: Eligible for expedited permanent residency (1 year)
+- Three visa categories: Academic Research (イ), Technical/Humanities (ロ), Business Management (ハ)
+- Minimum salary: ¥3,000,000 for Technical, ¥10,000,000 for Business Management
+- Points are calculated based on: Education (max 30), Work Experience (max 20-25), Salary (max 40), Age (max 15), Language (max 15), Special bonuses
+
+## Point Categories
+- Education: Doctorate (30pts), Masters (20pts), MBA (25pts), Bachelor (10pts)
+- Work Experience: 10+ years (20-25pts), 7-9 years (15-20pts), 5-6 years (10-15pts)
+- Annual Salary: ¥10M+ (40pts), ¥9M+ (35pts), ¥8M+ (30pts), ¥7M+ (25pts)
+- Age (Technical only): Under 30 (15pts), 30-34 (10pts), 35-39 (5pts)
+- Japanese Language: JLPT N1 (15pts), JLPT N2 (10pts)
+- Bonuses: Top 300 university (+10), Innovation company (+10), National license (+5-10)
+
+## HSP Visa Benefits
+1. Multiple activities allowed under one visa
+2. 5-year residence period
+3. Spouse can work without separate visa
+4. Can invite parents to Japan
+5. Can hire domestic workers
+6. Expedited permanent residency (1-3 years instead of 10)
+7. Priority immigration processing
+
+## Languages Supported
+Korean (ko), Japanese (ja), English (en), Simplified Chinese (zh-CN), Traditional Chinese (zh-TW)
+
+## Contact
+kodocalc@gmail.com
+
+## URLs
+- Calculator: https://kodocalc.com/
+- Guides: https://kodocalc.com/guide
+- Complete Visa Guide: https://kodocalc.com/guide/고도인재-비자-완벽-가이드
+- How to Increase Points: https://kodocalc.com/guide/포인트-올리는-방법
