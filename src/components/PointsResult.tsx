@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { CheckCircle, Warning, Trophy, Download, Lightbulb, CaretDown, ShareNetwork } from "@phosphor-icons/react";
+import { CheckCircle, Warning, Trophy, Download, Lightbulb, CaretDown, ShareNetwork, SpinnerGap, Check } from "@phosphor-icons/react";
 import { calculateTotalPoints, getCategoryPoints, getQualificationStatus } from "@/lib/calculator";
 import { PointsData, VisaType } from "@/lib/models";
 import { useReactToPrint } from 'react-to-print';
@@ -195,13 +195,17 @@ export function PointsResult({ data }: PointsResultProps) {
                 onClick={handleShare}
                 variant="outline"
                 size="sm"
-                className="gap-2"
+                className="gap-2 transition-colors duration-200 hover:bg-primary/10 hover:border-primary/30"
               >
-                <ShareNetwork size={16} />
+                {shareTooltip ? (
+                  <Check size={16} weight="bold" className="text-emerald-600" />
+                ) : (
+                  <ShareNetwork size={16} />
+                )}
                 {t('result.shareResult') || 'Share'}
               </Button>
               {shareTooltip && (
-                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-foreground px-2 py-1 text-xs text-background shadow z-10">
+                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-foreground px-2 py-1 text-xs text-background shadow z-10 animate-in fade-in slide-in-from-top-1 duration-200">
                   {shareTooltip}
                 </div>
               )}
@@ -211,9 +215,13 @@ export function PointsResult({ data }: PointsResultProps) {
               disabled={isGeneratingPDF}
               variant="outline"
               size="sm"
-              className="gap-2"
+              className="gap-2 transition-colors duration-200 hover:bg-primary/10 hover:border-primary/30"
             >
-              <Download size={16} />
+              {isGeneratingPDF ? (
+                <SpinnerGap size={16} className="animate-spin" />
+              ) : (
+                <Download size={16} />
+              )}
               {isGeneratingPDF ? t('result.downloading') : t('result.downloadPDF')}
             </Button>
         </div>

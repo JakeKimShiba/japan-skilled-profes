@@ -204,7 +204,7 @@ export function PointsForm({ data, setData, onViewResults }: PointsFormProps) {
         />
       </CardHeader>
 
-      <CardContent className="space-y-6 pb-6">
+      <CardContent className="space-y-6 pb-28 md:pb-6">
         {/* Step Content */}
         {renderStep()}
         
@@ -239,7 +239,7 @@ export function PointsForm({ data, setData, onViewResults }: PointsFormProps) {
           
           <div className="flex items-center gap-2">
             {isQualified ? (
-              <Badge variant="default" className="bg-green-500 hover:bg-green-600">
+              <Badge variant="default" className="bg-emerald-600 hover:bg-emerald-700">
                 <span className="text-xs font-medium">{t('result.qualified')}</span>
               </Badge>
             ) : (

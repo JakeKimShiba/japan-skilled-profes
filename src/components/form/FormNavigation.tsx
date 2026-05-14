@@ -70,10 +70,10 @@ export function ProgressBar({ currentStep, totalSteps, steps, onGoTo }: Progress
                     onClick={() => onGoTo(idx)}
                     aria-current={idx === currentStep ? 'step' : undefined}
                     aria-label={`${idx + 1}. ${t(step.key)}`}
-                    className={`flex-shrink-0 inline-flex items-center gap-1 h-8 px-2 rounded border transition whitespace-nowrap leading-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                    className={`flex-shrink-0 inline-flex items-center gap-1 h-8 px-2 rounded border transition whitespace-nowrap leading-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                       idx === currentStep 
                         ? 'bg-primary text-primary-foreground font-semibold' 
-                        : 'hover:bg-muted'
+                        : 'border-input hover:border-primary hover:bg-primary/5'
                     }`}
                   >
                     <span className={`inline-flex items-center justify-center w-5 h-5 text-[11px] rounded-full ${
@@ -98,17 +98,20 @@ export function ProgressBar({ currentStep, totalSteps, steps, onGoTo }: Progress
       <Progress value={progressValue} className="w-full" />
       
       {/* Step indicators for mobile */}
-      <div className="flex justify-center mt-3 md:hidden">
-        <div className="flex space-x-1">
+      <div className="flex flex-col items-center mt-3 md:hidden gap-1">
+        <span className="text-xs text-muted-foreground font-medium">
+          {currentStep + 1} / {totalSteps}
+        </span>
+        <div className="flex space-x-1.5">
           {steps.map((_, index) => (
             <div
               key={index}
-              className={`w-2 h-2 rounded-full ${
+              className={`h-2 rounded-full transition-all duration-300 ${
                 index === currentStep 
-                  ? 'bg-primary' 
+                  ? 'bg-primary w-6' 
                   : index < currentStep 
-                    ? 'bg-primary/60' 
-                    : 'bg-muted'
+                    ? 'bg-primary/60 w-2' 
+                    : 'bg-muted w-2'
               }`}
             />
           ))}
@@ -185,7 +188,7 @@ export function FormNavigation({
               <Button 
                 type="button" 
                 variant="outline"
-                className="border-destructive/30 text-destructive hover:bg-destructive hover:text-destructive-foreground hover:border-destructive"
+                className="border-destructive text-destructive hover:bg-destructive hover:text-destructive-foreground hover:border-destructive"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5">
                   <path d="M3 6h18"/>

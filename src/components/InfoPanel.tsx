@@ -13,7 +13,7 @@ export function InfoPanel() {
       <CardContent className="space-y-4 text-sm">
         <p>{t('info.intro')}</p>
 
-        <p className="mt-2 text-primary-foreground bg-primary/80 p-2 rounded-md">{t('info.notice', { visa: t('visa.type') })}</p>
+        <div className="mt-2 text-primary-foreground bg-primary p-3 rounded-md text-sm font-medium">{t('info.notice', { visa: t('visa.type') })}</div>
 
         <p>{t('info.description')}</p>
 
@@ -75,7 +75,7 @@ export function InfoPanel() {
               href="https://www.moj.go.jp/isa/policies/bill/nyukan_hourei_h09.html"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary underline"
+              className="text-primary underline hover:opacity-80 transition-opacity"
             >
               {t('info.license.linkText')}
             </a>
