@@ -36,6 +36,14 @@ export const guides: Guide[] = [
         content: `
 <p><strong>고도인재 비자(高度専門職ビザ)</strong>는 일본 법무성이 운영하는 <strong>포인트제 우대 비자</strong>입니다. 학력, 경력, 연봉, 나이, 자격증, 일본어 능력 등을 합산하여 <strong>70점 이상</strong>이면 취득할 수 있으며, <strong>80점 이상</strong>이면 최단 1년 만에 영주권 신청이 가능합니다.</p>
 <p>정식 명칭은 「高度人材に対するポイント制による出入国在留管理上の優遇制度」이며, 2012년에 도입되어 현재까지 운영되고 있습니다.</p>
+
+<div class="guide-stats">
+  <div class="guide-stat"><div class="guide-stat-value">70점</div><div class="guide-stat-label">비자 취득 기준</div></div>
+  <div class="guide-stat"><div class="guide-stat-value">80점</div><div class="guide-stat-label">1년 영주권 기준</div></div>
+  <div class="guide-stat"><div class="guide-stat-value">6개</div><div class="guide-stat-label">평가 카테고리</div></div>
+  <div class="guide-stat"><div class="guide-stat-value">7대</div><div class="guide-stat-label">우대 혜택</div></div>
+</div>
+
 <table>
   <thead><tr><th>구분</th><th>기준 점수</th><th>영주권 신청</th></tr></thead>
   <tbody>
@@ -48,6 +56,34 @@ export const guides: Guide[] = [
         title: "2025년 경영비자 요건 강화와 고도인재 비자의 가치",
         content: `
 <p><strong>2025년 10월 16일</strong>, 일본 정부는 경영·관리 비자(経営・管理ビザ)의 요건을 대폭 강화했습니다. 기존의 「자본금 500만엔으로 1인 창업」이라는 방식은 더 이상 통하지 않게 되었으며, <strong>고도인재 비자(ハ)의 상대적 가치가 크게 높아졌습니다.</strong></p>
+
+<div class="guide-callout guide-callout-warning">2025년 10월 16일부터 경영비자 요건이 대폭 강화되었습니다. 자본금이 <strong>6배</strong> 증가하고, 일본어 능력·직원 고용·사업계획 검증이 모두 필수화되었습니다.</div>
+
+<div class="guide-vs">
+  <div class="guide-vs-card old">
+    <h4>❌ 이전 경영비자</h4>
+    <ul>
+      <li>💰 자본금 500만엔</li>
+      <li>👤 직원 2인 또는 자본금으로 대체</li>
+      <li>📋 경영 경험 불문</li>
+      <li>🗣️ 일본어 능력 불문</li>
+      <li>📄 사업계획 자체 작성</li>
+      <li>🏠 자택 겸용 가능</li>
+    </ul>
+  </div>
+  <div class="guide-vs-divider">→</div>
+  <div class="guide-vs-card new">
+    <h4>✅ 2025.10~ 신기준</h4>
+    <ul>
+      <li>💰 자본금 <strong>3,000만엔</strong></li>
+      <li>👤 상근직원 <strong>1명 이상 필수</strong></li>
+      <li>📋 경영 <strong>3년+</strong> 또는 석·박사</li>
+      <li>🗣️ <strong>JLPT N2 이상</strong> 필수</li>
+      <li>📄 <strong>외부 전문가</strong> 확인 필수</li>
+      <li>🏢 <strong>독립 사무소</strong> 필수</li>
+    </ul>
+  </div>
+</div>
 
 <table>
   <thead><tr><th>항목</th><th>이전 규정</th><th>2025년 10월 이후</th></tr></thead>
@@ -64,6 +100,8 @@ export const guides: Guide[] = [
 <p>이번 개정으로 외국인 창업자에게는 「충분한 자금」「인재」「일본어 능력」「검증된 사업 계획」이라는 <strong>극히 높은 종합력</strong>이 요구되게 되었습니다. 1인 스몰 스타트는 사실상 불가능해졌습니다.</p>
 
 <p><strong>경과 조치:</strong> 시행일(2025.10.16)부터 <strong>3년간(~2028년 10월 16일)</strong> 기존 재류자는 '개선계획서'와 '충족예정' 증빙을 제시하면 갱신이 가능합니다. 단, 2028년 10월 이후에는 신기준을 완전히 충족해야 합니다.</p>
+
+<div class="guide-callout guide-callout-tip">경영비자 대신 <strong>고도인재 비자(ハ)</strong>를 추천하는 이유: 자본금 3,000만엔 요건 없음, 포인트제 기반 종합 평가, 영주권 최단 1년, 배우자 취업·부모 초청 혜택까지!</div>
 
 <p><strong>고도인재 비자(ハ)가 대안인 이유:</strong></p>
 <ul>
@@ -93,6 +131,15 @@ export const guides: Guide[] = [
         title: "포인트 계산 항목별 상세 배점",
         content: `
 <p>포인트는 크게 <strong>6개 카테고리</strong>로 나뉘며, 각 항목의 최고점을 합산합니다.</p>
+
+<div class="guide-bars">
+  <div class="guide-bar-row"><span class="guide-bar-label">학력</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:75%;background:oklch(0.55 0.2 262)">30점</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">경력</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:62.5%;background:oklch(0.55 0.18 200)">25점</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">연봉</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:100%;background:oklch(0.55 0.18 155)">40점</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">나이</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:37.5%;background:oklch(0.6 0.15 55)">15점</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">일본어</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:37.5%;background:oklch(0.55 0.2 300)">15점</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">특별가산</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:62.5%;background:oklch(0.5 0.15 15)">10~25점</div></div></div>
+</div>
 
 <p><strong>① 학력 (최대 30점)</strong></p>
 <table>
@@ -151,7 +198,7 @@ export const guides: Guide[] = [
   <li>일본 국가 자격증 보유: +5~10점</li>
 </ul>
 
-<p>정확한 포인트는 <a href="https://kodocalc.com">kodocalc.com 무료 계산기</a>로 즉시 확인할 수 있습니다.</p>`,
+<div class="guide-callout guide-callout-info">정확한 포인트는 <a href="https://kodocalc.com">kodocalc.com 무료 계산기</a>로 즉시 확인할 수 있습니다. 항목별 점수와 부족한 점수를 자동으로 분석해 드립니다.</div>`,
       },
       {
         title: "70점 달성을 위한 현실적인 전략",
@@ -159,32 +206,30 @@ export const guides: Guide[] = [
 <p>가장 일반적인 한국인 직장인의 <strong>70점 달성 시나리오</strong>를 소개합니다.</p>
 
 <p><strong>시나리오 1: 석사 + 5년 경력 + 500만엔 연봉 (20대)</strong></p>
-<ul>
-  <li>학력: 석사 20점</li>
-  <li>경력: 5년 10점</li>
-  <li>연봉: 500만엔 15점</li>
-  <li>나이: 29세 이하 15점</li>
-  <li>일본어: JLPT N2 10점</li>
-  <li><strong>합계: 70점 ✅</strong></li>
-</ul>
+<div class="guide-bars">
+  <div class="guide-bar-row"><span class="guide-bar-label">학력</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:66%;background:oklch(0.55 0.2 262)">석사 20</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">경력</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.55 0.18 200)">5년 10</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">연봉</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:50%;background:oklch(0.55 0.18 155)">500만 15</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">나이</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:50%;background:oklch(0.6 0.15 55)">29↓ 15</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">일본어</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.55 0.2 300)">N2 10</div></div></div>
+</div>
+<div class="guide-stats" style="max-width:200px;margin:0.5rem auto">
+  <div class="guide-stat"><div class="guide-stat-value">70점 ✅</div><div class="guide-stat-label">합계</div></div>
+</div>
 
 <p><strong>시나리오 2: 학사 + 10년 경력 + 700만엔 연봉 (30대)</strong></p>
-<ul>
-  <li>학력: 학사 10점</li>
-  <li>경력: 10년 20점</li>
-  <li>연봉: 700만엔 25점</li>
-  <li>나이: 30~34세 10점</li>
-  <li>일본어: JLPT N2 10점</li>
-  <li><strong>합계: 75점 ✅</strong></li>
-</ul>
+<div class="guide-bars">
+  <div class="guide-bar-row"><span class="guide-bar-label">학력</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.55 0.2 262)">학사 10</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">경력</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:66%;background:oklch(0.55 0.18 200)">10년 20</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">연봉</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:83%;background:oklch(0.55 0.18 155)">700만 25</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">나이</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.6 0.15 55)">30대 10</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">일본어</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.55 0.2 300)">N2 10</div></div></div>
+</div>
+<div class="guide-stats" style="max-width:200px;margin:0.5rem auto">
+  <div class="guide-stat"><div class="guide-stat-value">75점 ✅</div><div class="guide-stat-label">합계</div></div>
+</div>
 
-<p><strong>포인트를 올리는 핵심 팁:</strong></p>
-<ol>
-  <li><strong>JLPT N1 취득</strong> — N2 대비 +5점, 가장 확실한 방법</li>
-  <li><strong>연봉 협상</strong> — 100만엔 올리면 +5점 가능</li>
-  <li><strong>일본 국가자격증</strong> — IT 관련 자격증 취득으로 +5점</li>
-  <li><strong>이노베이션 기업 이직</strong> — 해당 기업 소속 시 +10점</li>
-</ol>`,
+<div class="guide-callout guide-callout-tip"><strong>포인트를 올리는 핵심 팁:</strong> ① JLPT N1 취득 (+5점) ② 연봉 100만엔↑ (+5점) ③ 일본 국가자격증 (+5점) ④ 이노베이션 기업 이직 (+10점)</div>`,
       },
       {
         title: "고도인재 비자의 7대 혜택",
@@ -205,6 +250,18 @@ export const guides: Guide[] = [
         content: `
 <p>고도인재 비자는 <strong>출입국재류관리청(入管)</strong>에 신청합니다.</p>
 
+<div class="guide-flow">
+  <div class="guide-flow-step secondary">📋 서류 준비</div>
+  <div class="guide-flow-arrow">→</div>
+  <div class="guide-flow-step secondary">📊 포인트 계산</div>
+  <div class="guide-flow-arrow">→</div>
+  <div class="guide-flow-step primary">🏛️ 입관 신청</div>
+  <div class="guide-flow-arrow">→</div>
+  <div class="guide-flow-step secondary">⏳ 심사 (2주~1개월)</div>
+  <div class="guide-flow-arrow">→</div>
+  <div class="guide-flow-step accent">✅ 비자 취득</div>
+</div>
+
 <p><strong>기본 필요 서류:</strong></p>
 <ul>
   <li>재류자격인정증명서 교부신청서 또는 재류자격변경허가신청서</li>
@@ -218,12 +275,13 @@ export const guides: Guide[] = [
 </ul>
 
 <p><strong>신청 방법:</strong></p>
-<ol>
-  <li>본인이 직접 입관에 방문하여 신청</li>
-  <li>행정서사(行政書士)에게 위탁하여 대리 신청</li>
-  <li>소속 기관을 통한 신청</li>
-</ol>
-<p>처리 기간은 통상 <strong>2주~1개월</strong>이며, 고도인재는 우선 처리됩니다.</p>`,
+<div class="guide-timeline">
+  <div class="guide-timeline-item"><div class="step-title">1. 포인트 자가 진단</div><div class="step-desc">kodocalc.com에서 현재 점수 확인 및 부족 항목 파악</div></div>
+  <div class="guide-timeline-item"><div class="step-title">2. 증빙 서류 수집</div><div class="step-desc">학위증명서, 재직증명서, 원천징수표, JLPT 합격증 등</div></div>
+  <div class="guide-timeline-item"><div class="step-title">3. 포인트 계산표 작성</div><div class="step-desc">법무성 양식에 맞춰 항목별 점수 기재 및 증빙 첨부</div></div>
+  <div class="guide-timeline-item"><div class="step-title">4. 입관 신청</div><div class="step-desc">본인 방문, 행정서사 대리, 또는 소속 기관을 통해 제출</div></div>
+  <div class="guide-timeline-item"><div class="step-title">5. 심사 및 결과</div><div class="step-desc">통상 2주~1개월. 고도인재는 우선 처리됩니다</div></div>
+</div>`,
       },
     ],
     faq: [
@@ -267,7 +325,15 @@ export const guides: Guide[] = [
         title: "현재 점수 진단하기",
         content: `
 <p>포인트를 올리려면 먼저 <strong>현재 몇 점인지 정확히 파악</strong>하는 것이 중요합니다. <a href="https://kodocalc.com">kodocalc.com 계산기</a>에서 현재 조건을 입력하면 항목별 점수와 부족한 점수를 즉시 확인할 수 있습니다.</p>
-<p>보통 <strong>5~15점 부족</strong>한 경우가 많으며, 아래 6가지 방법 중 2~3가지를 조합하면 충분히 달성 가능합니다.</p>`,
+
+<div class="guide-callout guide-callout-info">보통 <strong>5~15점 부족</strong>한 경우가 많으며, 아래 6가지 방법 중 2~3가지를 조합하면 충분히 달성 가능합니다.</div>
+
+<div class="guide-stats">
+  <div class="guide-stat"><div class="guide-stat-value">+15</div><div class="guide-stat-label">JLPT N1 취득</div></div>
+  <div class="guide-stat"><div class="guide-stat-value">+10</div><div class="guide-stat-label">Top300 대학</div></div>
+  <div class="guide-stat"><div class="guide-stat-value">+10</div><div class="guide-stat-label">이노베이션 기업</div></div>
+  <div class="guide-stat"><div class="guide-stat-value">+5~15</div><div class="guide-stat-label">연봉 인상</div></div>
+</div>`,
       },
       {
         title: "방법 1: JLPT N1 취득 (+5~15점)",
@@ -346,6 +412,12 @@ export const guides: Guide[] = [
         content: `
 <p>고도인재 비자 포인트 제도에서 <strong>일본어 능력</strong>은 최대 <strong>15점</strong>을 획득할 수 있는 중요한 항목입니다. 특히 다른 조건(학력, 경력)은 단기간에 바꾸기 어렵지만, 일본어 시험은 <strong>본인의 노력으로 확실하게 올릴 수 있는 포인트</strong>입니다.</p>
 
+<div class="guide-bars">
+  <div class="guide-bar-row"><span class="guide-bar-label">N1/BJT480</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:100%;background:oklch(0.55 0.18 155)">15점</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">N2/BJT400</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:66%;background:oklch(0.55 0.2 262)">10점</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">없음</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:3%;background:oklch(0.7 0.05 15)"></div></div></div>
+</div>
+
 <table>
   <thead><tr><th>자격/시험</th><th>포인트</th><th>난이도</th></tr></thead>
   <tbody>
@@ -358,7 +430,7 @@ export const guides: Guide[] = [
   </tbody>
 </table>
 
-<p><strong>핵심:</strong> JLPT N2 → N1으로 올리면 <strong>+5점</strong>, 일본어 자격이 없는 상태에서 N1을 취득하면 <strong>+15점</strong>입니다. 70점에 5~15점 부족한 사람에게 가장 현실적인 해결책입니다.</p>`,
+<div class="guide-callout guide-callout-tip"><strong>핵심:</strong> JLPT N2 → N1으로 올리면 <strong>+5점</strong>, 일본어 자격이 없는 상태에서 N1을 취득하면 <strong>+15점</strong>입니다. 70점에 5~15점 부족한 사람에게 가장 현실적인 해결책입니다.</div>`,
       },
       {
         title: "JLPT N1 vs N2: 어떤 것을 목표로 해야 할까?",
@@ -460,6 +532,17 @@ export const guides: Guide[] = [
         content: `
 <p>일본에서 영주권을 취득하는 일반적인 루트는 <strong>10년 이상 일본에 계속 거주</strong>하는 것입니다. 하지만 고도인재 비자를 통하면 이 기간을 대폭 단축할 수 있습니다.</p>
 
+<div class="guide-bars">
+  <div class="guide-bar-row"><span class="guide-bar-label">80점+</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:10%;background:oklch(0.55 0.18 155)">1년</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">70점+</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:30%;background:oklch(0.55 0.2 262)">3년</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">일반비자</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:100%;background:oklch(0.6 0.08 15)">10년</div></div></div>
+</div>
+
+<div class="guide-stats">
+  <div class="guide-stat"><div class="guide-stat-value" style="color:oklch(0.55 0.18 155)">9년</div><div class="guide-stat-label">80점 단축</div></div>
+  <div class="guide-stat"><div class="guide-stat-value" style="color:oklch(0.55 0.2 262)">7년</div><div class="guide-stat-label">70점 단축</div></div>
+</div>
+
 <table>
   <thead><tr><th>포인트</th><th>영주권 신청 가능 시점</th><th>단축 기간</th></tr></thead>
   <tbody>
@@ -485,23 +568,23 @@ export const guides: Guide[] = [
   <li><strong>신원 보증인</strong> — 일본인 또는 영주자 1명</li>
 </ol>
 
-<p><strong>주의:</strong> "계속 거주"란 중간에 장기간 출국하지 않는 것을 의미합니다. 1회 출국 시 <strong>3개월 이상</strong>, 연간 합계 <strong>100일 이상</strong> 출국하면 "계속 거주"로 인정되지 않을 수 있습니다.</p>`,
+<div class="guide-callout guide-callout-warning"><strong>주의:</strong> "계속 거주"란 중간에 장기간 출국하지 않는 것을 의미합니다. 1회 출국 시 <strong>3개월 이상</strong>, 연간 합계 <strong>100일 이상</strong> 출국하면 "계속 거주"로 인정되지 않을 수 있습니다.</div>`,
       },
       {
         title: "80점 최단 1년 루트 상세",
         content: `
 <p><strong>80점 이상</strong>으로 고도인재 비자를 취득하면, 입국(또는 자격 변경) 후 <strong>1년이 경과한 시점</strong>에서 영주권을 신청할 수 있습니다.</p>
 
-<p><strong>타임라인 예시:</strong></p>
-<ol>
-  <li><strong>0개월</strong> — 고도인재 비자(80점 이상)로 입국 또는 자격 변경</li>
-  <li><strong>6개월</strong> — 세금, 연금, 보험 납부 기록 확인 (체납 없는지)</li>
-  <li><strong>10개월</strong> — 영주권 신청 서류 준비 시작</li>
-  <li><strong>12개월</strong> — 영주권 신청 (입관에 접수)</li>
-  <li><strong>16~18개월</strong> — 영주권 허가 (심사 4~6개월)</li>
-</ol>
+<div class="guide-callout guide-callout-info">최단 <strong>약 1년 6개월</strong> 만에 일본 영주권을 취득할 수 있습니다. 일반 취업비자(10년) 대비 <strong>85% 단축</strong>!</div>
 
-<p>즉, 최단 <strong>약 1년 6개월</strong> 만에 일본 영주권을 취득할 수 있습니다.</p>`,
+<p><strong>타임라인:</strong></p>
+<div class="guide-timeline">
+  <div class="guide-timeline-item"><div class="step-title">0개월 — 비자 취득</div><div class="step-desc">고도인재 비자(80점 이상)로 입국 또는 자격 변경</div></div>
+  <div class="guide-timeline-item"><div class="step-title">6개월 — 중간 점검</div><div class="step-desc">세금, 연금, 보험 납부 기록 확인 (체납 없는지)</div></div>
+  <div class="guide-timeline-item"><div class="step-title">10개월 — 서류 준비</div><div class="step-desc">영주권 신청 서류 준비 시작 (증빙 수집)</div></div>
+  <div class="guide-timeline-item"><div class="step-title">12개월 — 영주권 신청</div><div class="step-desc">입관에 영주허가 신청서 접수</div></div>
+  <div class="guide-timeline-item"><div class="step-title">16~18개월 — 영주권 허가 🎉</div><div class="step-desc">심사 4~6개월 후 영주권 취득!</div></div>
+</div>`,
       },
       {
         title: "영주권 신청 필요 서류",
