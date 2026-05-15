@@ -9,6 +9,23 @@ export const ErrorFallback = ({ error, resetErrorBoundary }) => {
   // The parent UI will take care of showing a more helpful dialog.
   if (import.meta.env.DEV) throw error;
 
+  // Auto-reload on chunk/module load failures (stale cache after deployment)
+  const isChunkError = error?.message?.includes('not be found') ||
+    error?.message?.includes('Failed to fetch') ||
+    error?.message?.includes('Loading chunk') ||
+    error?.message?.includes('dynamically imported module');
+  
+  if (isChunkError) {
+    const reloaded = sessionStorage.getItem('chunk-reload');
+    if (!reloaded) {
+      sessionStorage.setItem('chunk-reload', '1');
+      window.location.reload();
+      return null;
+    }
+    // Clear flag so next deployment can also retry
+    sessionStorage.removeItem('chunk-reload');
+  }
+
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-md">
