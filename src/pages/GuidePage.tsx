@@ -89,6 +89,10 @@ export function GuidePage() {
                 <li key={idx}>
                   <a
                     href={`#section-${idx}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.getElementById(`section-${idx}`)?.scrollIntoView({ behavior: 'smooth' });
+                    }}
                     className="text-primary hover:text-primary/80 transition-colors hover:underline"
                   >
                     {idx + 1}. {section.title}
