@@ -20,11 +20,26 @@ import { Check } from "@phosphor-icons/react/dist/ssr/Check";
 import { ArrowsClockwise } from "@phosphor-icons/react/dist/ssr/ArrowsClockwise";
 import { BookOpen } from "@phosphor-icons/react/dist/ssr/BookOpen";
 
-const GuideLayout = lazy(() => import("@/pages/GuideLayout").then(m => ({ default: m.GuideLayout })));
-const GuideIndex = lazy(() => import("@/pages/GuideIndex").then(m => ({ default: m.GuideIndex })));
-const GuidePage = lazy(() => import("@/pages/GuidePage").then(m => ({ default: m.GuidePage })));
-const InfoPage = lazy(() => import("@/pages/InfoPage").then(m => ({ default: m.InfoPage })));
-const FAQPage = lazy(() => import("@/pages/FAQPage").then(m => ({ default: m.FAQPage })));
+// Auto-reload on chunk load failure (stale cache after deployment)
+function lazyWithRetry(factory: () => Promise<any>) {
+  return lazy(() =>
+    factory().catch(() => {
+      // Chunk failed to load — likely stale cache, reload once
+      const reloaded = sessionStorage.getItem('chunk-reload');
+      if (!reloaded) {
+        sessionStorage.setItem('chunk-reload', '1');
+        window.location.reload();
+      }
+      throw new Error('Chunk load failed');
+    })
+  );
+}
+
+const GuideLayout = lazyWithRetry(() => import("@/pages/GuideLayout").then(m => ({ default: m.GuideLayout })));
+const GuideIndex = lazyWithRetry(() => import("@/pages/GuideIndex").then(m => ({ default: m.GuideIndex })));
+const GuidePage = lazyWithRetry(() => import("@/pages/GuidePage").then(m => ({ default: m.GuidePage })));
+const InfoPage = lazyWithRetry(() => import("@/pages/InfoPage").then(m => ({ default: m.InfoPage })));
+const FAQPage = lazyWithRetry(() => import("@/pages/FAQPage").then(m => ({ default: m.FAQPage })));
 
 function App() {
   const { t } = useI18n();
