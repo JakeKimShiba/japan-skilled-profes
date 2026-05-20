@@ -40,11 +40,14 @@ export function PointsResult({ data }: PointsResultProps) {
   const handlePrint = useReactToPrint({
     contentRef: resultRef,
   documentTitle: `${t('result.pdfTitle') || 'HSP_points'}_${new Date().toISOString().split('T')[0]}`,
-    // Important for mobile (iOS Safari/Android): don't update state before invoking print
     onBeforePrint: async () => {
       setIsGeneratingPDF(true);
-      // Wait for React to re-render with expanded accordions
-      await new Promise(r => setTimeout(r, 100));
+      // Allow React to flush the state update before printing
+      await new Promise<void>(resolve => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => resolve());
+        });
+      });
     },
     onAfterPrint: async () => {
       setIsGeneratingPDF(false);
@@ -177,23 +180,54 @@ export function PointsResult({ data }: PointsResultProps) {
   };
 
   const handleDownloadPDF = () => {
-    // Call print synchronously within the click handler without any prior state updates
     try {
       const locale = (document.documentElement.getAttribute('lang') || 'ko').toLowerCase();
       trackEvent('pdf_download_click', { locale, total_points: totalPoints });
     } catch {}
-    handlePrint();
+
+    // iOS Safari: ensure print is called synchronously from user gesture
+    if (handlePrint) {
+      handlePrint();
+    }
   };
 
   const handleShare = async () => {
     const url = buildShareUrl(data);
+
+    // 1) Try native share (mobile-friendly)
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: t('result.pdfTitle') || 'HSP Points', url });
+        trackEvent('share_native', { total_points: totalPoints, visa_type: data.visaType });
+        return;
+      } catch (err: unknown) {
+        // User cancelled or share failed — fall through to clipboard
+        if (err instanceof Error && err.name === 'AbortError') return;
+      }
+    }
+
+    // 2) Try clipboard API
     try {
       await navigator.clipboard.writeText(url);
       trackEvent('share_url_copied', { total_points: totalPoints, visa_type: data.visaType });
       setShareTooltip(t('result.shareCopied') || 'URL copied!');
     } catch {
-      // Fallback for browsers that don't support clipboard API
-      setShareTooltip(t('result.shareError') || 'Copy failed');
+      // 3) Fallback: hidden textarea + execCommand
+      try {
+        const textarea = document.createElement('textarea');
+        textarea.value = url;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        trackEvent('share_url_copied_fallback', { total_points: totalPoints, visa_type: data.visaType });
+        setShareTooltip(t('result.shareCopied') || 'URL copied!');
+      } catch {
+        setShareTooltip(t('result.shareError') || 'Copy failed');
+      }
     }
     setTimeout(() => setShareTooltip(null), 2000);
   };
