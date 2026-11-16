@@ -8,6 +8,7 @@
         "kill": "fuser -k 5000/tcp",
         "build": "tsc -b && vite build && node scripts/generate-sitemap.mjs && node scripts/prerender-guides.mjs",
         "typecheck": "tsc --noEmit",
+        "test": "node --require ./tests/register-typescript.cjs --test",
         "lint": "eslint .",
         "optimize": "vite optimize",
         "preview": "vite preview",

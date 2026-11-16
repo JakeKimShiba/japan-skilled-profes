@@ -279,7 +279,7 @@ export class SuggestionService {
     const suggestions: Suggestion[] = [];
     
     if (data.researchAchievements.length === 0) {
-      const researchDelta = this.simulateChange(data, 'researchAchievements', ['patents']) - currentTotal;
+      const researchDelta = this.simulateChange(data, 'researchAchievements', ['patent_invention']) - currentTotal;
       suggestions.push({
         key: 'research-achievement',
         label: 'suggestions.items.researchAchievement',

@@ -23,18 +23,6 @@ export class PointsCalculationService {
    * @returns Object with points per category
    */
   static calculateByCategory(data: PointsData) {
-    if (!data.visaType) {
-      return {
-        academic: 0,
-        career: 0,
-        age: 0,
-        salary: 0,
-        research: 0,
-        licenses: 0,
-        bonus: 0,
-        total: 0
-      };
-    }
     return getCategoryPoints(data);
   }
 
@@ -181,9 +169,9 @@ export class PointsCalculationService {
       
       // Age-based restrictions for academic visa (same as technical)
       if (ageNum <= 29) {
-        options.push('3to4m', '4m', '5m');
+        options.push('3to4m', '4m', '5m', '6m', '7m');
       } else if (ageNum >= 30 && ageNum <= 34) {
-        options.push('3to5m', '5m');
+        options.push('3to5m', '5m', '6m', '7m');
       } else if (ageNum >= 35 && ageNum <= 39) {
         options.push('3to6m', '6m', '7m');
       } else if (ageNum >= 40) {
@@ -202,9 +190,9 @@ export class PointsCalculationService {
       
       // Age-based restrictions for technical visa
       if (ageNum <= 29) {
-        options.push('3to4m', '4m', '5m');
+        options.push('3to4m', '4m', '5m', '6m', '7m');
       } else if (ageNum >= 30 && ageNum <= 34) {
-        options.push('3to5m', '5m');
+        options.push('3to5m', '5m', '6m', '7m');
       } else if (ageNum >= 35 && ageNum <= 39) {
         options.push('3to6m', '6m', '7m');
       } else if (ageNum >= 40) {

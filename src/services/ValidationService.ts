@@ -1,4 +1,8 @@
-import { PointsData, annualSalaryPoints } from "@/lib/models";
+import {
+  PointsData, educationPoints, workExperiencePoints, agePoints, annualSalaryPoints,
+  researchPoints, licensePoints, languagePoints, visaSpecificBonusPoints, isN2Equivalent
+} from "@/lib/models";
+import { PointsCalculationService } from "./PointsCalculationService";
 
 export interface ValidationResult {
   isValid: boolean;
@@ -34,7 +38,7 @@ export class ValidationService {
     const warnings: ValidationWarning[] = [];
 
     // Only validate if we have a visa type selected
-    if (!data.visaType) {
+    if (!data.visaType || !Object.prototype.hasOwnProperty.call(educationPoints, data.visaType)) {
       return {
         isValid: false,
         errors: [{
@@ -108,6 +112,35 @@ export class ValidationService {
    */
   private static validateBusinessRules(data: PointsData): ValidationError[] {
     const errors: ValidationError[] = [];
+    const hasOption = (options: object, value: string) => Object.prototype.hasOwnProperty.call(options, value);
+    const selections: [keyof PointsData, object, string][] = [
+      ['educationLevel', educationPoints[data.visaType!], data.educationLevel],
+      ['workExperience', workExperiencePoints[data.visaType!], data.workExperience],
+      ['age', agePoints[data.visaType!], data.age],
+      ['japaneseLanguage', languagePoints, `japanese_${data.japaneseLanguage}`],
+      ['businessExecutiveBonus', visaSpecificBonusPoints.business, data.businessExecutiveBonus],
+    ];
+    for (const [field, options, value] of selections) {
+      if (value && !hasOption(options, value)) {
+        errors.push({ field, message: '지원하는 항목을 다시 선택해주세요.', code: 'INVALID_SELECTION' });
+      }
+    }
+
+    if (!Number.isInteger(data.jpNationalLicenses) || data.jpNationalLicenses < 0 || data.jpNationalLicenses > 2) {
+      errors.push({ field: 'jpNationalLicenses', message: '자격증 개수를 다시 선택해주세요.', code: 'INVALID_LICENSE_COUNT' });
+    }
+
+    for (const [field, options, values] of [
+      ['researchAchievements', researchPoints[data.visaType!], data.researchAchievements],
+      ['licenses', licensePoints, data.licenses],
+    ] as const) {
+      if (values.some(value => !hasOption(options, value) || value === 'jp_national_per_license')
+          || new Set(values).size !== values.length
+          || (values.includes('none') && values.length > 1)
+          || (field === 'researchAchievements' && data.visaType !== 'academic' && values.length > 1)) {
+        errors.push({ field, message: '지원하는 항목을 다시 선택해주세요.', code: 'INVALID_SELECTION' });
+      }
+    }
 
     // ISA HSP Q&A Q12: the 3M minimum applies to 1(b) and 1(c), not 1(a).
     if (data.visaType === 'technical' || data.visaType === 'business') {
@@ -126,8 +159,10 @@ export class ValidationService {
       }
     }
 
-    if (data.visaType && data.annualSalary &&
-        !Object.prototype.hasOwnProperty.call(annualSalaryPoints[data.visaType], data.annualSalary)) {
+    if (data.annualSalary && !errors.some(error => error.field === 'annualSalary') &&
+        (!hasOption(annualSalaryPoints[data.visaType!], data.annualSalary)
+          || (data.age && hasOption(agePoints[data.visaType!], data.age) &&
+            !PointsCalculationService.getAvailableSalaryOptions(data.age, data.visaType!).includes(data.annualSalary)))) {
       errors.push({
         field: 'annualSalary',
         message: '활동 유형에 맞는 연봉 구간을 다시 선택해주세요.',
@@ -136,7 +171,7 @@ export class ValidationService {
     }
 
     // Japanese education restrictions
-    if (data.japaneseEducation && data.japaneseLanguage === 'n2') {
+    if (data.japaneseEducation && isN2Equivalent(data.japaneseLanguage)) {
       errors.push({
         field: 'japaneseLanguage',
         message: '일본 대학 졸업자는 JLPT N2를 선택할 수 없습니다.',

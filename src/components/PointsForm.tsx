@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { PointsData } from "@/lib/models";
+import { PointsData, isN2Equivalent } from "@/lib/models";
 import { VisaCalculatorService, ValidationService } from "@/services";
 import { useI18n } from "@/i18n";
 import { trackFieldChanged } from "@/lib/analytics";
@@ -31,8 +31,7 @@ export function PointsForm({ data, setData, onViewResults }: PointsFormProps) {
       [field]: value,
     };
     
-    // Reset Japanese education bonus if JLPT N2 is selected (not eligible)
-    if (field === 'japaneseLanguage' && value === 'n2') {
+    if (field === 'japaneseLanguage' && typeof value === 'string' && isN2Equivalent(value)) {
       newData.japaneseEducation = false;
     }
     

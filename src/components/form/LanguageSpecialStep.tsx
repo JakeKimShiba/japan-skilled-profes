@@ -3,7 +3,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { PointsData, VisaType, languagePoints } from "@/lib/models";
+import { PointsData, isN2Equivalent } from "@/lib/models";
 import { useI18n } from "@/i18n";
 
 interface LanguageSpecialStepProps {
@@ -15,16 +15,7 @@ export function LanguageSpecialStep({ data, onDataChange }: LanguageSpecialStepP
   const { t } = useI18n();
   const fmtPoints = (n: number) => t('points.value', { value: n });
 
-  // Get language points (simplified for now)
-  const getLanguagePoints = (level: string) => {
-    // Return static values for now - will be replaced with proper calculation
-    switch(level) {
-      case 'n1': return 15;
-      case 'n2': return 10;
-      case 'bju': return 15;
-      default: return 0;
-    }
-  };
+  const n2Equivalent = isN2Equivalent(data.japaneseLanguage);
 
   return (
     <div className="space-y-6">
@@ -69,6 +60,13 @@ export function LanguageSpecialStep({ data, onDataChange }: LanguageSpecialStepP
             </Label>
           </div>
           <div className="flex items-center space-x-2">
+            <RadioGroupItem value="bjt400" id="japanese-bjt400" />
+            <Label htmlFor="japanese-bjt400" className="flex justify-between w-full">
+              <span>{t('language.bjt400')}</span>
+              <Badge variant="outline" className="bg-primary/10 ml-2">{fmtPoints(10)}</Badge>
+            </Label>
+          </div>
+          <div className="flex items-center space-x-2">
             <RadioGroupItem value="none" id="japanese-none" />
             <Label htmlFor="japanese-none" className="flex justify-between w-full">
               <span>{t('common.none')}</span>
@@ -90,20 +88,20 @@ export function LanguageSpecialStep({ data, onDataChange }: LanguageSpecialStepP
             <Checkbox 
               id="japanese-education" 
               checked={data.japaneseEducation}
-              disabled={data.japaneseLanguage === 'n2'}
+              disabled={n2Equivalent}
               onCheckedChange={(checked) => onDataChange("japaneseEducation", !!checked)}
             />
             <Label 
               htmlFor="japanese-education" 
-              className={`flex justify-between w-full ${data.japaneseLanguage === 'n2' ? 'opacity-50 cursor-not-allowed' : ''}`}
+              className={`flex justify-between w-full ${n2Equivalent ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               <span>{t('special.japaneseEducation')}</span>
-              <Badge variant="outline" className={`ml-2 ${data.japaneseLanguage === 'n2' ? 'bg-muted/30' : 'bg-primary/10'}`}>
+              <Badge variant="outline" className={`ml-2 ${n2Equivalent ? 'bg-muted/30' : 'bg-primary/10'}`}>
                 {fmtPoints(10)}
               </Badge>
             </Label>
           </div>
-          {data.japaneseLanguage === 'n2' && (
+          {n2Equivalent && (
             <div className="ml-6 text-xs text-muted-foreground">
               {t('special.japaneseEducation.n2Restriction')}
             </div>

@@ -200,10 +200,15 @@ export const languagePoints = {
   'japanese_major': 15,    // 일본어 전공 학위 보유자
   'japanese_overseas_major': 15,  // 해외 대학 일본어 전공 졸업
   'japanese_n2': 10,
+  'japanese_bjt400': 10,
   'japanese_none': 0,
   'foreign_business': 10,
   'foreign_none': 0
 };
+
+export function isN2Equivalent(language: string): boolean {
+  return language === 'n2' || language === 'bjt400';
+}
 
 export const specialPoints = {
   // Common for all visa types
