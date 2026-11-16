@@ -18,7 +18,7 @@ interface FAQItemData {
   category: FAQCategory;
 }
 
-export function FAQ() {
+export function FAQ({ showIntroduction = true }: { showIntroduction?: boolean }) {
   const { t } = useI18n();
   const [activeCategory, setActiveCategory] = useState<FAQCategory>('all');
 
@@ -444,12 +444,14 @@ export function FAQ() {
   };
 
   return (
-    <div className="container mx-auto max-w-4xl py-8 px-4">
+    <div className={showIntroduction ? 'container mx-auto max-w-4xl py-8 px-4' : undefined}>
       <Card>
-        <CardHeader>
-          <CardTitle className="text-3xl font-bold">{t('faq.title')}</CardTitle>
-          <CardDescription>{t('faq.subtitle')}</CardDescription>
-        </CardHeader>
+        {showIntroduction && (
+          <CardHeader>
+            <CardTitle className="text-3xl font-bold">{t('faq.title')}</CardTitle>
+            <CardDescription>{t('faq.subtitle')}</CardDescription>
+          </CardHeader>
+        )}
         <CardContent>
           {/* Category Tabs */}
           <Tabs value={activeCategory} onValueChange={(v) => setActiveCategory(v as FAQCategory)} className="mb-6">

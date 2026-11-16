@@ -236,3 +236,10 @@ test('Mobile comparison keeps all columns readable in a keyboard-scrollable tabl
   await expect.poll(() => table.evaluate(element => element.scrollLeft)).toBeGreaterThan(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
 });
+
+test('FAQ page introduces itself once and retains all questions', async ({ page }) => {
+  await page.goto('/guide/faq?lang=ko');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
+  await expect(page.getByText(ko['faq.subtitle'], { exact: true })).toHaveCount(1);
+  await expect(page.getByRole('tabpanel').getByRole('button')).toHaveCount(14);
+});

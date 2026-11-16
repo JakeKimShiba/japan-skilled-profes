@@ -20,7 +20,7 @@ export function FAQPage() {
             {t('faq.subtitle')}
           </p>
         </div>
-        <FAQ />
+        <FAQ showIntroduction={false} />
       </div>
     </>
   );
