@@ -70,9 +70,9 @@ export const guidesEn: Guide[] = [
 
 <div class="guide-bars">
   <div class="guide-bar-row"><span class="guide-bar-label">Education</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:75%;background:oklch(0.55 0.2 262)">30 pts</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">Experience</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:62.5%;background:oklch(0.55 0.18 200)">25 pts</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">Salary</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:100%;background:oklch(0.55 0.18 155)">40 pts</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">Age</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:37.5%;background:oklch(0.6 0.15 55)">15 pts</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">Experience</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:62.5%;background:oklch(0.48 0.18 200)">25 pts</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">Salary</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:100%;background:oklch(0.48 0.18 155)">40 pts</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">Age</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:37.5%;background:oklch(0.52 0.15 55)">15 pts</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">Japanese</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:37.5%;background:oklch(0.55 0.2 300)">15 pts</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">Special Bonus</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:62.5%;background:oklch(0.5 0.15 15)">10–25 pts</div></div></div>
 </div>
@@ -144,9 +144,9 @@ export const guidesEn: Guide[] = [
 <p><strong>Scenario 1: Master's + 5 years experience + ¥5M salary (20s)</strong></p>
 <div class="guide-bars">
   <div class="guide-bar-row"><span class="guide-bar-label">Education</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:66%;background:oklch(0.55 0.2 262)">Master's 20</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">Experience</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.55 0.18 200)">5 yrs 10</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">Salary</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:50%;background:oklch(0.55 0.18 155)">¥5M 15</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">Age</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:50%;background:oklch(0.6 0.15 55)">≤29 15</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">Experience</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.48 0.18 200)">5 yrs 10</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">Salary</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:50%;background:oklch(0.48 0.18 155)">¥5M 15</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">Age</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:50%;background:oklch(0.52 0.15 55)">≤29 15</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">Japanese</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.55 0.2 300)">N2 10</div></div></div>
 </div>
 <div class="guide-stats" style="max-width:200px;margin:0.5rem auto">
@@ -156,9 +156,9 @@ export const guidesEn: Guide[] = [
 <p><strong>Scenario 2: Bachelor's + 10 years experience + ¥7M salary (30s)</strong></p>
 <div class="guide-bars">
   <div class="guide-bar-row"><span class="guide-bar-label">Education</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.55 0.2 262)">Bachelor's 10</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">Experience</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:66%;background:oklch(0.55 0.18 200)">10 yrs 20</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">Salary</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:83%;background:oklch(0.55 0.18 155)">¥7M 25</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">Age</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.6 0.15 55)">30s 10</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">Experience</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:66%;background:oklch(0.48 0.18 200)">10 yrs 20</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">Salary</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:83%;background:oklch(0.48 0.18 155)">¥7M 25</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">Age</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.52 0.15 55)">30s 10</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">Japanese</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.55 0.2 300)">N2 10</div></div></div>
 </div>
 <div class="guide-stats" style="max-width:200px;margin:0.5rem auto">
@@ -349,7 +349,7 @@ export const guidesEn: Guide[] = [
 <p>In the HSP visa points system, <strong>Japanese language ability</strong> can earn you up to <strong>15 points</strong> — making it a crucial category. While other qualifications (education, experience) are difficult to change in the short term, Japanese language exams are <strong>points you can reliably earn through your own effort</strong>.</p>
 
 <div class="guide-bars">
-  <div class="guide-bar-row"><span class="guide-bar-label">N1/BJT480</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:100%;background:oklch(0.55 0.18 155)">15 pts</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">N1/BJT480</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:100%;background:oklch(0.48 0.18 155)">15 pts</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">N2/BJT400</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:66%;background:oklch(0.55 0.2 262)">10 pts</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">None</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:3%;background:oklch(0.7 0.05 15)"></div></div></div>
 </div>
@@ -469,7 +469,7 @@ export const guidesEn: Guide[] = [
 <p>The typical route to permanent residency in Japan requires <strong>continuous residence for 10 or more years</strong>. However, through the HSP visa, this period can be dramatically shortened.</p>
 
 <div class="guide-bars">
-  <div class="guide-bar-row"><span class="guide-bar-label">80 pts+</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:10%;background:oklch(0.55 0.18 155)">1 year</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">80 pts+</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:10%;background:oklch(0.48 0.18 155)">1 year</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">70 pts+</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:30%;background:oklch(0.55 0.2 262)">3 years</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">Regular visa</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:100%;background:oklch(0.6 0.08 15)">10 years</div></div></div>
 </div>

@@ -183,3 +183,15 @@ test('Same-band score changes have polite feedback without duplicating qualifica
   await expect(announcement).toBeEmpty();
   await expect(page.getByRole('alert').filter({ hasText: ko['result.qualified.expedited'] })).toBeVisible();
 });
+
+for (const locale of ['ko', 'en', 'ja']) {
+  test(`${locale}: small guide chart values and callout links have readable contrast`, async ({ page }) => {
+    await page.goto(`/guide/${encodeURIComponent('고도인재-비자-완벽-가이드')}/?lang=${locale}`);
+    await expect(page.locator('.guide-bar-fill').first()).toBeVisible();
+    const text = page.locator('.guide-bar-fill, .guide-flow-step.primary, .guide-flow-step.accent, .guide-callout a');
+    expect(await text.count()).toBeGreaterThan(6);
+    for (const target of await text.all()) {
+      expect(await textContrast(target)).toBeGreaterThanOrEqual(4.5);
+    }
+  });
+}

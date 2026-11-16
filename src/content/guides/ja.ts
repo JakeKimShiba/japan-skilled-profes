@@ -70,9 +70,9 @@ export const guidesJa: Guide[] = [
 
 <div class="guide-bars">
   <div class="guide-bar-row"><span class="guide-bar-label">学歴</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:75%;background:oklch(0.55 0.2 262)">30点</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">職歴</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:62.5%;background:oklch(0.55 0.18 200)">25点</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">年収</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:100%;background:oklch(0.55 0.18 155)">40点</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">年齢</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:37.5%;background:oklch(0.6 0.15 55)">15点</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">職歴</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:62.5%;background:oklch(0.48 0.18 200)">25点</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">年収</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:100%;background:oklch(0.48 0.18 155)">40点</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">年齢</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:37.5%;background:oklch(0.52 0.15 55)">15点</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">日本語</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:37.5%;background:oklch(0.55 0.2 300)">15点</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">特別加算</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:62.5%;background:oklch(0.5 0.15 15)">10〜25点</div></div></div>
 </div>
@@ -144,9 +144,9 @@ export const guidesJa: Guide[] = [
 <p><strong>シナリオ1：修士 + 5年職歴 + 500万円年収（20代）</strong></p>
 <div class="guide-bars">
   <div class="guide-bar-row"><span class="guide-bar-label">学歴</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:66%;background:oklch(0.55 0.2 262)">修士 20</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">職歴</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.55 0.18 200)">5年 10</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">年収</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:50%;background:oklch(0.55 0.18 155)">500万 15</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">年齢</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:50%;background:oklch(0.6 0.15 55)">29↓ 15</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">職歴</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.48 0.18 200)">5年 10</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">年収</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:50%;background:oklch(0.48 0.18 155)">500万 15</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">年齢</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:50%;background:oklch(0.52 0.15 55)">29↓ 15</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">日本語</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.55 0.2 300)">N2 10</div></div></div>
 </div>
 <div class="guide-stats" style="max-width:200px;margin:0.5rem auto">
@@ -156,9 +156,9 @@ export const guidesJa: Guide[] = [
 <p><strong>シナリオ2：学士 + 10年職歴 + 700万円年収（30代）</strong></p>
 <div class="guide-bars">
   <div class="guide-bar-row"><span class="guide-bar-label">学歴</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.55 0.2 262)">学士 10</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">職歴</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:66%;background:oklch(0.55 0.18 200)">10年 20</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">年収</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:83%;background:oklch(0.55 0.18 155)">700万 25</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">年齢</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.6 0.15 55)">30代 10</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">職歴</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:66%;background:oklch(0.48 0.18 200)">10年 20</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">年収</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:83%;background:oklch(0.48 0.18 155)">700万 25</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">年齢</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.52 0.15 55)">30代 10</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">日本語</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.55 0.2 300)">N2 10</div></div></div>
 </div>
 <div class="guide-stats" style="max-width:200px;margin:0.5rem auto">
@@ -349,7 +349,7 @@ export const guidesJa: Guide[] = [
 <p>高度専門職ビザポイント制度において<strong>日本語能力</strong>は最大<strong>15点</strong>を獲得できる重要な項目です。特に他の条件（学歴、職歴）は短期間で変えにくいですが、日本語試験は<strong>自分の努力で確実に上げられるポイント</strong>です。</p>
 
 <div class="guide-bars">
-  <div class="guide-bar-row"><span class="guide-bar-label">N1/BJT480</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:100%;background:oklch(0.55 0.18 155)">15点</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">N1/BJT480</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:100%;background:oklch(0.48 0.18 155)">15点</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">N2/BJT400</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:66%;background:oklch(0.55 0.2 262)">10点</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">なし</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:3%;background:oklch(0.7 0.05 15)"></div></div></div>
 </div>
@@ -469,7 +469,7 @@ export const guidesJa: Guide[] = [
 <p>日本で永住権を取得する一般的なルートは<strong>10年以上日本に継続して居住</strong>することです。しかし高度専門職ビザを通じればこの期間を大幅に短縮できます。</p>
 
 <div class="guide-bars">
-  <div class="guide-bar-row"><span class="guide-bar-label">80点+</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:10%;background:oklch(0.55 0.18 155)">1年</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">80点+</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:10%;background:oklch(0.48 0.18 155)">1年</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">70点+</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:30%;background:oklch(0.55 0.2 262)">3年</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">一般ビザ</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:100%;background:oklch(0.6 0.08 15)">10年</div></div></div>
 </div>

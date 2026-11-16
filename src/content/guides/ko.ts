@@ -70,9 +70,9 @@ export const guidesKo: Guide[] = [
 
 <div class="guide-bars">
   <div class="guide-bar-row"><span class="guide-bar-label">학력</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:75%;background:oklch(0.55 0.2 262)">30점</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">경력</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:62.5%;background:oklch(0.55 0.18 200)">25점</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">연봉</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:100%;background:oklch(0.55 0.18 155)">40점</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">나이</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:37.5%;background:oklch(0.6 0.15 55)">15점</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">경력</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:62.5%;background:oklch(0.48 0.18 200)">25점</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">연봉</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:100%;background:oklch(0.48 0.18 155)">40점</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">나이</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:37.5%;background:oklch(0.52 0.15 55)">15점</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">일본어</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:37.5%;background:oklch(0.55 0.2 300)">15점</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">특별가산</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:62.5%;background:oklch(0.5 0.15 15)">10~25점</div></div></div>
 </div>
@@ -144,9 +144,9 @@ export const guidesKo: Guide[] = [
 <p><strong>시나리오 1: 석사 + 5년 경력 + 500만엔 연봉 (20대)</strong></p>
 <div class="guide-bars">
   <div class="guide-bar-row"><span class="guide-bar-label">학력</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:66%;background:oklch(0.55 0.2 262)">석사 20</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">경력</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.55 0.18 200)">5년 10</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">연봉</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:50%;background:oklch(0.55 0.18 155)">500만 15</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">나이</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:50%;background:oklch(0.6 0.15 55)">29↓ 15</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">경력</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.48 0.18 200)">5년 10</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">연봉</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:50%;background:oklch(0.48 0.18 155)">500만 15</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">나이</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:50%;background:oklch(0.52 0.15 55)">29↓ 15</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">일본어</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.55 0.2 300)">N2 10</div></div></div>
 </div>
 <div class="guide-stats" style="max-width:200px;margin:0.5rem auto">
@@ -156,9 +156,9 @@ export const guidesKo: Guide[] = [
 <p><strong>시나리오 2: 학사 + 10년 경력 + 700만엔 연봉 (30대)</strong></p>
 <div class="guide-bars">
   <div class="guide-bar-row"><span class="guide-bar-label">학력</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.55 0.2 262)">학사 10</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">경력</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:66%;background:oklch(0.55 0.18 200)">10년 20</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">연봉</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:83%;background:oklch(0.55 0.18 155)">700만 25</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">나이</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.6 0.15 55)">30대 10</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">경력</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:66%;background:oklch(0.48 0.18 200)">10년 20</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">연봉</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:83%;background:oklch(0.48 0.18 155)">700만 25</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">나이</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.52 0.15 55)">30대 10</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">일본어</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.55 0.2 300)">N2 10</div></div></div>
 </div>
 <div class="guide-stats" style="max-width:200px;margin:0.5rem auto">
@@ -349,7 +349,7 @@ export const guidesKo: Guide[] = [
 <p>고도인재 비자 포인트 제도에서 <strong>일본어 능력</strong>은 최대 <strong>15점</strong>을 획득할 수 있는 중요한 항목입니다. 특히 다른 조건(학력, 경력)은 단기간에 바꾸기 어렵지만, 일본어 시험은 <strong>본인의 노력으로 확실하게 올릴 수 있는 포인트</strong>입니다.</p>
 
 <div class="guide-bars">
-  <div class="guide-bar-row"><span class="guide-bar-label">N1/BJT480</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:100%;background:oklch(0.55 0.18 155)">15점</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">N1/BJT480</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:100%;background:oklch(0.48 0.18 155)">15점</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">N2/BJT400</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:66%;background:oklch(0.55 0.2 262)">10점</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">없음</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:3%;background:oklch(0.7 0.05 15)"></div></div></div>
 </div>
@@ -469,7 +469,7 @@ export const guidesKo: Guide[] = [
 <p>일본에서 영주권을 취득하는 일반적인 루트는 <strong>10년 이상 일본에 계속 거주</strong>하는 것입니다. 하지만 고도인재 비자를 통하면 이 기간을 대폭 단축할 수 있습니다.</p>
 
 <div class="guide-bars">
-  <div class="guide-bar-row"><span class="guide-bar-label">80점+</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:10%;background:oklch(0.55 0.18 155)">1년</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">80점+</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:10%;background:oklch(0.48 0.18 155)">1년</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">70점+</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:30%;background:oklch(0.55 0.2 262)">3년</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">일반비자</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:100%;background:oklch(0.6 0.08 15)">10년</div></div></div>
 </div>
