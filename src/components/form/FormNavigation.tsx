@@ -94,7 +94,12 @@ export function ProgressBar({ currentStep, totalSteps, steps, onGoTo }: Progress
         </nav>
       </div>
       
-      <Progress value={progressValue} className="w-full" />
+      <Progress
+        value={progressValue}
+        aria-label={t('form.steps')}
+        aria-valuetext={`${currentStep + 1} / ${totalSteps}: ${t(steps[currentStep].key)}`}
+        className="w-full"
+      />
       
       {/* Step indicators for mobile */}
       <div className="flex flex-col items-center mt-3 md:hidden gap-1">

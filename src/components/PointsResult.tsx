@@ -311,7 +311,12 @@ export function PointsResult({ data }: PointsResultProps) {
             <h3 className="font-medium">{t('result.totalPoints')}</h3>
             <span className="text-2xl font-bold">{fmtPoints(totalPoints)}</span>
           </div>
-          <Progress value={(totalPoints / 100) * 100} className="h-3" />
+          <Progress
+            value={Math.min(totalPoints, 100)}
+            aria-label={t('result.totalPoints')}
+            aria-valuetext={fmtPoints(totalPoints)}
+            className="h-3"
+          />
           <div className="flex justify-between text-xs mt-1">
             <span>{t('result.scale.min')}</span>
             <span className="text-primary font-medium">{t('result.scale.threshold')}</span>

@@ -152,3 +152,19 @@ test('University confirmation explains its prerequisite and restored bonuses rem
   await confirm.click();
   await expect(confirm).not.toBeChecked();
 });
+
+test('Named progress bars expose determinate steps and preserve scores above the visual scale', async ({ page }) => {
+  await page.goto(`/?lang=ko&${profile}`);
+  const steps = page.getByRole('progressbar', { name: ko['form.steps'], exact: true });
+  const points = page.getByRole('progressbar', { name: ko['result.totalPoints'], exact: true });
+  await expect(steps).toHaveAttribute('aria-valuenow', '0');
+  await expect(points).toHaveAttribute('aria-valuenow', '70');
+  await page.getByRole('button', { name: ko['nav.next'], exact: true }).click();
+  await expect(steps).toHaveAttribute('aria-valuenow', '25');
+  await expect(steps).toHaveAttribute('aria-valuetext', `2 / 5: ${ko['form.experience']}`);
+  await page.getByRole('button', { name: new RegExp(ko['form.languageSpecial.short']) }).click();
+  await expect(steps).toHaveAttribute('aria-valuenow', '100');
+  await page.goto('/?lang=ko&v=technical&e=doctorate&w=10plus&a=29under&s=8m&j=n1&ue=1');
+  await expect(points).toHaveAttribute('aria-valuenow', '100');
+  await expect(points).toHaveAttribute('aria-valuetext', ko['points.value'].replace('{value}', '120'));
+});
