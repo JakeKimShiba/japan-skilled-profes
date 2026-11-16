@@ -180,7 +180,7 @@ function CalculatorPage() {
                       }`}
                       onClick={() => handleVisaTypeChange('academic')}
                     >
-                      <RadioGroupItem value="academic" id="visa-academic" className="sr-only" />
+                      <RadioGroupItem value="academic" id="visa-academic" aria-labelledby="visa-academic-name" className="sr-only" />
                       <div className="flex flex-col items-center text-center space-y-3">
                         <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-colors ${
                           pointsData.visaType === 'academic' ? 'bg-primary text-primary-foreground' : 'bg-primary/10 text-primary'
@@ -188,7 +188,7 @@ function CalculatorPage() {
                           <GraduationCap size={24} weight="duotone" />
                         </div>
                         <div>
-                          <div className="font-semibold text-foreground">{t('visa.academic.type')}</div>
+                          <div id="visa-academic-name" className="font-semibold text-foreground">{t('visa.academic.type')}</div>
                           <div className="text-sm text-primary font-medium">{t('visa.academic.jpName')}</div>
                           <div className="text-xs text-muted-foreground mt-1">{t('visa.academic.description')}</div>
                         </div>
@@ -209,7 +209,7 @@ function CalculatorPage() {
                       }`}
                       onClick={() => handleVisaTypeChange('technical')}
                     >
-                      <RadioGroupItem value="technical" id="visa-technical" className="sr-only" />
+                      <RadioGroupItem value="technical" id="visa-technical" aria-labelledby="visa-technical-name" className="sr-only" />
                       <div className="flex flex-col items-center text-center space-y-3">
                         <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-colors ${
                           pointsData.visaType === 'technical' ? 'bg-primary text-primary-foreground' : 'bg-primary/10 text-primary'
@@ -217,7 +217,7 @@ function CalculatorPage() {
                           <Gear size={24} weight="duotone" />
                         </div>
                         <div>
-                          <div className="font-semibold text-foreground">{t('visa.technical.type')}</div>
+                          <div id="visa-technical-name" className="font-semibold text-foreground">{t('visa.technical.type')}</div>
                           <div className="text-sm text-primary font-medium">{t('visa.technical.jpName')}</div>
                           <div className="text-xs text-muted-foreground mt-1">{t('visa.technical.description')}</div>
                         </div>
@@ -238,7 +238,7 @@ function CalculatorPage() {
                       }`}
                       onClick={() => handleVisaTypeChange('business')}
                     >
-                      <RadioGroupItem value="business" id="visa-business" className="sr-only" />
+                      <RadioGroupItem value="business" id="visa-business" aria-labelledby="visa-business-name" className="sr-only" />
                       <div className="flex flex-col items-center text-center space-y-3">
                         <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-colors ${
                           pointsData.visaType === 'business' ? 'bg-primary text-primary-foreground' : 'bg-primary/10 text-primary'
@@ -246,7 +246,7 @@ function CalculatorPage() {
                           <Briefcase size={24} weight="duotone" />
                         </div>
                         <div>
-                          <div className="font-semibold text-foreground">{t('visa.business.type')}</div>
+                          <div id="visa-business-name" className="font-semibold text-foreground">{t('visa.business.type')}</div>
                           <div className="text-sm text-primary font-medium">{t('visa.business.jpName')}</div>
                           <div className="text-xs text-muted-foreground mt-1">{t('visa.business.description')}</div>
                         </div>
