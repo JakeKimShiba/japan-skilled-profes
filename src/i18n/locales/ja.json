@@ -173,6 +173,7 @@
   "university.eligible": "リストに含まれています（+10点）",
   "university.notEligible": "リストにありません",
   "university.confirm.label": "私が検索した大学が上記リストに含まれています",
+  "university.confirm.prerequisite": "先に一覧から大学を選択してください。選択すると加算点が自動的に反映されます。",
   "university.confirm.badge": "10点",
   "university.selected": "選択した大学",
   "university.noResults": "検索結果なし",

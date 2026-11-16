@@ -173,6 +173,7 @@
   "university.eligible": "在名單中 (+10分)",
   "university.notEligible": "不在名單中",
   "university.confirm.label": "我確認我的學校在上述名單中",
+  "university.confirm.prerequisite": "請先從清單中選擇大學，加分將自動計入。",
   "university.confirm.badge": "10分",
   "university.selected": "已選擇院校",
   "university.noResults": "無結果",

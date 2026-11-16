@@ -173,6 +173,7 @@
   "university.eligible": "목록에 포함되어 있습니다 (+10점)",
   "university.notEligible": "목록에 없습니다",
   "university.confirm.label": "제가 검색한 대학이 위 목록에 포함되어 있습니다",
+  "university.confirm.prerequisite": "먼저 목록에서 대학을 선택하세요. 선택하면 가점이 자동으로 반영됩니다.",
   "university.confirm.badge": "10점",
   "university.selected": "선택된 대학",
   "university.noResults": "검색 결과 없음",

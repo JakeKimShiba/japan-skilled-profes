@@ -134,3 +134,21 @@ test('Below-minimum income remains selectable with readable labels and an invali
   await expect(radio).toBeChecked();
   await expect(page.getByRole('alert').filter({ hasText: ko['result.invalid.title'] })).toBeVisible();
 });
+
+test('University confirmation explains its prerequisite and restored bonuses remain removable', async ({ page }) => {
+  await page.goto(`/?lang=ko&${profile}`);
+  const confirm = page.locator('#uni-confirm');
+  await expect(confirm).toBeDisabled();
+  await expect(confirm).toHaveAccessibleDescription(ko['university.confirm.prerequisite']);
+  await page.getByRole('radio', { name: ko['university.selectAria'].replace('{name}', 'Aalto University'), exact: true }).click();
+  await expect(confirm).toBeEnabled();
+  await expect(confirm).toBeChecked();
+  await confirm.click();
+  await expect(confirm).not.toBeChecked();
+  await expect(confirm).toBeDisabled();
+  await page.goto(`/?lang=ko&${profile}&ue=1`);
+  await expect(confirm).toBeEnabled();
+  await expect(confirm).toBeChecked();
+  await confirm.click();
+  await expect(confirm).not.toBeChecked();
+});

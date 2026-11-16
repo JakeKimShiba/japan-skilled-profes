@@ -173,6 +173,7 @@
   "university.eligible": "Listed (+10 pts)",
   "university.notEligible": "Not listed",
   "university.confirm.label": "I confirm my university is listed above",
+  "university.confirm.prerequisite": "Select your university from the list first. Its bonus is applied automatically.",
   "university.confirm.badge": "10 pts",
   "university.selected": "Selected university",
   "university.noResults": "No results",

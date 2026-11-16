@@ -15,6 +15,7 @@ interface EducationStepProps {
 export function EducationStep({ data, onDataChange, onBatchChange }: EducationStepProps) {
   const { t } = useI18n();
   const fmtPoints = (n: number) => t('points.value', { value: n });
+  const needsUniversity = !data.university && !data.universityEligible;
   
 
 
@@ -131,6 +132,8 @@ export function EducationStep({ data, onDataChange, onBatchChange }: EducationSt
             <Checkbox
               id="uni-confirm"
               checked={Boolean(data.universityEligible)}
+              disabled={needsUniversity}
+              aria-describedby={needsUniversity ? 'uni-confirm-help' : undefined}
               onCheckedChange={(checked) => {
                 const isTrue = checked === true;
                 if (!isTrue) {
@@ -156,6 +159,11 @@ export function EducationStep({ data, onDataChange, onBatchChange }: EducationSt
               {t('university.confirm.label')}
             </Label>
           </div>
+          {needsUniversity && (
+            <p id="uni-confirm-help" className="mt-2 text-sm text-muted-foreground">
+              {t('university.confirm.prerequisite')}
+            </p>
+          )}
           
           {data.university && (
             <div className="mt-2 text-sm min-w-0">
