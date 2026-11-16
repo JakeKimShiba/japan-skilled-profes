@@ -60,8 +60,24 @@ for (const locale of locales) {
           await expect(page.locator(selector)).toHaveAttribute('content', `${dict['app.title']} | kodocalc.com`);
         }
         await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', dict['app.subtitle']);
-        const dimensions = await page.evaluate(() => ({ actual: document.documentElement.scrollWidth, width: innerWidth }));
-        expect(dimensions.actual).toBeLessThanOrEqual(dimensions.width);
+        const dimensions = await page.evaluate(() => {
+          const actual = document.documentElement.scrollWidth;
+          const width = innerWidth;
+          const overflowing = actual > width ? [...document.querySelectorAll('body *')].flatMap(element => {
+            const rect = element.getBoundingClientRect();
+            if (!rect.width || !rect.height || rect.right <= width) return [];
+            return [{
+              tag: element.tagName,
+              text: element.textContent?.trim().slice(0, 100),
+              className: element.getAttribute('class'),
+              left: rect.left,
+              right: rect.right,
+              font: getComputedStyle(element).fontFamily,
+            }];
+          }).slice(0, 10) : [];
+          return { actual, width, overflowing };
+        });
+        expect(dimensions.actual, JSON.stringify(dimensions, null, 2)).toBeLessThanOrEqual(dimensions.width);
         if (profile.type === 'business') await expect(card(page, locale)).toContainText(dict['result.businessRequirements']);
       });
     }
