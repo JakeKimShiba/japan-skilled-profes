@@ -36,3 +36,25 @@ for (const width of [390, 1440]) {
     await expect(page).toHaveURL(/v=academic/);
   });
 }
+
+test('University search has one keyboard entry and supports filtering and arrow selection', async ({ page }) => {
+  await page.route('**/resources/universities_english.csv', route => route.fulfill({
+    contentType: 'text/csv',
+    body: 'Aalto University,FI\nSeoul National University,KR\nUniversity of Tokyo,JP\n',
+  }));
+  await page.goto(`/?lang=ko&${profile}`);
+  const search = page.getByRole('textbox', { name: ko['university.search.label'], exact: true });
+  const list = page.getByRole('radiogroup', { name: ko['university.search.label'], exact: true });
+  await expect(list.getByRole('radio')).toHaveCount(3);
+  await search.focus();
+  await page.keyboard.press('Tab');
+  await expect(list.getByRole('radio').first()).toBeFocused();
+  await page.keyboard.press('ArrowDown', { delay: 50 });
+  await expect(list.getByRole('radio').nth(1)).toBeChecked();
+  await page.keyboard.press('Tab');
+  await expect(page.locator('#uni-confirm')).toBeFocused();
+  await search.fill('Seoul');
+  await expect(list.getByRole('radio')).toHaveCount(1);
+  await search.fill('no-matching-university');
+  await expect(page.getByText(ko['university.noResults'], { exact: true })).toBeVisible();
+});

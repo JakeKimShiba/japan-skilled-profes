@@ -168,6 +168,8 @@
   "mobile.summary.insufficient": "(还差 {gap} 分)",
   "university.checkbox.label": "毕业院校是否在加分名单中？",
   "university.search.placeholder": "搜索加分院校（英文）",
+  "university.search.label": "院校搜索",
+  "university.keyboardHelp": "搜索后按 Tab 进入列表，使用方向键选择。再次按 Tab 移至下一项。",
   "university.eligible": "在名单中 (+10分)",
   "university.notEligible": "不在名单中",
   "university.confirm.label": "我确认我的学校在上述名单中",

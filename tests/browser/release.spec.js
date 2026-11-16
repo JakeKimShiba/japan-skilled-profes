@@ -301,7 +301,7 @@ for (const failure of ['503', 'html', 'empty']) {
     recover = true;
     await page.getByRole('button', { name: ko['university.retry'], exact: true }).click();
     await page.getByPlaceholder(ko['university.search.placeholder']).fill('Aalto');
-    await page.getByRole('option').filter({ hasText: 'Aalto University' }).click();
+    await page.getByRole('radio', { name: ko['university.selectAria'].replace('{name}', 'Aalto University'), exact: true }).click();
     await expect(card(page)).toContainText('60점');
   });
 }
@@ -318,7 +318,7 @@ test('University loading is distinct from an empty search and supports clearing 
     await expect(page.getByRole('status').filter({ hasText: ko['university.loading'] })).toBeVisible();
     await expect(page.getByText(ko['university.noResults'], { exact: true })).toHaveCount(0);
   } finally { release(); }
-  await page.getByRole('option').filter({ hasText: 'Aalto University' }).click();
+  await page.getByRole('radio', { name: ko['university.selectAria'].replace('{name}', 'Aalto University'), exact: true }).click();
   await expect(card(page)).toContainText('60점');
   await page.locator('#uni-confirm').click();
   await expect(card(page)).toContainText('50점');

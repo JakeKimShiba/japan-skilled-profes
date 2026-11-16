@@ -1,6 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import ReactCountryFlag from 'react-country-flag';
 import { useI18n } from '@/i18n';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
 interface Option { name: string; country?: string; eligible: boolean; }
 
@@ -95,6 +98,7 @@ function countryToCode(country?: string) {
 
 export default function UniversitySelector({ onSelect, selectedName }: { onSelect: (opt: Option | null) => void; selectedName?: string }) {
   const { t } = useI18n();
+  const id = useId();
   const [options, setOptions] = useState<Option[]>([]);
   const [query, setQuery] = useState('');
   const [loadStatus, setLoadStatus] = useState<'loading' | 'ready' | 'error'>('loading');
@@ -140,12 +144,15 @@ export default function UniversitySelector({ onSelect, selectedName }: { onSelec
   const filtered = options.filter(option => option.name.toLowerCase().includes(q) || (option.country || '').toLowerCase().includes(q));
   return (
     <div>
-      <input
-        className="w-full input input-bordered"
+      <Label htmlFor={`${id}-search`} className="mb-2">{t('university.search.label')}</Label>
+      <Input
+        id={`${id}-search`}
         placeholder={t('university.search.placeholder')}
+        aria-describedby={`${id}-help`}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
+      <p id={`${id}-help`} className="mt-2 text-xs text-muted-foreground">{t('university.keyboardHelp')}</p>
       <div className="mt-2 max-h-56 overflow-auto border rounded" aria-busy={loadStatus === 'loading'}>
         {loadStatus === 'loading' && <div role="status" className="p-2 text-sm text-muted-foreground">{t('university.loading')}</div>}
         {loadStatus === 'error' && (
@@ -157,20 +164,19 @@ export default function UniversitySelector({ onSelect, selectedName }: { onSelec
           </div>
         )}
         {loadStatus === 'ready' && filtered.length === 0 && <div className="p-2 text-sm text-muted-foreground">{t('university.noResults')}</div>}
-        {loadStatus === 'ready' && filtered.map((o) => (
-          <div
+        {loadStatus === 'ready' && filtered.length > 0 && (
+          <RadioGroup
+            aria-label={t('university.search.label')}
+            aria-describedby={`${id}-help`}
+            value={selectedName || ''}
+            onValueChange={name => onSelect(options.find(option => option.name === name) || null)}
+            className="gap-0"
+          >
+        {filtered.map((o, index) => (
+          <Label
             key={o.name}
-            className="w-full text-left p-2 hover:bg-muted flex items-center justify-between cursor-pointer"
-            onClick={() => onSelect(o)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                onSelect(o);
-              }
-            }}
-            tabIndex={0}
-            role="option"
-            aria-selected={selectedName === o.name}
+            htmlFor={`${id}-${index}`}
+            className="w-full min-w-0 text-left p-2 hover:bg-muted focus-within:ring-2 focus-within:ring-inset focus-within:ring-ring flex items-center justify-between cursor-pointer"
           >
             <div className="flex items-center gap-3 w-full">
               {/* Flag column */}
@@ -199,18 +205,17 @@ export default function UniversitySelector({ onSelect, selectedName }: { onSelec
 
               {/* Small radio column for selection affordance */}
               <div className="ml-4 flex-shrink-0">
-                <input
-                  type="radio"
-                  name="university-select"
-                  checked={selectedName === o.name}
-                  onChange={() => {}}
-                  style={{ pointerEvents: 'none' }}
+                <RadioGroupItem
+                  id={`${id}-${index}`}
+                  value={o.name}
                   aria-label={t('university.selectAria', { name: o.name })}
                 />
               </div>
              </div>
-           </div>
+           </Label>
          ))}
+          </RadioGroup>
+        )}
        </div>
      </div>
    );

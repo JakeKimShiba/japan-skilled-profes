@@ -168,6 +168,8 @@
   "mobile.summary.insufficient": "（{gap}点不足）",
   "university.checkbox.label": "私が卒業した大学が加算点対象リストに含まれていますか？",
   "university.search.placeholder": "加算点対象大学検索（英文）",
+  "university.search.label": "大学検索",
+  "university.keyboardHelp": "検索後、Tabキーで一覧に移動し、矢印キーで選択します。もう一度Tabキーを押すと次の項目に移動します。",
   "university.eligible": "リストに含まれています（+10点）",
   "university.notEligible": "リストにありません",
   "university.confirm.label": "私が検索した大学が上記リストに含まれています",

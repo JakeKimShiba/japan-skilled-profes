@@ -168,6 +168,8 @@
   "mobile.summary.insufficient": "(Need {gap} more)",
   "university.checkbox.label": "Is your university listed for bonus points?",
   "university.search.placeholder": "Search bonus universities (English)",
+  "university.search.label": "University search",
+  "university.keyboardHelp": "Search, then press Tab to enter the list and use arrow keys to select. Press Tab again to continue.",
   "university.eligible": "Listed (+10 pts)",
   "university.notEligible": "Not listed",
   "university.confirm.label": "I confirm my university is listed above",

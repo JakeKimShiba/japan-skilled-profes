@@ -168,6 +168,8 @@
   "mobile.summary.insufficient": "(尚差 {gap} 分)",
   "university.checkbox.label": "畢業院校是否在加分名單中？",
   "university.search.placeholder": "搜尋加分院校（英文）",
+  "university.search.label": "大學搜尋",
+  "university.keyboardHelp": "搜尋後按 Tab 進入清單，使用方向鍵選擇。再次按 Tab 移至下一個項目。",
   "university.eligible": "在名單中 (+10分)",
   "university.notEligible": "不在名單中",
   "university.confirm.label": "我確認我的學校在上述名單中",
