@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Separator } from "@/components/ui/separator";
 import { PointsData, VisaType, agePoints, annualSalaryPoints } from "@/lib/models";
 import { PointsCalculationService } from "@/services/PointsCalculationService";
+import { getAgeCategoryFromBirthDate } from "@/lib/age";
 import { useI18n } from "@/i18n";
 import { formatEnMillionsJPY, formatManEn } from "@/lib/utils";
 import { Warning } from "@phosphor-icons/react/dist/ssr/Warning";
@@ -55,40 +56,8 @@ export function AgeIncomeStep({ data, onDataChange, onBatchChange }: AgeIncomeSt
       
       // Only update if the birth date has actually changed
       if (data.birthDate !== birthDate) {
-        const age = calculateKoreanAge(birthDate);
-        const updates: Partial<PointsData> = { birthDate };
-        if (age !== null) {
-          let ageCategory = '';
-          if (age <= 29) ageCategory = '29under';
-          else if (age <= 34) ageCategory = '30to34';
-          else if (age <= 39) ageCategory = '35to39';
-          else ageCategory = '40plus';
-          
-          updates.age = ageCategory;
-        }
-        onBatchChange(updates);
+        onBatchChange({ birthDate, age: getAgeCategoryFromBirthDate(birthDate) ?? '' });
       }
-    }
-  };
-
-  // Calculate Korean age
-  const calculateKoreanAge = (birthDateString: string): number | null => {
-    try {
-      const birth = new Date(birthDateString);
-      const today = new Date();
-      
-      if (Number.isNaN(birth.getTime()) || birth.toISOString().slice(0, 10) !== birthDateString || birth > today) return null;
-      
-      let age = today.getFullYear() - birth.getUTCFullYear();
-      const monthDiff = today.getMonth() - birth.getUTCMonth();
-      
-      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getUTCDate())) {
-        age--;
-      }
-      
-      return age;
-    } catch {
-      return null;
     }
   };
 

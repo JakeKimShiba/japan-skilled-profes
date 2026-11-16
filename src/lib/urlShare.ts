@@ -1,4 +1,5 @@
 import { PointsData, VisaType } from './models';
+import { getAgeCategoryFromBirthDate } from './age';
 
 // Short key mapping for URL parameters
 const KEY_MAP: Record<string, keyof PointsData> = {
@@ -98,7 +99,7 @@ export function encodePointsData(data: PointsData): string {
  * Decode URL search params back into a partial PointsData.
  * Returns null if no share params are found.
  */
-export function decodePointsData(search: string): PointsData | null {
+export function decodePointsData(search: string, today = new Date()): PointsData | null {
   const params = new URLSearchParams(search);
 
   // Check if there's at least a visa type — minimum for a valid share link
@@ -162,6 +163,9 @@ export function decodePointsData(search: string): PointsData | null {
     }
   }
 
+  if (data.birthDate) {
+    data.age = getAgeCategoryFromBirthDate(data.birthDate, today) ?? data.age;
+  }
   return data;
 }
 

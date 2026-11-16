@@ -38,6 +38,7 @@ test.beforeEach(async ({ page }) => {
   runtimeErrors.set(page, []);
   page.on('pageerror', error => runtimeErrors.get(page).push(error.message));
   await page.route(/^https?:\/\/(?!127\.0\.0\.1:5181(?:\/|$))/, route => route.abort());
+  await page.clock.setFixedTime(new Date('2026-11-16T12:00:00+09:00'));
 });
 
 test.afterEach(async ({ page }) => {
@@ -144,6 +145,48 @@ test('Birth date and age are updated atomically, survive refresh and clear on re
   await page.reload({ waitUntil: 'networkidle' });
   expect(new URL(page.url()).searchParams.has('bd')).toBe(false);
   expect(new URL(page.url()).searchParams.has('a')).toBe(false);
+});
+
+test.describe('Restored birth date boundaries', () => {
+  test.use({ timezoneId: 'Asia/Tokyo' });
+
+  for (const [date, age, score] of [
+    ['2026-12-31', '29under', 70],
+    ['2027-01-01', '30to34', 65],
+    ['2027-01-02', '30to34', 65],
+    ['2032-01-01', '35to39', 60],
+    ['2037-01-01', '40plus', 55],
+  ]) {
+    test(`${date}: restored result uses current age and survives reload`, async ({ page }) => {
+      await page.clock.setFixedTime(new Date(`${date}T00:00:00+09:00`));
+      await open(page, 'v=technical&e=bachelors&w=5to7&a=29under&s=8m&li=other&bd=1997-01-01');
+      for (let attempt = 0; attempt < 2; attempt++) {
+        expect(new URL(page.url()).searchParams.get('a')).toBe(age);
+        expect(new URL(page.url()).searchParams.get('bd')).toBe('1997-01-01');
+        await expect(card(page)).toContainText(`${score}점`);
+        await expect(card(page).locator('[data-slot="alert-title"]')).toHaveText(
+          score >= 70 ? ko['result.qualified.title'] : ko['result.notQualified.title'],
+        );
+        if (attempt === 0) await page.reload({ waitUntil: 'networkidle' });
+      }
+      await next(page);
+      await next(page);
+      await expect(page.locator(`#age-${age}`)).toHaveAttribute('aria-checked', 'true');
+    });
+  }
+
+  test('Manual age selection clears birth date and is not overridden on reload', async ({ page }) => {
+    await page.clock.setFixedTime(new Date('2027-01-02T00:00:00+09:00'));
+    await open(page, 'v=technical&e=bachelors&w=5to7&a=29under&s=8m&li=other&bd=1997-01-01');
+    await next(page);
+    await next(page);
+    await page.locator('#age-29under').click();
+    expect(new URL(page.url()).searchParams.has('bd')).toBe(false);
+    await page.reload({ waitUntil: 'networkidle' });
+    expect(new URL(page.url()).searchParams.get('a')).toBe('29under');
+    expect(new URL(page.url()).searchParams.has('bd')).toBe(false);
+    await expect(card(page)).toContainText('70점');
+  });
 });
 
 test('BJT 400 is selectable, excludes the education bonus and survives refresh', async ({ page }) => {
