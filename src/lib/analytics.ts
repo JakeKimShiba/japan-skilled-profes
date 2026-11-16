@@ -1,3 +1,9 @@
+declare global {
+  interface Window {
+    gtag?: (command: 'event', name: string, params?: object) => void;
+  }
+}
+
 // Lightweight GA4 loader. Enabled only when VITE_GA_MEASUREMENT_ID is defined.
 export function initAnalytics() {
   // Only initialize in production builds
@@ -27,9 +33,7 @@ export function initAnalytics() {
 }
 
 export function trackPageView(path?: string) {
-  // @ts-ignore - gtag may exist at runtime only
   if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-    // @ts-ignore
     window.gtag('event', 'page_view', path ? { page_path: path } : undefined);
   }
 }
@@ -37,9 +41,7 @@ export function trackPageView(path?: string) {
 export function trackEvent(eventName: string, params?: Record<string, any>) {
   // Only track in production, and if gtag exists
   if (!import.meta.env.PROD) return;
-  // @ts-ignore - gtag may exist at runtime only
   if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-    // @ts-ignore
     window.gtag('event', eventName, params);
   }
 }

@@ -29,7 +29,7 @@ const out = lines.map(line => {
   if (!line.trim()) return line;
   if (line.trim().startsWith('#')) return line;
   const [namePart, countryPart] = splitLine(line);
-  const countryRaw = countryPart ? countryPart.trim().replace(/^\"|\"$/g,'') : '';
+  const countryRaw = countryPart ? countryPart.trim().replace(/^"|"$/g,'') : '';
   const key = countryRaw.toLowerCase();
   if (mapping[key]) {
     if (countryRaw !== mapping[key]) changed++;

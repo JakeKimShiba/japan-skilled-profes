@@ -56,7 +56,7 @@ export function calculateTotalPoints(data: PointsData): number {
   
   // Calculate points for language abilities
   // Map the value directly to the keys in languagePoints
-  let langKey = `japanese_${data.japaneseLanguage}`;
+  const langKey = `japanese_${data.japaneseLanguage}`;
   const japaneseLanguage = languagePoints[langKey as keyof typeof languagePoints] || 0;
   
   // Calculate special points

@@ -1,11 +1,11 @@
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react-swc";
-import { defineConfig, PluginOption, loadEnv } from "vite";
+import { fileURLToPath } from "node:url";
+import { defineConfig, loadEnv } from "vite";
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
-  // Determine env directory relative to this config file without Node types
-  const envDir = new URL('.', import.meta.url).pathname;
+  const envDir = fileURLToPath(new URL('.', import.meta.url));
   // Load env file based on `mode`
   const env = loadEnv(mode, envDir);
   
@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => {
     ],
     resolve: {
       alias: {
-        '@': new URL('./src/', import.meta.url).pathname
+        '@': fileURLToPath(new URL('./src/', import.meta.url))
       }
     },
     build: {

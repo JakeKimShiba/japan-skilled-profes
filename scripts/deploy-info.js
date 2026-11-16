@@ -19,7 +19,7 @@ console.log(`${YELLOW}Building project...${RESET}`);
 try {
   execSync('npm run build', { stdio: 'inherit' });
   console.log(`${GREEN}✓ Build completed successfully${RESET}`);
-} catch (error) {
+} catch {
   console.error(`${RED}× Build failed!${RESET}`);
   process.exit(1);
 }
