@@ -106,6 +106,21 @@ export function PointsResult({ data }: PointsResultProps) {
 
   const result = useMemo(() => VisaCalculatorService.calculatePoints(data), [data]);
   const { totalPoints, categoryPoints, qualificationStatus: status, validation, isComplete, suggestions } = result;
+  const announcementStatus = !validation.isValid
+    ? `invalid:${validation.errors.map(error => error.code).join(',')}`
+    : !isComplete ? 'incomplete' : status.expeditedPR ? 'expedited' : status.qualified ? 'qualified' : 'unqualified';
+  const previousScore = useRef({ totalPoints, status: announcementStatus });
+  const [scoreAnnouncement, setScoreAnnouncement] = useState('');
+  const scoreMessage = `${t('result.totalPoints')}: ${fmtPoints(totalPoints)}`;
+
+  useEffect(() => {
+    const previous = previousScore.current;
+    previousScore.current = { totalPoints, status: announcementStatus };
+    setScoreAnnouncement('');
+    if (previous.totalPoints === totalPoints || previous.status !== announcementStatus) return;
+    const timer = setTimeout(() => setScoreAnnouncement(scoreMessage), 400);
+    return () => clearTimeout(timer);
+  }, [totalPoints, announcementStatus, scoreMessage]);
 
   // Track milestone thresholds once when crossing 70/80
   useEffect(() => {
@@ -245,6 +260,9 @@ export function PointsResult({ data }: PointsResultProps) {
 
   return (
     <Card ref={resultRef}>
+      <div role="status" aria-label={t('result.totalPoints')} aria-live="polite" aria-atomic="true" className="sr-only no-print">
+        {scoreAnnouncement}
+      </div>
       {/* Print-only document header */}
       <div className="print-only hidden mb-6">
         <div className="flex items-center justify-between border-b-2 border-primary pb-3 mb-4">

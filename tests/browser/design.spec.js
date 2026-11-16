@@ -168,3 +168,18 @@ test('Named progress bars expose determinate steps and preserve scores above the
   await expect(points).toHaveAttribute('aria-valuenow', '100');
   await expect(points).toHaveAttribute('aria-valuetext', ko['points.value'].replace('{value}', '120'));
 });
+
+test('Same-band score changes have polite feedback without duplicating qualification alerts', async ({ page }) => {
+  await page.goto(`/?lang=ko&${profile}`);
+  const announcement = page.getByRole('status', { name: ko['result.totalPoints'], exact: true });
+  await expect(announcement).toBeEmpty();
+  const next = page.getByRole('button', { name: ko['nav.next'], exact: true });
+  await next.click();
+  await next.click();
+  await page.locator('#income-6m').click();
+  await expect(announcement).toHaveText(`${ko['result.totalPoints']}: ${ko['points.value'].replace('{value}', '75')}`);
+  await expect(announcement).toHaveAttribute('aria-live', 'polite');
+  await page.locator('#income-8m').click();
+  await expect(announcement).toBeEmpty();
+  await expect(page.getByRole('alert').filter({ hasText: ko['result.qualified.expedited'] })).toBeVisible();
+});
