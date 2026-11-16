@@ -111,6 +111,11 @@ export function GuidePage() {
               <h2 className="text-2xl font-semibold tracking-tight text-foreground mb-4">
                 {section.title}
               </h2>
+              {section.content.includes('guide-visa-comparison') && (
+                <p id="comparison-table-help" className="mb-3 text-sm text-muted-foreground">
+                  {t('guide.tableScroll')}
+                </p>
+              )}
               <div
                 className="guide-content text-foreground/90 leading-relaxed space-y-4 [&_table]:w-full [&_table]:border-collapse [&_table]:block [&_table]:overflow-x-auto [&_th]:bg-muted [&_th]:p-3 [&_th]:text-left [&_th]:text-sm [&_th]:font-semibold [&_th]:border [&_th]:whitespace-nowrap [&_td]:p-3 [&_td]:border [&_td]:text-sm [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1.5 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:space-y-1.5 [&_strong]:font-semibold [&_strong]:text-foreground [&_a]:text-primary [&_a]:underline [&_a:hover]:text-primary/80"
                 dangerouslySetInnerHTML={{ __html: section.content }}

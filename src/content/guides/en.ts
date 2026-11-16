@@ -53,7 +53,8 @@ export const guidesEn: Guide[] = [
         title: "Three Visa Categories and Their Differences",
         content: `
 <p>The HSP visa is divided into 3 categories based on the nature of activities. <strong>Since point allocations differ by category</strong>, it's important to choose the one most advantageous for you.</p>
-<table>
+<table class="guide-visa-comparison" tabindex="0" aria-describedby="comparison-table-help">
+  <caption class="sr-only">Visa type comparison</caption>
   <thead><tr><th>Category</th><th>Japanese Name</th><th>Target</th><th>Minimum Salary</th></tr></thead>
   <tbody>
     <tr><td><strong>Academic Research</strong></td><td>高度学術研究活動 (イ)</td><td>University professors, researchers</td><td>None</td></tr>

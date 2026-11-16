@@ -53,7 +53,8 @@ export const guidesKo: Guide[] = [
         title: "비자 3가지 유형과 차이점",
         content: `
 <p>고도인재 비자는 활동 내용에 따라 3가지 유형으로 나뉩니다. <strong>각 유형별로 포인트 배점이 다르므로</strong> 자신에게 유리한 유형을 선택하는 것이 중요합니다.</p>
-<table>
+<table class="guide-visa-comparison" tabindex="0" aria-describedby="comparison-table-help">
+  <caption class="sr-only">비자 유형 비교</caption>
   <thead><tr><th>유형</th><th>일본어 명칭</th><th>대상</th><th>연봉 최소 요건</th></tr></thead>
   <tbody>
     <tr><td><strong>학술연구</strong></td><td>高度学術研究活動 (イ)</td><td>대학 교수, 연구원</td><td>없음</td></tr>

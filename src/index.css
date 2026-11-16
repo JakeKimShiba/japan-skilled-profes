@@ -140,6 +140,19 @@
 .guide-content .guide-callout-info::before { content: "📌"; }
 .guide-content .guide-callout a { color: inherit; }
 
+.guide-content .guide-visa-comparison {
+  border-radius: 0.25rem;
+  outline-offset: 3px;
+}
+.guide-content .guide-visa-comparison td {
+  min-width: 7rem;
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+.guide-content .guide-visa-comparison td:nth-child(3) {
+  min-width: 11rem;
+}
+
 /* Bar chart */
 .guide-content .guide-bars {
   display: flex;

@@ -222,3 +222,17 @@ test('Selected visa summary keeps the first mobile question visible and comparis
     await expect(page.getByText(ko[`visa.${type}.description`], { exact: true })).toBeVisible();
   }
 });
+
+test('Mobile comparison keeps all columns readable in a keyboard-scrollable table', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(`/guide/${encodeURIComponent('고도인재-비자-완벽-가이드')}/?lang=ko`);
+  const table = page.getByRole('table', { name: '비자 유형 비교', exact: true });
+  await expect(table.getByRole('columnheader')).toHaveCount(4);
+  await expect(table.getByRole('row')).toHaveCount(4);
+  const target = table.locator('tbody tr').nth(1).locator('td').nth(2);
+  expect((await target.boundingBox()).width).toBeGreaterThanOrEqual(176);
+  await table.focus();
+  await page.keyboard.press('ArrowRight', { delay: 100 });
+  await expect.poll(() => table.evaluate(element => element.scrollLeft)).toBeGreaterThan(0);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
+});

@@ -53,7 +53,8 @@ export const guidesJa: Guide[] = [
         title: "ビザ3つの類型と違い",
         content: `
 <p>高度専門職ビザは活動内容に応じて3つの類型に分かれます。<strong>各類型でポイント配点が異なるため</strong>、自分に有利な類型を選ぶことが重要です。</p>
-<table>
+<table class="guide-visa-comparison" tabindex="0" aria-describedby="comparison-table-help">
+  <caption class="sr-only">ビザ類型の比較</caption>
   <thead><tr><th>類型</th><th>日本語名称</th><th>対象</th><th>年収最低要件</th></tr></thead>
   <tbody>
     <tr><td><strong>学術研究</strong></td><td>高度学術研究活動（イ）</td><td>大学教授、研究員</td><td>なし</td></tr>
