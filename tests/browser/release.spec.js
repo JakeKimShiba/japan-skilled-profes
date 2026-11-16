@@ -263,6 +263,32 @@ test('Guide navigation restores calculator metadata and unknown routes recover',
   await expect(page.getByText(ko['app.title'], { exact: true }).first()).toBeVisible();
 });
 
+test('Analytics events exclude shared inputs from page and referrer URLs after edits', async ({ page }) => {
+  await page.goto(`/?lang=ko&${profiles[0].query}&bd=1997-01-01`, {
+    waitUntil: 'networkidle',
+    referer: 'http://127.0.0.1:5181/guide?bd=1997-01-01&s=8m',
+  });
+  await page.evaluate(() => {
+    window.__events = [];
+    window.gtag = (...args) => window.__events.push(args);
+  });
+  await next(page);
+  await next(page);
+  await page.locator('#income-7m').click();
+  await next(page);
+  await next(page);
+  await page.getByRole('button', { name: ko['nav.viewResults'], exact: true }).click();
+  const events = await page.evaluate(() => window.__events.filter(event => event[0] === 'event'));
+  expect(events.some(event => event[1] === 'calculation_completed')).toBe(true);
+  for (const event of events) {
+    expect(event[2].page_location).toBe('http://127.0.0.1:5181/');
+    expect(event[2].page_path).toBe('/');
+    expect(event[2].page_referrer).toBe('http://127.0.0.1:5181/guide');
+  }
+  expect(new URL(page.url()).searchParams.get('bd')).toBe('1997-01-01');
+  expect(new URL(page.url()).searchParams.get('s')).toBe('7m');
+});
+
 test('Print markup and analytics use validated status for an invalid high score', async ({ page }) => {
   await open(page, profiles[2].query.replace('s=3to10m', 's=under3m'));
   await page.evaluate(() => {
