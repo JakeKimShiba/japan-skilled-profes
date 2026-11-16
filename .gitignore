@@ -48,3 +48,5 @@ out
 **/agent-eval-report*
 packages
 .file-manifest
+test-results
+playwright-report

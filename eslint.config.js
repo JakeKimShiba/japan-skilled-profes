@@ -32,5 +32,9 @@ export default tseslint.config(
     files: ['tests/**/*.cjs'],
     languageOptions: { sourceType: 'commonjs' },
   },
+  {
+    files: ['tests/browser/**/*.js'],
+    languageOptions: { globals: { ...globals.node, ...globals.browser } },
+  },
   { rules: { 'no-empty': ['error', { allowEmptyCatch: true }] } },
 );

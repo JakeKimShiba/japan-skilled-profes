@@ -9,6 +9,7 @@
         "build": "tsc -b && vite build && node scripts/generate-sitemap.mjs && node scripts/prerender-guides.mjs",
         "typecheck": "tsc --noEmit",
         "test": "node --require ./tests/register-typescript.cjs --test",
+        "test:browser": "npm run build && playwright test",
         "lint": "eslint .",
         "optimize": "vite optimize",
         "preview": "vite preview",
@@ -76,6 +77,7 @@
         "zod": "^3.24.2"
     },
     "devDependencies": {
+        "@playwright/test": "^1.65.1",
         "@eslint/js": "^9.21.0",
         "@tailwindcss/postcss": "^4.1.8",
         "@types/html2canvas": "^0.5.35",
