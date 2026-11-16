@@ -119,3 +119,18 @@ test('Error guidance and reset text retain readable small-text contrast', async 
     expect(await textContrast(target)).toBeGreaterThanOrEqual(4.5);
   }
 });
+
+test('Below-minimum income remains selectable with readable labels and an invalid result', async ({ page }) => {
+  await page.goto(`/?lang=ko&${profile}`);
+  const next = page.getByRole('button', { name: ko['nav.next'], exact: true });
+  await next.click();
+  await next.click();
+  const radio = page.locator('#income-under3m');
+  await expect(radio).toBeEnabled();
+  for (const text of await page.locator('label[for="income-under3m"] > span').all()) {
+    expect(await textContrast(text)).toBeGreaterThanOrEqual(4.5);
+  }
+  await radio.click();
+  await expect(radio).toBeChecked();
+  await expect(page.getByRole('alert').filter({ hasText: ko['result.invalid.title'] })).toBeVisible();
+});

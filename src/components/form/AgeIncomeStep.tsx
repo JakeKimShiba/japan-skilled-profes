@@ -267,7 +267,7 @@ export function AgeIncomeStep({ data, onDataChange, onBatchChange }: AgeIncomeSt
             return (
               <div 
                 key={option} 
-                className={`flex items-center space-x-2 ${isIneligible ? 'opacity-60' : ''}`}
+                className="flex items-center space-x-2"
               >
                 <RadioGroupItem 
                   value={option} 
@@ -275,15 +275,13 @@ export function AgeIncomeStep({ data, onDataChange, onBatchChange }: AgeIncomeSt
                 />
                 <Label 
                   htmlFor={`income-${option}`} 
-                  className={`flex justify-between items-center w-full ${
-                    isIneligible ? 'text-muted-foreground/70' : ''
-                  }`}
+                  className="flex justify-between items-center w-full"
                 >
                   <span>{getSalaryLabel(option)}</span>
                   {isIneligible ? (
                     <Badge 
                       variant="outline" 
-                      className="bg-pink-50 text-pink-400 border-pink-200 hover:bg-pink-50"
+                      className="bg-red-50 text-destructive border-red-200 hover:bg-red-50"
                     >
                       {t('warning.visa.ineligible')}
                     </Badge>
