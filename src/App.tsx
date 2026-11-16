@@ -108,6 +108,14 @@ function CalculatorPage() {
     () => decodePointsData(window.location.search) || initialPointsData
   );
   const [showAllVisaTypes, setShowAllVisaTypes] = useState(() => !pointsData.visaType);
+  const visaToFocus = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (showAllVisaTypes && visaToFocus.current) {
+      document.getElementById(`visa-${visaToFocus.current}`)?.focus();
+      visaToFocus.current = null;
+    }
+  }, [showAllVisaTypes]);
 
   useEffect(() => {
     replacePointsDataInUrl(pointsData);
@@ -360,11 +368,11 @@ function CalculatorPage() {
                         </div>
                       </div>
                       
-                      {/* Change Visa Type Button - Mobile only */}
-                      <div className="md:hidden flex justify-center">
+                      <div className="flex justify-center">
                         <Button 
                           variant="outline" 
                           onClick={() => {
+                            visaToFocus.current = pointsData.visaType;
                             setShowAllVisaTypes(true);
                             setPointsData(initialPointsData);
                           }}
