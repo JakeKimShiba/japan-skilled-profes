@@ -108,6 +108,7 @@ function CalculatorPage() {
     () => decodePointsData(window.location.search) || initialPointsData
   );
   const [showAllVisaTypes, setShowAllVisaTypes] = useState(() => !pointsData.visaType);
+  const [focusInputOnMount, setFocusInputOnMount] = useState(false);
   const visaToFocus = useRef<string | null>(null);
 
   useEffect(() => {
@@ -122,6 +123,7 @@ function CalculatorPage() {
   }, [pointsData]);
 
   const handleVisaTypeChange = (type: VisaType) => {
+    setFocusInputOnMount(true);
     setPointsData({
       ...pointsData,
       visaType: type
@@ -151,7 +153,11 @@ function CalculatorPage() {
     
     // 모바일에서 결과 섹션으로 스크롤
     if (resultsRef.current) {
-      resultsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      resultsRef.current.focus({ preventScroll: true });
+      resultsRef.current.scrollIntoView({
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+        block: 'start'
+      });
     }
   };
 
@@ -395,10 +401,14 @@ function CalculatorPage() {
                     data={pointsData} 
                     setData={setPointsData} 
                     onViewResults={handleViewResults}
+                    focusOnMount={focusInputOnMount}
                   />
                 </div>
                 <div 
                   ref={resultsRef}
+                  role="region"
+                  aria-label={t('result.title')}
+                  tabIndex={-1}
                   className="md:col-span-1 md:sticky md:top-4 h-fit md:max-h-[calc(100vh-2rem)] md:overflow-auto"
                 >
                   <PointsResult data={pointsData} />

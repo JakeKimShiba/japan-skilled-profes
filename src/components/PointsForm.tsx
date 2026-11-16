@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PointsData, isN2Equivalent } from "@/lib/models";
@@ -19,9 +19,10 @@ interface PointsFormProps {
   data: PointsData;
   setData: (data: PointsData) => void;
   onViewResults?: () => void;
+  focusOnMount?: boolean;
 }
 
-export function PointsForm({ data, setData, onViewResults }: PointsFormProps) {
+export function PointsForm({ data, setData, onViewResults, focusOnMount = false }: PointsFormProps) {
   const { t } = useI18n();
   const fmtPoints = (n: number) => t('points.value', { value: n });
 
@@ -91,10 +92,26 @@ export function PointsForm({ data, setData, onViewResults }: PointsFormProps) {
   ];
   
   const [currentStep, setCurrentStep] = useState(0);
+  const stepContentRef = useRef<HTMLDivElement>(null);
+  const focusRequested = useRef(focusOnMount);
+
+  useEffect(() => {
+    if (focusRequested.current) {
+      stepContentRef.current?.focus();
+      focusRequested.current = false;
+    }
+  }, [currentStep]);
   
-  const goNext = () => setCurrentStep((s) => Math.min(s + 1, steps.length - 1));
-  const goPrev = () => setCurrentStep((s) => Math.max(s - 1, 0));
-  const goTo = (index: number) => setCurrentStep(index);
+  const goTo = (index: number) => {
+    if (index === currentStep) {
+      stepContentRef.current?.focus();
+    } else {
+      focusRequested.current = true;
+      setCurrentStep(index);
+    }
+  };
+  const goNext = () => goTo(Math.min(currentStep + 1, steps.length - 1));
+  const goPrev = () => goTo(Math.max(currentStep - 1, 0));
   const goReset = () => goTo(0);
   
   const handleClearAll = () => {
@@ -205,7 +222,15 @@ export function PointsForm({ data, setData, onViewResults }: PointsFormProps) {
 
       <CardContent className="space-y-6 pb-28 md:pb-6">
         {/* Step Content */}
-        {renderStep()}
+        <div
+          ref={stepContentRef}
+          role="group"
+          aria-label={t(steps[currentStep].key)}
+          tabIndex={-1}
+          className="rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+        >
+          {renderStep()}
+        </div>
         
         {/* Navigation Buttons at Bottom */}
         <FormNavigation

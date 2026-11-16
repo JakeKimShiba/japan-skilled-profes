@@ -46,7 +46,6 @@ export function ProgressBar({ currentStep, totalSteps, steps, onGoTo }: Progress
         {/* Step Navigation Buttons */}
         <nav 
           className="flex gap-1 items-center"
-          role="tablist"
           aria-label={t('form.steps')}
           onKeyDown={(e) => {
             if (e.key === 'ArrowRight') { 

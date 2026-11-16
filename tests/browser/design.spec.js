@@ -58,3 +58,22 @@ test('University search has one keyboard entry and supports filtering and arrow 
   await search.fill('no-matching-university');
   await expect(page.getByText(ko['university.noResults'], { exact: true })).toBeVisible();
 });
+
+test('Explicit step and result transitions transfer focus without stealing it on edits', async ({ page }) => {
+  await page.goto('/?lang=ko');
+  await page.getByRole('radio', { name: ko['visa.technical.type'], exact: true }).press('Space');
+  await expect(page.getByRole('group', { name: ko['form.education'], exact: true })).toBeFocused();
+  await page.locator('#bachelors').click();
+  await expect(page.locator('#bachelors')).toBeFocused();
+  await page.goto(`/?lang=ko&${profile}`);
+  const next = page.getByRole('button', { name: ko['nav.next'], exact: true });
+  await next.click();
+  await expect(page.getByRole('group', { name: ko['form.experience'], exact: true })).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(page.locator('#work-5to7')).toBeFocused();
+  await page.getByRole('button', { name: ko['form.education.short'], exact: false }).first().click();
+  await expect(page.getByRole('group', { name: ko['form.education'], exact: true })).toBeFocused();
+  await page.getByRole('button', { name: new RegExp(ko['form.languageSpecial.short']) }).click();
+  await page.getByRole('button', { name: ko['nav.viewResults'], exact: true }).click();
+  await expect(page.getByRole('region', { name: ko['result.title'], exact: true })).toBeFocused();
+});
