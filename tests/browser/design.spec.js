@@ -127,7 +127,7 @@ test('Below-minimum income remains selectable with readable labels and an invali
   await next.click();
   const radio = page.locator('#income-under3m');
   await expect(radio).toBeEnabled();
-  for (const text of await page.locator('label[for="income-under3m"] > span').all()) {
+  for (const text of await page.locator('label[for="income-under3m"] > span > span').all()) {
     expect(await textContrast(text)).toBeGreaterThanOrEqual(4.5);
   }
   await radio.click();
@@ -263,7 +263,7 @@ test('Narrow Korean headings and short age choices keep words together', async (
     const next = page.getByRole('button', { name: ko['nav.next'], exact: true });
     await next.click();
     await next.click();
-    const lines = await page.locator('label[for="age-29under"] > span').first().evaluate(element => {
+    const lines = await page.locator('label[for="age-29under"] > span > span').first().evaluate(element => {
       const range = document.createRange();
       range.selectNodeContents(element);
       return range.getClientRects().length;
@@ -271,4 +271,20 @@ test('Narrow Korean headings and short age choices keep words together', async (
     expect(lines).toBe(1);
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
   }
+});
+
+test('Radio-to-text gaps select the income option and preserve keyboard movement', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(`/?lang=ko&${profile}`);
+  const next = page.getByRole('button', { name: ko['nav.next'], exact: true });
+  await next.click();
+  await next.click();
+  const radio = page.locator('#income-6m');
+  await radio.evaluate(element => element.scrollIntoView({ block: 'center' }));
+  const bounds = await radio.boundingBox();
+  await page.mouse.click(bounds.x + bounds.width + 4, bounds.y + bounds.height / 2);
+  await expect(radio).toBeChecked();
+  await expect(radio).toBeFocused();
+  await radio.press('ArrowDown', { delay: 50 });
+  await expect(page.locator('#income-7m')).toBeChecked();
 });

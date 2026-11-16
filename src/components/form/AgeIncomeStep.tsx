@@ -198,45 +198,45 @@ export function AgeIncomeStep({ data, onDataChange, onBatchChange }: AgeIncomeSt
           }}
           className="grid grid-cols-1 sm:grid-cols-2 gap-2"
         >
-          <div className="flex items-center space-x-2">
+          <Label htmlFor="age-29under" className="flex items-center gap-2 cursor-pointer">
             <RadioGroupItem value="29under" id="age-29under" />
-            <Label htmlFor="age-29under" className="flex justify-between w-full">
+            <span className="flex justify-between w-full">
               <span>{t('age.29under')}</span>
               <Badge variant="outline" className="bg-primary/10 ml-2">
                 {fmtPoints(getAgePoints('29under'))}
               </Badge>
-            </Label>
-          </div>
+            </span>
+          </Label>
           
-          <div className="flex items-center space-x-2">
+          <Label htmlFor="age-30to34" className="flex items-center gap-2 cursor-pointer">
             <RadioGroupItem value="30to34" id="age-30to34" />
-            <Label htmlFor="age-30to34" className="flex justify-between w-full">
+            <span className="flex justify-between w-full">
               <span>{t('age.30to34')}</span>
               <Badge variant="outline" className="bg-primary/10 ml-2">
                 {fmtPoints(getAgePoints('30to34'))}
               </Badge>
-            </Label>
-          </div>
+            </span>
+          </Label>
           
-          <div className="flex items-center space-x-2">
+          <Label htmlFor="age-35to39" className="flex items-center gap-2 cursor-pointer">
             <RadioGroupItem value="35to39" id="age-35to39" />
-            <Label htmlFor="age-35to39" className="flex justify-between w-full">
+            <span className="flex justify-between w-full">
               <span>{t('age.35to39')}</span>
               <Badge variant="outline" className="bg-primary/10 ml-2">
                 {fmtPoints(getAgePoints('35to39'))}
               </Badge>
-            </Label>
-          </div>
+            </span>
+          </Label>
           
-          <div className="flex items-center space-x-2">
+          <Label htmlFor="age-40plus" className="flex items-center gap-2 cursor-pointer">
             <RadioGroupItem value="40plus" id="age-40plus" />
-            <Label htmlFor="age-40plus" className="flex justify-between w-full">
+            <span className="flex justify-between w-full">
               <span>{t('age.40plus')}</span>
               <Badge variant="outline" className="bg-muted/30 ml-2">
                 {fmtPoints(0)}
               </Badge>
-            </Label>
-          </div>
+            </span>
+          </Label>
         </RadioGroup>
       </div>
 
@@ -265,16 +265,16 @@ export function AgeIncomeStep({ data, onDataChange, onBatchChange }: AgeIncomeSt
             const points = getAnnualSalaryPoints(option);
             
             return (
-              <div 
+              <Label
                 key={option} 
-                className="flex items-center space-x-2"
+                htmlFor={`income-${option}`}
+                className="flex items-center gap-2 cursor-pointer"
               >
                 <RadioGroupItem 
                   value={option} 
                   id={`income-${option}`} 
                 />
-                <Label 
-                  htmlFor={`income-${option}`} 
+                <span
                   className="flex justify-between items-center w-full"
                 >
                   <span>{getSalaryLabel(option)}</span>
@@ -294,8 +294,8 @@ export function AgeIncomeStep({ data, onDataChange, onBatchChange }: AgeIncomeSt
                       {fmtPoints(points)}
                     </Badge>
                   )}
-                </Label>
-              </div>
+                </span>
+              </Label>
             );
           })}
         </RadioGroup>
