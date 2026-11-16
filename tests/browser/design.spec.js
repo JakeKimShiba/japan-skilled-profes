@@ -6,6 +6,35 @@ const dictionaries = Object.fromEntries(['ko', 'en', 'ja', 'zh-cn', 'zh-tw'].map
 ]));
 const ko = dictionaries.ko;
 const profile = 'v=technical&e=bachelors&w=5to7&a=29under&s=5m&j=n1&li=other';
+
+async function textContrast(locator) {
+  return locator.evaluate(element => {
+    const canvas = document.createElement('canvas');
+    canvas.width = canvas.height = 1;
+    const context = canvas.getContext('2d', { willReadFrequently: true });
+    context.fillStyle = '#fff';
+    context.fillRect(0, 0, 1, 1);
+    const ancestors = [];
+    for (let node = element; node; node = node.parentElement) ancestors.unshift(node);
+    let opacity = 1;
+    for (const node of ancestors) {
+      const style = getComputedStyle(node);
+      opacity *= Number(style.opacity);
+      context.globalAlpha = opacity;
+      context.fillStyle = style.backgroundColor;
+      context.fillRect(0, 0, 1, 1);
+    }
+    const background = [...context.getImageData(0, 0, 1, 1).data];
+    context.fillStyle = getComputedStyle(element).color;
+    context.fillRect(0, 0, 1, 1);
+    const foreground = [...context.getImageData(0, 0, 1, 1).data];
+    const luminance = rgb => rgb.slice(0, 3).map(value => value / 255)
+      .map(value => value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4)
+      .reduce((sum, value, index) => sum + value * [0.2126, 0.7152, 0.0722][index], 0);
+    const values = [luminance(foreground), luminance(background)].sort((a, b) => b - a);
+    return (values[0] + 0.05) / (values[1] + 0.05);
+  });
+}
 test.beforeEach(async ({ page }) => {
   await page.route(/^https?:\/\/(?!127\.0\.0\.1:5181(?:\/|$))/, route => route.abort());
   await page.clock.setFixedTime(new Date('2026-11-16T12:00:00+09:00'));
@@ -76,4 +105,17 @@ test('Explicit step and result transitions transfer focus without stealing it on
   await page.getByRole('button', { name: new RegExp(ko['form.languageSpecial.short']) }).click();
   await page.getByRole('button', { name: ko['nav.viewResults'], exact: true }).click();
   await expect(page.getByRole('region', { name: ko['result.title'], exact: true })).toBeFocused();
+});
+
+test('Error guidance and reset text retain readable small-text contrast', async ({ page }) => {
+  await page.goto(`/?lang=ko&${profile.replace('s=5m', 's=under3m')}`);
+  const alert = page.getByRole('alert').filter({ hasText: ko['result.invalid.title'] });
+  for (const target of [
+    alert.locator('[data-slot="alert-title"]'),
+    alert.locator('[data-slot="alert-description"]'),
+    page.getByRole('button', { name: ko['nav.clearAll'], exact: true }),
+  ]) {
+    await expect(target).toBeVisible();
+    expect(await textContrast(target)).toBeGreaterThanOrEqual(4.5);
+  }
 });
