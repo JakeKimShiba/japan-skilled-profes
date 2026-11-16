@@ -84,6 +84,37 @@ for (const locale of locales) {
   }
 }
 
+test('English mobile navigation fits every step with fallback font metrics', async ({ page }) => {
+  const dict = dictionaries.en;
+  await page.setViewportSize({ width: 320, height: 900 });
+  await open(page, profiles[0].query, 'en');
+
+  for (let step = 0; step < 5; step++) {
+    const action = page.getByRole('button', {
+      name: dict[step === 4 ? 'nav.viewResults' : 'nav.next'],
+      exact: true,
+    });
+    const buttons = [
+      page.getByRole('button', { name: dict['nav.prev'], exact: true }),
+      page.getByRole('button', { name: dict['nav.clearAll'], exact: true }),
+      action,
+    ];
+    for (const button of buttons) {
+      await button.evaluate(element => { element.style.fontFamily = 'Verdana, sans-serif'; });
+    }
+    for (const button of buttons) {
+      await expect(button).toBeVisible();
+      const bounds = await button.boundingBox();
+      expect(bounds.x).toBeGreaterThanOrEqual(0);
+      expect(bounds.x + bounds.width).toBeLessThanOrEqual(320);
+    }
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
+    await expect(action).toBeEnabled();
+    await action.click();
+  }
+  await expect(card(page, 'en')).toContainText(dict['points.value'].replace('{value}', '70'));
+});
+
 for (const locale of locales) {
   test(`${locale}: minimum-income error is localized and never qualified`, async ({ page }) => {
     await open(page, profiles[2].query.replace('s=3to10m', 's=under3m'), locale);

@@ -169,7 +169,7 @@ export function FormNavigation({
   };
 
   return (
-    <div className="flex justify-between pt-4 border-t mt-6">
+    <div className="flex flex-wrap justify-between gap-2 pt-4 border-t mt-6">
       <div className="flex gap-2">
         <Button 
           type="button" 
@@ -181,7 +181,7 @@ export function FormNavigation({
         </Button>
       </div>
       
-      <div className="flex gap-2">
+      <div className="ml-auto flex flex-wrap justify-end gap-2">
         {onClearAll && (
           <AlertDialog>
             <AlertDialogTrigger asChild>
