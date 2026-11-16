@@ -3,6 +3,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { PointsForm } from "@/components/PointsForm";
 import { PointsResult } from "@/components/PointsResult";
+import { SEOHead } from "@/components/SEOHead";
 import { decodePointsData, replacePointsDataInUrl } from "@/lib/urlShare";
 import { PointsData, VisaType } from "@/lib/models";
 import { Separator } from "@/components/ui/separator";
@@ -150,6 +151,7 @@ function CalculatorPage() {
 
   return (
     <div className="min-h-screen bg-background font-sans">
+      <SEOHead title={`${t('app.title')} | kodocalc.com`} description={t('app.subtitle')} path="/" />
       <div className="container mx-auto px-4 py-8 max-w-5xl">
         <Header />
         

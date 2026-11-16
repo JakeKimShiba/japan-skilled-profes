@@ -21,6 +21,7 @@ export function GuidePage() {
   return (
     <>
       <SEOHead
+        type="article"
         title={`${guide.title} | kodocalc.com`}
         description={guide.description}
         path={`/guide/${guide.slug}`}

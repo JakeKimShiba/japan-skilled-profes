@@ -97,60 +97,47 @@ export default function UniversitySelector({ onSelect, selectedName }: { onSelec
   const { t } = useI18n();
   const [options, setOptions] = useState<Option[]>([]);
   const [query, setQuery] = useState('');
-  const [filtered, setFiltered] = useState<Option[]>([]);
-  
-
+  const [loadStatus, setLoadStatus] = useState<'loading' | 'ready' | 'error'>('loading');
+  const [loadAttempt, setLoadAttempt] = useState(0);
 
   useEffect(() => {
-    // Build a path that respects Vite's base URL (works for GitHub Pages and dev)
+    const controller = new AbortController();
     const csvPath = `${import.meta.env.BASE_URL}resources/universities_english.csv`;
+    setLoadStatus('loading');
 
     const load = async () => {
-      try {
-        const r = await fetch(csvPath);
-        if (!r.ok) throw new Error(`Failed to load ${csvPath}`);
-        const text = await r.text();
-        const rows = text.split(/\r?\n/).map(r => r.trim()).filter(r => r && !r.startsWith('#'));
-        const opts = rows.map(r => {
-          const parts = r.split(',');
-          const name = (parts[0] || '').trim();
-          const country = (parts[1] || '').trim();
-          const eligible = true; // All entries treated as eligible
-          return { name, country, eligible } as Option;
-        }).filter(o => o.name);
-        setOptions(opts);
-        setFiltered(opts);
-      } catch (e) {
-        // Fallback to a relative path (in case BASE_URL handling differs)
+      for (const url of new Set([csvPath, 'resources/universities_english.csv'])) {
         try {
-          const r2 = await fetch('resources/universities_english.csv');
-          if (!r2.ok) throw new Error('fallback fetch failed');
-          const text2 = await r2.text();
-          const rows2 = text2.split(/\r?\n/).map(r => r.trim()).filter(r => r && !r.startsWith('#'));
-          const opts2 = rows2.map(r => {
-            const parts = r.split(',');
+          const response = await fetch(url, { signal: controller.signal });
+          if (!response.ok) throw new Error('University list unavailable');
+          const text = await response.text();
+          if (text.trimStart().startsWith('<')) throw new Error('Expected university CSV, not HTML');
+          const rows = text.split(/\r?\n/).map(row => row.trim()).filter(row => row && !row.startsWith('#'));
+          const loaded = rows.map(row => {
+            const parts = row.split(',');
             const name = (parts[0] || '').trim();
             const country = (parts[1] || '').trim();
             return { name, country, eligible: true } as Option;
-          }).filter(o => o.name);
-          setOptions(opts2);
-          setFiltered(opts2);
+          }).filter(option => option.name);
+          if (!loaded.length) throw new Error('Empty university list');
+          if (controller.signal.aborted) return;
+          setOptions(loaded);
+          setLoadStatus('ready');
+          return;
         } catch {
-          setOptions([]);
-          setFiltered([]);
+          if (controller.signal.aborted) return;
         }
       }
+      setOptions([]);
+      setLoadStatus('error');
     };
 
-    load();
-  }, []);
+    void load();
+    return () => controller.abort();
+  }, [loadAttempt]);
 
-  useEffect(() => {
-    if (!query) return setFiltered(options);
-    const q = query.toLowerCase();
-    setFiltered(options.filter(o => o.name.toLowerCase().includes(q) || (o.country || '').toLowerCase().includes(q)));
-  }, [query, options]);
-
+  const q = query.toLowerCase();
+  const filtered = options.filter(option => option.name.toLowerCase().includes(q) || (option.country || '').toLowerCase().includes(q));
   return (
     <div>
       <input
@@ -159,9 +146,18 @@ export default function UniversitySelector({ onSelect, selectedName }: { onSelec
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <div className="mt-2 max-h-56 overflow-auto border rounded">
-        {filtered.length === 0 && <div className="p-2 text-sm text-muted-foreground">{t('university.noResults')}</div>}
-        {filtered.map((o) => (
+      <div className="mt-2 max-h-56 overflow-auto border rounded" aria-busy={loadStatus === 'loading'}>
+        {loadStatus === 'loading' && <div role="status" className="p-2 text-sm text-muted-foreground">{t('university.loading')}</div>}
+        {loadStatus === 'error' && (
+          <div role="alert" className="p-2 space-y-2 text-sm">
+            <p>{t('university.loadError')}</p>
+            <button type="button" className="underline text-primary" onClick={() => setLoadAttempt(attempt => attempt + 1)}>
+              {t('university.retry')}
+            </button>
+          </div>
+        )}
+        {loadStatus === 'ready' && filtered.length === 0 && <div className="p-2 text-sm text-muted-foreground">{t('university.noResults')}</div>}
+        {loadStatus === 'ready' && filtered.map((o) => (
           <div
             key={o.name}
             className="w-full text-left p-2 hover:bg-muted flex items-center justify-between cursor-pointer"

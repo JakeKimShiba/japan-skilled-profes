@@ -4,10 +4,11 @@ interface SEOHeadProps {
   title: string;
   description: string;
   path: string;
+  type?: 'website' | 'article';
   jsonLd?: Record<string, unknown>[];
 }
 
-export function SEOHead({ title, description, path, jsonLd }: SEOHeadProps) {
+export function SEOHead({ title, description, path, type = 'website', jsonLd }: SEOHeadProps) {
   useEffect(() => {
     document.title = title;
 
@@ -23,13 +24,15 @@ export function SEOHead({ title, description, path, jsonLd }: SEOHeadProps) {
 
     const fullUrl = `https://kodocalc.com${path}`;
 
+    setMeta("title", title);
     setMeta("description", description);
+    setMeta("og:type", type, "property");
     setMeta("og:title", title, "property");
     setMeta("og:description", description, "property");
     setMeta("og:url", fullUrl, "property");
-    setMeta("twitter:title", title);
-    setMeta("twitter:description", description);
-    setMeta("twitter:url", fullUrl);
+    setMeta("twitter:title", title, "property");
+    setMeta("twitter:description", description, "property");
+    setMeta("twitter:url", fullUrl, "property");
 
     // Update canonical
     let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
@@ -57,7 +60,7 @@ export function SEOHead({ title, description, path, jsonLd }: SEOHeadProps) {
     return () => {
       document.querySelectorAll('script[data-guide-jsonld]').forEach((s) => s.remove());
     };
-  }, [title, description, path, jsonLd]);
+  }, [title, description, path, type, jsonLd]);
 
   return null;
 }
