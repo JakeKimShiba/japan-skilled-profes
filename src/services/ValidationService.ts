@@ -181,6 +181,12 @@ export class ValidationService {
 
     // Birth date validation
     if (data.birthDate) {
+      const birthDate = new Date(data.birthDate);
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(data.birthDate) || Number.isNaN(birthDate.getTime())
+          || birthDate.toISOString().slice(0, 10) !== data.birthDate) {
+        errors.push({ field: 'birthDate', message: '생년월일을 확인해주세요.', code: 'INVALID_BIRTH_DATE' });
+        return errors;
+      }
       const birthYear = new Date(data.birthDate).getFullYear();
       const currentYear = new Date().getFullYear();
       const calculatedAge = currentYear - birthYear;

@@ -138,7 +138,7 @@ export function PointsForm({ data, setData, onViewResults }: PointsFormProps) {
       case 1:
         return <ExperienceStep data={data} onDataChange={handleChange} />;
       case 2:
-        return <AgeIncomeStep data={data} onDataChange={handleChange} />;
+        return <AgeIncomeStep data={data} onDataChange={handleChange} onBatchChange={handleBatchChange} />;
       case 3:
         return (
           <ResearchLicenseStep 

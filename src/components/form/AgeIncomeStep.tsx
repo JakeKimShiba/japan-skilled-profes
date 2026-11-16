@@ -15,6 +15,7 @@ import { Warning } from "@phosphor-icons/react/dist/ssr/Warning";
 interface AgeIncomeStepProps {
   data: PointsData;
   onDataChange: (field: keyof PointsData, value: string) => void;
+  onBatchChange: (updates: Partial<PointsData>) => void;
 }
 
 interface DateComponents {
@@ -23,7 +24,7 @@ interface DateComponents {
   day: string;
 }
 
-export function AgeIncomeStep({ data, onDataChange }: AgeIncomeStepProps) {
+export function AgeIncomeStep({ data, onDataChange, onBatchChange }: AgeIncomeStepProps) {
   const { t, locale } = useI18n();
   const fmtPoints = (n: number) => t('points.value', { value: n });
 
@@ -54,10 +55,8 @@ export function AgeIncomeStep({ data, onDataChange }: AgeIncomeStepProps) {
       
       // Only update if the birth date has actually changed
       if (data.birthDate !== birthDate) {
-        onDataChange("birthDate", birthDate);
-        
-        // Auto-calculate age category
         const age = calculateKoreanAge(birthDate);
+        const updates: Partial<PointsData> = { birthDate };
         if (age !== null) {
           let ageCategory = '';
           if (age <= 29) ageCategory = '29under';
@@ -65,11 +64,9 @@ export function AgeIncomeStep({ data, onDataChange }: AgeIncomeStepProps) {
           else if (age <= 39) ageCategory = '35to39';
           else ageCategory = '40plus';
           
-          // Only update age if it's different from current age
-          if (data.age !== ageCategory) {
-            onDataChange("age", ageCategory);
-          }
+          updates.age = ageCategory;
         }
+        onBatchChange(updates);
       }
     }
   };
@@ -80,12 +77,12 @@ export function AgeIncomeStep({ data, onDataChange }: AgeIncomeStepProps) {
       const birth = new Date(birthDateString);
       const today = new Date();
       
-      if (birth > today) return null; // Future date
+      if (Number.isNaN(birth.getTime()) || birth.toISOString().slice(0, 10) !== birthDateString || birth > today) return null;
       
-      let age = today.getFullYear() - birth.getFullYear();
-      const monthDiff = today.getMonth() - birth.getMonth();
+      let age = today.getFullYear() - birth.getUTCFullYear();
+      const monthDiff = today.getMonth() - birth.getUTCMonth();
       
-      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getUTCDate())) {
         age--;
       }
       
@@ -166,7 +163,7 @@ export function AgeIncomeStep({ data, onDataChange }: AgeIncomeStepProps) {
                 value={dateComponents.year} 
                 onValueChange={(value) => handleDateComponentChange('year', value)}
               >
-                <SelectTrigger className="border-0 bg-transparent shadow-none focus:ring-1 focus:ring-primary">
+                <SelectTrigger aria-label={t('form.birthDate.year')} className="border-0 bg-transparent shadow-none focus:ring-1 focus:ring-primary">
                   <SelectValue placeholder={t('form.birthDate.year')} />
                 </SelectTrigger>
                 <SelectContent>
@@ -187,7 +184,7 @@ export function AgeIncomeStep({ data, onDataChange }: AgeIncomeStepProps) {
                 value={dateComponents.month} 
                 onValueChange={(value) => handleDateComponentChange('month', value)}
               >
-                <SelectTrigger className="border-0 bg-transparent shadow-none focus:ring-1 focus:ring-primary">
+                <SelectTrigger aria-label={t('form.birthDate.month')} className="border-0 bg-transparent shadow-none focus:ring-1 focus:ring-primary">
                   <SelectValue placeholder={t('form.birthDate.month')} />
                 </SelectTrigger>
                 <SelectContent>
@@ -208,7 +205,7 @@ export function AgeIncomeStep({ data, onDataChange }: AgeIncomeStepProps) {
                 value={dateComponents.day} 
                 onValueChange={(value) => handleDateComponentChange('day', value)}
               >
-                <SelectTrigger className="border-0 bg-transparent shadow-none focus:ring-1 focus:ring-primary">
+                <SelectTrigger aria-label={t('form.birthDate.day')} className="border-0 bg-transparent shadow-none focus:ring-1 focus:ring-primary">
                   <SelectValue placeholder={t('form.birthDate.day')} />
                 </SelectTrigger>
                 <SelectContent>
@@ -226,7 +223,10 @@ export function AgeIncomeStep({ data, onDataChange }: AgeIncomeStepProps) {
         {/* Age Categories */}
         <RadioGroup
           value={data.age}
-          onValueChange={(value) => onDataChange("age", value)}
+          onValueChange={(value) => {
+            setDateComponents({ year: '', month: '', day: '' });
+            onBatchChange({ age: value, birthDate: undefined });
+          }}
           className="grid grid-cols-2 gap-2"
         >
           <div className="flex items-center space-x-2">

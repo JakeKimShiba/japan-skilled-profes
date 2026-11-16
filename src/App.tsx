@@ -3,7 +3,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { PointsForm } from "@/components/PointsForm";
 import { PointsResult } from "@/components/PointsResult";
-import { decodePointsData } from "@/lib/urlShare";
+import { decodePointsData, replacePointsDataInUrl } from "@/lib/urlShare";
 import { PointsData, VisaType } from "@/lib/models";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
@@ -81,8 +81,6 @@ function CalculatorPage() {
   const { t } = useI18n();
   const resultsRef = useRef<HTMLDivElement>(null);
 
-  const [showAllVisaTypes, setShowAllVisaTypes] = useState(true);
-  
   // 초기 데이터 상태 정의 (비자 유형 선택 전 상태)
   const initialPointsData: PointsData = {
     visaType: null,
@@ -105,37 +103,14 @@ function CalculatorPage() {
     innovativeFieldBonus: false
   };
   
-  const [pointsData, setPointsData] = useState<PointsData>(initialPointsData);
-
-  // Restore state from shared URL parameters
-  useEffect(() => {
-    const shared = decodePointsData(window.location.search);
-    if (shared) {
-      setPointsData(shared);
-      setShowAllVisaTypes(false);
-      // Clean up URL without reload
-      window.history.replaceState({}, '', window.location.pathname);
-    }
-  }, []);
+  const [pointsData, setPointsData] = useState<PointsData>(
+    () => decodePointsData(window.location.search) || initialPointsData
+  );
+  const [showAllVisaTypes, setShowAllVisaTypes] = useState(() => !pointsData.visaType);
 
   useEffect(() => {
-    // Map old work experience values to new ones if needed
-    if (pointsData.workExperience === '10to15' || pointsData.workExperience === '15plus') {
-      setPointsData({
-        ...pointsData,
-        workExperience: '10plus'
-      });
-    }
-    
-    // Map old annual salary values to new ones
-    if (['4to5m', '5to7m', '7to8m', '8to10m', '10to15m', '15to20m', '20mplus'].includes(pointsData.annualSalary)) {
-      // Set to under3m by default (will be invalid, but safest default)
-      setPointsData({
-        ...pointsData,
-        annualSalary: 'under3m'
-      });
-    }
-  }, []);
+    replacePointsDataInUrl(pointsData);
+  }, [pointsData]);
 
   const handleVisaTypeChange = (type: VisaType) => {
     setPointsData({

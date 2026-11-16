@@ -39,7 +39,7 @@ const updateURLWithLanguage = (locale: Locale) => {
   try {
     const url = new URL(window.location.href);
     url.searchParams.set('lang', locale);
-    window.history.replaceState({}, '', url.toString());
+    window.history.replaceState(window.history.state, '', url.toString());
   } catch (e) {
     // Fallback for environments where URL constructor is not available
   }

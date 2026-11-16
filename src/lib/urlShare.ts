@@ -6,6 +6,7 @@ const KEY_MAP: Record<string, keyof PointsData> = {
   e: 'educationLevel',
   w: 'workExperience',
   a: 'age',
+  bd: 'birthDate',
   s: 'annualSalary',
   j: 'japaneseLanguage',
   u: 'university',
@@ -151,7 +152,7 @@ export function decodePointsData(search: string): PointsData | null {
         break;
 
       case 'jpNationalLicenses':
-        data.jpNationalLicenses = parseInt(raw, 10) || 0;
+        data.jpNationalLicenses = /^\d+$/.test(raw) ? Number(raw) : NaN;
         break;
 
       default:
@@ -168,7 +169,23 @@ export function decodePointsData(search: string): PointsData | null {
  * Build a full shareable URL from current PointsData.
  */
 export function buildShareUrl(data: PointsData): string {
-  const encoded = encodePointsData(data);
+  const params = new URLSearchParams(encodePointsData(data));
+  const lang = new URLSearchParams(window.location.search).get('lang');
+  if (lang) params.set('lang', lang);
   const base = window.location.origin + window.location.pathname;
+  const encoded = params.toString();
   return encoded ? `${base}?${encoded}` : base;
+}
+
+export function replacePointsDataInUrl(data: PointsData): void {
+  const url = new URL(window.location.href);
+  for (const key of Object.keys(KEY_MAP)) url.searchParams.delete(key);
+  if (data.visaType) {
+    for (const [key, value] of new URLSearchParams(encodePointsData(data))) {
+      url.searchParams.set(key, value);
+    }
+  }
+  if (url.href !== window.location.href) {
+    window.history.replaceState(window.history.state, '', url.href);
+  }
 }

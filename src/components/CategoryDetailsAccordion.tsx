@@ -103,9 +103,13 @@ export function CategoryDetailsAccordion({ data, categoryPoints, expandAll }: Ca
 
   const getLanguageLabel = (lang: string) => {
     switch(lang) {
+      case 'n1':
       case 'jlpt-n1': return t('language.jlptN1');
+      case 'n2':
       case 'jlpt-n2': return t('language.jlptN2');
+      case 'bjt480':
       case 'bjt-480': return t('language.bjt480');
+      case 'bjt400': return t('language.bjt400');
       case 'overseas_major': return t('language.overseasMajor');
       case 'none': return t('language.none');
       default: return lang;
@@ -225,19 +229,13 @@ export function CategoryDetailsAccordion({ data, categoryPoints, expandAll }: Ca
       items.push(t('special.bonus.researchCost'));
     }
     
-    if (data.contractResearchBonus) {
-      items.push(t('special.contractResearch'));
-    }
-    
-    if (data.innovativeFieldBonus) {
-      items.push(t('special.innovativeField'));
-    }
-    
     if (data.businessExecutiveBonus && data.businessExecutiveBonus !== 'none') {
       switch(data.businessExecutiveBonus) {
+        case 'executive_senior':
         case 'ceo':
           items.push(t('special.ceo'));
           break;
+        case 'executive_manager':
         case 'other':
           items.push(t('special.executive'));
           break;
