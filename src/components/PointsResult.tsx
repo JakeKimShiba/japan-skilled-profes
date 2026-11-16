@@ -14,12 +14,11 @@ import { CaretDown } from "@phosphor-icons/react/dist/ssr/CaretDown";
 import { ShareNetwork } from "@phosphor-icons/react/dist/ssr/ShareNetwork";
 import { SpinnerGap } from "@phosphor-icons/react/dist/ssr/SpinnerGap";
 import { Check } from "@phosphor-icons/react/dist/ssr/Check";
-import { calculateTotalPoints, getCategoryPoints, getQualificationStatus } from "@/lib/calculator";
 import { PointsData, VisaType } from "@/lib/models";
 import { useReactToPrint } from 'react-to-print';
 import { trackEvent } from '@/lib/analytics';
 import { useI18n } from "@/i18n";
-import { VisaCalculatorService, SuggestionService } from "@/services";
+import { VisaCalculatorService } from "@/services";
 import { buildShareUrl } from "@/lib/urlShare";
 import { CategoryDetailsAccordion } from "@/components/CategoryDetailsAccordion";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
@@ -31,7 +30,7 @@ interface PointsResultProps {
 export function PointsResult({ data }: PointsResultProps) {
   const { t } = useI18n();
   const fmtPoints = (n: number) => t('points.value', { value: n });
-  const prevTotalRef = useRef<number>(0);
+  const prevStatusRef = useRef({ qualified: false, expeditedPR: false });
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
   const [showAllSuggestions, setShowAllSuggestions] = useState(false);
   const [shareTooltip, setShareTooltip] = useState<string | null>(null);
@@ -105,28 +104,19 @@ export function PointsResult({ data }: PointsResultProps) {
     `
   });
 
-  // Use direct calculation functions for immediate response
-  const totalPoints = useMemo(() => calculateTotalPoints(data), [data]);
-  const categoryPoints = useMemo(() => getCategoryPoints(data), [data]);
-  const status = useMemo(() => {
-    const qualified = totalPoints >= 70;
-    const expeditedPR = totalPoints >= 80;
-    const benefits = [];
-    if (qualified) benefits.push(t('result.qualifiedBenefit') || '고도인재포인트제 해당');
-    if (expeditedPR) benefits.push(t('result.expeditedBenefit') || '영주권 신청 단축');
-    return { qualified, expeditedPR, benefits };
-  }, [totalPoints, t]);
+  const result = useMemo(() => VisaCalculatorService.calculatePoints(data), [data]);
+  const { totalPoints, categoryPoints, qualificationStatus: status, validation, isComplete, suggestions } = result;
 
   // Track milestone thresholds once when crossing 70/80
   useEffect(() => {
-    const prev = prevTotalRef.current;
-    if (prev < 80 && totalPoints >= 80) {
+    const prev = prevStatusRef.current;
+    if (!prev.expeditedPR && status.expeditedPR) {
       trackEvent('milestone_80_points', { total: totalPoints });
-    } else if (prev < 70 && totalPoints >= 70) {
+    } else if (!prev.qualified && status.qualified) {
       trackEvent('milestone_70_points', { total: totalPoints });
     }
-    prevTotalRef.current = totalPoints;
-  }, [totalPoints, data]);
+    prevStatusRef.current = status;
+  }, [totalPoints, status]);
 
 
 
@@ -244,16 +234,6 @@ export function PointsResult({ data }: PointsResultProps) {
 
 
 
-  // Get suggestions from service
-  const suggestions = useMemo(() => {
-    try {
-      const target = totalPoints >= 70 ? 80 : 70;
-      return SuggestionService.generateSuggestions(data, target);
-    } catch (error) {
-      console.error("Suggestion generation error:", error);
-      return [];
-    }
-  }, [data, totalPoints]);
   const target = totalPoints >= 70 ? 80 : 70;
   const gap = Math.max(0, target - totalPoints);
 
@@ -339,22 +319,28 @@ export function PointsResult({ data }: PointsResultProps) {
           </div>
         </div>
 
-        {/* 300만엔 미만 연봉 경고 (Technical/Business 비자) */}
-        {(data.visaType === 'technical' && data.annualSalary === 'under3m') || 
-         (data.visaType === 'business' && data.annualSalary === 'under10m') ? (
-          <Alert variant="destructive" className="mt-4">
-            <Warning className="h-4 w-4" />
-            <AlertTitle>{t('warning.visa.ineligible')}</AlertTitle>
-            <AlertDescription>
-              {data.visaType === 'technical' 
-                ? t('warning.technical.minimum') 
-                : t('warning.business.minimum')}
-            </AlertDescription>
-          </Alert>
-        ) : null}
-
-        <Alert variant={status.qualified ? "default" : "destructive"} className="mt-4">
-          {status.qualified ? (
+        <Alert variant={!validation.isValid || (isComplete && !status.qualified) ? "destructive" : "default"} className="mt-4">
+          {!validation.isValid ? (
+            <>
+              <Warning className="h-4 w-4" />
+              <AlertTitle>{t('result.invalid.title')}</AlertTitle>
+              <AlertDescription>
+                <ul className="list-disc pl-4">
+                  {validation.errors.map(error => (
+                    <li key={`${error.field}-${error.code}`}>
+                      {t(`validation.${error.code}`, t('result.invalid.description'))}
+                    </li>
+                  ))}
+                </ul>
+              </AlertDescription>
+            </>
+          ) : !isComplete ? (
+            <>
+              <Warning className="h-4 w-4" />
+              <AlertTitle>{t('result.incomplete.title')}</AlertTitle>
+              <AlertDescription>{t('result.incomplete.description')}</AlertDescription>
+            </>
+          ) : status.qualified ? (
             <>
               <CheckCircle className="h-4 w-4" />
               <AlertTitle>{t('result.qualified.title')}</AlertTitle>
@@ -373,6 +359,16 @@ export function PointsResult({ data }: PointsResultProps) {
             </>
           )}
         </Alert>
+
+        <p className="text-xs text-muted-foreground">{t('result.scope')}</p>
+        {data.visaType === 'business' && (
+          <p className="text-sm text-muted-foreground">
+            {t('result.businessRequirements')}{' '}
+            <a className="underline" href="https://www.moj.go.jp/isa/applications/resources/10_00237.html" target="_blank" rel="noopener noreferrer">
+              {t('result.officialSource')}
+            </a>
+          </p>
+        )}
 
         {/* Suggestions: hide when expeditedPR (80+) */}
         {status.expeditedPR ? (

@@ -10,12 +10,12 @@ export const guidesKo: Guide[] = [
       "일본 고도인재 비자(HSP)란 무엇인지, 포인트 계산 방법, 비자 유형별 차이, 신청 절차, 영주권 혜택까지 한 페이지에서 모두 확인하세요. 70점·80점 기준과 실제 사례를 포함한 종합 안내서입니다.",
     keywords: ["고도인재 비자", "일본 고도인재", "고도인재비자", "HSP 비자", "고도전문직", "일본 영주권"],
     datePublished: "2026-05-14",
-    dateModified: today,
+    dateModified: "2026-11-16",
     sections: [
       {
         title: "고도인재 비자(高度専門職ビザ)란?",
         content: `
-<p><strong>고도인재 비자(高度専門職ビザ)</strong>는 일본 법무성이 운영하는 <strong>포인트제 우대 비자</strong>입니다. 학력, 경력, 연봉, 나이, 자격증, 일본어 능력 등을 합산하여 <strong>70점 이상</strong>이면 취득할 수 있으며, <strong>80점 이상</strong>이면 최단 1년 만에 영주권 신청이 가능합니다.</p>
+<p><strong>고도인재 비자(高度専門職ビザ)</strong>는 일본 법무성이 운영하는 <strong>포인트제 우대 비자</strong>입니다. <strong>70점 이상</strong>의 점수 외에 활동 내용·보수·고용기관 등 허가요건도 충족해야 합니다. <strong>80점 이상</strong>은 영주권 재류기간 단축의 점수 기준이며, 과거 시점의 점수·재류기간 등 별도 요건이 적용됩니다.</p>
 <p>정식 명칭은 「高度人材に対するポイント制による出入国在留管理上の優遇制度」이며, 2012년에 도입되어 현재까지 운영되고 있습니다.</p>
 
 <div class="guide-stats">
@@ -34,65 +34,20 @@ export const guidesKo: Guide[] = [
 </table>`,
       },
       {
-        title: "2025년 경영비자 요건 강화와 고도인재 비자의 가치",
+        title: "2025년 경영·관리 요건 개정과 고도전문직 1호 ハ",
         content: `
-<p><strong>2025년 10월 16일</strong>, 일본 정부는 경영·관리 비자(経営・管理ビザ)의 요건을 대폭 강화했습니다. 기존의 「자본금 500만엔으로 1인 창업」이라는 방식은 더 이상 통하지 않게 되었으며, <strong>고도인재 비자(ハ)의 상대적 가치가 크게 높아졌습니다.</strong></p>
-
-<div class="guide-callout guide-callout-warning">2025년 10월 16일부터 경영비자 요건이 대폭 강화되었습니다. 자본금이 <strong>6배</strong> 증가하고, 일본어 능력·직원 고용·사업계획 검증이 모두 필수화되었습니다.</div>
-
-<div class="guide-vs">
-  <div class="guide-vs-card old">
-    <h4>❌ 이전 경영비자</h4>
-    <ul>
-      <li>💰 자본금 500만엔</li>
-      <li>👤 직원 2인 또는 자본금으로 대체</li>
-      <li>📋 경영 경험 불문</li>
-      <li>🗣️ 일본어 능력 불문</li>
-      <li>📄 사업계획 자체 작성</li>
-      <li>🏠 자택 겸용 가능</li>
-    </ul>
-  </div>
-  <div class="guide-vs-divider">→</div>
-  <div class="guide-vs-card new">
-    <h4>✅ 2025.10~ 신기준</h4>
-    <ul>
-      <li>💰 자본금 <strong>3,000만엔</strong></li>
-      <li>👤 상근직원 <strong>1명 이상 필수</strong></li>
-      <li>📋 경영 <strong>3년+</strong> 또는 석·박사</li>
-      <li>🗣️ <strong>JLPT N2 이상</strong> 필수</li>
-      <li>📄 <strong>외부 전문가</strong> 확인 필수</li>
-      <li>🏢 <strong>독립 사무소</strong> 필수</li>
-    </ul>
-  </div>
-</div>
-
-<table>
-  <thead><tr><th>항목</th><th>이전 규정</th><th>2025년 10월 이후</th></tr></thead>
-  <tbody>
-    <tr><td><strong>자본금</strong></td><td>500만엔 이상</td><td><strong>3,000만엔 이상</strong> (6배 증가)</td></tr>
-    <tr><td><strong>직원 고용</strong></td><td>2인 이상 또는 자본금 500만엔</td><td><strong>일본 거주 상근직원 1명 이상 필수</strong></td></tr>
-    <tr><td><strong>경영 경험</strong></td><td>불문</td><td><strong>3년 이상 경영 경험</strong> 또는 경영계 석·박사 학위</td></tr>
-    <tr><td><strong>사업계획 평가</strong></td><td>자체 작성 가능</td><td><strong>외부 전문가</strong>(세무사, 중소기업진단사, 공인회계사) 확인 필수</td></tr>
-    <tr><td><strong>일본어 능력</strong></td><td>불문</td><td>신청자 또는 상근직원이 <strong>JLPT N2 이상</strong> (또는 BJT 400점 이상)</td></tr>
-    <tr><td><strong>사무실</strong></td><td>자택 겸용 가능</td><td><strong>독립 사무소 필수</strong> (자택 겸용 불가)</td></tr>
-  </tbody>
-</table>
-
-<p>이번 개정으로 외국인 창업자에게는 「충분한 자금」「인재」「일본어 능력」「검증된 사업 계획」이라는 <strong>극히 높은 종합력</strong>이 요구되게 되었습니다. 1인 스몰 스타트는 사실상 불가능해졌습니다.</p>
-
-<p><strong>경과 조치:</strong> 시행일(2025.10.16)부터 <strong>3년간(~2028년 10월 16일)</strong> 기존 재류자는 '개선계획서'와 '충족예정' 증빙을 제시하면 갱신이 가능합니다. 단, 2028년 10월 이후에는 신기준을 완전히 충족해야 합니다.</p>
-
-<div class="guide-callout guide-callout-tip">경영비자 대신 <strong>고도인재 비자(ハ)</strong>를 추천하는 이유: 자본금 3,000만엔 요건 없음, 포인트제 기반 종합 평가, 영주권 최단 1년, 배우자 취업·부모 초청 혜택까지!</div>
-
-<p><strong>고도인재 비자(ハ)가 대안인 이유:</strong></p>
+<p><strong>2025년 10월 16일</strong> 시행된 경영·관리 허가기준 개정은 <strong>경영·관리 활동을 하는 고도전문직 1호 ハ에도 적용</strong>됩니다. 고도인재 점수가 높아도 이 기준을 우회할 수 없습니다.</p>
+<div class="guide-callout guide-callout-warning">포인트 기준과 경영·관리 허가기준은 별개입니다. 이 계산기는 자본금·고용·사업계획 등 사업 요건을 판정하지 않습니다.</div>
 <ul>
-  <li><strong>자본금 3,000만엔 요건 없음</strong> — 포인트제 기반으로 학력·경력·연봉 등 복합 평가</li>
-  <li><strong>영주권 최단 1년</strong> — 80점 이상 시 1년 후 영주권 신청 가능 (경영비자는 일반적으로 10년)</li>
-  <li><strong>배우자 취업 허가, 부모 초청</strong> 등 경영비자에 없는 추가 혜택</li>
-  <li><strong>고도전문직 2호</strong> 전환 시 활동 제한 없는 무기한 체류 가능</li>
+  <li><strong>사업 규모:</strong> 자본금 등 3,000만엔 이상. 법인은 자본금·출자 총액, 개인사업자는 사업에 투입한 재산 총액을 기준으로 합니다.</li>
+  <li><strong>상근직원:</strong> 일본인·특별영주자 또는 영주자 등 인정되는 신분계 재류자격의 직원 1명 이상을 고용해야 합니다.</li>
+  <li><strong>일본어:</strong> 신청자 또는 상근직원이 B2 상당 이상의 일본어 능력을 갖춰야 합니다. JLPT N2·BJT 400점 외에도 공식 안내에 정한 인정 경로가 있습니다.</li>
+  <li><strong>학력·경력:</strong> 경영관리 또는 사업에 필요한 기술·지식 분야의 박사·석사·전문직 학위, 또는 경영·관리 경력 3년 이상이 필요합니다.</li>
+  <li><strong>사업계획·사업소:</strong> 대상 신청에서는 경영 전문가의 사업계획 확인이 필요하며, 자택 겸용 사업소는 원칙적으로 인정되지 않습니다.</li>
 </ul>
-
-<p>일본에서 사업을 시작하려는 분이라면, 경영비자보다 <strong>고도인재 비자(ハ) → 영주권 취득</strong> 루트가 훨씬 현실적인 선택지가 되었습니다.</p>`,
+<p><strong>기존 재류자의 갱신:</strong> 2028년 10월 16일까지는 경영 상황과 신기준 충족 전망 등을 종합 심사합니다. 이후에는 원칙적으로 신기준이 적용되지만, 공식 안내에는 경영·납세 상황과 다음 갱신까지의 충족 전망에 따른 개별 판단도 명시되어 있습니다. 자동 갱신이나 일률적인 불허를 뜻하지 않습니다.</p>
+<p><strong>영주·고도전문직 2호:</strong> 경영·관리 활동을 전제로 하는 경우 개정 기준을 충족하지 않으면 해당 영주허가나 1호 ハ에서 2호로의 변경은 인정되지 않습니다. 70점·80점만으로 허가가 보장되지 않습니다.</p>
+<p>출처: <a href="https://www.moj.go.jp/isa/applications/resources/10_00237.html" target="_blank" rel="noopener noreferrer">출입국재류관리청의 경영·관리 기준 개정 안내</a> (확인일: 2026년 11월 16일).</p>`,
       },
       {
         title: "비자 3가지 유형과 차이점",
@@ -103,7 +58,7 @@ export const guidesKo: Guide[] = [
   <tbody>
     <tr><td><strong>학술연구</strong></td><td>高度学術研究活動 (イ)</td><td>대학 교수, 연구원</td><td>없음</td></tr>
     <tr><td><strong>기술·인문</strong></td><td>高度専門・技術活動 (ロ)</td><td>엔지니어, 통번역, 디자이너</td><td>300만엔 이상</td></tr>
-    <tr><td><strong>경영·관리</strong></td><td>高度経営・管理活動 (ハ)</td><td>기업 임원, 경영자</td><td>1,000만엔 이상</td></tr>
+    <tr><td><strong>경영·관리</strong></td><td>高度経営・管理活動 (ハ)</td><td>기업 임원, 경영자</td><td>300만엔 이상 (연봉 점수는 1,000만엔부터)</td></tr>
   </tbody>
 </table>
 <p>대부분의 한국인 직장인은 <strong>기술·인문(ロ)</strong> 유형에 해당합니다. IT 엔지니어, 마케터, 통번역사, 디자이너 등이 이 유형입니다.</p>`,
@@ -154,7 +109,7 @@ export const guidesKo: Guide[] = [
   <li>600만엔~: 20점</li>
   <li>500만엔~: 15점</li>
   <li>400만엔~: 10점</li>
-  <li>300만엔~ (기술·인문만): 5점</li>
+  <li>최저 점수 구간 미만의 연봉은 0점입니다. 기술·경영 활동은 별도로 연봉 300만엔 이상이어야 합니다.</li>
 </ul>
 
 <p><strong>④ 나이 (최대 15점 / 기술·인문만)</strong></p>

@@ -117,6 +117,10 @@ export const agePoints = {
 export const annualSalaryPoints = {
   academic: {
     'under3m': 0,     // 300만엔 미만 (점수 없음)
+    '3to4m': 0,
+    '3to5m': 0,
+    '3to6m': 0,
+    '3to8m': 0,
     'under5m': 0,     // 500만엔 미만 (30-34세 0점)
     'under6m': 0,     // 600만엔 미만 (35-39세 0점)
     'under8m': 0,     // 800만엔 미만 (40세 이상 0점)
@@ -130,6 +134,10 @@ export const annualSalaryPoints = {
   },
   technical: {
     'under3m': 0,     // 300만엔 미만 (점수 없음)
+    '3to4m': 0,
+    '3to5m': 0,
+    '3to6m': 0,
+    '3to8m': 0,
     'under5m': 0,     // 500만엔 미만 (30-34세 0점)
     'under6m': 0,     // 600만엔 미만 (35-39세 0점)
     'under8m': 0,     // 800만엔 미만 (40세 이상 0점)
@@ -142,7 +150,9 @@ export const annualSalaryPoints = {
     '10m': 40         // 1000만엔 이상 (모든 나이)
   },
   business: {
-    'under10m': 0,    // 1000만엔 미만 (공식 테이블 기준)
+    'under3m': 0,
+    '3to10m': 0,      // Minimum income is 3M; salary points start at 10M.
+    'under10m': 0,    // Legacy range: requires re-selection to verify minimum income.
     '10m': 10,        // 1000만엔 이상 (공식 테이블: 10점)
     '15m': 20,        // 1500만엔 이상 (공식 테이블: 20점)
     '20m': 30,        // 2000만엔 이상 (공식 테이블: 30점)

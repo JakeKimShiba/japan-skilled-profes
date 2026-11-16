@@ -150,6 +150,7 @@ export function FAQ() {
             <AccordionContent className="text-muted-foreground space-y-3">
               <p>{t('faq.q5.answer1')}</p>
               <div className="space-y-2 mt-3 mb-4">
+                <p className="text-sm">{t('faq.q5.academic')}</p>
                 <div className="p-3 bg-red-50 dark:bg-red-950 border-l-4 border-red-500 rounded">
                   <p className="text-sm font-semibold text-red-900 dark:text-red-100">{t('faq.q5.technical')}</p>
                 </div>
@@ -157,7 +158,7 @@ export function FAQ() {
                   <p className="text-sm font-semibold text-purple-900 dark:text-purple-100">{t('faq.q5.business')}</p>
                 </div>
               </div>
-              <p className="font-medium mt-4">{t('faq.q5.salaryRanges') || '점수 구간:'}</p>
+              <p className="font-medium mt-4">{t('faq.q5.salaryRanges')}</p>
               <div className="space-y-2">
                 <div className="flex justify-between items-center p-3 bg-amber-50 dark:bg-amber-950 rounded">
                   <span>{t('faq.q5.salary1')}</span>
@@ -177,6 +178,9 @@ export function FAQ() {
                 </div>
               </div>
               <p className="text-sm mt-4">{t('faq.q5.note')}</p>
+              <a className="underline" href="https://www.moj.go.jp/isa/applications/resources/newimmiact_3_qa.html" target="_blank" rel="noopener noreferrer">
+                {t('result.officialSource')} (Q12)
+              </a>
             </AccordionContent>
           </AccordionItem>
         );
@@ -334,7 +338,6 @@ export function FAQ() {
                 <ul className="list-disc list-inside space-y-1 ml-2">
                   <li>{t('faq.q12.included.item1')}</li>
                   <li>{t('faq.q12.included.item2')}</li>
-                  <li>{t('faq.q12.included.item3')}</li>
                   <li>{t('faq.q12.included.item4')}</li>
                   <li>{t('faq.q12.included.item5')}</li>
                 </ul>
@@ -347,6 +350,8 @@ export function FAQ() {
                   <li>{t('faq.q12.excluded.item1')}</li>
                   <li>{t('faq.q12.excluded.item2')}</li>
                   <li>{t('faq.q12.excluded.item3')}</li>
+                  <li>{t('faq.q12.excluded.overtime')}</li>
+                  <li>{t('faq.q12.excluded.expenses')}</li>
                 </ul>
               </div>
 
@@ -358,6 +363,9 @@ export function FAQ() {
                   <li>{t('faq.q12.criteria.desc2')}</li>
                 </ul>
               </div>
+              <a className="underline" href="https://www.moj.go.jp/isa/applications/resources/newimmiact_3_qa.html" target="_blank" rel="noopener noreferrer">
+                {t('result.officialSource')} (Q7, Q8, Q12)
+              </a>
             </AccordionContent>
           </AccordionItem>
         );

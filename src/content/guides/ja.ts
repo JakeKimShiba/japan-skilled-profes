@@ -10,12 +10,12 @@ export const guidesJa: Guide[] = [
       "日本の高度専門職ビザ（HSP）とは何か、ポイント計算方法、ビザ類型別の違い、申請手続き、永住権の特典まで1ページですべて確認できます。70点・80点基準と実例を含む総合ガイドです。",
     keywords: ["高度専門職ビザ", "日本 高度人材", "高度人材ビザ", "HSP ビザ", "高度専門職", "日本 永住権"],
     datePublished: "2026-05-14",
-    dateModified: today,
+    dateModified: "2026-11-16",
     sections: [
       {
         title: "高度専門職ビザとは？",
         content: `
-<p><strong>高度専門職ビザ</strong>は、日本の法務省が運営する<strong>ポイント制優遇ビザ</strong>です。学歴、職歴、年収、年齢、資格、日本語能力などを合算して<strong>70点以上</strong>であれば取得でき、<strong>80点以上</strong>であれば最短1年で永住権申請が可能です。</p>
+<p><strong>高度専門職ビザ</strong>は、日本の法務省が運営する<strong>ポイント制優遇ビザ</strong>です。<strong>70点以上</strong>に加えて活動内容・報酬・所属機関等の許可要件も満たす必要があります。<strong>80点以上</strong>は永住申請の在留期間短縮に関する点数基準であり、過去時点の点数・在留期間等の条件も別途確認されます。</p>
 <p>正式名称は「高度人材に対するポイント制による出入国在留管理上の優遇制度」であり、2012年に導入されて現在まで運用されています。</p>
 
 <div class="guide-stats">
@@ -34,65 +34,20 @@ export const guidesJa: Guide[] = [
 </table>`,
       },
       {
-        title: "2025年 経営ビザ要件強化と高度専門職ビザの価値",
+        title: "2025年の経営・管理基準改正と高度専門職1号ハ",
         content: `
-<p><strong>2025年10月16日</strong>、日本政府は経営・管理ビザ（経営・管理ビザ）の要件を大幅に強化しました。従来の「資本金500万円で1人創業」という方式は通用しなくなり、<strong>高度専門職ビザ（ハ）の相対的価値が大きく高まりました。</strong></p>
-
-<div class="guide-callout guide-callout-warning">2025年10月16日より経営ビザの要件が大幅に強化されました。資本金が<strong>6倍</strong>に増加し、日本語能力・従業員雇用・事業計画の検証がすべて必須化されました。</div>
-
-<div class="guide-vs">
-  <div class="guide-vs-card old">
-    <h4>❌ 旧 経営ビザ</h4>
-    <ul>
-      <li>💰 資本金500万円</li>
-      <li>👤 従業員2名または資本金で代替</li>
-      <li>📋 経営経験不問</li>
-      <li>🗣️ 日本語能力不問</li>
-      <li>📄 事業計画 自作可能</li>
-      <li>🏠 自宅兼用可能</li>
-    </ul>
-  </div>
-  <div class="guide-vs-divider">→</div>
-  <div class="guide-vs-card new">
-    <h4>✅ 2025.10〜 新基準</h4>
-    <ul>
-      <li>💰 資本金<strong>3,000万円</strong></li>
-      <li>👤 常勤従業員<strong>1名以上必須</strong></li>
-      <li>📋 経営<strong>3年+</strong>または修士・博士</li>
-      <li>🗣️ <strong>JLPT N2以上</strong>必須</li>
-      <li>📄 <strong>外部専門家</strong>確認必須</li>
-      <li>🏢 <strong>独立事務所</strong>必須</li>
-    </ul>
-  </div>
-</div>
-
-<table>
-  <thead><tr><th>項目</th><th>旧規定</th><th>2025年10月以降</th></tr></thead>
-  <tbody>
-    <tr><td><strong>資本金</strong></td><td>500万円以上</td><td><strong>3,000万円以上</strong>（6倍増加）</td></tr>
-    <tr><td><strong>従業員雇用</strong></td><td>2名以上または資本金500万円</td><td><strong>日本居住の常勤従業員1名以上必須</strong></td></tr>
-    <tr><td><strong>経営経験</strong></td><td>不問</td><td><strong>3年以上の経営経験</strong>または経営系修士・博士学位</td></tr>
-    <tr><td><strong>事業計画評価</strong></td><td>自作可能</td><td><strong>外部専門家</strong>（税理士、中小企業診断士、公認会計士）確認必須</td></tr>
-    <tr><td><strong>日本語能力</strong></td><td>不問</td><td>申請者または常勤従業員が<strong>JLPT N2以上</strong>（またはBJT 400点以上）</td></tr>
-    <tr><td><strong>事務所</strong></td><td>自宅兼用可能</td><td><strong>独立事務所必須</strong>（自宅兼用不可）</td></tr>
-  </tbody>
-</table>
-
-<p>今回の改正により外国人起業家には「十分な資金」「人材」「日本語能力」「検証された事業計画」という<strong>極めて高い総合力</strong>が求められることになりました。1人スモールスタートは事実上不可能になりました。</p>
-
-<p><strong>経過措置：</strong>施行日（2025.10.16）から<strong>3年間（〜2028年10月16日）</strong>既存在留者は「改善計画書」と「充足予定」の証拠を提出すれば更新が可能です。ただし、2028年10月以降は新基準を完全に充足しなければなりません。</p>
-
-<div class="guide-callout guide-callout-tip">経営ビザの代わりに<strong>高度専門職ビザ（ハ）</strong>をおすすめする理由：資本金3,000万円要件なし、ポイント制に基づく総合評価、永住権最短1年、配偶者就労・親の招聘特典まで！</div>
-
-<p><strong>高度専門職ビザ（ハ）が代替策である理由：</strong></p>
+<p><strong>2025年10月16日</strong>施行の経営・管理の許可基準改正は、<strong>「経営・管理」活動を行う高度専門職1号ハにも適用</strong>されます。高いポイントでこの基準を回避することはできません。</p>
+<div class="guide-callout guide-callout-warning">ポイント基準と経営・管理の許可基準は別です。この計算機は資本金・雇用・事業計画等の要件を判定しません。</div>
 <ul>
-  <li><strong>資本金3,000万円要件なし</strong> — ポイント制に基づき学歴・職歴・年収等を総合評価</li>
-  <li><strong>永住権最短1年</strong> — 80点以上で1年後に永住権申請可能（経営ビザは一般的に10年）</li>
-  <li><strong>配偶者就労許可、親の招聘</strong>など経営ビザにない追加特典</li>
-  <li><strong>高度専門職2号</strong>への切替で活動制限のない無期限滞在が可能</li>
+  <li><strong>事業規模：</strong>資本金等3,000万円以上。法人は資本金又は出資総額、個人事業は事業の用に供される財産の総額で判断されます。</li>
+  <li><strong>常勤職員：</strong>日本人・特別永住者又は永住者等の対象となる身分系在留資格の職員1人以上の雇用が必要です。</li>
+  <li><strong>日本語：</strong>申請者又は常勤職員にB2相当以上の能力が必要です。JLPT N2・BJT 400点以外の確認方法も公式案内に示されています。</li>
+  <li><strong>学歴・職歴：</strong>経営管理又は事業に必要な技術・知識の分野の博士・修士・専門職学位、又は3年以上の経営・管理経験が必要です。</li>
+  <li><strong>事業計画・事業所：</strong>対象の申請では専門家による事業計画の確認が必要です。自宅兼用の事業所は原則として認められません。</li>
 </ul>
-
-<p>日本で事業を始めたい方にとって、経営ビザより<strong>高度専門職ビザ（ハ）→ 永住権取得</strong>ルートがはるかに現実的な選択肢となりました。</p>`,
+<p><strong>既存在留者の更新：</strong>2028年10月16日までは経営状況や新基準を満たす見込み等を踏まえて判断されます。その後は原則として新基準が適用されますが、公式案内は経営・納税状況と次回更新までの適合見込みによる個別判断も示しています。自動的な更新や一律の不許可を意味しません。</p>
+<p><strong>永住・高度専門職2号：</strong>経営・管理活動を前提とする場合、改正後の基準に適合しなければ、対象の永住許可や1号ハから2号への変更は認められません。70点・80点だけでは許可は保証されません。</p>
+<p>出典：<a href="https://www.moj.go.jp/isa/applications/resources/10_00237.html" target="_blank" rel="noopener noreferrer">出入国在留管理庁の経営・管理基準改正案内</a>（確認日：2026年11月16日）。</p>`,
       },
       {
         title: "ビザ3つの類型と違い",
@@ -103,7 +58,7 @@ export const guidesJa: Guide[] = [
   <tbody>
     <tr><td><strong>学術研究</strong></td><td>高度学術研究活動（イ）</td><td>大学教授、研究員</td><td>なし</td></tr>
     <tr><td><strong>技術・人文</strong></td><td>高度専門・技術活動（ロ）</td><td>エンジニア、通訳翻訳、デザイナー</td><td>300万円以上</td></tr>
-    <tr><td><strong>経営・管理</strong></td><td>高度経営・管理活動（ハ）</td><td>企業役員、経営者</td><td>1,000万円以上</td></tr>
+    <tr><td><strong>経営・管理</strong></td><td>高度経営・管理活動（ハ）</td><td>企業役員、経営者</td><td>300万円以上（年収加点は1,000万円から）</td></tr>
   </tbody>
 </table>
 <p>多くの外国人会社員は<strong>技術・人文（ロ）</strong>類型に該当します。ITエンジニア、マーケター、通訳翻訳者、デザイナーなどがこの類型です。</p>`,
@@ -154,7 +109,7 @@ export const guidesJa: Guide[] = [
   <li>600万円〜：20点</li>
   <li>500万円〜：15点</li>
   <li>400万円〜：10点</li>
-  <li>300万円〜（技術・人文のみ）：5点</li>
+  <li>最初の年収加点区分未満は0点です。技術・経営活動には別途年収300万円以上が必要です。</li>
 </ul>
 
 <p><strong>④ 年齢（最大15点 / 技術・人文のみ）</strong></p>

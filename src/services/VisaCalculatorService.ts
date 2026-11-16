@@ -17,6 +17,7 @@ export interface CalculationResult {
   
   // Convenience properties
   isValid: boolean;
+  isComplete: boolean;
   isQualified: boolean;
   isPremium: boolean;
   pointsNeeded: number;
@@ -44,11 +45,18 @@ export class VisaCalculatorService {
     const categoryPoints = PointsCalculationService.calculateByCategory(data);
     
     // Get qualification status
-    const qualificationStatus = PointsCalculationService.getQualificationStatus(totalPoints);
+    const isComplete = PointsCalculationService.hasMinimumData(data);
+    const scoreStatus = PointsCalculationService.getQualificationStatus(totalPoints);
+    const canQualify = validation.isValid && isComplete;
+    const qualificationStatus = {
+      qualified: canQualify && scoreStatus.qualified,
+      expeditedPR: canQualify && scoreStatus.expeditedPR,
+      benefits: canQualify ? scoreStatus.benefits : []
+    };
     
     // Generate suggestions based on current status
     const targetPoints = totalPoints >= 70 ? 80 : 70;
-    const suggestions = validation.isValid && data.visaType
+    const suggestions = canQualify
       ? SuggestionService.generateSuggestions(data, targetPoints)
       : [];
 
@@ -60,6 +68,7 @@ export class VisaCalculatorService {
       validation,
       // Convenience flags
       isValid: validation.isValid,
+      isComplete,
       isQualified: qualificationStatus.qualified,
       isPremium: qualificationStatus.expeditedPR || false,
       pointsNeeded: PointsCalculationService.calculatePointsNeeded(totalPoints, 70),

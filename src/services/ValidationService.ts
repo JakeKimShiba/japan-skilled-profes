@@ -1,4 +1,4 @@
-import { PointsData, VisaType } from "@/lib/models";
+import { PointsData, annualSalaryPoints } from "@/lib/models";
 
 export interface ValidationResult {
   isValid: boolean;
@@ -109,23 +109,30 @@ export class ValidationService {
   private static validateBusinessRules(data: PointsData): ValidationError[] {
     const errors: ValidationError[] = [];
 
-    // Minimum salary requirements
-    if (data.visaType === 'technical' || data.visaType === 'academic') {
+    // ISA HSP Q&A Q12: the 3M minimum applies to 1(b) and 1(c), not 1(a).
+    if (data.visaType === 'technical' || data.visaType === 'business') {
       if (data.annualSalary === 'under3m') {
         errors.push({
           field: 'annualSalary',
-          message: '고도전문직/학술연구 비자는 최소 연봉 300만엔이 필요합니다.',
-          code: 'MINIMUM_SALARY_TECHNICAL'
+          message: '기술·경영 활동은 최소 연봉 300만엔이 필요합니다.',
+          code: data.visaType === 'technical' ? 'MINIMUM_SALARY_TECHNICAL' : 'MINIMUM_SALARY_BUSINESS'
         });
-      }
-    } else if (data.visaType === 'business') {
-      if (data.annualSalary === 'under10m') {
+      } else if (['under5m', 'under6m', 'under8m', 'under10m'].includes(data.annualSalary)) {
         errors.push({
           field: 'annualSalary',
-          message: '고도경영관리 비자는 최소 연봉 1000만엔이 필요합니다.',
-          code: 'MINIMUM_SALARY_BUSINESS'
+          message: '기존 연봉 구간으로는 300만엔 이상 여부를 확인할 수 없습니다. 연봉을 다시 선택해주세요.',
+          code: 'AMBIGUOUS_SALARY'
         });
       }
+    }
+
+    if (data.visaType && data.annualSalary &&
+        !Object.prototype.hasOwnProperty.call(annualSalaryPoints[data.visaType], data.annualSalary)) {
+      errors.push({
+        field: 'annualSalary',
+        message: '활동 유형에 맞는 연봉 구간을 다시 선택해주세요.',
+        code: 'INVALID_SALARY_OPTION'
+      });
     }
 
     // Japanese education restrictions

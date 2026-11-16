@@ -128,7 +128,7 @@ function CalculatorPage() {
     }
     
     // Map old annual salary values to new ones
-    if (['3to4m', '4to5m', '5to7m', '7to8m', '8to10m', '10to15m', '15to20m', '20mplus'].includes(pointsData.annualSalary)) {
+    if (['4to5m', '5to7m', '7to8m', '8to10m', '10to15m', '15to20m', '20mplus'].includes(pointsData.annualSalary)) {
       // Set to under3m by default (will be invalid, but safest default)
       setPointsData({
         ...pointsData,
@@ -155,7 +155,7 @@ function CalculatorPage() {
     trackCalculationCompleted({
       total_points: calculationResult.totalPoints,
       qualified: calculationResult.isQualified,
-      expedited: calculationResult.totalPoints >= 80,
+      expedited: calculationResult.isPremium,
       visa_type: pointsData.visaType as 'technical' | 'academic' | 'business',
       education_level: pointsData.educationLevel,
       work_experience: pointsData.workExperience,

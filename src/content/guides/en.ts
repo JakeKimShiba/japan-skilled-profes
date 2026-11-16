@@ -10,12 +10,12 @@ export const guidesEn: Guide[] = [
       "Everything you need to know about Japan's Highly Skilled Professional (HSP) visa: point calculation methods, visa category differences, application procedures, and permanent residency benefits — all in one page. A comprehensive guide including the 70-point and 80-point thresholds with real-world examples.",
     keywords: ["HSP visa", "Japan highly skilled professional", "highly skilled professional visa", "HSP visa Japan", "advanced professional", "Japan permanent residency"],
     datePublished: "2026-05-14",
-    dateModified: today,
+    dateModified: "2026-11-16",
     sections: [
       {
         title: "What is the Highly Skilled Professional (高度専門職) Visa?",
         content: `
-<p><strong>The Highly Skilled Professional (高度専門職) visa</strong> is a <strong>points-based preferential visa</strong> operated by Japan's Ministry of Justice. It is awarded by totaling points from education, work experience, salary, age, qualifications, and Japanese language ability — scoring <strong>70 points or more</strong> qualifies you for the visa, and <strong>80 points or more</strong> enables you to apply for permanent residency in as little as 1 year.</p>
+<p><strong>The Highly Skilled Professional (高度専門職) visa</strong> is a <strong>points-based preferential visa</strong> operated by Japan's Ministry of Justice. In addition to <strong>70 points or more</strong>, activity, remuneration, employer and other permission requirements must be met. <strong>80 points or more</strong> is the points threshold for a shorter PR residence period, with historical score, residence and other conditions assessed separately.</p>
 <p>The official name is "Points-based Preferential Immigration Treatment for Highly Skilled Foreign Professionals" (高度人材に対するポイント制による出入国在留管理上の優遇制度), introduced in 2012 and still in operation today.</p>
 
 <div class="guide-stats">
@@ -34,65 +34,20 @@ export const guidesEn: Guide[] = [
 </table>`,
       },
       {
-        title: "2025 Business Manager Visa Requirement Changes and the Value of the HSP Visa",
+        title: "2025 Business Manager Changes and HSP 1(c)",
         content: `
-<p>On <strong>October 16, 2025</strong>, the Japanese government significantly tightened the requirements for the Business Manager visa (経営・管理ビザ). The previous approach of "starting a solo business with ¥5M in capital" is no longer viable, and <strong>the relative value of the HSP visa (Category C) has increased substantially.</strong></p>
-
-<div class="guide-callout guide-callout-warning">Starting October 16, 2025, Business Manager visa requirements have been drastically tightened. Capital requirements increased <strong>6x</strong>, and Japanese language ability, employee hiring, and business plan verification have all become mandatory.</div>
-
-<div class="guide-vs">
-  <div class="guide-vs-card old">
-    <h4>❌ Previous Business Manager Visa</h4>
-    <ul>
-      <li>💰 Capital: ¥5M</li>
-      <li>👤 2 employees or capital substitution</li>
-      <li>📋 No management experience required</li>
-      <li>🗣️ No Japanese ability required</li>
-      <li>📄 Self-prepared business plan</li>
-      <li>🏠 Home office allowed</li>
-    </ul>
-  </div>
-  <div class="guide-vs-divider">→</div>
-  <div class="guide-vs-card new">
-    <h4>✅ New Standards from Oct 2025</h4>
-    <ul>
-      <li>💰 Capital: <strong>¥30M</strong></li>
-      <li>👤 <strong>At least 1 full-time employee</strong> required</li>
-      <li>📋 <strong>3+ years</strong> management experience or Master's/PhD</li>
-      <li>🗣️ <strong>JLPT N2 or higher</strong> required</li>
-      <li>📄 <strong>External expert</strong> verification required</li>
-      <li>🏢 <strong>Independent office</strong> required</li>
-    </ul>
-  </div>
-</div>
-
-<table>
-  <thead><tr><th>Item</th><th>Previous Requirements</th><th>After October 2025</th></tr></thead>
-  <tbody>
-    <tr><td><strong>Capital</strong></td><td>¥5M or more</td><td><strong>¥30M or more</strong> (6x increase)</td></tr>
-    <tr><td><strong>Employee Hiring</strong></td><td>2+ employees or ¥5M capital</td><td><strong>At least 1 full-time Japan-resident employee required</strong></td></tr>
-    <tr><td><strong>Management Experience</strong></td><td>Not required</td><td><strong>3+ years management experience</strong> or Master's/PhD in business</td></tr>
-    <tr><td><strong>Business Plan Evaluation</strong></td><td>Self-prepared acceptable</td><td><strong>External expert</strong> (tax accountant, SME consultant, CPA) verification required</td></tr>
-    <tr><td><strong>Japanese Ability</strong></td><td>Not required</td><td>Applicant or full-time employee must have <strong>JLPT N2 or higher</strong> (or BJT 400+)</td></tr>
-    <tr><td><strong>Office</strong></td><td>Home office allowed</td><td><strong>Independent office required</strong> (home office not allowed)</td></tr>
-  </tbody>
-</table>
-
-<p>With this revision, foreign entrepreneurs are now required to demonstrate <strong>extremely high overall capabilities</strong> including "sufficient funds," "human resources," "Japanese language ability," and "a verified business plan." Starting small as a solo entrepreneur is effectively no longer possible.</p>
-
-<p><strong>Transitional measures:</strong> For <strong>3 years from the enforcement date (until October 16, 2028)</strong>, existing visa holders can renew by submitting an "improvement plan" and proof of planned compliance. However, after October 2028, full compliance with the new standards will be required.</p>
-
-<div class="guide-callout guide-callout-tip">Why we recommend the <strong>HSP visa (Category C)</strong> over the Business Manager visa: No ¥30M capital requirement, comprehensive points-based evaluation, PR in as little as 1 year, plus spouse work permission and parent invitation benefits!</div>
-
-<p><strong>Why the HSP visa (Category C) is an alternative:</strong></p>
+<p>The Business Manager criteria revised on <strong>October 16, 2025</strong> also apply to <strong>HSP 1(c) involving Business Manager activities</strong>. A high points score does not bypass these criteria.</p>
+<div class="guide-callout guide-callout-warning">Points and Business Manager permission criteria are separate. This calculator does not assess capital, employment or business-plan requirements.</div>
 <ul>
-  <li><strong>No ¥30M capital requirement</strong> — Points-based comprehensive evaluation of education, experience, salary, etc.</li>
-  <li><strong>PR in as little as 1 year</strong> — With 80+ points, PR application possible after 1 year (Business Manager visa typically requires 10 years)</li>
-  <li><strong>Spouse work permission, parent invitation</strong> — Additional benefits not available with Business Manager visa</li>
-  <li><strong>HSP Visa Type 2</strong> — Upon transition, unlimited stay with no activity restrictions</li>
+  <li><strong>Business scale:</strong> At least ¥30M in capital or equivalent qualifying business assets. Corporations are assessed on capital or contributions; sole proprietors on assets invested in the business.</li>
+  <li><strong>Employment:</strong> At least one qualifying full-time employee, such as a Japanese national, special permanent resident or holder of an eligible status-based residence category.</li>
+  <li><strong>Japanese:</strong> The applicant or a full-time employee must have at least B2-equivalent ability. JLPT N2 and BJT 400 are examples; other recognition routes appear in the official guidance.</li>
+  <li><strong>Education or experience:</strong> A doctorate, master's or professional degree in management or a field of skills or knowledge needed for the business, or at least three years of management experience.</li>
+  <li><strong>Business plan and premises:</strong> Relevant applications require expert review of the business plan. A home office is generally not accepted.</li>
 </ul>
-
-<p>If you're looking to start a business in Japan, the <strong>HSP visa (Category C) → Permanent Residency</strong> route has become a far more realistic option than the Business Manager visa.</p>`,
+<p><strong>Renewals for existing residents:</strong> Until October 16, 2028, decisions consider business performance and prospects of meeting the new criteria. After that date the new criteria apply in principle, with individual consideration described in the official guidance for business performance, tax compliance and prospects of compliance by the next renewal. Neither automatic renewal nor automatic refusal is implied.</p>
+<p><strong>Permanent residence and HSP 2:</strong> For Business Manager activities, failure to meet the revised criteria prevents the relevant PR permission or change from HSP 1(c) to HSP 2. A score of 70 or 80 alone does not guarantee permission.</p>
+<p>Source: <a href="https://www.moj.go.jp/isa/applications/resources/10_00237.html" target="_blank" rel="noopener noreferrer">Immigration Services Agency guidance on the revised Business Manager criteria</a> (checked November 16, 2026).</p>`,
       },
       {
         title: "Three Visa Categories and Their Differences",
@@ -103,7 +58,7 @@ export const guidesEn: Guide[] = [
   <tbody>
     <tr><td><strong>Academic Research</strong></td><td>高度学術研究活動 (イ)</td><td>University professors, researchers</td><td>None</td></tr>
     <tr><td><strong>Specialized/Technical</strong></td><td>高度専門・技術活動 (ロ)</td><td>Engineers, translators, designers</td><td>¥3M or more</td></tr>
-    <tr><td><strong>Business Management</strong></td><td>高度経営・管理活動 (ハ)</td><td>Corporate executives, managers</td><td>¥10M or more</td></tr>
+    <tr><td><strong>Business Management</strong></td><td>高度経営・管理活動 (ハ)</td><td>Corporate executives, managers</td><td>¥3M or more (salary points start at ¥10M)</td></tr>
   </tbody>
 </table>
 <p>Most working professionals fall under the <strong>Specialized/Technical (ロ)</strong> category. This includes IT engineers, marketers, translators, designers, and similar roles.</p>`,
@@ -154,7 +109,7 @@ export const guidesEn: Guide[] = [
   <li>¥6M+: 20 pts</li>
   <li>¥5M+: 15 pts</li>
   <li>¥4M+: 10 pts</li>
-  <li>¥3M+ (Specialized/Technical only): 5 pts</li>
+  <li>Income below the first scoring band earns 0 salary points. Technical and Business activities separately require at least ¥3M annually.</li>
 </ul>
 
 <p><strong>④ Age (max 15 points / Specialized/Technical only)</strong></p>

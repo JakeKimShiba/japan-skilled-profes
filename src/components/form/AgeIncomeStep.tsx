@@ -99,10 +99,6 @@ export function AgeIncomeStep({ data, onDataChange }: AgeIncomeStepProps) {
   const availableSalaryOptions = useMemo(() => {
     if (!data.visaType || !data.age) return [];
     
-    if (data.visaType === 'business') {
-      return ['under10m', '10m', '15m', '20m', '25m', '30m'];
-    }
-    
     return PointsCalculationService.getAvailableSalaryOptions(data.age, data.visaType);
   }, [data.age, data.visaType]);
 
@@ -296,8 +292,7 @@ export function AgeIncomeStep({ data, onDataChange }: AgeIncomeStepProps) {
           className="grid grid-cols-1 sm:grid-cols-2 gap-2"
         >
           {availableSalaryOptions.map((option) => {
-            const isIneligible = option === 'under3m' || option === 'under10m';
-            const isZeroPoints = option === 'under5m' || option === 'under6m' || option === 'under8m';
+            const isIneligible = option === 'under3m' && data.visaType !== 'academic';
             const points = getAnnualSalaryPoints(option);
             
             return (
@@ -308,7 +303,6 @@ export function AgeIncomeStep({ data, onDataChange }: AgeIncomeStepProps) {
                 <RadioGroupItem 
                   value={option} 
                   id={`income-${option}`} 
-                  disabled={isIneligible}
                 />
                 <Label 
                   htmlFor={`income-${option}`} 
@@ -324,7 +318,7 @@ export function AgeIncomeStep({ data, onDataChange }: AgeIncomeStepProps) {
                     >
                       {t('warning.visa.ineligible')}
                     </Badge>
-                  ) : isZeroPoints ? (
+                  ) : points === 0 ? (
                     <Badge variant="outline" className="bg-muted/30 ml-2">
                       {fmtPoints(0)}
                     </Badge>

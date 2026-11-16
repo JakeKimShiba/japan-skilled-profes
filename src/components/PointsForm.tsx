@@ -126,7 +126,7 @@ export function PointsForm({ data, setData, onViewResults }: PointsFormProps) {
 
   // Mobile summary values using improved service
   const calculationResult = VisaCalculatorService.calculatePoints(data);
-  const { totalPoints, isQualified, pointsNeeded, pointsToNextTier } = calculationResult;
+  const { totalPoints, isQualified, isValid, isComplete, pointsNeeded, pointsToNextTier } = calculationResult;
   const target = totalPoints >= 70 ? 80 : 70;
 
   // Enhanced validation for navigation using service
@@ -230,7 +230,11 @@ export function PointsForm({ data, setData, onViewResults }: PointsFormProps) {
               {fmtPoints(totalPoints)}
             </span>
             <span className="text-xs text-muted-foreground">
-              {isQualified 
+              {!isValid
+                ? t('result.invalid.title')
+                : !isComplete
+                ? t('result.incomplete.title')
+                : isQualified
                 ? t('result.qualified') 
                 : t('result.needMore', { gap: pointsNeeded })
               }
@@ -244,7 +248,9 @@ export function PointsForm({ data, setData, onViewResults }: PointsFormProps) {
               </Badge>
             ) : (
               <Badge variant="secondary">
-                <span className="text-xs">{t('result.target', { target })}</span>
+                <span className="text-xs">
+                  {!isValid ? t('result.invalid.title') : !isComplete ? t('result.incomplete.title') : t('result.target', { target })}
+                </span>
               </Badge>
             )}
           </div>
