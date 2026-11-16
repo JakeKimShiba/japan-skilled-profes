@@ -195,3 +195,19 @@ for (const locale of ['ko', 'en', 'ja']) {
     }
   });
 }
+
+test('FAQ category tabs control real labeled panels and preserve arrow-key filtering', async ({ page }) => {
+  await page.goto('/guide/faq?lang=ko');
+  const tabs = page.getByRole('tab');
+  await expect(tabs).toHaveCount(8);
+  for (const tab of await tabs.all()) {
+    const target = await tab.getAttribute('aria-controls');
+    await expect(page.locator(`[id="${target}"]`)).toHaveCount(1);
+  }
+  await page.getByRole('tab', { name: ko['faq.category.salary'], exact: true }).click();
+  await expect(page.getByRole('tabpanel', { name: ko['faq.category.salary'], exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: ko['faq.q5.question'], exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: ko['faq.q1.question'], exact: true })).toHaveCount(0);
+  await page.keyboard.press('ArrowRight', { delay: 50 });
+  await expect(page.getByRole('tabpanel', { name: ko['faq.category.experience'], exact: true })).toBeVisible();
+});

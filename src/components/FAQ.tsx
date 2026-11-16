@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/accordion";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 type FAQCategory = 'all' | 'basics' | 'education' | 'salary' | 'experience' | 'language' | 'qualifications' | 'pr';
 
@@ -39,10 +39,6 @@ export function FAQ() {
     { id: 'q13', value: 'item-13', category: 'qualifications' },
     { id: 'q10', value: 'pr-rejection', category: 'pr' },
   ];
-
-  const filteredItems = activeCategory === 'all' 
-    ? faqItems 
-    : faqItems.filter(item => item.category === activeCategory);
 
   const categories: { key: FAQCategory; icon: string }[] = [
     { key: 'all', icon: '📋' },
@@ -462,6 +458,7 @@ export function FAQ() {
                 <TabsTrigger
                   key={key}
                   value={key}
+                  aria-label={t(`faq.category.${key}`)}
                   className="text-xs sm:text-sm px-2 sm:px-3 py-1.5 data-[state=active]:bg-background"
                 >
                   <span className="mr-1">{icon}</span>
@@ -470,19 +467,20 @@ export function FAQ() {
                 </TabsTrigger>
               ))}
             </TabsList>
+            {categories.map(({ key }) => {
+              const items = key === 'all' ? faqItems : faqItems.filter(item => item.category === key);
+              return (
+                <TabsContent key={key} value={key} className="mt-6">
+                  <Accordion type="single" collapsible className="w-full">
+                    {items.map(item => renderFAQContent(item.id))}
+                  </Accordion>
+                  {items.length === 0 && (
+                    <div className="text-center py-8 text-muted-foreground">{t('faq.noResults')}</div>
+                  )}
+                </TabsContent>
+              );
+            })}
           </Tabs>
-
-          {/* FAQ Items */}
-          <Accordion type="single" collapsible className="w-full">
-            {filteredItems.map((item) => renderFAQContent(item.id))}
-          </Accordion>
-
-          {/* Empty State */}
-          {filteredItems.length === 0 && (
-            <div className="text-center py-8 text-muted-foreground">
-              {t('faq.noResults') || '해당 카테고리에 질문이 없습니다.'}
-            </div>
-          )}
         </CardContent>
       </Card>
 
