@@ -211,3 +211,14 @@ test('FAQ category tabs control real labeled panels and preserve arrow-key filte
   await page.keyboard.press('ArrowRight', { delay: 50 });
   await expect(page.getByRole('tabpanel', { name: ko['faq.category.experience'], exact: true })).toBeVisible();
 });
+
+test('Selected visa summary keeps the first mobile question visible and comparison available', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(`/?lang=ko&${profile}`);
+  await expect(page.locator('#mba')).toBeInViewport();
+  await page.getByRole('button', { name: ko['visa.select.other'], exact: true }).click();
+  await expect(page.getByRole('radio')).toHaveCount(3);
+  for (const type of ['academic', 'technical', 'business']) {
+    await expect(page.getByText(ko[`visa.${type}.description`], { exact: true })).toBeVisible();
+  }
+});

@@ -169,10 +169,10 @@ function CalculatorPage() {
       <div className="container mx-auto px-4 py-8 max-w-5xl">
         <Header />
         
-            <Card className="overflow-hidden">
-              <CardContent className="pt-6">
-                <div className="mb-6">
-                  <div className="flex items-center gap-2 mb-6">
+            <Card className={`mb-6 overflow-hidden ${showAllVisaTypes ? '' : 'py-0'}`}>
+              <CardContent className={showAllVisaTypes ? 'pt-6' : 'p-4'}>
+                <div className={showAllVisaTypes ? 'mb-6' : ''}>
+                  <div className={showAllVisaTypes ? 'flex items-center gap-2 mb-6' : 'sr-only'}>
                     <div className="w-2 h-8 bg-gradient-to-b from-primary to-primary/60 rounded-full"></div>
                     <h3 className="text-xl font-semibold text-primary">
                       {t('result.visaType')}
@@ -274,107 +274,18 @@ function CalculatorPage() {
                       </RadioGroup>
                     </div>
                   ) : (
-                    <div className="space-y-4 transition-all duration-500 ease-in-out">
-                      {/* Selected Visa Card - Expanded */}
-                      {/* Mobile: Simple selected visa card */}
-                      <div className="md:hidden flex justify-center px-4">
-                        {(() => {
-                          const visaType = pointsData.visaType;
-                          const iconMap = {
-                            academic: <GraduationCap size={24} weight="duotone" />,
-                            technical: <Gear size={24} weight="duotone" />,
-                            business: <Briefcase size={24} weight="duotone" />,
-                          };
-                          
-                          return (
-                            <div className="bg-card rounded-xl border-2 border-primary ring-2 ring-primary/20 p-6 w-full max-w-sm shadow-lg relative">
-                              <div className="flex flex-col items-center text-center space-y-3">
-                                <div className="w-14 h-14 rounded-full flex items-center justify-center bg-primary text-primary-foreground">
-                                  {iconMap[visaType]}
-                                </div>
-                                <div>
-                                  <div className="font-bold text-lg text-foreground">
-                                    {t(`visa.${visaType}.type`)}
-                                  </div>
-                                  <div className="text-sm font-medium text-primary mt-1">
-                                    {t(`visa.${visaType}.jpName`)}
-                                  </div>
-                                  <div className="text-xs text-muted-foreground mt-2">
-                                    {t(`visa.${visaType}.description`)}
-                                  </div>
-                                </div>
-                                <div className="absolute -top-2 -right-2 w-7 h-7 bg-primary rounded-full flex items-center justify-center shadow-md">
-                                  <Check size={16} weight="bold" className="text-primary-foreground" />
-                                </div>
-                              </div>
-                            </div>
-                          );
-                        })()}
-                      </div>
-                      
-                      {/* Desktop: Carousel-style visa type display */}
-                      <div className="hidden md:block">
-                        <div className="flex items-center justify-center gap-6 px-8">
-                          {(['academic', 'technical', 'business'] as const).map((visaType) => {
-                            const isSelected = visaType === pointsData.visaType;
-                            const iconMap = {
-                              academic: <GraduationCap size={isSelected ? 28 : 24} weight="duotone" />,
-                              technical: <Gear size={isSelected ? 28 : 24} weight="duotone" />,
-                              business: <Briefcase size={isSelected ? 28 : 24} weight="duotone" />,
-                            };
-                            
-                            return (
-                              <div 
-                                key={visaType} 
-                                className={`bg-card rounded-xl border-2 transition-all duration-300 ${
-                                  isSelected 
-                                    ? 'border-primary ring-2 ring-primary/20 p-8 w-80 opacity-100 scale-100 z-10 shadow-lg' 
-                                    : 'border-muted p-6 w-64 opacity-40 scale-90 blur-[1.5px] hover:opacity-60 hover:scale-95 hover:blur-[0.5px] cursor-pointer shadow-sm'
-                                }`}
-                                onClick={() => {
-                                  if (!isSelected) {
-                                    setPointsData({ ...initialPointsData, visaType });
-                                  }
-                                }}
-                              >
-                                <div className="relative">
-                                  <div className="flex flex-col items-center text-center space-y-4">
-                                    <div className={`rounded-full flex items-center justify-center transition-colors ${
-                                      isSelected 
-                                        ? 'w-16 h-16 bg-primary text-primary-foreground' 
-                                        : 'w-12 h-12 bg-primary/10 text-primary'
-                                    }`}>
-                                      {iconMap[visaType]}
-                                    </div>
-                                    <div>
-                                      <div className={`font-bold text-foreground ${isSelected ? 'text-xl' : 'text-base'}`}>
-                                        {t(`visa.${visaType}.type`)}
-                                      </div>
-                                      {isSelected && (
-                                        <>
-                                          <div className="text-base font-medium text-primary mt-1">
-                                            {t(`visa.${visaType}.jpName`)}
-                                          </div>
-                                          <div className="text-sm text-muted-foreground mt-2">
-                                            {t(`visa.${visaType}.description`)}
-                                          </div>
-                                        </>
-                                      )}
-                                    </div>
-                                    {isSelected && (
-                                      <div className="absolute -top-3 -right-3 w-8 h-8 bg-primary rounded-full flex items-center justify-center shadow-md">
-                                        <Check size={16} weight="bold" className="text-primary-foreground" />
-                                      </div>
-                                    )}
-                                  </div>
-                                </div>
-                              </div>
-                            );
-                          })}
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                      <div className="flex min-w-0 items-center gap-3">
+                        <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary" aria-hidden="true">
+                          {pointsData.visaType === 'academic' ? <GraduationCap size={24} weight="duotone" />
+                            : pointsData.visaType === 'technical' ? <Gear size={24} weight="duotone" />
+                            : <Briefcase size={24} weight="duotone" />}
+                        </div>
+                        <div className="min-w-0">
+                          <p className="font-semibold leading-snug break-keep">{t(`visa.${pointsData.visaType}.type`)}</p>
+                          <p className="text-sm text-primary">{t(`visa.${pointsData.visaType}.jpName`)}</p>
                         </div>
                       </div>
-                      
-                      <div className="flex justify-center">
                         <Button 
                           variant="outline" 
                           onClick={() => {
@@ -382,12 +293,11 @@ function CalculatorPage() {
                             setShowAllVisaTypes(true);
                             setPointsData(initialPointsData);
                           }}
-                          className="px-6 py-2 text-sm font-medium border-2 border-muted hover:border-primary hover:bg-primary/5 hover:text-primary hover:shadow-sm transition-all duration-200 hover:scale-[1.02] gap-2"
+                          className="w-full shrink-0 gap-2 whitespace-normal sm:w-auto"
                         >
                           <ArrowsClockwise size={16} />
                           {t('visa.select.other')}
                         </Button>
-                      </div>
                     </div>
                   )}
                 </div>
