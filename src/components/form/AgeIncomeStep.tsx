@@ -196,7 +196,7 @@ export function AgeIncomeStep({ data, onDataChange, onBatchChange }: AgeIncomeSt
             setDateComponents({ year: '', month: '', day: '' });
             onBatchChange({ age: value, birthDate: undefined });
           }}
-          className="grid grid-cols-2 gap-2"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-2"
         >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="29under" id="age-29under" />

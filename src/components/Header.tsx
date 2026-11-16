@@ -10,7 +10,7 @@ export function Header() {
     <Card className="mb-6 border-none shadow-md">
       <CardHeader className="text-center">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between min-w-0">
-          <CardTitle className="text-2xl md:text-3xl font-bold flex-1 min-w-0">
+          <CardTitle className={`text-2xl md:text-3xl font-bold flex-1 min-w-0 ${locale === 'ko' ? 'break-keep text-balance' : ''}`}>
             <span className="text-primary">{t('app.title')}</span>
           </CardTitle>
           {/* Mobile: place below title and right-align; Desktop: stay on the right */}

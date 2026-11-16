@@ -243,3 +243,32 @@ test('FAQ page introduces itself once and retains all questions', async ({ page 
   await expect(page.getByText(ko['faq.subtitle'], { exact: true })).toHaveCount(1);
   await expect(page.getByRole('tabpanel').getByRole('button')).toHaveCount(14);
 });
+
+test('Narrow Korean headings and short age choices keep words together', async ({ page }) => {
+  for (const width of [320, 390]) {
+    await page.setViewportSize({ width, height: 844 });
+    await page.goto(`/?lang=ko&${profile}`);
+    const title = page.getByText(ko['app.title'], { exact: true }).first();
+    await expect(title).toBeVisible();
+    const linesPerWord = await title.evaluate(element => {
+      const text = element.firstChild;
+      return [...text.textContent.matchAll(/\S+/g)].map(match => {
+        const range = document.createRange();
+        range.setStart(text, match.index);
+        range.setEnd(text, match.index + match[0].length);
+        return range.getClientRects().length;
+      });
+    });
+    expect(linesPerWord.every(count => count === 1)).toBe(true);
+    const next = page.getByRole('button', { name: ko['nav.next'], exact: true });
+    await next.click();
+    await next.click();
+    const lines = await page.locator('label[for="age-29under"] > span').first().evaluate(element => {
+      const range = document.createRange();
+      range.selectNodeContents(element);
+      return range.getClientRects().length;
+    });
+    expect(lines).toBe(1);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
+  }
+});
