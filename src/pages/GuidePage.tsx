@@ -1,4 +1,7 @@
-import { useParams, Link, Navigate } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
+import { GuideSources } from "@/components/GuideSources";
+import { guideSchemas, localizedPath } from "@/lib/seo";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -10,59 +13,37 @@ import { useI18n } from "@/i18n";
 
 export function GuidePage() {
   const { slug } = useParams<{ slug: string }>();
-  const { t } = useI18n();
-  const guides = useGuides();
+  const { locale, t } = useI18n();
+  const { guides, contentLocale, isLoading } = useGuides();
   const guide = guides.find((g) => g.slug === slug);
 
+  if (isLoading) return <p role="status">{t('page.loading')}</p>;
   if (!guide) {
-    return <Navigate to="/guide" replace />;
+    return <Navigate to={localizedPath('/guide', locale)} replace />;
   }
 
   return (
     <>
       <SEOHead
+        locale={contentLocale}
         type="article"
         title={`${guide.title} | kodocalc.com`}
         description={guide.description}
         path={`/guide/${guide.slug}`}
-        jsonLd={[
-          {
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "headline": guide.title,
-            "description": guide.description,
-            "author": { "@type": "Person", "name": "Jake Kim" },
-            "publisher": { "@type": "Organization", "name": "kodocalc.com" },
-            "datePublished": guide.datePublished,
-            "dateModified": guide.dateModified,
-          },
-          ...(guide.faq.length > 0
-            ? [{
-                "@context": "https://schema.org",
-                "@type": "FAQPage",
-                "mainEntity": guide.faq.map((f) => ({
-                  "@type": "Question",
-                  "name": f.question,
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": f.answer,
-                  },
-                })),
-              }]
-            : []),
-          {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": t('breadcrumb.home'), "item": "https://kodocalc.com/" },
-              { "@type": "ListItem", "position": 2, "name": t('breadcrumb.guide'), "item": "https://kodocalc.com/guide" },
-              { "@type": "ListItem", "position": 3, "name": guide.title, "item": `https://kodocalc.com/guide/${guide.slug}` },
-            ],
-          },
-        ]}
+        jsonLd={guideSchemas(guide, contentLocale, { home: t('breadcrumb.home'), guide: t('breadcrumb.guide') })}
       />
 
-      <article className="prose-container">
+      {locale !== contentLocale && (
+        <aside role="note" className="mb-6 rounded-lg border p-4 text-sm" data-translation-fallback>
+          <p>{t('guide.translationFallback')}</p>
+          <div className="mt-2 flex gap-4">
+            <Link to={`/guide/${guide.slug}`} locale="en">English</Link>
+            <Link to={`/guide/${guide.slug}`} locale="ja">日本語</Link>
+            <Link to={`/guide/${guide.slug}`} locale="ko">한국어</Link>
+          </div>
+        </aside>
+      )}
+      <article className="prose-container" lang={contentLocale}>
         {/* Header */}
         <header className="mb-8">
           <div className="flex flex-wrap gap-2 mb-4">
@@ -76,16 +57,17 @@ export function GuidePage() {
           <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
             {guide.description}
           </p>
-          <div className="mt-3 text-xs text-muted-foreground">
+          <div lang={locale} className="mt-3 text-xs text-muted-foreground">
             {t('guide.lastUpdated')}: {guide.dateModified}
           </div>
         </header>
+        <GuideSources slug={guide.slug} />
 
         {/* Table of Contents */}
         {guide.sections.length > 2 && (
-          <nav className="mb-8 p-4 bg-muted/50 rounded-lg border">
+          <nav lang={locale} className="mb-8 p-4 bg-muted/50 rounded-lg border">
             <h2 className="text-sm font-semibold mb-3">{t('guide.toc')}</h2>
-            <ol className="space-y-1.5 text-sm">
+            <ol lang={contentLocale} className="space-y-1.5 text-sm">
               {guide.sections.map((section, idx) => (
                 <li key={idx}>
                   <a
@@ -112,7 +94,7 @@ export function GuidePage() {
                 {section.title}
               </h2>
               {section.content.includes('guide-visa-comparison') && (
-                <p id="comparison-table-help" className="mb-3 text-sm text-muted-foreground">
+                <p lang={locale} id="comparison-table-help" className="mb-3 text-sm text-muted-foreground">
                   {t('guide.tableScroll')}
                 </p>
               )}
@@ -129,7 +111,7 @@ export function GuidePage() {
           <>
             <Separator className="my-8" />
             <section>
-              <h2 className="text-2xl font-semibold tracking-tight text-foreground mb-6">
+              <h2 lang={locale} className="text-2xl font-semibold tracking-tight text-foreground mb-6">
                 {t('guide.faq')}
               </h2>
               <div className="space-y-4">
@@ -150,7 +132,7 @@ export function GuidePage() {
         )}
 
         {/* CTA */}
-        <Card className="mt-8 bg-primary/5 border-primary/20">
+        <Card lang={locale} className="mt-8 bg-primary/5 border-primary/20">
           <CardContent className="pt-6 text-center space-y-3">
             <h2 className="text-xl font-semibold">{t('guide.cta.title')}</h2>
             <p className="text-muted-foreground text-sm">
@@ -169,7 +151,7 @@ export function GuidePage() {
         {/* Related Guides */}
         {guides.filter((g) => g.slug !== guide.slug).length > 0 && (
           <div className="mt-8">
-            <h3 className="text-lg font-semibold mb-4">{t('guide.related')}</h3>
+            <h3 lang={locale} className="text-lg font-semibold mb-4">{t('guide.related')}</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {guides
                 .filter((g) => g.slug !== guide.slug)

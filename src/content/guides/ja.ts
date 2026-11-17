@@ -1,16 +1,16 @@
 import type { Guide } from './types';
 
-const today = new Date().toISOString().split("T")[0];
+const updatedOn = "2026-11-17";
 
 export const guidesJa: Guide[] = [
   {
     slug: "고도인재-비자-완벽-가이드",
     title: "日本 高度専門職ビザ（HSP）完全ガイド 2026",
     description:
-      "日本の高度専門職ビザ（HSP）とは何か、ポイント計算方法、ビザ類型別の違い、申請手続き、永住権の特典まで1ページですべて確認できます。70点・80点基準と実例を含む総合ガイドです。",
+      "日本の高度専門職ビザ（HSP）とは何か、ポイント計算方法、ビザ類型別の違い、申請手続き、永住権の特典まで1ページですべて確認できます。70点・80点基準と架空の計算例を含む総合ガイドです。",
     keywords: ["高度専門職ビザ", "日本 高度人材", "高度人材ビザ", "HSP ビザ", "高度専門職", "日本 永住権"],
     datePublished: "2026-05-14",
-    dateModified: "2026-11-16",
+    dateModified: updatedOn,
     sections: [
       {
         title: "高度専門職ビザとは？",
@@ -140,9 +140,9 @@ export const guidesJa: Guide[] = [
       {
         title: "70点達成のための現実的な戦略",
         content: `
-<p>最も一般的な外国人会社員の<strong>70点達成シナリオ</strong>を紹介します。</p>
+<p><strong>架空の計算例：</strong>専門・技術活動（1号 ロ）、JLPT N2を前提とし、日本留学・日本語専攻・大学加算など他の加算はないものとします。申請事例や許可実績ではありません。</p>
 
-<p><strong>シナリオ1：修士 + 5年職歴 + 500万円年収（20代）</strong></p>
+<p><strong>シナリオ1：修士 + 5年職歴 + 500万円年収（満28歳）</strong></p>
 <div class="guide-bars">
   <div class="guide-bar-row"><span class="guide-bar-label">学歴</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:66%;background:oklch(0.55 0.2 262)">修士 20</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">職歴</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.48 0.18 200)">5年 10</div></div></div>
@@ -154,12 +154,12 @@ export const guidesJa: Guide[] = [
   <div class="guide-stat"><div class="guide-stat-value">70点 ✅</div><div class="guide-stat-label">合計</div></div>
 </div>
 
-<p><strong>シナリオ2：学士 + 10年職歴 + 700万円年収（30代）</strong></p>
+<p><strong>シナリオ2：学士 + 10年職歴 + 700万円年収（満32歳）</strong></p>
 <div class="guide-bars">
   <div class="guide-bar-row"><span class="guide-bar-label">学歴</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.55 0.2 262)">学士 10</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">職歴</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:66%;background:oklch(0.48 0.18 200)">10年 20</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">年収</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:83%;background:oklch(0.48 0.18 155)">700万 25</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">年齢</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.52 0.15 55)">30代 10</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">年齢</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.52 0.15 55)">32歳 10</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">日本語</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.55 0.2 300)">N2 10</div></div></div>
 </div>
 <div class="guide-stats" style="max-width:200px;margin:0.5rem auto">
@@ -256,7 +256,7 @@ export const guidesJa: Guide[] = [
       "高度専門職ビザ70点・80点に到達するための実践戦略。JLPT、年収交渉、資格、大学ボーナスなど最も効果的なポイント向上方法をまとめました。",
     keywords: ["高度人材 ポイント", "ポイント 上げる", "JLPT N1", "日本 資格", "高度人材 70点"],
     datePublished: "2026-05-14",
-    dateModified: today,
+    dateModified: updatedOn,
     sections: [
       {
         title: "現在のスコアを診断する",
@@ -279,7 +279,7 @@ export const guidesJa: Guide[] = [
 <table>
   <thead><tr><th>資格</th><th>点数</th><th>備考</th></tr></thead>
   <tbody>
-    <tr><td>JLPT N1 / BJT 480+</td><td><strong>15点</strong></td><td>日本語専攻大学卒業も同等</td></tr>
+    <tr><td>JLPT N1 / BJT 480+</td><td><strong>15点</strong></td><td>海外の大学で日本語を専攻した場合の加算条件は公式表を確認</td></tr>
     <tr><td>JLPT N2 / BJT 400+</td><td>10点</td><td>N1に比べ5点低い</td></tr>
     <tr><td>なし</td><td>0点</td><td>—</td></tr>
   </tbody>
@@ -342,7 +342,7 @@ export const guidesJa: Guide[] = [
       "JLPT N1、N2、BJTが高度専門職ビザポイントに与える影響を詳しく解説します。日本語能力試験別のスコア差、試験準備戦略、N2からN1に上げるコツまで一目で確認できます。",
     keywords: ["JLPT N1", "JLPT N2", "日本 ビザ N2", "BJT", "日本語能力試験", "高度人材 日本語", "JLPT スコア 計算"],
     datePublished: "2026-05-14",
-    dateModified: today,
+    dateModified: updatedOn,
     sections: [
       {
         title: "日本語能力と高度専門職ポイント",
@@ -360,7 +360,7 @@ export const guidesJa: Guide[] = [
   <tbody>
     <tr><td><strong>JLPT N1</strong>合格</td><td><strong>15点</strong></td><td>最上級</td></tr>
     <tr><td><strong>BJT 480点</strong>以上</td><td><strong>15点</strong></td><td>上級</td></tr>
-    <tr><td>日本語専攻大学卒業</td><td><strong>15点</strong></td><td>—</td></tr>
+    <tr><td>海外の大学で日本語専攻を修了（公式要件を満たす場合）</td><td><strong>15点</strong></td><td>—</td></tr>
     <tr><td><strong>JLPT N2</strong>合格</td><td><strong>10点</strong></td><td>中上級</td></tr>
     <tr><td><strong>BJT 400点</strong>以上</td><td><strong>10点</strong></td><td>中級</td></tr>
     <tr><td>該当なし</td><td>0点</td><td>—</td></tr>
@@ -378,14 +378,14 @@ export const guidesJa: Guide[] = [
   <thead><tr><th>比較項目</th><th>JLPT N2</th><th>JLPT N1</th></tr></thead>
   <tbody>
     <tr><td>高度人材ポイント</td><td>10点</td><td><strong>15点</strong></td></tr>
-    <tr><td>準備期間（独学基準）</td><td>6〜12ヶ月</td><td>12〜24ヶ月</td></tr>
-    <tr><td>合格率（2024年基準）</td><td>約40%</td><td>約30%</td></tr>
+
+
     <tr><td>日本就職市場での評価</td><td>基本要件</td><td><strong>優遇条件</strong></td></tr>
     <tr><td>試験回数／年</td><td>7月、12月</td><td>7月、12月</td></tr>
   </tbody>
 </table>
 
-<p>現在N2であれば、N1まで追加で6〜12ヶ月ほど必要です。ビザ申請時点まで時間的余裕があればN1に挑戦してください。</p>`,
+<p>学習期間は現在の日本語力と学習環境によって異なります。一定の準備期間や合格可能性は保証しません。</p>`,
       },
       {
         title: "BJT（ビジネス日本語能力テスト）も認められます",
@@ -400,7 +400,7 @@ export const guidesJa: Guide[] = [
 <p><strong>BJTの利点：</strong></p>
 <ul>
   <li>CBT（コンピュータ）方式で<strong>ほぼ毎日受験可能</strong></li>
-  <li>結果が即時判明（JLPTは2〜3ヶ月待ち）</li>
+  <li>成績通知の方法と時期は各試験の公式案内を確認</li>
   <li>ビジネス日本語に慣れた会社員に有利</li>
 </ul>
 
@@ -451,7 +451,7 @@ export const guidesJa: Guide[] = [
       {
         question: "JLPT試験はいつ受けられますか？",
         answer:
-          "毎年7月と12月の計2回実施されます。海外では約3〜4ヶ月前に申込が開始されます。日本国内では一部地域で追加実施されることがありますので、公式サイトをご確認ください。",
+          "受験地域の実施有無、申込期間、試験日、成績通知はJLPTの公式実施機関で確認してください。",
       },
     ],
   },
@@ -462,7 +462,7 @@ export const guidesJa: Guide[] = [
       "高度専門職ビザを通じた日本の永住権取得方法を詳しく案内します。70点・80点別の永住権申請時期、必要書類、審査期間、注意事項までステップごとに整理しました。",
     keywords: ["日本 永住権", "高度人材 永住権", "日本 永住権 高度人材", "日本 永住権 取得", "高度専門職ビザ 永住権", "日本 定住"],
     datePublished: "2026-05-14",
-    dateModified: today,
+    dateModified: updatedOn,
     sections: [
       {
         title: "高度専門職ビザの永住権特典",
@@ -505,22 +505,22 @@ export const guidesJa: Guide[] = [
   <li><strong>身元保証人</strong> — 日本人または永住者1名</li>
 </ol>
 
-<div class="guide-callout guide-callout-warning"><strong>注意：</strong>「継続居住」とは、途中で長期間出国しないことを意味します。1回の出国で<strong>3ヶ月以上</strong>、年間合計<strong>100日以上</strong>出国すると「継続居住」と認められない可能性があります。</div>`,
+<div class="guide-callout guide-callout-warning"><strong>出国履歴：</strong>特定の出国日数だけで適否を判定しないでください。出国理由・在留履歴を整理し、公式案内または管轄の入管に確認してください。</div>`,
       },
       {
         title: "80点 最短1年ルートの詳細",
         content: `
 <p><strong>80点以上</strong>で高度専門職ビザを取得すれば、入国（または資格変更）後<strong>1年が経過した時点</strong>で永住権を申請できます。</p>
 
-<div class="guide-callout guide-callout-info">80点基準で申請後、東京では最近の審査に<strong>約1年6ヶ月以上</strong>かかっており、合計<strong>約2年半〜3年</strong>を要する可能性があります。地方の入管は比較的早い傾向です。</div>
+<div class="guide-callout guide-callout-info">1年とは在留期間の基準であり、申請後の審査期間や許可までの総期間ではありません。申請時と過去の基準時点のポイントなど、他の要件も確認してください。</div>
 
-<p><strong>タイムライン：</strong></p>
+<p><strong>架空の準備日程：</strong>以下の月数は準備の例であり、その時点での申請資格や許可を保証するものではありません。</p>
 <div class="guide-timeline">
   <div class="guide-timeline-item"><div class="step-title">0ヶ月 — ビザ取得</div><div class="step-desc">高度専門職ビザ（80点以上）で入国または資格変更</div></div>
   <div class="guide-timeline-item"><div class="step-title">6ヶ月 — 中間チェック</div><div class="step-desc">税金、年金、保険の納付記録を確認（滞納がないか）</div></div>
   <div class="guide-timeline-item"><div class="step-title">10ヶ月 — 書類準備</div><div class="step-desc">永住権申請書類の準備開始（証明書類の収集）</div></div>
   <div class="guide-timeline-item"><div class="step-title">12ヶ月 — 永住権申請</div><div class="step-desc">入管に永住許可申請書を提出</div></div>
-  <div class="guide-timeline-item"><div class="step-title">24〜30ヶ月 — 永住権許可 🎉</div><div class="step-desc">東京基準で最近の審査は1年6ヶ月以上所要。地域により差異あり</div></div>
+  <div class="guide-timeline-item"><div class="step-title">審査後に結果通知</div><div class="step-desc">この例は許可時点や結果を予測するものではありません。</div></div>
 </div>`,
       },
       {
@@ -541,14 +541,14 @@ export const guidesJa: Guide[] = [
   <li><strong>証明写真</strong>（4cm × 3cm）</li>
 </ul>
 
-<p><strong>ヒント：</strong>行政書士に依頼すれば書類準備から提出まで代行してもらえます。費用は10〜30万円程度で、複雑な場合（転職履歴、出国記録等）は専門家の助けを借りることをおすすめします。</p>`,
+<p><strong>書類準備：</strong>必要書類は個別事情で異なります。専門家に依頼する場合は業務範囲と報酬を直接確認し、見積もりを比較してください。</p>`,
       },
       {
         title: "永住権審査期間と結果",
         content: `
-<p>永住権の審査は公式には約4ヶ月と案内されていますが、<strong>東京基準で最近は1年6ヶ月以上</strong>かかるケースが増えています。地域や時期により差異が大きいです。</p>
+<p>この記事は各地域の最新審査期間を測定していません。申請内容・管轄・時期によって異なるため、最新の公式処理期間案内をご確認ください。</p>
 
-<div class="guide-callout guide-callout-warning"><strong>最新情報：</strong>東京入管は申請件数の増加により審査が大幅に遅延しています。余裕を持って<strong>1年以上の待機期間</strong>を見込んでください。</div>
+<div class="guide-callout guide-callout-warning"><strong>日程計画：</strong>審査期間や許可日は保証しません。審査中の在留期限など別途必要な手続きも管轄の入管に確認してください。</div>
 
 <p><strong>審査中の注意事項：</strong></p>
 <ul>

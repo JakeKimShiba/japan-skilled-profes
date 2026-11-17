@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { Header } from "@/components/Header";
 import { Separator } from "@/components/ui/separator";
 import { ArrowLeft } from "@phosphor-icons/react/dist/ssr/ArrowLeft";
@@ -28,7 +29,7 @@ export function GuideLayout() {
             {t('tabs.calculator')}
           </Link>
           <span className="text-muted-foreground">/</span>
-          <span className="text-foreground font-medium">가이드</span>
+          <span className="text-foreground font-medium">{t('breadcrumb.guide')}</span>
         </nav>
 
         <Outlet />
@@ -42,7 +43,7 @@ export function GuideLayout() {
               {t('tabs.calculator')}
             </Link>
             <Link to="/guide" className="text-primary hover:text-primary/80 transition-colors">
-              가이드
+              {t('breadcrumb.guide')}
             </Link>
           </div>
         </footer>

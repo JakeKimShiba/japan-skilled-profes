@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef, lazy, Suspense } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
+import { applicationSchema } from "@/lib/seo";
 import { Header } from "@/components/Header";
 import { PointsForm } from "@/components/PointsForm";
 import { PointsResult } from "@/components/PointsResult";
@@ -79,7 +81,7 @@ function NotFoundPage() {
 }
 
 function CalculatorPage() {
-  const { t } = useI18n();
+  const { locale, t } = useI18n();
   const resultsRef = useRef<HTMLDivElement>(null);
 
   // 초기 데이터 상태 정의 (비자 유형 선택 전 상태)
@@ -165,9 +167,10 @@ function CalculatorPage() {
 
   return (
     <div className="min-h-screen bg-background font-sans">
-      <SEOHead title={`${t('app.title')} | kodocalc.com`} description={t('app.subtitle')} path="/" />
+      <SEOHead title={`${t('app.title')} | kodocalc.com`} description={t('app.subtitle')} path="/"
+        jsonLd={[applicationSchema(locale, t('app.title'), t('app.subtitle'))]} />
       <div className="container mx-auto px-4 py-8 max-w-5xl">
-        <Header />
+        <Header primaryTitle />
         
             <Card className={`mb-6 overflow-hidden ${showAllVisaTypes ? '' : 'py-0'}`}>
               <CardContent className={showAllVisaTypes ? 'pt-6' : 'p-4'}>

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { useLocation } from 'react-router-dom';
 import ko from './locales/ko.json';
 import en from './locales/en.json';
 import zhcn from './locales/zh-cn.json';
@@ -54,6 +55,7 @@ interface I18nContextValue {
 const I18nContext = createContext<I18nContextValue | undefined>(undefined);
 
 export function I18nProvider({ children }: { children: ReactNode }) {
+  const location = useLocation();
   const [locale, setLocaleState] = useState<Locale>(() => {
     // Priority: URL parameter > localStorage > default
     
@@ -70,6 +72,11 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     // 3. Default fallback
     return 'ko';
   });
+
+  useEffect(() => {
+    const lang = new URLSearchParams(location.search).get('lang');
+    if (isValidLocale(lang)) setLocaleState(lang);
+  }, [location.pathname, location.search]);
 
   useEffect(() => {
     // Save to localStorage

@@ -1,16 +1,16 @@
 import type { Guide } from './types';
 
-const today = new Date().toISOString().split("T")[0];
+const updatedOn = "2026-11-17";
 
 export const guidesEn: Guide[] = [
   {
     slug: "고도인재-비자-완벽-가이드",
     title: "Japan Highly Skilled Professional (HSP) Visa Complete Guide 2026",
     description:
-      "Everything you need to know about Japan's Highly Skilled Professional (HSP) visa: point calculation methods, visa category differences, application procedures, and permanent residency benefits — all in one page. A comprehensive guide including the 70-point and 80-point thresholds with real-world examples.",
+      "Everything you need to know about Japan's Highly Skilled Professional (HSP) visa: point calculation methods, visa category differences, application procedures, and permanent residency benefits — all in one page. A comprehensive guide including the 70-point and 80-point thresholds with fictional calculation examples.",
     keywords: ["HSP visa", "Japan highly skilled professional", "highly skilled professional visa", "HSP visa Japan", "advanced professional", "Japan permanent residency"],
     datePublished: "2026-05-14",
-    dateModified: "2026-11-16",
+    dateModified: updatedOn,
     sections: [
       {
         title: "What is the Highly Skilled Professional (高度専門職) Visa?",
@@ -140,9 +140,9 @@ export const guidesEn: Guide[] = [
       {
         title: "Realistic Strategies to Reach 70 Points",
         content: `
-<p>Here are the most common <strong>scenarios for reaching 70 points</strong> as a working professional.</p>
+<p><strong>Fictional calculation examples:</strong> Specialized/Technical activity (1号 ロ), JLPT N2, and no other bonuses, including study in Japan, a Japanese major or university bonuses. These are not application histories or permission outcomes.</p>
 
-<p><strong>Scenario 1: Master's + 5 years experience + ¥5M salary (20s)</strong></p>
+<p><strong>Scenario 1: Master's + 5 years experience + ¥5M salary (age 28)</strong></p>
 <div class="guide-bars">
   <div class="guide-bar-row"><span class="guide-bar-label">Education</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:66%;background:oklch(0.55 0.2 262)">Master's 20</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">Experience</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.48 0.18 200)">5 yrs 10</div></div></div>
@@ -154,12 +154,12 @@ export const guidesEn: Guide[] = [
   <div class="guide-stat"><div class="guide-stat-value">70 pts ✅</div><div class="guide-stat-label">Total</div></div>
 </div>
 
-<p><strong>Scenario 2: Bachelor's + 10 years experience + ¥7M salary (30s)</strong></p>
+<p><strong>Scenario 2: Bachelor's + 10 years experience + ¥7M salary (age 32)</strong></p>
 <div class="guide-bars">
   <div class="guide-bar-row"><span class="guide-bar-label">Education</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.55 0.2 262)">Bachelor's 10</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">Experience</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:66%;background:oklch(0.48 0.18 200)">10 yrs 20</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">Salary</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:83%;background:oklch(0.48 0.18 155)">¥7M 25</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">Age</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.52 0.15 55)">30s 10</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">Age</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.52 0.15 55)">32 yrs 10</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">Japanese</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.55 0.2 300)">N2 10</div></div></div>
 </div>
 <div class="guide-stats" style="max-width:200px;margin:0.5rem auto">
@@ -256,7 +256,7 @@ export const guidesEn: Guide[] = [
       "Practical strategies to reach the 70-point or 80-point threshold for Japan's HSP visa. Covering JLPT, salary negotiation, qualifications, and university bonuses — the most effective methods for increasing your point score.",
     keywords: ["HSP points", "boost HSP points", "JLPT N1", "Japan qualifications", "HSP 70 points"],
     datePublished: "2026-05-14",
-    dateModified: today,
+    dateModified: updatedOn,
     sections: [
       {
         title: "Assess Your Current Score",
@@ -279,7 +279,7 @@ export const guidesEn: Guide[] = [
 <table>
   <thead><tr><th>Qualification</th><th>Points</th><th>Notes</th></tr></thead>
   <tbody>
-    <tr><td>JLPT N1 / BJT 480+</td><td><strong>15 pts</strong></td><td>Same as graduating from a Japanese-language university</td></tr>
+    <tr><td>JLPT N1 / BJT 480+</td><td><strong>15 pts</strong></td><td>Check official conditions for a Japanese major at a university outside Japan</td></tr>
     <tr><td>JLPT N2 / BJT 400+</td><td>10 pts</td><td>5 pts less than N1</td></tr>
     <tr><td>None</td><td>0 pts</td><td>—</td></tr>
   </tbody>
@@ -342,7 +342,7 @@ export const guidesEn: Guide[] = [
       "A detailed breakdown of how JLPT N1, N2, and BJT affect your HSP visa points. Understand the score differences by exam, test preparation strategies, and tips for upgrading from N2 to N1 — all at a glance.",
     keywords: ["JLPT N1", "JLPT N2", "Japan visa N2", "BJT", "Japanese language proficiency test", "HSP Japanese", "JLPT point calculation"],
     datePublished: "2026-05-14",
-    dateModified: today,
+    dateModified: updatedOn,
     sections: [
       {
         title: "Japanese Language Ability and HSP Points",
@@ -360,7 +360,7 @@ export const guidesEn: Guide[] = [
   <tbody>
     <tr><td><strong>JLPT N1</strong> pass</td><td><strong>15 pts</strong></td><td>Highest</td></tr>
     <tr><td><strong>BJT 480+</strong></td><td><strong>15 pts</strong></td><td>High</td></tr>
-    <tr><td>Japanese-major university graduate</td><td><strong>15 pts</strong></td><td>—</td></tr>
+    <tr><td>Japanese major at a university outside Japan (official conditions apply)</td><td><strong>15 pts</strong></td><td>—</td></tr>
     <tr><td><strong>JLPT N2</strong> pass</td><td><strong>10 pts</strong></td><td>Upper-intermediate</td></tr>
     <tr><td><strong>BJT 400+</strong></td><td><strong>10 pts</strong></td><td>Intermediate</td></tr>
     <tr><td>Not applicable</td><td>0 pts</td><td>—</td></tr>
@@ -378,14 +378,14 @@ export const guidesEn: Guide[] = [
   <thead><tr><th>Comparison</th><th>JLPT N2</th><th>JLPT N1</th></tr></thead>
   <tbody>
     <tr><td>HSP points</td><td>10 pts</td><td><strong>15 pts</strong></td></tr>
-    <tr><td>Prep time (self-study)</td><td>6–12 months</td><td>12–24 months</td></tr>
-    <tr><td>Pass rate (2024)</td><td>~40%</td><td>~30%</td></tr>
+
+
     <tr><td>Japan job market value</td><td>Basic requirement</td><td><strong>Preferred qualification</strong></td></tr>
     <tr><td>Exams per year</td><td>July, December</td><td>July, December</td></tr>
   </tbody>
 </table>
 
-<p>If you currently have N2, expect an additional 6–12 months to reach N1. If you have time before your visa application, go for N1.</p>`,
+<p>Study time depends on your current proficiency and circumstances. No fixed preparation period or probability of passing is guaranteed.</p>`,
       },
       {
         title: "BJT (Business Japanese Proficiency Test) Is Also Recognized",
@@ -400,7 +400,7 @@ export const guidesEn: Guide[] = [
 <p><strong>Advantages of BJT:</strong></p>
 <ul>
   <li>Computer-based (CBT) format available <strong>nearly every day</strong></li>
-  <li>Results available immediately (JLPT requires 2–3 months wait)</li>
+  <li>Check each examination provider for score-report methods and timing</li>
   <li>Favors working professionals familiar with business Japanese</li>
 </ul>
 
@@ -451,7 +451,7 @@ export const guidesEn: Guide[] = [
       {
         question: "When can I take the JLPT exam?",
         answer:
-          "It is held twice a year in July and December. Registration typically opens 3–4 months before the exam date. In Japan, additional sessions may be offered in some regions — check the official website for details.",
+          "Check the official JLPT organizer for your location to confirm availability, registration, examination dates and score reporting.",
       },
     ],
   },
@@ -462,7 +462,7 @@ export const guidesEn: Guide[] = [
       "A detailed guide to obtaining Japanese permanent residency through the HSP visa. Covers PR application timing by 70-point and 80-point thresholds, required documents, review periods, and important considerations — organized step by step.",
     keywords: ["Japan permanent residency", "HSP permanent residency", "Japan PR HSP", "Japan PR application", "HSP visa PR", "Japan settlement"],
     datePublished: "2026-05-14",
-    dateModified: today,
+    dateModified: updatedOn,
     sections: [
       {
         title: "Permanent Residency Benefits of the HSP Visa",
@@ -505,22 +505,22 @@ export const guidesEn: Guide[] = [
   <li><strong>Guarantor</strong> — 1 Japanese national or permanent resident</li>
 </ol>
 
-<div class="guide-callout guide-callout-warning"><strong>Note:</strong> "Continuous residence" means not leaving Japan for extended periods. Single departures of <strong>3 months or more</strong>, or a total of <strong>100+ days per year</strong> outside Japan, may disqualify you from "continuous residence" status.</div>`,
+<div class="guide-callout guide-callout-warning"><strong>Travel history:</strong> Do not treat a single number of days abroad as a complete eligibility test. Prepare the reasons for travel and residence history and check official guidance or the responsible immigration office.</div>`,
       },
       {
         title: "80-Point Fast Track: 1-Year Route in Detail",
         content: `
 <p>If you obtain the HSP visa with <strong>80+ points</strong>, you can apply for permanent residency <strong>1 year after entry</strong> (or status change).</p>
 
-<div class="guide-callout guide-callout-info">After applying under the 80-point criteria, processing in Tokyo has recently taken <strong>approximately 18 months or more</strong>, meaning the total timeline may be <strong>around 2.5–3 years</strong>. Regional immigration offices tend to be faster.</div>
+<div class="guide-callout guide-callout-info">One year refers to the residence-period criterion, not processing time after applying or total time until permission. Check points at the relevant past date and at application, as well as other requirements.</div>
 
-<p><strong>Timeline:</strong></p>
+<p><strong>Fictional preparation schedule:</strong> The months below illustrate preparation only; they do not establish eligibility to apply on a particular date or guarantee approval.</p>
 <div class="guide-timeline">
   <div class="guide-timeline-item"><div class="step-title">Month 0 — Visa obtained</div><div class="step-desc">Enter Japan or change status with HSP visa (80+ points)</div></div>
   <div class="guide-timeline-item"><div class="step-title">Month 6 — Mid-point check</div><div class="step-desc">Verify tax, pension, and insurance payment records (no arrears)</div></div>
   <div class="guide-timeline-item"><div class="step-title">Month 10 — Begin document preparation</div><div class="step-desc">Start gathering PR application documents and supporting evidence</div></div>
   <div class="guide-timeline-item"><div class="step-title">Month 12 — Submit PR application</div><div class="step-desc">File permanent residency application at immigration</div></div>
-  <div class="guide-timeline-item"><div class="step-title">Month 24–30 — PR granted 🎉</div><div class="step-desc">Recent Tokyo processing: 18+ months. Varies by region</div></div>
+  <div class="guide-timeline-item"><div class="step-title">Decision after review</div><div class="step-desc">This example does not predict the decision date or outcome.</div></div>
 </div>`,
       },
       {
@@ -541,14 +541,14 @@ export const guidesEn: Guide[] = [
   <li><strong>ID photo</strong> (4cm × 3cm)</li>
 </ul>
 
-<p><strong>Tip:</strong> An Administrative Scrivener (行政書士) can handle everything from document preparation to submission. Fees are typically ¥100,000–300,000, and for complex cases (job change history, overseas travel records, etc.), professional assistance is the safer choice.</p>`,
+<p><strong>Document preparation:</strong> Required evidence depends on individual circumstances. If engaging a professional, confirm the scope of work and fees directly and compare quotations.</p>`,
       },
       {
         title: "PR Review Period and Results",
         content: `
-<p>The official processing time for PR is stated as approximately 4 months, but <strong>in Tokyo, recent cases have taken 18 months or more</strong>. Wait times vary significantly by region and timing.</p>
+<p>This article has not measured current processing times for any region. Timing and additional-document requests can vary by application, office and date. Consult current official processing-time information.</p>
 
-<div class="guide-callout guide-callout-warning"><strong>Latest information:</strong> Tokyo Immigration has experienced significant delays due to increased application volume. Plan for a <strong>waiting period of 1 year or more</strong>.</div>
+<div class="guide-callout guide-callout-warning"><strong>Planning:</strong> This article does not guarantee processing time or an approval date. Check with the responsible office about separate procedures, including an expiring period of stay during review.</div>
 
 <p><strong>Important considerations during the review:</strong></p>
 <ul>

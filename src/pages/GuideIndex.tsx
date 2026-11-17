@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr/ArrowRight";
@@ -9,8 +9,9 @@ import { SEOHead } from "@/components/SEOHead";
 import { useI18n } from "@/i18n";
 
 export function GuideIndex() {
-  const { t } = useI18n();
-  const guides = useGuides();
+  const { locale, t } = useI18n();
+  const { guides, contentLocale, isLoading } = useGuides();
+  if (isLoading) return <p role="status">{t('page.loading')}</p>;
   return (
     <>
       <SEOHead
@@ -61,7 +62,8 @@ export function GuideIndex() {
         {/* Guide articles */}
         <div>
           <h2 className="text-lg font-semibold text-foreground mb-3">{t('guide.index.detailed')}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {locale !== contentLocale && <p className="mb-3 text-sm text-muted-foreground">{t('guide.translationFallback')}</p>}
+          <div lang={contentLocale} className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {guides.map((guide) => (
               <Link key={guide.slug} to={`/guide/${guide.slug}`} className="group">
                 <Card className="h-full transition-all duration-200 hover:shadow-md hover:border-primary/30 group-hover:bg-primary/5">

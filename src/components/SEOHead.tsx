@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import { useI18n, type Locale } from "@/i18n";
+import { canonicalUrl, languageAlternates } from "@/lib/seo";
 
 interface SEOHeadProps {
   title: string;
@@ -6,9 +8,12 @@ interface SEOHeadProps {
   path: string;
   type?: 'website' | 'article';
   jsonLd?: Record<string, unknown>[];
+  locale?: Locale;
 }
 
-export function SEOHead({ title, description, path, type = 'website', jsonLd }: SEOHeadProps) {
+export function SEOHead({ title, description, path, type = 'website', jsonLd, locale: pageLocale }: SEOHeadProps) {
+  const { locale: selectedLocale } = useI18n();
+  const locale = pageLocale ?? selectedLocale;
   useEffect(() => {
     document.title = title;
 
@@ -22,7 +27,7 @@ export function SEOHead({ title, description, path, type = 'website', jsonLd }: 
       el.content = content;
     };
 
-    const fullUrl = `https://kodocalc.com${path}`;
+    const fullUrl = canonicalUrl(path, locale);
 
     setMeta("title", title);
     setMeta("description", description);
@@ -30,9 +35,9 @@ export function SEOHead({ title, description, path, type = 'website', jsonLd }: 
     setMeta("og:title", title, "property");
     setMeta("og:description", description, "property");
     setMeta("og:url", fullUrl, "property");
-    setMeta("twitter:title", title, "property");
-    setMeta("twitter:description", description, "property");
-    setMeta("twitter:url", fullUrl, "property");
+    setMeta("twitter:title", title);
+    setMeta("twitter:description", description);
+    setMeta("twitter:url", fullUrl);
 
     // Update canonical
     let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
@@ -43,24 +48,32 @@ export function SEOHead({ title, description, path, type = 'website', jsonLd }: 
     }
     canonical.href = fullUrl;
 
-    // JSON-LD
-    const existingScripts = document.querySelectorAll('script[data-guide-jsonld]');
+    document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(el => el.remove());
+    languageAlternates(path).forEach(alternate => {
+      const link = document.createElement('link');
+      link.rel = 'alternate';
+      link.hreflang = alternate.locale;
+      link.href = alternate.href;
+      document.head.appendChild(link);
+    });
+
+    const existingScripts = document.querySelectorAll('script[data-page-jsonld], script[data-guide-jsonld]');
     existingScripts.forEach((s) => s.remove());
 
     if (jsonLd) {
       jsonLd.forEach((schema) => {
         const script = document.createElement("script");
         script.type = "application/ld+json";
-        script.setAttribute("data-guide-jsonld", "true");
+        script.setAttribute("data-page-jsonld", "true");
         script.textContent = JSON.stringify(schema);
         document.head.appendChild(script);
       });
     }
 
     return () => {
-      document.querySelectorAll('script[data-guide-jsonld]').forEach((s) => s.remove());
+      document.querySelectorAll('script[data-page-jsonld], script[data-guide-jsonld]').forEach((s) => s.remove());
     };
-  }, [title, description, path, type, jsonLd]);
+  }, [title, description, path, type, jsonLd, locale]);
 
   return null;
 }

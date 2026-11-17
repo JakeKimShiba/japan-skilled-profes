@@ -1,16 +1,16 @@
 import type { Guide } from './types';
 
-const today = new Date().toISOString().split("T")[0];
+const updatedOn = "2026-11-17";
 
 export const guidesKo: Guide[] = [
   {
     slug: "고도인재-비자-완벽-가이드",
     title: "일본 고도인재 비자(高度専門職) 완벽 가이드 2026",
     description:
-      "일본 고도인재 비자(HSP)란 무엇인지, 포인트 계산 방법, 비자 유형별 차이, 신청 절차, 영주권 혜택까지 한 페이지에서 모두 확인하세요. 70점·80점 기준과 실제 사례를 포함한 종합 안내서입니다.",
+      "일본 고도인재 비자(HSP)란 무엇인지, 포인트 계산 방법, 비자 유형별 차이, 신청 절차, 영주권 혜택까지 한 페이지에서 모두 확인하세요. 70점·80점 기준과 가상 계산 예시를 포함한 종합 안내서입니다.",
     keywords: ["고도인재 비자", "일본 고도인재", "고도인재비자", "HSP 비자", "고도전문직", "일본 영주권"],
     datePublished: "2026-05-14",
-    dateModified: "2026-11-16",
+    dateModified: updatedOn,
     sections: [
       {
         title: "고도인재 비자(高度専門職ビザ)란?",
@@ -36,7 +36,7 @@ export const guidesKo: Guide[] = [
       {
         title: "2025년 경영·관리 요건 개정과 고도전문직 1호 ハ",
         content: `
-<p><strong>2025년 10월 16일</strong> 시행된 경영·관리 허가기준 개정은 <strong>경영·관리 활동을 하는 고도전문직 1호 ハ에도 적용</strong>됩니다. 고도인재 점수가 높아도 이 기준을 우회할 수 없습니다.</p>
+<p><strong>2025년 10월 16일</strong> 시행된 경영·관리 허가기준 개정은 <strong>경영·관리 활동을 하는 고도전문직 1호 ハ에도 적용</strong>됩니다. 고득점으로 이 기준을 우회할 수 없습니다.</p>
 <div class="guide-callout guide-callout-warning">포인트 기준과 경영·관리 허가기준은 별개입니다. 이 계산기는 자본금·고용·사업계획 등 사업 요건을 판정하지 않습니다.</div>
 <ul>
   <li><strong>사업 규모:</strong> 자본금 등 3,000만엔 이상. 법인은 자본금·출자 총액, 개인사업자는 사업에 투입한 재산 총액을 기준으로 합니다.</li>
@@ -140,9 +140,9 @@ export const guidesKo: Guide[] = [
       {
         title: "70점 달성을 위한 현실적인 전략",
         content: `
-<p>가장 일반적인 한국인 직장인의 <strong>70점 달성 시나리오</strong>를 소개합니다.</p>
+<p><strong>가상 계산 예시:</strong> 전문기술 활동(1호 ロ), JLPT N2, 일본 유학·일본어 전공·대학 가산 등 기타 가산 없음으로 가정합니다. 신청 사례나 허가 결과가 아닙니다.</p>
 
-<p><strong>시나리오 1: 석사 + 5년 경력 + 500만엔 연봉 (20대)</strong></p>
+<p><strong>시나리오 1: 석사 + 5년 경력 + 500만엔 연봉 (만 28세)</strong></p>
 <div class="guide-bars">
   <div class="guide-bar-row"><span class="guide-bar-label">학력</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:66%;background:oklch(0.55 0.2 262)">석사 20</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">경력</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.48 0.18 200)">5년 10</div></div></div>
@@ -154,12 +154,12 @@ export const guidesKo: Guide[] = [
   <div class="guide-stat"><div class="guide-stat-value">70점 ✅</div><div class="guide-stat-label">합계</div></div>
 </div>
 
-<p><strong>시나리오 2: 학사 + 10년 경력 + 700만엔 연봉 (30대)</strong></p>
+<p><strong>시나리오 2: 학사 + 10년 경력 + 700만엔 연봉 (만 32세)</strong></p>
 <div class="guide-bars">
   <div class="guide-bar-row"><span class="guide-bar-label">학력</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.55 0.2 262)">학사 10</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">경력</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:66%;background:oklch(0.48 0.18 200)">10년 20</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">연봉</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:83%;background:oklch(0.48 0.18 155)">700만 25</div></div></div>
-  <div class="guide-bar-row"><span class="guide-bar-label">나이</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.52 0.15 55)">30대 10</div></div></div>
+  <div class="guide-bar-row"><span class="guide-bar-label">나이</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.52 0.15 55)">32세 10</div></div></div>
   <div class="guide-bar-row"><span class="guide-bar-label">일본어</span><div class="guide-bar-track"><div class="guide-bar-fill" style="width:33%;background:oklch(0.55 0.2 300)">N2 10</div></div></div>
 </div>
 <div class="guide-stats" style="max-width:200px;margin:0.5rem auto">
@@ -256,7 +256,7 @@ export const guidesKo: Guide[] = [
       "고도인재 비자 70점·80점에 도달하기 위한 실전 전략. JLPT, 연봉 협상, 자격증, 대학 보너스 등 가장 효과적인 포인트 향상 방법을 정리했습니다.",
     keywords: ["고도인재 포인트", "포인트 올리기", "JLPT N1", "일본 자격증", "고도인재 70점"],
     datePublished: "2026-05-14",
-    dateModified: today,
+    dateModified: updatedOn,
     sections: [
       {
         title: "현재 점수 진단하기",
@@ -279,7 +279,7 @@ export const guidesKo: Guide[] = [
 <table>
   <thead><tr><th>자격</th><th>점수</th><th>비고</th></tr></thead>
   <tbody>
-    <tr><td>JLPT N1 / BJT 480+</td><td><strong>15점</strong></td><td>일본어 대학 졸업도 동일</td></tr>
+    <tr><td>JLPT N1 / BJT 480+</td><td><strong>15점</strong></td><td>해외 대학에서 일본어를 전공한 경우의 가산 조건은 공식 표 확인</td></tr>
     <tr><td>JLPT N2 / BJT 400+</td><td>10점</td><td>N1 대비 5점 낮음</td></tr>
     <tr><td>없음</td><td>0점</td><td>—</td></tr>
   </tbody>
@@ -342,7 +342,7 @@ export const guidesKo: Guide[] = [
       "JLPT N1, N2, BJT가 고도인재 비자 포인트에 미치는 영향을 상세히 정리합니다. 일본어 능력 시험별 점수 차이, 시험 준비 전략, N2에서 N1 올리는 팁까지 한눈에 확인하세요.",
     keywords: ["JLPT N1", "JLPT N2", "일본 비자 n2", "BJT", "일본어 능력시험", "고도인재 일본어", "jlpt 점수 계산"],
     datePublished: "2026-05-14",
-    dateModified: today,
+    dateModified: updatedOn,
     sections: [
       {
         title: "일본어 능력과 고도인재 포인트",
@@ -360,7 +360,7 @@ export const guidesKo: Guide[] = [
   <tbody>
     <tr><td><strong>JLPT N1</strong> 합격</td><td><strong>15점</strong></td><td>최상</td></tr>
     <tr><td><strong>BJT 480점</strong> 이상</td><td><strong>15점</strong></td><td>상</td></tr>
-    <tr><td>일본어 전공 대학 졸업</td><td><strong>15점</strong></td><td>—</td></tr>
+    <tr><td>해외 대학 일본어 전공 졸업 (공식 요건 충족 시)</td><td><strong>15점</strong></td><td>—</td></tr>
     <tr><td><strong>JLPT N2</strong> 합격</td><td><strong>10점</strong></td><td>중상</td></tr>
     <tr><td><strong>BJT 400점</strong> 이상</td><td><strong>10점</strong></td><td>중</td></tr>
     <tr><td>해당 없음</td><td>0점</td><td>—</td></tr>
@@ -378,14 +378,14 @@ export const guidesKo: Guide[] = [
   <thead><tr><th>비교 항목</th><th>JLPT N2</th><th>JLPT N1</th></tr></thead>
   <tbody>
     <tr><td>고도인재 포인트</td><td>10점</td><td><strong>15점</strong></td></tr>
-    <tr><td>준비 기간 (독학 기준)</td><td>6~12개월</td><td>12~24개월</td></tr>
-    <tr><td>합격률 (2024년 기준)</td><td>약 40%</td><td>약 30%</td></tr>
+
+
     <tr><td>일본 취업 시장 평가</td><td>기본 요건</td><td><strong>우대 조건</strong></td></tr>
     <tr><td>시험 횟수/년</td><td>7월, 12월</td><td>7월, 12월</td></tr>
   </tbody>
 </table>
 
-<p>현재 N2라면 N1까지 추가로 6~12개월 정도 필요합니다. 비자 신청 시점까지 시간적 여유가 있다면 N1을 도전하세요.</p>`,
+<p>학습 기간은 현재 수준과 학습 여건에 따라 다릅니다. 정해진 준비기간이나 합격 가능성을 보장하지 않습니다.</p>`,
       },
       {
         title: "BJT(비즈니스 일본어능력시험)도 인정됩니다",
@@ -400,7 +400,7 @@ export const guidesKo: Guide[] = [
 <p><strong>BJT의 장점:</strong></p>
 <ul>
   <li>CBT(컴퓨터) 방식으로 <strong>거의 매일 응시 가능</strong></li>
-  <li>결과가 즉시 나옴 (JLPT는 2~3개월 대기)</li>
+  <li>성적 통지 방식과 시점은 각 시험의 공식 안내 확인</li>
   <li>비즈니스 일본어에 익숙한 직장인에게 유리</li>
 </ul>
 
@@ -451,7 +451,7 @@ export const guidesKo: Guide[] = [
       {
         question: "JLPT 시험은 언제 볼 수 있나요?",
         answer:
-          "매년 7월과 12월 총 2회 실시됩니다. 한국에서는 약 3~4개월 전에 접수가 시작됩니다. 일본에서는 일부 지역에서 추가 시행될 수 있으니 공식 사이트를 확인하세요.",
+          "응시 지역의 시행 여부, 접수기간, 시험일과 성적 통지는 JLPT 공식 시행기관에서 확인하세요.",
       },
     ],
   },
@@ -462,7 +462,7 @@ export const guidesKo: Guide[] = [
       "고도인재 비자를 통한 일본 영주권 취득 방법을 상세히 안내합니다. 70점·80점별 영주권 신청 시기, 필요 서류, 심사 기간, 주의사항까지 단계별로 정리했습니다.",
     keywords: ["일본 영주권", "고도인재 영주권", "일본 영주권 고도인재", "일본 영주권 취득", "고도인재 비자 영주권", "일본 정주"],
     datePublished: "2026-05-14",
-    dateModified: today,
+    dateModified: updatedOn,
     sections: [
       {
         title: "고도인재 비자의 영주권 혜택",
@@ -505,22 +505,22 @@ export const guidesKo: Guide[] = [
   <li><strong>신원 보증인</strong> — 일본인 또는 영주자 1명</li>
 </ol>
 
-<div class="guide-callout guide-callout-warning"><strong>주의:</strong> "계속 거주"란 중간에 장기간 출국하지 않는 것을 의미합니다. 1회 출국 시 <strong>3개월 이상</strong>, 연간 합계 <strong>100일 이상</strong> 출국하면 "계속 거주"로 인정되지 않을 수 있습니다.</div>`,
+<div class="guide-callout guide-callout-warning"><strong>출국 이력:</strong> 계속 거주 인정 여부를 특정 출국 일수 하나로 판정하지 않습니다. 출국 사유와 재류 이력을 준비해 공식 안내 또는 관할 입관에 확인하세요.</div>`,
       },
       {
         title: "80점 최단 1년 루트 상세",
         content: `
 <p><strong>80점 이상</strong>으로 고도인재 비자를 취득하면, 입국(또는 자격 변경) 후 <strong>1년이 경과한 시점</strong>에서 영주권을 신청할 수 있습니다.</p>
 
-<div class="guide-callout guide-callout-info">80점 기준 신청 후, 도쿄에서는 최근 심사에 <strong>약 1년 6개월 이상</strong> 소요되어 총 <strong>약 2년 반~3년</strong>이 걸릴 수 있습니다. 지방 입관은 비교적 빠른 편입니다.</div>
+<div class="guide-callout guide-callout-info">1년은 해당 특례의 재류기간 기준이지 신청 후 심사기간이나 허가까지의 총기간이 아닙니다. 신청 시점과 과거 기준일의 점수 등 다른 요건도 확인하세요.</div>
 
-<p><strong>타임라인:</strong></p>
+<p><strong>가상 준비 일정:</strong> 아래 개월 수는 준비 예시이며, 해당 시점에 반드시 신청할 수 있거나 허가된다는 뜻이 아닙니다.</p>
 <div class="guide-timeline">
   <div class="guide-timeline-item"><div class="step-title">0개월 — 비자 취득</div><div class="step-desc">고도인재 비자(80점 이상)로 입국 또는 자격 변경</div></div>
   <div class="guide-timeline-item"><div class="step-title">6개월 — 중간 점검</div><div class="step-desc">세금, 연금, 보험 납부 기록 확인 (체납 없는지)</div></div>
   <div class="guide-timeline-item"><div class="step-title">10개월 — 서류 준비</div><div class="step-desc">영주권 신청 서류 준비 시작 (증빙 수집)</div></div>
   <div class="guide-timeline-item"><div class="step-title">12개월 — 영주권 신청</div><div class="step-desc">입관에 영주허가 신청서 접수</div></div>
-  <div class="guide-timeline-item"><div class="step-title">24~30개월 — 영주권 허가 🎉</div><div class="step-desc">도쿄 기준 최근 심사 1년 6개월 이상 소요. 지역에 따라 편차 있음</div></div>
+  <div class="guide-timeline-item"><div class="step-title">심사 후 결과 통지</div><div class="step-desc">허가 시점과 결과는 이 예시로 예측하지 않습니다.</div></div>
 </div>`,
       },
       {
@@ -541,14 +541,14 @@ export const guidesKo: Guide[] = [
   <li><strong>증명 사진</strong> (4cm × 3cm)</li>
 </ul>
 
-<p><strong>팁:</strong> 행정서사(行政書士)에게 의뢰하면 서류 준비부터 제출까지 대행해줍니다. 비용은 10~30만엔 정도이며, 복잡한 경우(이직 이력, 출국 기록 등)에는 전문가 도움을 받는 것이 안전합니다.</p>`,
+<p><strong>서류 준비:</strong> 개별 상황에 따라 필요한 서류가 다릅니다. 전문가에게 의뢰한다면 업무 범위와 보수를 직접 확인하고 견적을 비교하세요.</p>`,
       },
       {
         title: "영주권 심사 기간과 결과",
         content: `
-<p>영주권 심사는 공식적으로는 약 4개월로 안내되고 있으나, <strong>도쿄 기준 최근에는 1년 6개월 이상</strong> 소요되는 경우가 늘고 있습니다. 지역과 시기에 따라 편차가 큽니다.</p>
+<p>이 글은 특정 지역의 최신 심사기간을 측정하지 않았습니다. 처리기간과 서류 요구는 신청 내용·관할·시점에 따라 달라질 수 있으므로 공식 처리기간 안내를 확인하세요.</p>
 
-<div class="guide-callout guide-callout-warning"><strong>최신 정보:</strong> 도쿄 입관은 신청 건수 증가로 심사가 크게 지연되고 있습니다. 여유를 갖고 <strong>1년 이상의 대기 기간</strong>을 감안하세요.</div>
+<div class="guide-callout guide-callout-warning"><strong>일정 계획:</strong> 이 글은 심사기간이나 허가일을 보장하지 않습니다. 심사 중 재류기간 만료 등 별도 절차도 관할 입관에 확인하세요.</div>
 
 <p><strong>심사 중 주의사항:</strong></p>
 <ul>

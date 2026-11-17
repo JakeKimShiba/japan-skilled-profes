@@ -56,7 +56,7 @@ for (const locale of locales) {
         await expect(card(page, locale)).toContainText(dict['points.value'].replace('{value}', String(profile.score)));
         await expect(page.locator('html')).toHaveAttribute('lang', locale);
         await expect(page).toHaveTitle(`${dict['app.title']} | kodocalc.com`);
-        for (const selector of ['meta[name="title"]', 'meta[property="og:title"]', 'meta[property="twitter:title"]']) {
+        for (const selector of ['meta[name="title"]', 'meta[property="og:title"]', 'meta[name="twitter:title"]']) {
           await expect(page.locator(selector)).toHaveAttribute('content', `${dict['app.title']} | kodocalc.com`);
         }
         await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', dict['app.subtitle']);

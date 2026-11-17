@@ -1,233 +1,32 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- Primary Meta Tags -->
-    <title>일본 고도인재 비자 점수 계산기 | 70점 이상 HSP 영주권 이민 | JLPT N1/N2</title>
-    <meta name="title" content="일본 고도인재 비자 점수 계산기 | 70점 이상 HSP 영주권 이민 | JLPT N1/N2" />
-    <meta name="description" content="일본 고도인재 비자(HSP) 무료 점수 계산기. JLPT N1/N2, BJT, 학력(석사/박사), 경력, 연봉 300만엔+ 입력으로 70점 이상 충족 여부 즉시 확인. 일본 영주권(1-3년), 배우자 취업 허가 등 혜택 안내. 5개 언어 지원." />
-    <meta name="keywords" content="일본 비자, 고도인재, 고도인재비자, HSP 비자, 비자 계산기, Japan visa calculator, 일본 취업, 일본취업, 일본 영주권, 일본 영주 비자, 일본 영주, 일본 이민, 고도전문직, 고도전문직비자, JLPT, JLPT N1, JLPT N2, BJT, 일본어 능력시험, 비즈니스 일본어, 일본 워킹비자, 70점, 포인트제, 포인트제 우대, 일본 거주, 일본 정착, 출입국관리청, 법무성, 일본 체류자격, 일본 취업이민, 석사, 박사, 연봉 300만엔, 해외이주, 일본이주, 일본 이주, 코리안재팬, 재일교포, 일본생활, 일본 생활, 도쿄생활, 오사카생활, 일본회사, 일본직장, 일본 직장, IT일본, 개발자일본, 엔지니어일본, 고숙련외국인재, 특정활동비자, permanent residence, 일본 장기체류, Japan work visa, Japan PR, Japan immigration, 高度人材, 高度専門職, ポイント制, 在留資格, 永住権, 日本ビザ, 日本就労ビザ, 入国管理局, 日本移住, 日本就職, 中国人日本签证, 日本高级人才签证, 积分制, 永久居留, 日本工作签证, 日本移民" />
+    <title>일본 고도인재 비자 점수 계산기 | kodocalc.com</title>
+    <meta name="title" content="일본 고도인재 비자 점수 계산기 | kodocalc.com" />
+    <meta name="description" content="고도인재 비자 3개 활동 유형의 예상 포인트를 계산하고, 적용 조건과 공식 자료를 확인하세요. 계산 결과는 허가를 보장하지 않습니다." />
     <meta name="author" content="Jake Kim" />
     <meta name="robots" content="index, follow" />
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    
-  <!-- Language -->
-  <meta http-equiv="content-language" content="ko" />
-  <link rel="alternate" hreflang="x-default" href="https://kodocalc.com/" />
-  <link rel="alternate" hreflang="ko" href="https://kodocalc.com/" />
-  <link rel="alternate" hreflang="ja" href="https://kodocalc.com/" />
-  <link rel="alternate" hreflang="en" href="https://kodocalc.com/" />
-  <link rel="alternate" hreflang="zh-cn" href="https://kodocalc.com/" />
-  <link rel="alternate" hreflang="zh-tw" href="https://kodocalc.com/" />
-    
-    <!-- Open Graph / Facebook -->
+    <meta http-equiv="content-language" content="ko" />
     <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://kodocalc.com/" />
-    <meta property="og:title" content="일본 고도인재 비자 점수 계산기 | HSP 영주권 이민" />
-    <meta property="og:description" content="일본 고도인재 비자(HSP) 신청을 위한 무료 온라인 점수 계산기. 일본 이민, 영주권을 위한 필수 도구! 70점 이상으로 일본 정착의 꿈을 현실로 만드세요." />
-      <meta property="og:image" content="https://kodocalc.com/og-image.png" />
-    <meta property="og:site_name" content="일본 고도인재 비자 계산기" />
-  <meta property="og:locale" content="ko_KR" />
-  <meta property="og:locale:alternate" content="ja_JP" />
-  <meta property="og:locale:alternate" content="en_US" />
-  <meta property="og:locale:alternate" content="zh_CN" />
-  <meta property="og:locale:alternate" content="zh_TW" />
-    
-    <!-- Twitter -->
+    <meta property="og:title" content="일본 고도인재 비자 점수 계산기 | kodocalc.com" />
+    <meta property="og:description" content="고도인재 비자 3개 활동 유형의 예상 포인트와 적용 조건을 확인하세요." />
+    <meta property="og:image" content="https://kodocalc.com/og-image.png" />
+    <meta property="og:site_name" content="kodocalc.com" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://kodocalc.com/" />
-    <meta name="twitter:title" content="일본 고도인재 비자 점수 계산기 | 70점 이상 HSP 영주권 이민 | JLPT N1/N2" />
-    <meta name="twitter:description" content="일본 고도인재 비자(HSP) 무료 점수 계산기. JLPT N1/N2, BJT, 학력(석사/박사), 경력, 연봉 300만엔+ 입력으로 70점 이상 충족 여부 즉시 확인. 일본 영주권(1-3년), 배우자 취업 허가 등 혜택 안내." />
+    <meta name="twitter:title" content="일본 고도인재 비자 점수 계산기 | kodocalc.com" />
+    <meta name="twitter:description" content="고도인재 비자 3개 활동 유형의 예상 포인트와 적용 조건을 확인하세요." />
     <meta name="twitter:image" content="https://kodocalc.com/twitter-image.png" />
-    
-    <!-- Canonical URL -->
-  <link rel="canonical" href="https://kodocalc.com/" />
-    
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "일본 고도인재 비자 점수 계산기",
-      "alternateName": ["Japan Highly Skilled Professional Visa Calculator", "HSP 비자 계산기", "고도인재비자 계산기", "일본 이민 계산기"],
-      "description": "일본 고도인재 비자(HSP) 신청을 위한 무료 온라인 점수 계산기. 일본 이민, 영주권을 위한 필수 도구. 학력, 경력, 연봉, 자격증 등을 입력하여 70점 이상 충족 여부를 확인하고 일본 정착의 꿈을 현실로 만드세요.",
-  "url": "https://kodocalc.com/",
-      "applicationCategory": "UtilityApplication",
-      "operatingSystem": "Any",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Jake Kim"
-      },
-      "keywords": "일본 비자, 고도인재, 고도인재비자, 비자 계산기, Japan visa, highly skilled professional, visa calculator, 일본 이민, 고도전문직, HSP 비자, 일본 워킹비자, 영주권, 일본 정착, 출입국관리청, 일본 취업이민, 해외이주, 일본이주, 일본생활, 도쿄생활, IT일본, 개발자일본",
-  "inLanguage": ["ko", "en", "zh-cn", "zh-tw"],
-      "isAccessibleForFree": true
-    }
-    </script>
-
-    <!-- WebApplication Schema for Google AI Search -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "일본 고도인재 비자 점수 계산기",
-      "alternateName": ["Japan HSP Visa Calculator", "高度人材ビザポイント計算機", "日本高级人才签证计算器"],
-      "url": "https://kodocalc.com/",
-      "description": "일본 고도인재 비자(HSP) 무료 점수 계산기. JLPT N1/N2, BJT, 학력, 경력, 연봉을 입력하여 70점 이상 충족 여부를 즉시 확인하세요.",
-      "applicationCategory": "UtilityApplication",
-      "operatingSystem": "Web Browser",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "featureList": [
-        "JLPT N1/N2 일본어 능력 평가",
-        "BJT 비즈니스 일본어 점수",
-        "학력별 점수 계산 (학사/석사/박사)",
-        "경력 연차별 점수",
-        "연봉 기반 점수",
-        "세계 300위권 대학 가산점",
-        "외국 전문 자격증 및 국제 수상 가산점",
-        "5개 언어 지원 (한국어, 영어, 일본어, 중국어)"
-      ],
-      "inLanguage": ["ko-KR", "en-US", "ja-JP", "zh-CN", "zh-TW"],
-      "creator": {
-        "@type": "Person",
-        "name": "Jake Kim"
-      },
-      "datePublished": "2024-01-01",
-      "dateModified": "2025-11-16"
-    }
-    </script>
-
-    <!-- FAQPage Schema for Google Rich Results -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "일본 고도인재 비자란 무엇인가요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "고도인재 비자(高度専門職)는 학력·경력·연봉 등을 평가하는 포인트제입니다. 70점 외에 활동 내용·보수·고용기관 등 별도 허가요건도 충족해야 합니다. 우대 혜택에는 각각 추가 조건이 적용됩니다."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "70점을 달성하려면 어떻게 해야 하나요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "70점 달성을 위한 전략적인 방법들: 1) 석사 학위 취득(20점, 박사는 30점), 2) JLPT N1 합격(15점, N2는 10점), 3) 연봉 협상(500만엔 이상이면 20점 이상 가능), 4) TOP 대학 졸업(세계 랭킹 300위권 대학 +10점), 5) 경력 쌓기(10년 이상 경력 25점)"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "JLPT N1과 N2의 차이는 무엇인가요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "JLPT N1은 최고 난이도로 고급 일본어 능력을 증명하며 15점을 받습니다. JLPT N2는 중상급 수준으로 일상생활과 업무에서 사용 가능하며 10점을 받습니다. N2도 충분히 가치 있지만, 5점 차이가 자격 충족에 결정적일 수 있습니다."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "학력별로 몇 점을 받을 수 있나요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "박사 학위는 30점, 석사 학위는 20점, 학사 학위는 10점을 받을 수 있습니다. 일본 대학 졸업 시 추가 가산점이 있을 수 있습니다."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "최소 연봉 요구사항이 있나요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "기술·경영 활동은 연봉 300만엔 이상이 필요하며, 70점 이상이어도 이 기준을 충족해야 합니다. 학술연구 활동에는 이 최소 기준이 적용되지 않습니다. 경영 활동의 연봉 점수는 1,000만엔부터 시작하며 최소 연봉과는 별개입니다."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "고도인재 비자는 어떻게 신청하나요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "고도인재 비자 신청을 위해서는 1) 일본 회사의 채용 제안 또는 사업 계획, 2) 70점 이상의 포인트 증명 서류, 3) 학력·경력·자격증 증명서가 필요합니다. 서류 준비 후 일본 출입국재류관리청 또는 재외공관에 신청하세요."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "80점 이상이면 어떤 추가 혜택이 있나요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "70-79점은 3년 후 영주권 신청이 가능하지만, 80점 이상은 단 1년 후에 영주권 신청이 가능합니다(초고속!)."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "대학 가산점은 어떻게 받나요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "세계 대학 랭킹 300위권 이내 대학을 졸업한 경우 10점의 가산점을 받을 수 있습니다. 이 사이트의 대학 검색 기능을 사용하여 본인의 대학이 목록에 포함되는지 확인하세요."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "직무 관련 외국 자격 또는 국제 수상 경력은 무엇을 인정하나요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "일본 법무성이 인정하는 14개의 외국 전문 자격증 및 국제 디자인/패션 상을 취득한 경우 5점의 가산점을 받을 수 있습니다. 인정되는 자격/수상: 1) 공인회계사(USCPA), 2) 외국 변호사 자격(27개국), 3) 보험계리사, 4) iF Design Award(Gold), 5) IDEA Award(Gold), 6) Red Dot Award(Best of the Best), 7) Good Design Award(Grand/Gold), 8) Design for Asia Award(Grand), 9) ADC Annual Award(Gold), 10) D&AD Award(Gold), 11) Cannes Lions(Design Grand Prix/Gold), 12) LVMH Prize(Winner), 13) International Woolmark Prize(Winner), 14) Fashion Award(Designer of the Year). 해당 자격증/수상이 직무와 관련이 있어야 인정됩니다."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "고도인재 점수를 충족했음에도 영주권이 반려되는 경우가 있나요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "네. 다음과 같은 사유로 반려될 수 있습니다: 1) 세금 문제: 장기간의 세금 연체·미납, 2) 신고 의무 불이행: 이직 시 외국인은 법무성 출입국재류관리청(入管)에 '계약기관에 관한 신고(契約機関に関する届出)'를 퇴사·입사 각각 14일 이내 신고해야 하며 미신고 시 불이익 가능, 3) 전과 여부: 국내·외 범죄 기록, 4) 기타 사유: 서류 불충분, 재류자격 요건 불충족 등. 경미한 문제의 경우 행정서사를 통한 전문적인 이유서 작성으로 해결된 사례 다수 확인됨."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "여러 분야에서 복수 학위를 취득하면 고도인재 포인트 가산이 되나요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "전공이 서로 다른 박사·석사·전문학위를 2개 이상 보유한 경우 복수 학위 가산이 인정됩니다. 가산에는 정해진 상한(+5점 등)이 있으며, 기본 학력 점수는 가장 높은 학위 1개만 인정됩니다. 복수 학위는 '여러 개니까 점수가 여러 번 더해지는 것'이 아니라 '복수 학위 보유자에게 추가 포인트 1회 부여' 방식입니다. 학사 학위를 여러 개 보유한 경우에는 가산이 적용되지 않으며, 학력 포인트는 학사 기준 10점으로 동일합니다. 복수 학위 가산은 석사·박사·전문학위에만 해당됩니다."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "고도인재 포인트제에서 '연봉·보수(報酬)'는 무엇을 의미하나요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "포인트 계산은 예정된 연간 보수를 기준으로 하며 기본급·대상 수당·상여가 포함됩니다. 시간외 근무수당은 제외되며, 갱신 시에도 과거 지급된 시간외 근무수당은 포함하지 않습니다. 통근·부양·주택수당 등 실비 변상 성격의 지급금도 제외됩니다(과세 대상인 것은 제외). 고용계약서 등으로 예정 보수를 입증해야 합니다. 출입국재류관리청 고도인재 Q&A Q7·Q8 참조."
-          }
-        }
-      ]
-    }
-    </script>
-    
-    <!-- Use relative paths so they honor the <base> below on GitHub Pages -->
+    <!-- Query-language URLs share this document. The app supplies their canonical after locale resolution. -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <base href="%BASE_URL%" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <div id="root"></div>
-    <!-- Use relative path so dev and prod both work with base -->
     <script type="module" src="src/main.tsx"></script>
 </body>
-
 </html>

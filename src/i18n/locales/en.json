@@ -48,7 +48,6 @@
   "faq.q5.technical": "Advanced Specialized/Technical Activities: 3 million yen minimum required",
   "faq.q5.business": "Advanced Business Management Activities: minimum annual salary of 3 million yen. Salary points start at 10 million yen.",
   "faq.q5.academic": "The HSP points system does not impose this minimum salary on Academic Research Activities.",
-  "faq.q5.salaryRanges": "Salary point examples for Academic and Technical activities:",
   "faq.q5.salaryRanges": "Points by salary:",
   "faq.q5.salary1": "10M+ JPY",
   "faq.q5.salary2": "8M+ JPY",
@@ -328,8 +327,8 @@
   "tooltip.researchLicense": "Choose research achievements and licenses.",
   "info.title": "Highly Skilled Professional Points System (高度人材ポイント制)",
   "info.intro": "Japan's Highly Skilled Professional program awards points for academic background, work experience, salary, research, language, and special conditions.",
-  "info.notice": "This calculator is for {visa}. Requirements and interpretations may vary. Always check the official guidance.",
-  "info.description": "Reach 70+ points to qualify. At 80+ points, additional preferential measures are available.",
+  "info.notice": "The calculator supports Academic, Specialized/Technical and Business Management activities. Scoring and separate permission requirements vary by activity. Check official guidance.",
+  "info.description": "70 points is a points threshold, not permission by itself. Activity, remuneration and evidence requirements also apply. The 80-point residence-period concession for PR has separate conditions.",
   "info.benefits.title": "Preferential benefits",
   "info.benefits.multiActivity": "Flexible multi-activity permission",
   "info.benefits.fiveYears": "Up to 5-year period of stay",
@@ -508,5 +507,13 @@
   "breadcrumb.guide": "Guide",
   "footer.guide.title": "HSP Visa Guide",
   "footer.guide.desc": "System overview, FAQ, tips to increase points by visa type",
-  "footer.official": "MOJ Official Site"
+  "footer.official": "MOJ Official Site",
+  "guide.translationFallback": "The selected-language guide body is unavailable. The Korean original is shown below. English and Japanese translations are available.",
+  "guide.sources": "Official sources and scope",
+  "guide.scope": "Points and preferential measures depend on activity type, evidence and relevant dates. Examples assume only the stated conditions; a calculated score does not establish eligibility or guarantee permission. Check current official guidance before applying.",
+  "guide.responsibility": "Operator and editor: kodocalc.com (Jake Kim). This service does not provide individual legal advice or expert review. The edit date records a content change, not verification of the entire legal framework.",
+  "guide.source.points": "Immigration Services Agency: HSP system and official points tables",
+  "guide.source.pr": "Immigration Services Agency: permanent residence guidelines",
+  "guide.source.jlpt": "Official JLPT: summary of linguistic competence by level",
+  "guide.source.bjt": "Official BJT: uses and recognized scores"
 }

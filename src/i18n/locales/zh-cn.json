@@ -48,7 +48,6 @@
   "faq.q5.technical": "高度专业·技术活动：最低需300万日元",
   "faq.q5.business": "高度经营·管理活动：年薪至少300万日元。年薪积分从1,000万日元起计算。",
   "faq.q5.academic": "高度学术研究活动不适用此积分制的最低年薪标准。",
-  "faq.q5.salaryRanges": "学术及技术活动的年薪积分示例：",
   "faq.q5.salaryRanges": "年薪对应分数：",
   "faq.q5.salary1": "1000万日元以上",
   "faq.q5.salary2": "800万日元以上",
@@ -279,8 +278,8 @@
   "nav.viewResults": "查看结果",
   "info.title": "高度人才积分制度介绍 (高度人材ポイント制)",
   "info.intro": "日本高端人才制度根据学历、工作经验、年收入、研究成果、语言和特别条件等项目给予积分。",
-  "info.notice": "本计算器基于 {visa} 要求提供参考。具体解释与要求可能不同，请以官方指南为准。",
-  "info.description": "总分达到 70 分以上即符合资格。达到 80 分以上可享受额外优待措施。",
+  "info.notice": "计算器支持学术研究、专业技术及经营管理三类活动。各类积分标准和其他许可条件不同，请确认官方指南。",
+  "info.description": "70分只是积分门槛，还须满足活动内容、报酬和证明材料等条件。80分的永住申请居留期缩短也有其他适用条件。",
   "info.benefits.title": "优待措施",
   "info.benefits.multiActivity": "灵活的多重活动许可",
   "info.benefits.fiveYears": "最长 5 年在留期限",
@@ -508,5 +507,13 @@
   "breadcrumb.guide": "指南",
   "footer.guide.title": "高度人才签证指南",
   "footer.guide.desc": "制度介绍、常见问题、各签证类型积分提升方法等",
-  "footer.official": "法务省官方网站"
+  "footer.official": "法务省官方网站",
+  "guide.translationFallback": "所选语言的指南正文暂不可用，以下显示韩语原文。您也可以切换至英语或日语译文。",
+  "guide.sources": "官方资料与适用范围",
+  "guide.scope": "积分及优惠措施受活动类别、证明材料和认定时点等条件限制。示例仅假设所列条件，计算分数不代表获得资格或许可。申请前请确认最新官方资料。",
+  "guide.responsibility": "运营与编辑：kodocalc.com (Jake Kim)。本服务不提供个别法律咨询或专家审核。编辑日期仅表示正文修改日期，并非对全部法规的核验日期。",
+  "guide.source.points": "出入国在留管理厅：高度人才制度与官方积分表",
+  "guide.source.pr": "出入国在留管理厅：永住许可指南",
+  "guide.source.jlpt": "JLPT 官方：各等级认定标准",
+  "guide.source.bjt": "BJT 官方：用途与认可分数"
 }

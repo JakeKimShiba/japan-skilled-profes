@@ -48,7 +48,6 @@
   "faq.q5.technical": "高度專業·技術活動：最低需300萬日圓",
   "faq.q5.business": "高度經營·管理活動：年薪至少300萬日圓。年薪積分從1,000萬日圓起計算。",
   "faq.q5.academic": "高度學術研究活動不適用此積分制的最低年薪標準。",
-  "faq.q5.salaryRanges": "學術及技術活動的年薪積分範例：",
   "faq.q5.salaryRanges": "年薪對應分數：",
   "faq.q5.salary1": "1000萬日元以上",
   "faq.q5.salary2": "800萬日元以上",
@@ -272,8 +271,8 @@
   "nav.viewResults": "查看結果",
   "info.title": "高度人才積分制度介紹 (高度人材ポイント制)",
   "info.intro": "日本高端人才制度會依據學歷、工作經驗、年收入、研究成果、語言及特別條件等項目給予積分。",
-  "info.notice": "本計算器以 {visa} 要求為基準提供參考。實際解釋與要求可能不同，請以官方指南為準。",
-  "info.description": "總分達到 70 分以上即符合資格。達到 80 分以上可享有額外優待措施。",
+  "info.notice": "計算器支援學術研究、專業技術及經營管理三類活動。各類積分標準和其他許可條件不同，請確認官方指南。",
+  "info.description": "70分只是積分門檻，還須滿足活動內容、報酬和證明文件等條件。80分的永住申請居留期縮短也有其他適用條件。",
   "info.benefits.title": "優待措施",
   "info.benefits.multiActivity": "彈性的多重活動許可",
   "info.benefits.fiveYears": "最長 5 年在留期間",
@@ -508,5 +507,13 @@
   "breadcrumb.guide": "指南",
   "footer.guide.title": "高度人才簽證指南",
   "footer.guide.desc": "制度介紹、常見問題、各簽證類型積分提升方法等",
-  "footer.official": "法務省官方網站"
+  "footer.official": "法務省官方網站",
+  "guide.translationFallback": "所選語言的指南正文暫不可用，以下顯示韓語原文。您也可以切換至英語或日語譯文。",
+  "guide.sources": "官方資料與適用範圍",
+  "guide.scope": "積分及優惠措施受活動類別、證明文件和認定時點等條件限制。範例僅假設所列條件，計算分數不代表獲得資格或許可。申請前請確認最新官方資料。",
+  "guide.responsibility": "營運與編輯：kodocalc.com (Jake Kim)。本服務不提供個別法律諮詢或專家審核。編輯日期僅表示正文修改日期，並非對全部法規的核驗日期。",
+  "guide.source.points": "出入國在留管理廳：高度人才制度與官方積分表",
+  "guide.source.pr": "出入國在留管理廳：永住許可指南",
+  "guide.source.jlpt": "JLPT 官方：各等級認定標準",
+  "guide.source.bjt": "BJT 官方：用途與認可分數"
 }
